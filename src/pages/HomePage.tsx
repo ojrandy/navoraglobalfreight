@@ -797,7 +797,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
                 <div>
                   <strong className="thermal-brand font-mono">{COMPANY.toUpperCase()}</strong>
                 </div>
-                <img src="/brand/sdl-mark.png" alt="" className="thermal-mark" width={40} height={40} loading="lazy" />
+                <img src="/brand/mark.png" alt="" className="thermal-mark" width={40} height={40} loading="lazy" />
               </div>
 
               <div className="thermal-body-grid font-mono">

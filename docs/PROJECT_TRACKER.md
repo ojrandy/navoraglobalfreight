@@ -200,6 +200,7 @@ The first baseline ran on older code (`0ae1ff4`). `main` then gained 11 upstream
 | 45 | **Accessibility not yet covered:** the admin console, later steps of the Quote/Ship forms and all modal states were not audited with axe; modals close with Escape but don't trap focus. Phase 5 motion must add its own reduced-motion paths. | 6.5, 5.x |
 | 46 | **Customer-facing false promises:** the Track Result "Get Delivery Alerts" form says "Subscribed Successfully!" but saves and sends nothing. Nothing opens it today (dead code); delete it or connect it to email/SMS (#14). | 6.2 |
 | 47 | **Found in QA, not fixed (need a decision or a data-model change):** (a) the admin wizard's dangerous-goods **Emergency Response Contact** field is not saved (no value/handler); (b) the admin "Book Consignment" quick form is still U.S.-shaped (required "State", NY/LA placeholders, lbs only); (c) the pet preset buttons and the default pet fields in the admin wizard pre-fill "Barnaby • (212) 555-0199" (fictional range; clear with 6.7); (d) every public page calls admin-only APIs and logs 401s in the browser console; (e) `POST /api/quotes` accepts a client-chosen quote `id`, and `POST /api/documents/generate` (public, rate-limited) returns 500 instead of 400 for a bad body. | 6.2 |
+| 48 | **Navora logo source is a raster (2024×777 PNG) with soft shadow smudges baked in** next to a few letters (barely visible on dark). A vector/SVG original would give crisper small sizes; at 16 px the detailed globe mark reads as a red globe blob. | Navora P1 |
 
 ## Decisions log
 | Date | Decision |
@@ -270,6 +271,7 @@ The first baseline ran on older code (`0ae1ff4`). `main` then gained 11 upstream
 | 2026-09-30 | 6.7 | All demo data removed from the code (see 6.7). Build, tests and a production-mode run with an empty DB pass; DLS7K2M9 is not found. |
 | 2026-10-02 | Navora P1 | Snapshot `b268fb5` on branch `navora`; baseline build passes, `npm test` 33/33; old-brand inventory (3,442 hits) and branded-photo audit done. |
 | 2026-10-02 | Navora P1 | Smartsupp chat removed (`index.html` loader and the `App.tsx` show/hide effect); `screens/` removed. Build passes. |
+| 2026-10-02 | Navora P1 | Logo and icons from `images/Nov-logo.png` via `scripts/optimize-images.mjs --brand` (grey texture → transparent, specks removed, trimmed): `Public/brand/logo.png`, `logo-white.png`, `mark.png`, favicons/app icons, OG image (white logo on Ink). Old `sdl-logo*`, `sdl-mark` and `images/logo.jpeg` deleted; cache-bust `?v=4`. Admin sidebar logo 42→50 px; other sizes unchanged. Build passes. |
 ---
 
 ## System notes (codebase walkthrough, updated 2026-09-26 for commit `6b8185f`)

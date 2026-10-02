@@ -1,7 +1,8 @@
 // Prepares SDL brand assets and responsive photos from the untouched originals in images/.
 // Run with: node scripts/optimize-images.mjs            (everything)
+//           node scripts/optimize-images.mjs --brand    (logos, mark, icons and OG image only)
 //           node scripts/optimize-images.mjs --icons    (favicon and app icons only)
-// Outputs: Public/brand/* (logos, icons, OG image) and Public/images/sdl/* (WebP + JPG per width),
+// Outputs: Public/brand/* (logo, logo-white, mark, icons, OG image) and Public/images/sdl/* (WebP + JPG per width),
 // plus src/data/sdlImages.ts (the manifest <ResponsiveImage> reads).
 import sharp from 'sharp';
 import fs from 'node:fs';
@@ -24,19 +25,24 @@ fs.mkdirSync(BRAND_OUT, { recursive: true });
 fs.mkdirSync(PHOTO_OUT, { recursive: true });
 
 // ---------------------------------------------------------------------------------------------
-// Logo: the supplied logo is a JPEG on white. "Colour to alpha" against white keeps the
-// anti-aliased edges smooth instead of leaving a white fringe.
+// Logo: the supplied logo (images/Nov-logo.png) is an opaque PNG on a light grey paper texture
+// (whiteness ~230-255) with a white glow around the letters. "Colour to alpha" against white
+// turns the paper and glow fully transparent and keeps anti-aliased edges smooth, without a
+// grey fringe. Stray darker specks in the texture are cleared afterwards by dropSpecks().
 // ---------------------------------------------------------------------------------------------
-async function whiteToAlpha(input) {
+const LOGO_SRC = 'Nov-logo.png';
+
+// low:  at or below this "whiteness" (min of R, G, B) a pixel is fully opaque.
+// high: at or above it the pixel is background; set just under the paper texture's darkest tone.
+async function whiteToAlpha(input, { low = 60, high = 232 } = {}) {
   const { data, info } = await sharp(input).removeAlpha().raw().toBuffer({ resolveWithObject: true });
   const out = Buffer.alloc(info.width * info.height * 4);
-  const LOW = 190; // at or below this "whiteness" a pixel is fully opaque
-  const HIGH = 238; // at or above this it is background (JPEG noise keeps the paper at ~240-255)
   for (let i = 0, j = 0; i < data.length; i += 3, j += 4) {
     const r = data[i], g = data[i + 1], b = data[i + 2];
     const whiteness = Math.min(r, g, b);
-    let a = whiteness <= LOW ? 1 : 1 - (whiteness - LOW) / (HIGH - LOW);
+    let a = whiteness <= low ? 1 : 1 - (whiteness - low) / (high - low);
     a = Math.max(0, Math.min(1, a));
+    if (a < 0.04) a = 0; // faint texture noise
     if (a > 0) {
       // Un-blend from white so edge pixels keep their true colour.
       out[j] = Math.max(0, Math.min(255, Math.round((r - 255 * (1 - a)) / a)));
@@ -45,7 +51,50 @@ async function whiteToAlpha(input) {
     }
     out[j + 3] = Math.round(a * 255);
   }
+  dropSpecks(out, info.width, info.height);
   return sharp(out, { raw: { width: info.width, height: info.height, channels: 4 } }).png().toBuffer();
+}
+
+// Clears connected blobs that are tiny or never reach solid opacity: texture specks, not artwork.
+// Real artwork (even the tagline's comma) always contains near-opaque pixels.
+function dropSpecks(rgba, width, height, { minArea = 8, minPeak = 150 } = {}) {
+  const n = width * height;
+  const seen = new Uint8Array(n);
+  const stack = new Int32Array(n);
+  const blob = [];
+  for (let start = 0; start < n; start++) {
+    if (seen[start] || rgba[start * 4 + 3] === 0) continue;
+    let top = 0, peak = 0;
+    blob.length = 0;
+    stack[top++] = start; seen[start] = 1;
+    while (top) {
+      const p = stack[--top];
+      blob.push(p);
+      peak = Math.max(peak, rgba[p * 4 + 3]);
+      const x = p % width, y = (p - x) / width;
+      for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+        const nx = x + dx, ny = y + dy;
+        if (nx < 0 || ny < 0 || nx >= width || ny >= height) continue;
+        const q = ny * width + nx;
+        if (!seen[q] && rgba[q * 4 + 3] > 0) { seen[q] = 1; stack[top++] = q; }
+      }
+    }
+    if (blob.length < minArea || peak < minPeak) for (const p of blob) rgba[p * 4 + 3] = 0;
+  }
+}
+
+// Crops to the artwork's bounding box (every pixel with alpha > 0).
+async function trimTransparent(pngBuffer) {
+  const { data, info } = await sharp(pngBuffer).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  let minX = info.width, minY = info.height, maxX = -1, maxY = -1;
+  for (let y = 0; y < info.height; y++) for (let x = 0; x < info.width; x++) {
+    if (data[(y * info.width + x) * 4 + 3] === 0) continue;
+    if (x < minX) minX = x;
+    if (x > maxX) maxX = x;
+    if (y < minY) minY = y;
+    if (y > maxY) maxY = y;
+  }
+  return sharp(pngBuffer).extract({ left: minX, top: minY, width: maxX - minX + 1, height: maxY - minY + 1 }).png().toBuffer();
 }
 
 // How strongly a pixel reads as the logo's red (0 = neutral grey/black/white).
@@ -74,13 +123,13 @@ async function redOnly(pngBuffer) {
   return sharp(data, { raw: { width: info.width, height: info.height, channels: 4 } }).png().toBuffer();
 }
 
-// Icon mark: the red globe, arrow and parcel that form the "D", without the black letterforms
-// behind them, centred on a transparent square. Crop box measured on the 1170x626 original
-// (includes the arrow tip over the "L").
+// Icon mark: the red globe, swoosh, arrow and parcel that form the "O" of NAVORA, without the
+// black letterforms around them, centred on a transparent square. Crop box measured on the
+// 2024x777 original (includes the arrow tip over the "R", stops above "FREIGHT").
 async function buildSquareMark(transparent) {
-  const MARK = { left: 538, top: 95, width: 372, height: 250 };
+  const MARK = { left: 1085, top: 160, width: 490, height: 292 };
   const markRed = await redOnly(await sharp(transparent).extract(MARK).png().toBuffer());
-  const mark = await sharp(markRed).trim({ threshold: 1 }).png().toBuffer();
+  const mark = await trimTransparent(markRed);
   const markMeta = await sharp(mark).metadata();
   const side = Math.max(markMeta.width, markMeta.height);
   return sharp(mark)
@@ -125,21 +174,29 @@ async function buildIcons(squareMark) {
   }
 }
 
+const LOGO_PNG = { palette: true, quality: 90, effort: 10, compressionLevel: 9 };
+const OG_BACKGROUND = '#181818'; // --sdl-ink-950, the dark hero/footer surface
+const OG_LOGO_WIDTH = 900;
+
 async function buildBrand() {
-  const transparent = await whiteToAlpha(path.join(SRC, 'logo.jpeg'));
-  const trimmed = await sharp(transparent).trim({ threshold: 1 }).png().toBuffer();
-  await sharp(trimmed).png({ palette: true, quality: 90, effort: 10, compressionLevel: 9 }).toFile(path.join(BRAND_OUT, 'sdl-logo.png'));
+  const transparent = await whiteToAlpha(path.join(SRC, LOGO_SRC));
+  const trimmed = await trimTransparent(transparent);
+  await sharp(trimmed).png(LOGO_PNG).toFile(path.join(BRAND_OUT, 'logo.png'));
 
   const white = await toWhiteVersion(trimmed);
-  await sharp(white).png({ palette: true, quality: 90, effort: 10, compressionLevel: 9 }).toFile(path.join(BRAND_OUT, 'sdl-logo-white.png'));
+  await sharp(white).png(LOGO_PNG).toFile(path.join(BRAND_OUT, 'logo-white.png'));
 
   const squareMark = await buildSquareMark(transparent);
-  await sharp(squareMark).png({ palette: true, quality: 90, effort: 10, compressionLevel: 9 }).toFile(path.join(BRAND_OUT, 'sdl-mark.png'));
+  await sharp(squareMark).png(LOGO_PNG).toFile(path.join(BRAND_OUT, 'mark.png'));
   await buildIcons(squareMark);
 
-  // OG image 1200x630 from the landscape hero.
-  await sharp(path.join(SRC, 'landingimage.png')).resize(1200, 630, { fit: 'cover', position: 'centre' })
-    .jpeg({ quality: 82, mozjpeg: true }).toFile(path.join(BRAND_OUT, 'og-image.jpg'));
+  // OG image 1200x630: reversed logo centred on the brand Ink. Never upscaled.
+  const { width: logoW } = await sharp(white).metadata();
+  const ogLogo = await sharp(white).resize({ width: Math.min(OG_LOGO_WIDTH, logoW), kernel: 'lanczos3' }).png().toBuffer();
+  await sharp({ create: { width: 1200, height: 630, channels: 4, background: OG_BACKGROUND } })
+    .composite([{ input: ogLogo, gravity: 'centre' }])
+    .flatten({ background: OG_BACKGROUND })
+    .jpeg({ quality: 88, mozjpeg: true }).toFile(path.join(BRAND_OUT, 'og-image.jpg'));
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -240,8 +297,12 @@ export type SdlImageName = keyof typeof SDL_IMAGES;
 
 // --icons rebuilds only the icon set, leaving the logos, OG image and photos untouched.
 if (process.argv.includes('--icons')) {
-  await buildIcons(await buildSquareMark(await whiteToAlpha(path.join(SRC, 'logo.jpeg'))));
+  await buildIcons(await buildSquareMark(await whiteToAlpha(path.join(SRC, LOGO_SRC))));
   console.log('Icons done.');
+} else if (process.argv.includes('--brand')) {
+  // --brand rebuilds logos, mark, icons and the OG image, leaving the photos untouched.
+  await buildBrand();
+  console.log('Brand done.');
 } else {
   await buildBrand();
   const manifest = await buildPhotos();
