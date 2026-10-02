@@ -29,7 +29,7 @@ export const LocationsPage: React.FC<LocationsPageProps> = ({ onNavigate }) => {
       <section className="sdl-locations-hero">
         <ResponsiveImage
           name="locations-hero"
-          alt="Aerial view of rows of shipping containers at a port terminal"
+          alt="Aerial view of a container ship berthed at a lit port terminal at night"
           eager
           sizes="100vw"
           className="locations-hero-media"

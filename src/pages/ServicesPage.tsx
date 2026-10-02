@@ -128,7 +128,7 @@ const INDUSTRIES: { id: string; title: string; icon: React.ReactNode; desc: stri
     desc: 'Controlled hand-offs, priority customs lodgement and temperature-sensitive handling on request.',
     bullets: ['Temperature-sensitive handling (on request)', 'Sealed chain of custody', 'Priority customs lodgement'],
     image: 'industry-healthcare',
-    alt: 'Worker in gloves and a clean-room gown carrying sealed boxes'
+    alt: 'Gloved hands holding a sealed vaccine shipment box'
   },
   {
     id: 'technology',
@@ -146,7 +146,7 @@ const INDUSTRIES: { id: string; title: string; icon: React.ReactNode; desc: stri
     desc: 'Parts express to keep lines moving, plus complete vehicle shipping.',
     bullets: ['Line-side parts express', 'Vehicle export & import documentation', 'Enclosed and container shipping'],
     image: 'industry-automotive',
-    alt: 'Mechanic working on a car engine with a spanner'
+    alt: 'Aerial view of rows of new cars waiting for shipment'
   },
   {
     id: 'commercial',
@@ -155,7 +155,7 @@ const INDUSTRIES: { id: string; title: string; icon: React.ReactNode; desc: stri
     desc: 'Scheduled consolidations, cross-border e-commerce and linked returns.',
     bullets: ['Multi-piece shipments under one ID', 'Scheduled consolidations', 'Simple returns with linked tracking'],
     image: 'industry-ecommerce',
-    alt: 'Online seller packing parcels next to a laptop'
+    alt: 'Parcels stacked inside a delivery van'
   }
 ];
 
@@ -200,7 +200,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, initialS
       <section className="services-hero-section">
         <ResponsiveImage
           name="services-hero"
-          alt={`${COMPANY_SHORT} aircraft taking off over port cranes and container stacks at sunset`}
+          alt="Aircraft silhouetted against an orange sunset sky after take-off"
           eager
           sizes="100vw"
           className="services-hero-media"

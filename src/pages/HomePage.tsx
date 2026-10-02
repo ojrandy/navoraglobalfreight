@@ -54,14 +54,14 @@ const SERVICES: { title: string; body: string; cta: string; image: SdlImageName;
     body: 'Time-critical documents and parcels, door to door, with the fastest available routing and customs pre-clearance where possible.',
     cta: 'Explore Express',
     image: 'service-priority-express',
-    alt: 'Ground crew raising a cargo pallet to the hold door of a wide-body aircraft'
+    alt: 'View from an aircraft cargo door down the loader to the airport apron'
   },
   {
     title: 'Scheduled Freight & Linehaul',
     body: 'Air, ocean (FCL and LCL) and road freight on fixed departures, for regular volumes that need predictable transit times.',
     cta: 'Explore Freight',
     image: 'service-freight-linehaul',
-    alt: 'Dock workers on a container ship deck as gantry cranes load stacked containers'
+    alt: 'Aerial night view of a container ship being loaded by gantry cranes'
   },
   {
     title: 'Vehicle Shipping & Transport',
@@ -87,7 +87,7 @@ const INDUSTRIES: { id: IndustryTab; icon: React.ReactNode; title: string; body:
     body: 'Spare parts, components and complete vehicles, moved to keep production lines and dealerships running.',
     bullets: ['Line-side parts express', 'Vehicle export & import documentation', 'Enclosed and container shipping'],
     image: 'industry-automotive',
-    alt: 'Mechanic working on a car engine with a spanner'
+    alt: 'Aerial view of rows of new cars waiting for shipment'
   },
   {
     id: 'medical',
@@ -96,7 +96,7 @@ const INDUSTRIES: { id: IndustryTab; icon: React.ReactNode; title: string; body:
     body: 'Samples, medical devices and pharmaceuticals handled with care, controlled hand-offs and full traceability.',
     bullets: ['Temperature-sensitive handling (on request)', 'Sealed chain of custody', 'Priority customs lodgement'],
     image: 'industry-healthcare',
-    alt: 'Worker in gloves and a clean-room gown carrying sealed boxes'
+    alt: 'Gloved hands holding a sealed vaccine shipment box'
   },
   {
     id: 'ecommerce',
@@ -105,7 +105,7 @@ const INDUSTRIES: { id: IndustryTab; icon: React.ReactNode; title: string; body:
     body: 'Cross-border parcels, stock replenishment and returns for growing online brands.',
     bullets: ['Multi-piece shipments under one ID', 'Scheduled consolidations', 'Simple returns with linked tracking'],
     image: 'industry-ecommerce',
-    alt: 'Online seller packing parcels next to a laptop'
+    alt: 'Parcels stacked inside a delivery van'
   },
   {
     id: 'tech',
@@ -255,7 +255,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
         <ResponsiveImage
           name="hero-home"
           mobileName="hero-home-mobile"
-          alt={`${COMPANY} truck at a container port at sunset, with a cargo ship, cranes and a ${COMPANY_SHORT} aircraft overhead`}
+          alt="Container cranes silhouetted against the setting sun at a seaport"
           eager
           sizes="100vw"
           className="corp-hero-media"

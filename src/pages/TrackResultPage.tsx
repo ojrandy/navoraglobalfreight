@@ -65,7 +65,6 @@ import { generateShipmentPlan, calculateDynamicTimeProgress, getServiceCommitmen
 import { resolveLocation } from '../services/geocodingService';
 import { applyForwardOnlyShipmentUpdate } from '../utils/shipmentSync';
 import { useCompanyContact } from '../utils/useCompanyContact';
-import { COMPANY_SHORT } from '../config/brand';
 import './TrackResultPage.css';
 
 interface TrackResultPageProps {
@@ -496,7 +495,7 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
         <div className="sdl-hero-backdrop-img">
           <ResponsiveImage
             name="track-hero"
-            alt={`${COMPANY_SHORT} truck, cargo ship and aircraft at a container port at sunset`}
+            alt="Lorry with its headlights on, driving a mountain road at dusk"
             eager
             sizes="100vw"
             className="hero-bg-media"
@@ -1310,7 +1309,7 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
           <div className="help-banner-left">
             <ResponsiveImage
               name="track-result-vehicle"
-              alt={`Two ${COMPANY_SHORT} trucks travelling along a highway at sunset`}
+              alt="Lorry travelling along a highway beneath mountains at dusk"
               sizes="72px"
               className="help-banner-photo"
               imgClassName="help-banner-photo-img"
