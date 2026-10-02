@@ -15,8 +15,10 @@ Each photo was checked at full size for readable company names, logos or livery 
 | hero-home-mobile.jpg | hero-home-mobile | 3712×5568 | https://www.pexels.com/photo/dramatic-sunset-over-industrial-port-cranes-36444557/ | Konstantinos Sarampalos | Pexels License | 2026-10-02 |
 | track-hero.jpg | track-hero (Track and Track Result) | 7728×5152 | https://www.pexels.com/photo/truck-on-road-at-sunset-18136178/ | ebuyıldız | Pexels License | 2026-10-02 |
 | services-hero.jpg | services-hero | 6787×4527 | https://www.pexels.com/photo/silhouette-of-an-airplane-during-a-sunset-6861360/ | Terrence Bowen | Pexels License | 2026-10-02 |
-| about-hero.jpg | about-hero | 5200×3467 | https://www.pexels.com/photo/workers-walking-along-aisle-in-warehouse-4487383/ | Tiger Lily | Pexels License | 2026-10-02 |
-| callback-banner.jpg | callback-banner (Home callback, About compliance banner) | 6016×4016 | https://www.pexels.com/photo/silhouette-of-hamburg-port-cranes-at-sunset-33520381/ | Tim Diercks | Pexels License | 2026-10-02 |
+| about-hero.jpg | about-hero | 5184×3456 | https://www.pexels.com/photo/dock-worker-inspecting-cargo-ship-at-sunset-36672961/ | abdo alshreef | Pexels License | 2026-10-02 |
+| about-story.jpg | about-story (About "Our story" photo) | 5860×3907 | https://pexels.com/photo/pensive-female-auto-mechanic-holding-a-clipboard-7018653/ | cottonbro studio | Pexels License | 2026-10-02 |
+| about-compliance.jpg | about-compliance (About compliance banner) | 6240×4160 | https://www.pexels.com/photo/industrial-harbor-silhouette-at-vibrant-twilight-30278776/ | Enes Beydilli | Pexels License | 2026-10-02 |
+| callback-banner.jpg | callback-banner (Home callback banner) | 6016×4016 | https://www.pexels.com/photo/silhouette-of-hamburg-port-cranes-at-sunset-33520381/ | Tim Diercks | Pexels License | 2026-10-02 |
 | locations-hero.jpg | locations-hero | 6078×3419 | https://www.pexels.com/photo/aerial-view-of-cargo-ship-at-cape-town-port-33622086/ | K (Pexels profile "Kelly") | Pexels License | 2026-10-02 |
 | service-priority-express.jpg | service-priority-express | 3913×2743 | https://www.pexels.com/photo/open-platform-in-airplane-on-airport-16804254/ | Joerg Mangelsen | Pexels License | 2026-10-02 |
 | service-freight-linehaul.jpg | service-freight-linehaul | 2940×4413 | https://www.pexels.com/photo/aerial-shot-of-a-freighter-with-cargo-containers-8777703/ | Fatih Turan | Pexels License | 2026-10-02 |
@@ -25,3 +27,5 @@ Each photo was checked at full size for readable company names, logos or livery 
 | industry-healthcare.jpg | industry-healthcare | 4160×6240 | https://www.pexels.com/photo/hands-in-plastic-gloves-holding-a-box-with-vaccines-9893851/ | Ron Lach | Pexels License | 2026-10-02 |
 | industry-automotive.jpg | industry-automotive | 5264×6655 | https://www.pexels.com/photo/large-parking-with-cars-of-manufacture-5982900/ | Tom Fisk | Pexels License | 2026-10-02 |
 | industry-ecommerce.jpg | industry-ecommerce | 5283×3522 | https://www.pexels.com/photo/parcels-inside-a-delivery-van-6170458/ | Tima Miroshnichenko | Pexels License | 2026-10-02 |
+| ship-hero.jpg | ship-hero (Ship page hero) | 4000×3000 | https://www.pexels.com/photo/aerial-view-of-cargo-ship-at-sea-during-twilight-30710216/ | Aleksandr Sochnev | Pexels License | 2026-10-02 |
+| quote-result-hero.jpg | quote-result-hero (Quote result hero) | 4608×3072 | https://www.pexels.com/photo/long-exposure-photography-of-road-at-night-1699588/ | Mian Rizwan | Pexels License | 2026-10-02 |

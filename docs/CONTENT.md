@@ -273,7 +273,7 @@ Remove the invented client logos. Replace with an icon row: **Air Freight · Oce
 
 **Stat cards** (reuse approved stats; no invented figures): **24/7** "Global operations desk" · `Our desk follows the sun across time zones.` — **1** "Tracking ID from start to finish" · `One team accountable from the first mile to the last.` — **5** "Continents served" · `Gateways across Africa, Europe, the Middle East, Asia and the Americas.` — **Air · Ocean · Road** "Modes connected" · `Air, ocean and road, connected.`
 
-**Our approach (5 points)** (shown under the story text, eyebrow `OUR STORY`; photo `about-operations` with the caption **24/7 Global operations desk** · `Our desk follows the sun across time zones.`)
+**Our approach (5 points)** (shown under the story text, eyebrow `OUR STORY`; photo `about-story` with the caption **24/7 Global operations desk** · `Our desk follows the sun across time zones.`)
 1. **Milestone Visibility.** Every scan and hand-off is recorded and visible to you.
 2. **Direct Routing.** The fewest possible hand-offs between origin and destination.
 3. **Secure Custody.** Seals, scans and named releases for anything of value.
@@ -476,14 +476,16 @@ Presented as "gateways we serve". Don't describe them as Navora-owned facilities
 
 ## 12. Image alt text
 Approved 2026-09-26; photos replaced with free stock 2026-10-02 (sources and photographers in `images/free-stock/SOURCES.md`). Files are generated into `Public/images/sdl/` by `scripts/optimize-images.mjs`.
-No photo shows the Navora name or any other company's branding, so the alt text describes only what is in the picture.
+No photo shows the Navora name or any other company's branding, so the alt text describes only what is in the picture. Each page uses its own photos (Track Result reuses the Track header photo on purpose).
 
 | Image (slot) | Source | Alt |
 |---|---|---|
 | hero-home / hero-home-mobile | images/free-stock/hero-home.jpg, hero-home-mobile.jpg | Container cranes silhouetted against the setting sun at a seaport |
-| callback-banner | images/free-stock/callback-banner.jpg (3:1 crop) | (decorative background behind the callback form, empty alt) |
+| callback-banner | images/free-stock/callback-banner.jpg (3:1 crop) | (decorative background behind the Home callback form, empty alt) |
 | services-hero | images/free-stock/services-hero.jpg (12:5) | Aircraft silhouetted against an orange sunset sky after take-off |
-| about-hero | images/free-stock/about-hero.jpg (12:5) | Two warehouse staff carrying a parcel along an aisle of loaded pallet racks |
+| about-hero | images/free-stock/about-hero.jpg (12:5) | Dock worker with a radio watching a cargo ship being loaded at sunset |
+| about-story | images/free-stock/about-story.jpg | Operations coordinator checking a clipboard between storage racks |
+| about-compliance | images/free-stock/about-compliance.jpg (3:1 crop) | (decorative background behind the About compliance banner, empty alt) |
 | track-hero | images/free-stock/track-hero.jpg (2:1 crop) | Lorry with its headlights on, driving a mountain road at dusk |
 | locations-hero | images/free-stock/locations-hero.jpg | Aerial view of a container ship berthed at a lit port terminal at night |
 | service-priority-express | images/free-stock/service-priority-express.jpg | View from an aircraft cargo door down the loader to the airport apron |
@@ -495,9 +497,11 @@ No photo shows the Navora name or any other company's branding, so the alt text 
 | industry-automotive | images/free-stock/industry-automotive.jpg | Aerial view of rows of new cars waiting for shipment |
 | industry-ecommerce | images/free-stock/industry-ecommerce.jpg | Parcels stacked inside a delivery van |
 | track-result-vehicle | images/free-stock/track-result-vehicle.jpg | Lorry travelling along a highway beneath mountains at dusk |
-| about-operations | images/free-pexels/about-operations.jpg | Warehouse staff member checking stock on a tablet between loaded pallet racks |
+| about-operations | images/free-pexels/about-operations.jpg (Home only) | Warehouse staff member checking stock on a tablet between loaded pallet racks |
 | about-team | images/free-pexels/about-team.jpg (cropped) | Smiling support coordinator wearing a headset |
 | contact-team | images/free-stock/contact-team.jpg | Smiling warehouse team member holding a clipboard beside parcel shelves (slot kept; not placed on a page yet) |
+| ship-hero | images/free-stock/ship-hero.jpg (CSS background, `ShipPage.css`) | (decorative background behind the Ship hero text) |
+| quote-result-hero | images/free-stock/quote-result-hero.jpg (CSS background, `PublicQuoteResultPage.css`) | (decorative background behind the quote result header) |
 | og-image | images/Nov-logo.png (white logo on Ink) | (social preview, no alt needed) |
 
 `hero-globe-fallback` is produced in Prompt 24 from the 3D globe.

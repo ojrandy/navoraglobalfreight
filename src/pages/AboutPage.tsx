@@ -100,7 +100,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       <section className="about-hero-section">
         <ResponsiveImage
           name="about-hero"
-          alt="Two warehouse staff carrying a parcel along an aisle of loaded pallet racks"
+          alt="Dock worker with a radio watching a cargo ship being loaded at sunset"
           eager
           sizes="100vw"
           className="about-hero-media"
@@ -181,8 +181,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             <div className="about-visual-column">
               <div className="about-visual-card">
                 <ResponsiveImage
-                  name="about-operations"
-                  alt="Warehouse staff member checking stock on a tablet between loaded pallet racks"
+                  name="about-story"
+                  alt="Operations coordinator checking a clipboard between storage racks"
                   sizes="(max-width: 1024px) 100vw, 45vw"
                   className="about-terminal-media"
                   imgClassName="about-terminal-img"
@@ -267,7 +267,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         <div className="sdl-container-wide">
           <div className="compliance-banner">
             <ResponsiveImage
-              name="callback-banner"
+              name="about-compliance"
               alt=""
               sizes="(max-width: 1440px) 100vw, 1400px"
               className="compliance-banner-media"

@@ -17,12 +17,22 @@
    ============================================================ */
 .sdl-ship-hero {
   position: relative;
-  background-image: url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1920&auto=format&fit=crop&q=85');
+  background-color: var(--sdl-ink-950);
+  /* Slot ship-hero from scripts/optimize-images.mjs: 1600 here, 1024 on phones. */
+  background-image: url('/images/sdl/ship-hero-1600.jpg');
+  background-image: image-set(url('/images/sdl/ship-hero-1600.webp') type('image/webp'), url('/images/sdl/ship-hero-1600.jpg') type('image/jpeg'));
   background-size: cover;
   background-position: center 40%;
   color: var(--sdl-white);
   padding: 5rem 0 5.5rem;
   overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .sdl-ship-hero {
+    background-image: url('/images/sdl/ship-hero-1024.jpg');
+    background-image: image-set(url('/images/sdl/ship-hero-1024.webp') type('image/webp'), url('/images/sdl/ship-hero-1024.jpg') type('image/jpeg'));
+  }
 }
 
 .sdl-ship-hero-bg {

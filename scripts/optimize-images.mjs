@@ -212,10 +212,16 @@ const PHOTOS = [
   { name: 'hero-home-mobile', src: 'free-stock/hero-home-mobile.jpg', kind: 'hero', aspect: 9 / 16, maxWidth: 1290 },
   { name: 'track-hero', src: 'free-stock/track-hero.jpg', kind: 'hero', aspect: 2 / 1 },
   { name: 'locations-hero', src: 'free-stock/locations-hero.jpg', kind: 'hero', aspect: 2 / 1 },
-  // Wide strip behind the Home callback banner and the About compliance banner.
+  // Wide strip behind the Home callback banner.
   { name: 'callback-banner', src: 'free-stock/callback-banner.jpg', kind: 'hero', aspect: 3 / 1 },
   { name: 'services-hero', src: 'free-stock/services-hero.jpg', kind: 'hero', aspect: 12 / 5 },
   { name: 'about-hero', src: 'free-stock/about-hero.jpg', kind: 'hero', aspect: 12 / 5 },
+  // About has its own photos so nothing on that page repeats another page's image.
+  { name: 'about-compliance', src: 'free-stock/about-compliance.jpg', kind: 'hero', aspect: 3 / 1 },
+  // CSS background heroes (ShipPage.css, PublicQuoteResultPage.css) reference the 1024 and 1600 widths.
+  // Rippled sea compresses poorly; it sits under a dark overlay, so lower quality keeps 1600w under 250 KB.
+  { name: 'ship-hero', src: 'free-stock/ship-hero.jpg', kind: 'hero', aspect: 16 / 9, quality: { webp: 66, jpeg: 70 } },
+  { name: 'quote-result-hero', src: 'free-stock/quote-result-hero.jpg', kind: 'hero', aspect: 16 / 9 },
   { name: 'service-priority-express', src: 'free-stock/service-priority-express.jpg', kind: 'card' },
   { name: 'service-freight-linehaul', src: 'free-stock/service-freight-linehaul.jpg', kind: 'card' },
   { name: 'service-vehicle-transport', src: 'free-cc0/service-vehicle-transport.webp', kind: 'card' },
@@ -226,17 +232,19 @@ const PHOTOS = [
   { name: 'industry-ecommerce', src: 'free-stock/industry-ecommerce.jpg', kind: 'card' },
   { name: 'track-result-vehicle', src: 'free-stock/track-result-vehicle.jpg', kind: 'card' },
   { name: 'about-operations', src: 'free-pexels/about-operations.jpg', kind: 'card' },
+  { name: 'about-story', src: 'free-stock/about-story.jpg', kind: 'card' },
   { name: 'contact-team', src: 'free-stock/contact-team.jpg', kind: 'card' },
   // Shown as a 72 px thumbnail: crop tight on the face.
   { name: 'about-team', src: 'free-pexels/about-team.jpg', kind: 'card', crop: { left: 950, top: 80, width: 900, height: 900 } },
 ];
 
 // `position` picks which part of the source a cover crop keeps (sharp: 'centre', 'top', 'bottom', ...).
-async function writeVariants(pipelineFactory, name, width, height, position = 'centre') {
+// `quality` overrides the encoder quality for photos that would otherwise exceed the size budget.
+async function writeVariants(pipelineFactory, name, width, height, position = 'centre', quality = { webp: 78, jpeg: 80 }) {
   const base = path.join(PHOTO_OUT, `${name}-${width}`);
-  await pipelineFactory().resize(width, height, { fit: 'cover', position }).webp({ quality: 78 }).toFile(`${base}.webp`);
+  await pipelineFactory().resize(width, height, { fit: 'cover', position }).webp({ quality: quality.webp }).toFile(`${base}.webp`);
   await pipelineFactory().resize(width, height, { fit: 'cover', position }).flatten({ background: '#ffffff' })
-    .jpeg({ quality: 80, mozjpeg: true, progressive: true }).toFile(`${base}.jpg`);
+    .jpeg({ quality: quality.jpeg, mozjpeg: true, progressive: true }).toFile(`${base}.jpg`);
 }
 
 async function buildPhotos() {
@@ -268,7 +276,7 @@ async function buildPhotos() {
       const widths = STEP_WIDTHS.filter(w => w <= maxW);
       if (!widths.includes(maxW) && (widths.length === 0 || maxW - widths[widths.length - 1] > 200)) widths.push(maxW);
       for (const w of widths) {
-        await writeVariants(factory, p.name, w, Math.round(w / p.aspect), p.position);
+        await writeVariants(factory, p.name, w, Math.round(w / p.aspect), p.position, p.quality);
         variants.push(w);
       }
       manifest[p.name] = { width: maxW, height: Math.round(maxW / p.aspect), widths: variants };
