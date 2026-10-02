@@ -1,0 +1,12 @@
+.sdl-responsive-picture {
+  display: block;
+}
+
+/* Fills its container; the width/height attributes keep the aspect ratio while loading.
+   Card images are all 1:1 squares, so rows of cards render at the same height. */
+.sdl-responsive-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}

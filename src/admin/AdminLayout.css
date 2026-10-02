@@ -1,0 +1,988 @@
+/* ==========================================================================
+   SDL GLOBAL LOGISTICS — EXECUTIVE ADMIN COMMAND CENTER SHELL
+   Palette: Ink surfaces (--sdl-ink-950, --sdl-ink-900) · SDL red accent (--sdl-accent-500)
+   Authoritative, High-Density, Self-Explanatory Dispatch Terminal
+   ========================================================================== */
+
+.sdl-admin-root {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-family: var(--sdl-font-sans, 'Inter', sans-serif);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   1. EXECUTIVE DISPATCH COMMAND SIDEBAR (LEFT)
+   ========================================================================== */
+.sdl-admin-sidebar {
+  width: 280px;
+  min-width: 280px;
+  background-color: var(--sdl-ink-950, var(--sdl-ink-950));
+  background-image: linear-gradient(180deg, var(--sdl-ink-950) 0%, var(--sdl-ink-900) 100%);
+  color: #94a3b8;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #1e293b;
+  flex-shrink: 0;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 50;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sdl-admin-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+.sdl-admin-sidebar::-webkit-scrollbar-thumb {
+  background: var(--sdl-ink-800);
+  border-radius: 4px;
+}
+
+/* Sidebar Brand Header */
+.admin-sidebar-header {
+  padding: 1.15rem 1.15rem 1rem;
+  border-bottom: 1px solid #1e293b;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.admin-brand-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.admin-brand-logo {
+  height: 42px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  object-position: left;
+  display: block;
+}
+
+.admin-regulatory-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.25rem 0.6rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-family: var(--sdl-font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--sdl-accent-400);
+  letter-spacing: 0.06em;
+  width: fit-content;
+}
+
+.stamp-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.admin-desk-title {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.mobile-close-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  position: absolute;
+  right: 1rem;
+  top: 1.5rem;
+}
+
+/* Sidebar Navigation Structure */
+.admin-sidebar-nav {
+  padding: 0.85rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #1e293b transparent;
+}
+
+.admin-nav-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.section-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 0.08em;
+  padding: 0 0.65rem 0.25rem;
+  text-transform: uppercase;
+}
+
+/* Navigation Buttons */
+.admin-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #cbd5e1;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  width: 100%;
+}
+
+.admin-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.admin-nav-btn.active {
+  background: linear-gradient(90deg, rgba(var(--sdl-accent-rgb), 0.16) 0%, rgba(var(--sdl-accent-rgb), 0.04) 100%);
+  color: #ffffff;
+  border-color: rgba(var(--sdl-accent-rgb), 0.3);
+  border-left: 3px solid var(--sdl-accent-500, var(--sdl-accent-500));
+  box-shadow: 0 2px 10px rgba(var(--sdl-accent-rgb), 0.1);
+}
+
+.nav-btn-icon-wrap {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  color: #94a3b8;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.admin-nav-btn:hover .nav-btn-icon-wrap {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.admin-nav-btn.active .nav-btn-icon-wrap {
+  background: var(--sdl-accent-500, var(--sdl-accent-500));
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(var(--sdl-accent-rgb), 0.35);
+}
+
+.nav-btn-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.nav-title {
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: inherit;
+  line-height: 1.25;
+}
+
+.nav-subtitle {
+  font-size: 0.65rem;
+  color: #64748b;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-nav-btn.active .nav-subtitle {
+  color: #cbd5e1;
+}
+
+/* Nav Badges */
+.nav-count-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  margin-left: auto;
+}
+
+.nav-count-badge.muted {
+  color: #64748b;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.nav-badge-amber {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.15rem 0.55rem;
+  border-radius: 9999px;
+  background: var(--sdl-accent-500);
+  color: #ffffff;
+  margin-left: auto;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 8px rgba(var(--sdl-accent-rgb), 0.4);
+}
+
+.live-telemetry-tag {
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 0.12rem 0.4rem;
+  border-radius: 4px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #10b981;
+  margin-left: auto;
+  letter-spacing: 0.06em;
+}
+
+/* Sidebar Footer */
+.admin-sidebar-footer {
+  padding: 0.75rem 0.85rem;
+  border-top: 1px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  background: rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+.btn-exit-to-public {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-exit-to-public:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-operator-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.operator-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--sdl-ink-800);
+  border: 1.5px solid #334155;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.operator-online-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10b981;
+  border: 2px solid var(--sdl-ink-950);
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+}
+
+.operator-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.operator-info strong {
+  font-size: 0.78rem;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.operator-info small {
+  font-size: 0.65rem;
+  color: #64748b;
+  line-height: 1.2;
+}
+
+.sidebar-brand-motto {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 0.25rem 0.25rem;
+  margin-top: 0.35rem;
+}
+
+.motto-text {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #475569;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.motto-line {
+  width: 32px;
+  height: 2.5px;
+  background-color: var(--sdl-accent-500);
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   2. MAIN WORKSPACE WRAPPER & TOP DISPATCH HEADER
+   ========================================================================= */
+.sdl-admin-main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  background-color: #f8fafc;
+}
+
+.sdl-admin-page-content {
+  padding: 1.25rem 1.5rem 3rem;
+  flex: 1;
+  width: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* TOP DISPATCH HEADER BAR */
+.sdl-admin-top-header {
+  height: 58px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  gap: 1.5rem;
+}
+
+/* Left Column: Clean Title */
+.header-titles-column {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.mobile-menu-trigger {
+  display: none;
+  /* Its flex parent (.header-titles-column) has no width limit on the title text sitting
+     next to it, so without this the button was the one getting squeezed — rendering as a
+     ~15px sliver instead of a usable ~35px tap target on narrow screens. */
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  padding: 0.4rem;
+  border-radius: 8px;
+  color: #0f172a;
+  cursor: pointer;
+}
+
+.header-view-title {
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.2;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  padding: 0.45rem 1.15rem;
+  border-radius: 9px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+/* Right Column: Search, Fast Actions & Profile */
+.header-actions-column {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-left: auto;
+}
+
+/* Universal Search Input */
+.admin-universal-search {
+  position: relative;
+  width: 320px;
+  max-width: 35vw;
+}
+
+.admin-universal-search .search-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.universal-search-input {
+  width: 100%;
+  padding: 0.5rem 2.4rem 0.5rem 2.25rem;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.universal-search-input:focus {
+  background: #ffffff;
+  border-color: var(--sdl-accent-500, var(--sdl-accent-500));
+  box-shadow: 0 0 0 3px rgba(var(--sdl-accent-rgb), 0.12);
+}
+
+.universal-search-input::placeholder {
+  color: #94a3b8;
+  font-family: inherit;
+}
+
+.search-shortcut-badge {
+  position: absolute;
+  right: 0.65rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #94a3b8;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  pointer-events: none;
+  letter-spacing: 0.02em;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 0.65rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.15rem;
+  border-radius: 4px;
+}
+
+.search-clear-btn:hover {
+  color: #0f172a;
+  background: #e2e8f0;
+}
+
+
+
+/* Notifications Drawer Button & Popover */
+.notification-wrap {
+  position: relative;
+}
+
+.btn-notification-trigger {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-notification-trigger:hover,
+.btn-notification-trigger.has-unread {
+  color: #0f172a;
+  border-color: #cbd5e1;
+  background: #ffffff;
+}
+
+.notification-count-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 0.625rem;
+  font-weight: 800;
+  padding: 0.1rem 0.35rem;
+  border-radius: 9999px;
+  border: 2px solid #ffffff;
+}
+
+.admin-notification-popover {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  width: 340px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  z-index: 100;
+}
+
+.popover-header {
+  padding: 0.85rem 1rem;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popover-header strong {
+  display: block;
+  font-size: 0.85rem;
+  color: #0f172a;
+}
+
+.popover-header small {
+  font-size: 0.7rem;
+  color: #64748b;
+}
+
+.popover-close {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+}
+
+.popover-list {
+  max-height: 320px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.popover-empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.popover-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.popover-item:hover {
+  background: #f8fafc;
+}
+
+.popover-item.unread {
+  background: #fffaf5;
+}
+
+.item-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3b82f6;
+  margin-top: 0.35rem;
+  flex-shrink: 0;
+}
+
+.item-dot.quote { background: var(--sdl-accent-500); }
+.item-dot.delay { background: #ef4444; }
+
+.item-content strong {
+  display: block;
+  font-size: 0.78rem;
+  color: #0f172a;
+}
+
+.item-content p {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin: 0.15rem 0 0.25rem;
+  line-height: 1.3;
+}
+
+.item-time {
+  font-size: 0.65rem;
+  color: #94a3b8;
+  font-family: var(--sdl-font-mono, monospace);
+}
+
+/* User Profile Pill */
+.user-profile-wrap {
+  position: relative;
+}
+
+.user-profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.35rem 0.65rem 0.35rem 0.45rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.user-profile-btn:hover {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
+
+.avatar-chip {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--sdl-ink-950);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.profile-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.1;
+}
+
+.profile-role {
+  font-size: 0.65rem;
+  color: #64748b;
+  line-height: 1.1;
+}
+
+.chevron-icon {
+  color: #94a3b8;
+}
+
+/* User Menu Popover */
+.user-menu-popover {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  width: 220px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 100;
+}
+
+.menu-popover-header {
+  padding: 0.85rem 1rem;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.menu-popover-header strong {
+  display: block;
+  font-size: 0.8rem;
+  color: #0f172a;
+}
+
+.menu-popover-header small {
+  font-size: 0.68rem;
+  color: #64748b;
+}
+
+.menu-popover-links {
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.menu-popover-links button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s ease;
+}
+
+.menu-popover-links button:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.menu-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 0.25rem 0;
+}
+
+.menu-popover-links .menu-exit-link {
+  color: var(--sdl-accent-500, var(--sdl-accent-500));
+}
+
+.menu-popover-links .menu-exit-link:hover {
+  background: var(--sdl-accent-50);
+  color: var(--sdl-accent-600);
+}
+
+/* ==========================================================================
+   3. TOAST & NOTIFICATION FLOATER
+   ========================================================================== */
+.admin-toast-success {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--sdl-ink-950);
+  color: #ffffff;
+  padding: 0.85rem 1.25rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-left: 4px solid var(--sdl-accent-500, var(--sdl-accent-500));
+  z-index: 1000;
+}
+
+.admin-toast-success.toast-error {
+  border-left-color: #dc2626;
+}
+
+.admin-toast-success.toast-error svg {
+  color: #f87171;
+}
+
+/* ==========================================================================
+   4. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .header-status-column {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .sdl-admin-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    box-shadow: 10px 0 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .sdl-admin-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sdl-admin-main-wrapper {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .mobile-close-btn {
+    display: block;
+  }
+
+  .mobile-menu-trigger {
+    display: flex;
+  }
+
+  .admin-universal-search {
+    width: 180px;
+  }
+
+  .sdl-admin-top-header {
+    padding: 0 1.25rem;
+  }
+
+  .sdl-admin-page-content {
+    padding: 1.25rem 1rem 3rem;
+  }
+
+  .header-view-desc {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-universal-search {
+    display: none;
+  }
+
+  .quick-dispatch-cluster .btn-quick-new-quote {
+    display: none;
+  }
+
+  /* The header previously packed 4 separately-bordered boxes (hamburger, title pill, bell,
+     profile pill) onto one row with full desktop spacing — cramped and visually busy on a
+     phone. Trimming padding/gaps, dropping the title's box treatment down to plain text, and
+     collapsing the profile button to just its avatar (the name/role text added no value at
+     this width and was the biggest space hog) gives the same controls real breathing room. */
+  .sdl-admin-top-header {
+    padding: 0 0.85rem;
+    gap: 0.5rem;
+  }
+
+  .header-titles-column {
+    gap: 0.55rem;
+    min-width: 0;
+  }
+
+  .header-view-title {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .header-actions-column {
+    gap: 0.4rem;
+  }
+
+  .btn-notification-trigger {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .user-profile-btn {
+    padding: 0;
+    background: transparent;
+    border: none;
+    gap: 0;
+  }
+
+  .user-profile-btn:hover {
+    background: transparent;
+    border: none;
+  }
+
+  .profile-text,
+  .user-profile-btn .chevron-icon {
+    display: none;
+  }
+
+  .avatar-chip {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .admin-notification-popover,
+  .user-menu-popover {
+    right: -0.85rem;
+    width: min(320px, calc(100vw - 1.5rem));
+  }
+}
+
+/* CONTENT §10: logo + "Operations Console" */
+.admin-brand-console {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #cbd5e1;
+}

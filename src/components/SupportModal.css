@@ -1,0 +1,146 @@
+.sdl-support-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(var(--sdl-ink-rgb), 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2100;
+  padding: 1.5rem;
+}
+
+.sdl-support-card {
+  background: var(--sdl-white);
+  border-radius: var(--sdl-radius-lg);
+  max-width: 540px;
+  width: 100%;
+  box-shadow: var(--sdl-shadow-xl);
+  overflow: hidden;
+  animation: modalPop 0.2s ease-out;
+}
+
+.sdl-support-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--sdl-slate-200);
+}
+
+.support-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.support-icon-pill {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--sdl-primary-50);
+  color: var(--sdl-primary-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.support-header-left h3 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--sdl-ink-900);
+}
+
+.support-close-btn {
+  color: var(--sdl-slate-400);
+  padding: 0.25rem;
+}
+
+.support-close-btn:hover {
+  color: var(--sdl-slate-700);
+}
+
+.sdl-support-form {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-group label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--sdl-slate-700);
+}
+
+.sdl-input {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--sdl-slate-300);
+  border-radius: var(--sdl-radius-md);
+  font-size: 0.875rem;
+  outline: none;
+  transition: var(--sdl-transition);
+}
+
+.sdl-input:focus {
+  border-color: var(--sdl-primary-900);
+  box-shadow: 0 0 0 3px var(--sdl-primary-100);
+}
+
+.support-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.sdl-support-success {
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.875rem;
+}
+
+.text-emerald {
+  color: var(--sdl-success-500);
+}
+
+.sdl-support-success p {
+  font-size: 0.875rem;
+  color: var(--sdl-slate-600);
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+.support-error {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--sdl-accent-700);
+}
+
+.support-form-actions .sdl-btn-primary:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+@media (max-width: 600px) {
+  .form-row-2 {
+    grid-template-columns: 1fr;
+  }
+}

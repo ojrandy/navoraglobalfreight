@@ -1,0 +1,938 @@
+/* ==========================================================================
+   SDL GLOBAL LOGISTICS — ENTERPRISE DASHBOARD STYLING
+   High-density, professional carrier terminal layout.
+   Palette: Ink (--sdl-ink-900, --sdl-ink-950) · SDL red accent (--sdl-accent-500),
+   Crisp Slate (#1e293b, #64748b), Pure White (#ffffff).
+   ========================================================================== */
+
+.ops-terminal-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+/* ==========================================================================
+   1. NETWORK STATUS STRIP
+   ========================================================================== */
+.ops-subhead-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.15rem 0.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.subhead-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.75rem;
+}
+
+.live-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.subhead-sep {
+  color: #cbd5e1;
+}
+
+.subhead-text {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.subhead-right {
+  display: flex;
+  align-items: center;
+}
+
+.subhead-date {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* ==========================================================================
+   2. ENTERPRISE KPI ROW
+   ========================================================================== */
+/* ==========================================================================
+   2. ENTERPRISE KPI ROW (MATCHING SHIPMENTS PAGE)
+   ========================================================================== */
+.ops-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.15rem;
+}
+
+@media (max-width: 1024px) {
+  .ops-kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .ops-kpi-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ops-kpi-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.875rem;
+  padding: 1.2rem 1.35rem 0.25rem 1.35rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  position: relative;
+  overflow: hidden;
+}
+
+.ops-kpi-card:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.08);
+}
+
+.ops-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.35rem;
+}
+
+.ops-circle-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.ops-circle-icon.accent { background-color: var(--sdl-accent-500); }
+.ops-circle-icon.blue { background-color: #2563eb; }
+.ops-circle-icon.green { background-color: #10b981; }
+.ops-circle-icon.amber { background-color: var(--sdl-accent-500); }
+.ops-circle-icon.red { background-color: #ef4444; }
+
+.ops-card-label {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ops-card-number {
+  font-size: 2.15rem;
+  font-weight: 800;
+  color: var(--sdl-ink-950);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-top: 0.15rem;
+}
+
+.ops-card-subtext {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 0.15rem;
+  margin-bottom: 0.65rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ops-sparkline-wrap {
+  width: calc(100% + 2.7rem);
+  margin-left: -1.35rem;
+  height: 48px;
+  margin-top: auto;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.kpi-sparkline-svg {
+  width: 100%;
+  height: 48px;
+  display: block;
+}
+
+/* ==========================================================================
+   3. SECTION CARDS & DATA TABLES
+   ========================================================================== */
+.ops-section-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 4px 16px rgba(0, 0, 0, 0.02);
+}
+
+.ops-table-header-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+  flex-wrap: wrap;
+}
+
+.table-title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.ops-section-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--sdl-ink-950);
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+.ops-shipment-count-pill {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #475569;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 0.18rem 0.65rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.ops-section-desc {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin: 0.2rem 0 0;
+}
+
+.table-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+/* Filter Tabs */
+.table-filter-tabs {
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  padding: 0.2rem;
+  border-radius: 9999px;
+  gap: 0.2rem;
+}
+
+.filter-tab-btn {
+  background: transparent;
+  border: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.filter-tab-btn:hover {
+  color: #0f172a;
+}
+
+.filter-tab-btn.active {
+  background: var(--sdl-ink-950);
+  color: #ffffff;
+  font-weight: 800;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* Table Search */
+.table-search-wrap {
+  position: relative;
+  width: 190px;
+}
+
+.table-search-icon {
+  position: absolute;
+  left: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.table-search-input {
+  width: 100%;
+  padding: 0.38rem 0.65rem 0.38rem 1.95rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.table-search-input:focus {
+  background: #ffffff;
+  border-color: var(--sdl-accent-500);
+  box-shadow: 0 0 0 2px rgba(var(--sdl-accent-rgb), 0.12);
+}
+
+.ops-btn-secondary {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  padding: 0.38rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.ops-btn-secondary:hover {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.ops-empty-panel {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #64748b;
+}
+
+.empty-panel-icon {
+  color: #94a3b8;
+  margin: 0 auto 0.75rem;
+  display: block;
+}
+
+.ops-empty-panel h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.ops-empty-panel p {
+  margin: 0.25rem 0 1rem;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.ops-btn-primary {
+  background: var(--sdl-accent-500);
+  color: #ffffff;
+  border: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.ops-btn-primary:hover {
+  background: var(--sdl-accent-600);
+}
+
+/* ==========================================================================
+   4. DATA TABLE (RECENT SHIPMENTS - DARK NAVY HEADER, LUXURY EXECUTIVE)
+   ========================================================================== */
+.ops-table-responsive {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.ops-data-table {
+  width: 100%;
+  /* Same fix as .master-data-table in AllShipmentsView.css: a fixed-layout table forced onto
+     a narrow phone screen squeezes columns until cell content visually overlaps instead of
+     wrapping. This min-width keeps columns readable and lets .ops-table-responsive's
+     overflow-x:auto do its job — a normal horizontally scrollable table on mobile, no change
+     on desktop where the container is already wider than this. */
+  min-width: 760px;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  text-align: left;
+  table-layout: fixed;
+}
+
+.ops-data-table thead tr {
+  background: var(--sdl-ink-950);
+}
+
+.ops-data-table th {
+  background-color: var(--sdl-ink-950);
+  color: #ffffff;
+  font-weight: 800;
+  padding: 0.95rem 1rem;
+  border-bottom: none;
+  border-top: none;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.ops-data-table td {
+  padding: 1.15rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.ops-table-clickable-row {
+  transition: background-color 0.15s ease;
+}
+
+.ops-table-clickable-row:hover {
+  background-color: #f8fafc;
+}
+
+.ops-table-clickable-row:last-child td {
+  border-bottom: none;
+}
+
+/* 1. Consignment */
+.ops-consignment-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.ops-mode-box {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ops-consignment-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.ops-tracking-code {
+  color: #0f172a;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.ops-specs-text {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* 2. Service */
+.ops-service-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.ops-service-pill.standard {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+}
+
+.ops-service-pill.express {
+  background: var(--sdl-accent-50);
+  color: var(--sdl-accent-500);
+  border: 1px solid var(--sdl-accent-200);
+}
+
+.ops-service-pill.priority {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+
+.ops-service-pill.freight-ltl {
+  background: #f5f3ff;
+  color: #7c3aed;
+  border: 1px solid #ddd6fe;
+}
+
+/* 3. Route Stack */
+.ops-route-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.ops-route-origin {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.ops-route-arrow {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.ops-route-dest {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--sdl-accent-500);
+  white-space: nowrap;
+}
+
+.ops-cargo-desc {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  margin-top: 0.1rem;
+}
+
+/* 4. Customer */
+.ops-customer-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.ops-customer-name {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #0f172a;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ops-customer-consignee {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-weight: 500;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 5. Status Chip */
+.ops-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.chip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.ops-status-chip.in-transit {
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+.chip-dot.blue { background: #3b82f6; }
+
+.ops-status-chip.arrived {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+.chip-dot.slate { background: #94a3b8; }
+
+.ops-status-chip.out-delivery {
+  background: var(--sdl-warning-50);
+  color: var(--sdl-warning-700);
+  border: 1px solid var(--sdl-warning-200);
+}
+.chip-dot.amber { background: var(--sdl-warning-500); }
+
+.ops-status-chip.delivered {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+.chip-dot.green { background: #22c55e; }
+
+.ops-status-chip.delayed {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+.chip-dot.red { background: #ef4444; }
+
+/* 6. Estimated Delivery */
+.ops-eta-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  white-space: nowrap;
+}
+
+.ops-eta-date {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.ops-eta-subtext {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* 7. Action Buttons */
+.ops-action-cluster {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.ops-control-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.28rem 0.58rem;
+  background: var(--sdl-accent-50);
+  border: 1px solid var(--sdl-accent-200);
+  border-radius: 9999px;
+  color: var(--sdl-accent-600);
+  font-size: 0.71rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.ops-control-btn:hover {
+  background: var(--sdl-accent-100);
+  border-color: var(--sdl-accent-300);
+}
+
+.ops-control-btn.sim-active {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #059669;
+}
+
+.ops-inspect-icon-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.ops-inspect-icon-btn:hover {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+/* Utilities */
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-emerald {
+  color: #10b981;
+}
+
+/* ==========================================================================
+   5. MOBILE CARD TABLE
+   .ops-data-table is shared by this page's "Recent Shipments" widget (rich
+   cells, row class .ops-table-clickable-row) and AuditLogView's audit trail
+   (plain text cells, row class .audit-log-row) — the structural rules below
+   apply to both, but per-column reflow is scoped per row class since the two
+   tables don't share a column layout.
+   ========================================================================== */
+@media (max-width: 760px) {
+  .ops-data-table {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .ops-data-table thead {
+    display: none;
+  }
+
+  .ops-data-table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .ops-data-table td {
+    display: block;
+    padding: 0 !important;
+    border-bottom: none !important;
+    text-align: left !important;
+  }
+
+  /* --- Recent Shipments widget (7 cols) --- */
+  .ops-table-clickable-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.6rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.85rem;
+    padding: 0.9rem 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  }
+
+  .ops-table-clickable-row td:nth-child(1) {
+    order: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .ops-table-clickable-row td:nth-child(5) {
+    order: 2;
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
+  .ops-table-clickable-row td:nth-child(3) {
+    order: 3;
+    flex: 1 1 100%;
+    padding-top: 0.6rem !important;
+    border-top: 1px dashed #eef2f6 !important;
+  }
+
+  .ops-table-clickable-row td:nth-child(4) {
+    order: 4;
+    flex: 1 1 100%;
+  }
+
+  .ops-table-clickable-row td:nth-child(3)::before,
+  .ops-table-clickable-row td:nth-child(4)::before {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 0.2rem;
+  }
+
+  .ops-table-clickable-row td:nth-child(3)::before {
+    content: 'Route';
+  }
+
+  .ops-table-clickable-row td:nth-child(4)::before {
+    content: 'Customer';
+  }
+
+  .ops-table-clickable-row td:nth-child(2) {
+    order: 5;
+    flex: 0 1 auto;
+  }
+
+  .ops-table-clickable-row td:nth-child(6) {
+    order: 6;
+    flex: 1 1 auto;
+    margin-left: auto;
+    text-align: right !important;
+  }
+
+  .ops-table-clickable-row td:nth-child(6) .ops-eta-cell {
+    align-items: flex-end;
+  }
+
+  .ops-table-clickable-row td:nth-child(7) {
+    order: 7;
+    flex: 1 1 100%;
+    padding-top: 0.65rem !important;
+    margin-top: 0.1rem;
+    border-top: 1px solid #f1f5f9 !important;
+  }
+
+  .ops-table-clickable-row .ops-action-cluster {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+  .ops-table-clickable-row .ops-control-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  /* --- Audit Log (6 plain-text cols) --- */
+  .audit-log-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.6rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.85rem;
+    padding: 0.9rem 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  }
+
+  /* Audit ID */
+  .audit-log-row td:nth-child(1) {
+    order: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* Action Type badge, same line as the ID */
+  .audit-log-row td:nth-child(4) {
+    order: 2;
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
+  .audit-log-row td:nth-child(2),
+  .audit-log-row td:nth-child(3),
+  .audit-log-row td:nth-child(5),
+  .audit-log-row td:nth-child(6) {
+    flex: 1 1 100%;
+    padding-top: 0.45rem !important;
+    border-top: 1px dashed #eef2f6 !important;
+  }
+
+  .audit-log-row td:nth-child(2) {
+    order: 3;
+  }
+
+  .audit-log-row td:nth-child(3) {
+    order: 4;
+  }
+
+  .audit-log-row td:nth-child(5) {
+    order: 5;
+  }
+
+  .audit-log-row td:nth-child(6) {
+    order: 6;
+  }
+
+  .audit-log-row td:nth-child(2)::before {
+    content: 'Timestamp';
+  }
+
+  .audit-log-row td:nth-child(3)::before {
+    content: 'Operator';
+  }
+
+  .audit-log-row td:nth-child(5)::before {
+    content: 'Target';
+  }
+
+  .audit-log-row td:nth-child(6)::before {
+    content: 'Details';
+  }
+
+  .audit-log-row td:nth-child(2)::before,
+  .audit-log-row td:nth-child(3)::before,
+  .audit-log-row td:nth-child(5)::before,
+  .audit-log-row td:nth-child(6)::before {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 0.2rem;
+  }
+}

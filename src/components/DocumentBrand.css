@@ -1,0 +1,52 @@
+/* Shared generated-document parts (CONTENT §11). Plain colours so html2canvas renders them
+   the same in the PDF as on screen. */
+.sdl-doc-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.sdl-doc-legal-name {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 0.35rem;
+}
+
+.sdl-doc-contact-line {
+  font-size: 0.7rem;
+  color: #475569;
+  overflow-wrap: anywhere;
+}
+
+.sdl-doc-id-line {
+  font-size: 0.8rem;
+  color: #334155;
+  margin: 0.5rem 0;
+}
+
+.sdl-doc-id-line strong {
+  color: #0f172a;
+  letter-spacing: 0.02em;
+}
+
+.sdl-doc-pouch-line {
+  font-size: 0.75rem;
+  color: #334155;
+  border: 1px dashed #94a3b8;
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  margin: 0.5rem 0;
+}
+
+.sdl-doc-legal-footer {
+  font-size: 0.65rem;
+  line-height: 1.5;
+  color: #64748b;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 0.5rem;
+  margin: 0.75rem 0 0;
+  text-align: center;
+}

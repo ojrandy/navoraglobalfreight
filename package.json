@@ -1,0 +1,56 @@
+{
+  "name": "sdl-global-logistics",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -p \"[{name}]\" -n \"SERVER,VITE\" -c \"blue,green\" \"npm run server\" \"vite\"",
+    "dev:vite": "vite",
+    "server": "tsx watch server/index.ts",
+    "dev:all": "concurrently -k -p \"[{name}]\" -n \"SERVER,VITE\" -c \"blue,green\" \"npm run server\" \"vite\"",
+    "build": "tsc && vite build && tsc -p tsconfig.server.json",
+    "postinstall": "npm run build",
+    "start": "node dist-server/server/index.js",
+    "preview": "vite preview",
+    "test": "node --import tsx --test scripts/*.test.ts"
+  },
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/express-session": "^1.19.0",
+    "@types/jsbarcode": "^3.11.4",
+    "@types/leaflet": "^1.9.22",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "bcryptjs": "^3.0.3",
+    "clsx": "^2.1.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "express-session": "^1.19.0",
+    "helmet": "^8.3.0",
+    "html2canvas": "^1.4.1",
+    "http-proxy-middleware": "^3.0.7",
+    "jsbarcode": "^3.11.6",
+    "jspdf": "^4.2.1",
+    "leaflet": "^1.9.4",
+    "libphonenumber-js": "^1.13.14",
+    "lucide-react": "^0.475.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5",
+    "sharp": "^0.35.4",
+    "tsx": "^4.23.12"
+  }
+}

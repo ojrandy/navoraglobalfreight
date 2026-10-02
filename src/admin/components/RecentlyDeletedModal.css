@@ -1,0 +1,266 @@
+/* ==========================================================================
+   SDL GLOBAL LOGISTICS — RECENTLY DELETED (SHIPMENT TRASH) MODAL
+   ========================================================================== */
+
+.trash-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(var(--sdl-ink-rgb), 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.trash-modal-card {
+  background: #ffffff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 80vh;
+  box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: trashModalPop 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes trashModalPop {
+  from { opacity: 0; transform: scale(0.97) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.trash-modal-top {
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.trash-modal-title-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.trash-modal-title-group h3 {
+  margin: 0 0 0.15rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.trash-modal-title-group p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.4;
+  max-width: 400px;
+}
+
+.trash-close-btn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.35rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.trash-close-btn:hover {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.trash-toast-inline {
+  margin: 0.75rem 1.25rem 0;
+  padding: 0.6rem 0.85rem;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #15803d;
+}
+
+.trash-modal-body {
+  padding: 1rem 1.25rem 1.25rem;
+  overflow-y: auto;
+}
+
+.trash-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2.5rem 1rem;
+  color: #64748b;
+  text-align: center;
+}
+
+.trash-empty-state strong {
+  color: #0f172a;
+  font-size: 0.95rem;
+}
+
+.trash-empty-state p {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.trash-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.trash-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  flex-wrap: wrap;
+}
+
+.trash-row-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.trash-tracking {
+  font-size: 0.85rem;
+  color: #0f172a;
+}
+
+.trash-route {
+  font-size: 0.75rem;
+  color: #475569;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.trash-cargo {
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+.trash-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.trash-btn-restore {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--sdl-ink-950);
+  border: none;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.trash-btn-restore:hover {
+  background: var(--sdl-ink-800);
+}
+
+.trash-btn-restore:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.trash-btn-purge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  background: #ffffff;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  color: #dc2626;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.trash-btn-purge:hover {
+  background: #fef2f2;
+}
+
+.trash-btn-purge:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.trash-purge-confirm {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  color: #991b1b;
+  font-weight: 600;
+}
+
+.trash-btn-ghost {
+  padding: 0.35rem 0.7rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.trash-btn-danger {
+  padding: 0.35rem 0.7rem;
+  background: #dc2626;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.trash-btn-danger:disabled,
+.trash-btn-ghost:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 560px) {
+  .trash-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .trash-row-actions {
+    justify-content: flex-end;
+  }
+}

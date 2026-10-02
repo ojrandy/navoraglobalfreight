@@ -1,0 +1,1017 @@
+/* ============================================================
+   TRACK SHIPMENT PORTAL STYLES (EXECUTIVE CORPORATE DESIGN SYSTEM)
+   Distraction-Free Carrier Utility with High-Precision Telemetry
+   ============================================================ */
+
+.sdl-page-track {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #f8fafc;
+  color: var(--sdl-ink-900);
+}
+
+/* ============================================================
+   1. HERO SECTION & CENTRAL TRACKING TERMINAL
+   ============================================================ */
+.track-hero-section {
+  position: relative;
+  background-color: var(--sdl-ink-950);
+  color: var(--sdl-white);
+  padding: 5.5rem 0 6.5rem;
+  overflow: hidden;
+}
+
+.track-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.track-hero-media .track-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+}
+
+.track-hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--sdl-ink-rgb), 0.88) 0%,
+    rgba(var(--sdl-ink-rgb), 0.58) 50%,
+    rgba(15, 34, 56, 0.22) 100%
+  );
+  z-index: 1;
+}
+
+.track-hero-container {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.track-hero-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.track-hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(var(--sdl-accent-rgb), 0.15);
+  color: var(--sdl-accent-400);
+  border: 1px solid rgba(var(--sdl-accent-rgb), 0.35);
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.25rem;
+}
+
+.track-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--sdl-accent-500);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+.track-hero-headline {
+  font-family: var(--sdl-font-display);
+  font-size: 3.25rem;
+  font-weight: 800;
+  color: var(--sdl-white);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.track-highlight-accent {
+  color: var(--sdl-accent-500);
+  font-weight: 800;
+}
+
+.track-hero-subtext {
+  font-size: 1.0625rem;
+  color: #cbd5e1;
+  line-height: 1.65;
+  max-width: 680px;
+}
+
+/* Not Found Alert Banner */
+.track-not-found-banner {
+  background: #fef2f2;
+  border: 1.5px solid #fecaca;
+  border-radius: var(--sdl-radius-xl);
+  padding: 1rem 1.25rem;
+  color: #991b1b;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  text-align: left;
+  box-shadow: 0 4px 16px rgba(185, 28, 28, 0.08);
+}
+
+.track-not-found-banner strong {
+  display: block;
+  font-size: 0.9375rem;
+  margin-bottom: 0.2rem;
+}
+
+.track-not-found-banner p {
+  margin: 0;
+  color: #7f1d1d;
+  line-height: 1.45;
+}
+
+.track-inline-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ============================================================
+   2. CENTRAL TRACKING TERMINAL CARD
+   ============================================================ */
+.track-terminal-card {
+  background: var(--sdl-white);
+  border: 1.5px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-2xl);
+  padding: 2.25rem;
+  width: 100%;
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
+
+/* Terminal Tabs */
+.terminal-tabs-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1.5px solid var(--sdl-slate-200);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.terminal-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--sdl-radius-md);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--sdl-slate-600);
+  cursor: pointer;
+  transition: var(--sdl-transition);
+}
+
+.terminal-tab-btn:hover {
+  color: var(--sdl-accent-500);
+  background: var(--sdl-accent-50);
+}
+
+.terminal-tab-btn.active {
+  background: var(--sdl-ink-900);
+  color: var(--sdl-white);
+}
+
+/* Single Form Input */
+.terminal-form-single {
+  display: flex;
+  gap: 0.875rem;
+  margin-bottom: 1.75rem;
+}
+
+.terminal-input-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.terminal-search-icon {
+  position: absolute;
+  left: 16px;
+  color: var(--sdl-slate-400);
+  pointer-events: none;
+}
+
+.terminal-input {
+  width: 100%;
+  padding: 1.125rem 3rem 1.125rem 3.25rem;
+  border: 2px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-xl);
+  font-size: 1.0625rem;
+  color: var(--sdl-ink-900);
+  background: #f8fafc;
+  outline: none;
+  transition: var(--sdl-transition);
+}
+
+.terminal-input:focus {
+  border-color: var(--sdl-accent-500);
+  background: var(--sdl-white);
+  box-shadow: 0 0 0 4px rgba(var(--sdl-accent-rgb), 0.15);
+}
+
+.terminal-clear-btn {
+  position: absolute;
+  right: 14px;
+  background: var(--sdl-slate-200);
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sdl-slate-600);
+  cursor: pointer;
+  transition: var(--sdl-transition);
+}
+
+.terminal-clear-btn:hover {
+  background: var(--sdl-slate-300);
+  color: var(--sdl-ink-900);
+}
+
+.terminal-submit-btn {
+  padding: 1.125rem 2rem;
+  font-size: 1rem;
+  white-space: nowrap;
+  border-radius: var(--sdl-radius-xl);
+}
+
+/* Batch Form */
+.terminal-form-batch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.batch-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--sdl-slate-700);
+}
+
+.terminal-textarea {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-xl);
+  font-size: 0.9375rem;
+  color: var(--sdl-ink-900);
+  background: #f8fafc;
+  outline: none;
+  resize: vertical;
+  line-height: 1.6;
+  transition: var(--sdl-transition);
+}
+
+.terminal-textarea:focus {
+  border-color: var(--sdl-accent-500);
+  background: var(--sdl-white);
+  box-shadow: 0 0 0 4px rgba(var(--sdl-accent-rgb), 0.15);
+}
+
+.batch-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.batch-not-found-text {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--sdl-slate-600);
+}
+
+/* Terminal Footer */
+.terminal-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border-top: 1px solid var(--sdl-slate-100);
+  padding-top: 1.5rem;
+}
+
+.quick-samples-group,
+.recent-searches-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.quick-samples-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--sdl-slate-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.quick-chips-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.quick-chip-btn {
+  background: #f1f5f9;
+  border: 1px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-md);
+  padding: 0.35rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  cursor: pointer;
+  transition: var(--sdl-transition);
+}
+
+.quick-chip-btn span {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--sdl-ink-900);
+}
+
+.quick-chip-btn small {
+  font-size: 0.6875rem;
+  color: var(--sdl-slate-500);
+}
+
+.quick-chip-btn:hover {
+  background: var(--sdl-accent-50);
+  border-color: var(--sdl-accent-300);
+}
+
+.quick-chip-btn:hover span {
+  color: var(--sdl-accent-500);
+}
+
+.recent-chip-btn {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--sdl-radius-sm);
+  padding: 0.25rem 0.625rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #059669;
+  cursor: pointer;
+  transition: var(--sdl-transition);
+}
+
+.recent-chip-btn:hover {
+  background: rgba(16, 185, 129, 0.15);
+}
+
+/* Trust Strip */
+.terminal-trust-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding-top: 0.5rem;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--sdl-slate-600);
+}
+
+.trust-divider {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--sdl-slate-300);
+}
+
+/* ============================================================
+   3. REFERENCE GUIDE: WHERE TO FIND YOUR TRACKING NUMBER
+   ============================================================ */
+.track-reference-section {
+  padding: 6rem 0;
+  background-color: var(--sdl-white);
+  border-bottom: 1px solid var(--sdl-slate-200);
+}
+
+.track-reference-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+
+.reference-card {
+  background: #f8fafc;
+  border: 1.5px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-xl);
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: var(--sdl-transition);
+}
+
+.reference-card:hover {
+  background: var(--sdl-white);
+  border-color: var(--sdl-accent-400);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(var(--sdl-accent-rgb), 0.08);
+}
+
+.ref-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--sdl-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.ref-icon-box.accent {
+  background: var(--sdl-accent-50);
+  color: var(--sdl-accent-500);
+  border: 1px solid var(--sdl-accent-200);
+}
+
+.ref-icon-box.emerald {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.ref-icon-box.sky {
+  background: rgba(2, 132, 199, 0.1);
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.25);
+}
+
+.reference-card h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--sdl-ink-900);
+  margin-bottom: 0.625rem;
+}
+
+.reference-card p {
+  font-size: 0.875rem;
+  color: var(--sdl-slate-600);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.ref-format-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--sdl-slate-700);
+  background: var(--sdl-white);
+  border: 1px solid var(--sdl-slate-200);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--sdl-radius-sm);
+  width: fit-content;
+}
+
+/* ============================================================
+   4. 24/7 CENTRAL DISPATCH & CONTEXTUAL SUPPORT
+   ============================================================ */
+.track-support-section {
+  padding: 6rem 0;
+  background-color: #f8fafc;
+}
+
+.track-support-card {
+  background: var(--sdl-ink-900);
+  background-image: radial-gradient(circle at 90% 10%, rgba(var(--sdl-accent-rgb), 0.18) 0%, transparent 60%);
+  border-radius: var(--sdl-radius-2xl);
+  padding: 3.5rem;
+  color: var(--sdl-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  box-shadow: 0 20px 40px rgba(var(--sdl-ink-rgb), 0.15);
+}
+
+.support-card-content {
+  max-width: 600px;
+}
+
+.support-card-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  color: var(--sdl-accent-400);
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.support-card-content h2 {
+  font-family: var(--sdl-font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--sdl-white);
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+
+.support-card-content p {
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.support-contact-strip {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.support-phone-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: var(--sdl-radius-lg);
+}
+
+.support-phone-badge span {
+  font-size: 1rem;
+  color: var(--sdl-white);
+}
+
+.support-phone-badge small {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.support-status-beacon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #a7f3d0;
+}
+
+.beacon-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+.support-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  flex-shrink: 0;
+  min-width: 240px;
+}
+
+.support-card-actions button {
+  width: 100%;
+  justify-content: center;
+}
+
+.support-card-actions .btn-corp-ghost {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--sdl-white);
+}
+
+.support-card-actions .btn-corp-ghost:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--sdl-white);
+}
+
+/* ============================================================
+   5. BATCH MULTI-TRACKING MODAL / DRAWER
+   ============================================================ */
+.batch-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(var(--sdl-ink-rgb), 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.batch-modal-dialog {
+  background: var(--sdl-white);
+  border-radius: var(--sdl-radius-2xl);
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+}
+
+.batch-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  border-bottom: 1.5px solid var(--sdl-slate-200);
+  background: #f8fafc;
+}
+
+.batch-header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 0.25rem;
+}
+
+.batch-header-title h3 {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: var(--sdl-ink-900);
+  margin: 0;
+}
+
+.batch-modal-header p {
+  font-size: 0.875rem;
+  color: var(--sdl-slate-600);
+  margin: 0;
+}
+
+.batch-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.75rem;
+  color: var(--sdl-slate-400);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.batch-modal-close:hover {
+  color: var(--sdl-ink-900);
+}
+
+.batch-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 2rem;
+  border-bottom: 1px solid var(--sdl-slate-200);
+  background: var(--sdl-white);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.batch-filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.batch-filter-btn {
+  background: #f1f5f9;
+  border: 1px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-full);
+  padding: 0.35rem 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--sdl-slate-600);
+  cursor: pointer;
+  transition: var(--sdl-transition);
+}
+
+.batch-filter-btn.active {
+  background: var(--sdl-ink-900);
+  color: var(--sdl-white);
+  border-color: var(--sdl-ink-900);
+}
+
+.batch-audit-label {
+  font-size: 0.75rem;
+  color: var(--sdl-slate-500);
+}
+
+.batch-modal-body {
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.batch-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.batch-shipment-card {
+  background: var(--sdl-white);
+  border: 1.5px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-xl);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  transition: var(--sdl-transition);
+}
+
+.batch-shipment-card:hover {
+  border-color: var(--sdl-accent-400);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.batch-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid var(--sdl-slate-100);
+}
+
+.batch-tracking-id {
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: var(--sdl-ink-900);
+  display: block;
+}
+
+.batch-service-sub {
+  font-size: 0.6875rem;
+  color: var(--sdl-slate-500);
+}
+
+.batch-status-pill {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--sdl-radius-sm);
+  letter-spacing: 0.04em;
+}
+
+.batch-status-pill.delivered { background: #dcfce7; color: #15803d; }
+.batch-status-pill.delayed { background: #fef3c7; color: #b45309; }
+.batch-status-pill.transit { background: #dbeafe; color: #1d4ed8; }
+
+.batch-route-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--sdl-radius-md);
+}
+
+.batch-route-point small {
+  font-size: 0.625rem;
+  color: var(--sdl-slate-500);
+  font-weight: 700;
+  text-transform: uppercase;
+  display: block;
+}
+
+.batch-route-point strong {
+  font-size: 0.8125rem;
+  color: var(--sdl-ink-900);
+}
+
+.batch-route-point.right {
+  text-align: right;
+}
+
+.batch-route-arrow {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--sdl-accent-500);
+}
+
+.batch-metrics-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.625rem;
+}
+
+.batch-metric-box {
+  background: #f8fafc;
+  border: 1px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-sm);
+  padding: 0.5rem 0.625rem;
+}
+
+.batch-metric-box small {
+  font-size: 0.625rem;
+  color: var(--sdl-slate-500);
+  font-weight: 700;
+  text-transform: uppercase;
+  display: block;
+}
+
+.batch-metric-box strong {
+  font-size: 0.75rem;
+  color: var(--sdl-ink-900);
+}
+
+.btn-inspect-batch-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: var(--sdl-ink-900);
+  color: var(--sdl-white);
+  border: none;
+  border-radius: var(--sdl-radius-md);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--sdl-transition);
+}
+
+.btn-inspect-batch-item:hover {
+  background: var(--sdl-accent-500);
+}
+
+.batch-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-top: 1.5px solid var(--sdl-slate-200);
+  background: #f8fafc;
+}
+
+.batch-footer-count {
+  font-size: 0.8125rem;
+  color: var(--sdl-slate-600);
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN & MOBILE BREAKPOINTS
+   ============================================================ */
+@media (max-width: 1024px) {
+  .track-reference-grid {
+    grid-template-columns: 1fr;
+  }
+  .track-support-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2.5rem;
+  }
+  .support-card-actions {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .track-hero-section {
+    padding: 4rem 0 4.5rem;
+  }
+  .track-hero-headline {
+    font-size: 2.125rem;
+    line-height: 1.2;
+  }
+  .track-hero-subtext {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .track-terminal-card {
+    padding: 1.5rem 1.125rem;
+    border-radius: var(--sdl-radius-xl);
+  }
+  
+  /* Segmented 2-tab control on mobile */
+  .terminal-tabs-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .terminal-tab-btn {
+    justify-content: center;
+    padding: 0.625rem 0.5rem;
+    font-size: 0.8125rem;
+    text-align: center;
+  }
+
+  .terminal-form-single {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .terminal-input {
+    font-size: 0.9375rem;
+    padding: 0.875rem 2.5rem 0.875rem 2.75rem;
+  }
+  .terminal-submit-btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.875rem 1.25rem;
+  }
+  .batch-actions-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .batch-actions-row button {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+  .terminal-trust-strip {
+    flex-direction: column;
+    gap: 0.625rem;
+    align-items: flex-start;
+  }
+  .trust-divider {
+    display: none;
+  }
+  .batch-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .batch-modal-dialog {
+    max-height: 95vh;
+  }
+  .batch-modal-header,
+  .batch-filter-bar,
+  .batch-modal-body,
+  .batch-modal-footer {
+    padding: 1rem 1.25rem;
+  }
+  .track-support-card {
+    padding: 2rem 1.25rem;
+    border-radius: var(--sdl-radius-xl);
+  }
+  .support-card-content h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .track-hero-section {
+    padding: 3.5rem 0 3.5rem;
+  }
+  .track-hero-headline {
+    font-size: 1.75rem;
+  }
+  .track-hero-pill {
+    font-size: 0.6875rem;
+    padding: 0.3rem 0.75rem;
+  }
+  .terminal-tab-btn {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.25rem;
+    gap: 0.35rem;
+  }
+  .support-phone-badge {
+    width: 100%;
+    justify-content: center;
+  }
+}

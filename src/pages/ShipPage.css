@@ -1,0 +1,1515 @@
+/* ============================================================
+   SHIP A CONSIGNMENT PAGE STYLES (EXECUTIVE CORPORATE DESIGN SYSTEM)
+   Strictly Zero Freight/Train/Ship · 4 Core Services · Mobile-First
+   ============================================================ */
+
+.sdl-page-ship {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 6rem;
+  background-color: #f8fafc;
+  color: var(--sdl-ink-900);
+}
+
+/* ============================================================
+   1. CINEMATIC HERO SECTION
+   ============================================================ */
+.sdl-ship-hero {
+  position: relative;
+  background-image: url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1920&auto=format&fit=crop&q=85');
+  background-size: cover;
+  background-position: center 40%;
+  color: var(--sdl-white);
+  padding: 5rem 0 5.5rem;
+  overflow: hidden;
+}
+
+.sdl-ship-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--sdl-ink-rgb), 0.88) 0%,
+    rgba(var(--sdl-ink-rgb), 0.58) 50%,
+    rgba(15, 34, 56, 0.22) 100%
+  );
+  z-index: 1;
+}
+
+.ship-hero-container {
+  position: relative;
+  z-index: 2;
+}
+
+.sdl-ship-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: #94a3b8;
+  margin-bottom: 1.25rem;
+}
+
+.crumb-link {
+  color: var(--sdl-accent-400);
+  cursor: pointer;
+  transition: var(--sdl-transition);
+}
+
+.crumb-link:hover {
+  text-decoration: underline;
+  color: var(--sdl-white);
+}
+
+.crumb-sep {
+  color: #64748b;
+}
+
+.crumb-current {
+  color: #e2e8f0;
+}
+
+.ship-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(var(--sdl-accent-rgb), 0.15);
+  color: var(--sdl-accent-400);
+  border: 1px solid rgba(var(--sdl-accent-rgb), 0.35);
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+}
+
+.ship-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--sdl-accent-500);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+.ship-hero-title {
+  font-family: var(--sdl-font-display);
+  font-size: 3.25rem;
+  font-weight: 800;
+  color: var(--sdl-white);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.875rem;
+  max-width: 900px;
+}
+
+.ship-highlight-accent {
+  color: var(--sdl-accent-500);
+  font-weight: 800;
+}
+
+.ship-hero-subtitle {
+  font-size: 1.0625rem;
+  color: #cbd5e1;
+  line-height: 1.65;
+  max-width: 680px;
+  margin-bottom: 2rem;
+}
+
+.ship-hero-trust-strip {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.ship-hero-trust-strip .trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+/* ============================================================
+   2. MAIN WORKSPACE & GRID LAYOUT
+   ============================================================ */
+.sdl-ship-workspace {
+  margin-top: -2.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.sdl-ship-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* Mobile-Only Progress & Snapshot (Hidden on Desktop) */
+.mobile-step-progress-banner {
+  display: none;
+  background: var(--sdl-white);
+  border: 1.5px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-xl);
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.mobile-step-progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.625rem;
+}
+
+.mobile-step-tag {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  color: var(--sdl-accent-500);
+  background: var(--sdl-accent-50);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--sdl-radius-sm);
+  letter-spacing: 0.05em;
+}
+
+.mobile-step-name {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--sdl-ink-900);
+}
+
+.mobile-step-track {
+  width: 100%;
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.mobile-step-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sdl-accent-500) 0%, var(--sdl-accent-400) 100%);
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+.mobile-manifest-snapshot {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(var(--sdl-accent-rgb), 0.08);
+  border: 1px solid rgba(var(--sdl-accent-rgb), 0.2);
+  border-radius: var(--sdl-radius-lg);
+  padding: 0.625rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+}
+
+.snapshot-route {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-weight: 700;
+  color: var(--sdl-ink-900);
+}
+
+.snapshot-metrics {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--sdl-slate-600);
+  font-weight: 700;
+}
+
+/* Step Navigation Stepper */
+.form-steps-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.step-nav-item {
+  background: var(--sdl-white);
+  border: 1.5px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-xl);
+  padding: 0.875rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--sdl-slate-600);
+  cursor: pointer;
+  transition: var(--sdl-transition);
+  text-align: left;
+}
+
+.step-nav-item .step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: var(--sdl-slate-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  transition: var(--sdl-transition);
+}
+
+.step-nav-item:hover {
+  border-color: var(--sdl-accent-300);
+  color: var(--sdl-accent-500);
+}
+
+.step-nav-item.active {
+  background: var(--sdl-ink-900);
+  border-color: var(--sdl-ink-900);
+  color: var(--sdl-white);
+  box-shadow: 0 4px 12px rgba(var(--sdl-ink-rgb), 0.15);
+}
+
+.step-nav-item.active .step-num {
+  background: var(--sdl-accent-500);
+  color: var(--sdl-white);
+}
+
+.step-nav-item.completed {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.04);
+}
+
+.step-nav-item.completed .step-num {
+  background: #10b981;
+  color: var(--sdl-white);
+}
+
+/* The admin wizard's .step-sub (slate-400, 2.6:1) also reaches this page; slate-500 reads at 4.8:1. */
+.step-nav-item .step-sub {
+  color: var(--sdl-slate-500);
+}
+
+.step-nav-item.active .step-sub {
+  color: var(--sdl-slate-300);
+}
+
+/* Validation Error Alert */
+.form-validation-error {
+  background: #fef2f2;
+  border: 1.5px solid #fecaca;
+  color: #991b1b;
+  padding: 0.875rem 1.25rem;
+  border-radius: var(--sdl-radius-lg);
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Form Section Card */
+.form-section-card {
+  background: var(--sdl-white);
+  border: 1.5px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-2xl);
+  padding: 2.25rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+.sec-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1.5px solid var(--sdl-slate-100);
+  margin-bottom: 2rem;
+}
+
+.sec-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--sdl-radius-lg);
+  background: var(--sdl-accent-50);
+  color: var(--sdl-accent-500);
+  border: 1px solid var(--sdl-accent-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sec-header h3 {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: var(--sdl-ink-900);
+  margin-bottom: 0.25rem;
+}
+
+.sec-header p {
+  font-size: 0.875rem;
+  color: var(--sdl-slate-500);
+  margin: 0;
+}
+
+.sec-title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.add-piece-btn {
+  background: var(--sdl-accent-50);
+  border: 1px solid var(--sdl-accent-300);
+  color: var(--sdl-accent-500);
+  padding: 0.5rem 1rem;
+  border-radius: var(--sdl-radius-md);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  cursor: pointer;
+  transition: var(--sdl-transition);
+}
+
+.add-piece-btn:hover {
+  background: var(--sdl-accent-500);
+  color: var(--sdl-white);
+  border-color: var(--sdl-accent-500);
+}
+
+/* Fields Grid */
+.form-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  grid-column: span 2;
+}
+
+.form-group.span-2 {
+  grid-column: span 4;
+}
+
+.form-group.mini {
+  grid-column: span 1;
+}
+
+.form-group label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--sdl-slate-700);
+}
+
+.sdl-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1.5px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-md);
+  font-size: 0.9375rem;
+  color: var(--sdl-ink-900);
+  background: #f8fafc;
+  outline: none;
+  transition: var(--sdl-transition);
+}
+
+.sdl-input:focus {
+  border-color: var(--sdl-accent-500);
+  background: var(--sdl-white);
+  box-shadow: 0 0 0 3px rgba(var(--sdl-accent-rgb), 0.12);
+}
+
+/* Tender Mode Switcher */
+.tender-mode-wrap {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--sdl-slate-100);
+}
+
+.section-sublabel {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--sdl-ink-900);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.tender-toggle-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.tender-card {
+  border: 1.5px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-xl);
+  padding: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  cursor: pointer;
+  background: #f8fafc;
+  transition: var(--sdl-transition);
+}
+
+.tender-card:hover {
+  border-color: var(--sdl-accent-300);
+  background: var(--sdl-white);
+}
+
+.tender-card.selected {
+  border-color: var(--sdl-accent-500);
+  background: var(--sdl-white);
+  box-shadow: 0 0 0 3px rgba(var(--sdl-accent-rgb), 0.12);
+}
+
+.tender-card strong {
+  display: block;
+  font-size: 0.9375rem;
+  color: var(--sdl-ink-900);
+  margin-bottom: 0.25rem;
+}
+
+.tender-card p {
+  font-size: 0.8125rem;
+  color: var(--sdl-slate-500);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.pickup-window-select {
+  margin-top: 1rem;
+}
+
+.pickup-window-select label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--sdl-slate-700);
+  display: block;
+  margin-bottom: 0.375rem;
+}
+
+/* Multi-Piece Builder */
+.pieces-builder-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.piece-builder-row {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: #f8fafc;
+  border: 1px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-xl);
+}
+
+.piece-badge-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.25rem;
+}
+
+.p-badge {
+  background: var(--sdl-ink-900);
+  color: var(--sdl-white);
+  padding: 0.35rem 0.625rem;
+  border-radius: var(--sdl-radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 800;
+}
+
+.p-delete-btn {
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--sdl-transition);
+}
+
+.p-delete-btn:hover {
+  background: #dc2626;
+  color: var(--sdl-white);
+}
+
+.piece-inputs-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.piece-dim-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.875rem;
+}
+
+.p-field label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--sdl-slate-600);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.p-field-desc label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--sdl-slate-600);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* Service Options Grid */
+.services-select-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.service-option-card {
+  border: 1.5px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-xl);
+  padding: 1.5rem;
+  cursor: pointer;
+  background: #f8fafc;
+  position: relative;
+  transition: var(--sdl-transition);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.service-option-card:hover {
+  border-color: var(--sdl-accent-300);
+  background: var(--sdl-white);
+}
+
+.service-option-card.selected {
+  border-color: var(--sdl-accent-500);
+  background: var(--sdl-white);
+  box-shadow: 0 0 0 3px rgba(var(--sdl-accent-rgb), 0.12);
+}
+
+.service-option-card .pop-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--sdl-accent-100);
+  color: var(--sdl-accent-600);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--sdl-radius-sm);
+  letter-spacing: 0.04em;
+}
+
+.serv-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.serv-head strong {
+  font-size: 1rem;
+  color: var(--sdl-ink-900);
+}
+
+.serv-transit {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--sdl-accent-500);
+}
+
+.serv-rate-status {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--sdl-slate-500);
+  background: #f1f5f9;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--sdl-radius-sm);
+  width: fit-content;
+}
+
+.service-option-card small {
+  font-size: 0.75rem;
+  color: var(--sdl-slate-500);
+}
+
+/* Addons Grid */
+.addons-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--sdl-slate-100);
+}
+
+.addon-checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.addon-checkbox-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--sdl-accent-500);
+  cursor: pointer;
+}
+
+.addon-checkbox-row label {
+  cursor: pointer;
+}
+
+.addon-checkbox-row strong {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--sdl-ink-900);
+}
+
+.addon-checkbox-row small {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--sdl-slate-500);
+}
+
+.declared-value-row {
+  margin-top: 0.5rem;
+}
+
+.declared-value-row label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--sdl-slate-700);
+  display: block;
+  margin-bottom: 0.375rem;
+}
+
+.value-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 240px;
+}
+
+.value-input-wrap .curr-sym {
+  position: absolute;
+  left: 12px;
+  font-weight: 700;
+  color: var(--sdl-slate-500);
+}
+
+.value-input-wrap input {
+  padding-left: 26px;
+}
+
+/* Step Actions Buttons */
+.form-step-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--sdl-slate-100);
+}
+
+.form-step-actions.dual {
+  justify-content: space-between;
+}
+
+.submit-booking-btn {
+  min-height: 48px;
+}
+
+/* ============================================================
+   3. STICKY SUMMARY SIDEBAR
+   ============================================================ */
+.sidebar-sticky-card {
+  position: sticky;
+  top: 100px;
+  background: var(--sdl-white);
+  border: 1.5px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-2xl);
+  padding: 1.75rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 1.5px solid var(--sdl-slate-100);
+  margin-bottom: 1.25rem;
+}
+
+.sidebar-head h3 {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--sdl-ink-900);
+  margin: 0;
+}
+
+.badge-live {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  background: var(--sdl-accent-50);
+  color: var(--sdl-accent-500);
+  border: 1px solid var(--sdl-accent-200);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--sdl-radius-sm);
+  letter-spacing: 0.04em;
+}
+
+.sidebar-route-preview {
+  background: #f8fafc;
+  border: 1px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-lg);
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.route-loc {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.route-loc small {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--sdl-slate-500);
+  display: block;
+}
+
+.route-loc strong {
+  font-size: 0.875rem;
+  color: var(--sdl-ink-900);
+}
+
+.route-arrow-line {
+  display: flex;
+  align-items: center;
+  padding-left: 7px;
+}
+
+.route-line {
+  width: 2px;
+  height: 16px;
+  background: var(--sdl-accent-400);
+}
+
+.sidebar-specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--sdl-slate-100);
+  margin-bottom: 1.25rem;
+}
+
+.spec-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+}
+
+.spec-row span {
+  color: var(--sdl-slate-600);
+}
+
+.spec-row strong {
+  color: var(--sdl-ink-900);
+}
+
+.sidebar-pricing-breakdown {
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-radius: var(--sdl-radius-lg);
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.price-row-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  margin-bottom: 0.375rem;
+}
+
+.price-row-status strong {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #b45309;
+}
+
+.admin-publishing-note {
+  font-size: 0.75rem;
+  color: #92400e;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.sidebar-trust-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: 0.75rem;
+  color: var(--sdl-slate-500);
+  line-height: 1.4;
+}
+
+/* ============================================================
+   4. BOOKING CONFIRMED SCREEN
+   ============================================================ */
+.sdl-booking-confirmed-card {
+  background: var(--sdl-white);
+  border: 1.5px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-2xl);
+  padding: 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+}
+
+.confirm-top-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.35rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.5rem;
+}
+
+.confirm-header {
+  margin-bottom: 2rem;
+}
+
+.confirm-header h2 {
+  font-family: var(--sdl-font-display);
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--sdl-ink-900);
+  margin: 1rem 0 0.5rem;
+}
+
+.confirm-header p {
+  font-size: 1rem;
+  color: var(--sdl-slate-600);
+  line-height: 1.6;
+}
+
+.admin-rate-notice-banner {
+  background: var(--sdl-accent-50);
+  border: 1.5px solid var(--sdl-accent-100);
+  border-radius: var(--sdl-radius-xl);
+  padding: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  color: var(--sdl-accent-700);
+}
+
+.admin-rate-notice-banner strong {
+  display: block;
+  font-size: 0.9375rem;
+  margin-bottom: 0.25rem;
+}
+
+.admin-rate-notice-banner p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--sdl-accent-600);
+}
+
+.confirm-barcode-block {
+  background: #f8fafc;
+  border: 1.5px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-xl);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.barcode-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.barcode-tag {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  color: var(--sdl-slate-500);
+  letter-spacing: 0.05em;
+}
+
+.barcode-service {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--sdl-accent-500);
+}
+
+.barcode-render-stage {
+  background: var(--sdl-white);
+  border: 1px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-md);
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.barcode-block-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  color: var(--sdl-slate-600);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.confirm-pieces-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.confirm-piece-card {
+  background: #f8fafc;
+  border: 1px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-lg);
+  padding: 1rem;
+}
+
+.piece-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.piece-barcode-render {
+  background: var(--sdl-white);
+  border: 1px solid var(--sdl-slate-200);
+  padding: 0.75rem;
+  border-radius: var(--sdl-radius-sm);
+  display: flex;
+  justify-content: center;
+}
+
+.confirm-instructions-card {
+  background: #f8fafc;
+  border: 1px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-xl);
+  padding: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  margin-bottom: 2rem;
+}
+
+.confirm-instructions-card h4 {
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: var(--sdl-ink-900);
+  margin: 0 0 0.25rem;
+}
+
+.confirm-instructions-card p {
+  font-size: 0.875rem;
+  color: var(--sdl-slate-600);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.confirm-action-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.confirm-action-row button {
+  min-height: 48px;
+}
+
+/* ============================================================
+   5. HOW SHIPMENT INTAKE WORKS SECTION
+   ============================================================ */
+.sdl-ship-process-section {
+  padding: 6rem 0;
+  background-color: var(--sdl-white);
+  border-top: 1px solid var(--sdl-slate-200);
+  margin-top: 5rem;
+}
+
+.process-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+  margin-top: 3.5rem;
+}
+
+.p-step-card {
+  background: #f8fafc;
+  border: 1.5px solid var(--sdl-slate-200);
+  border-radius: var(--sdl-radius-xl);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: var(--sdl-transition);
+}
+
+.p-step-card:hover {
+  border-color: var(--sdl-accent-400);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(var(--sdl-accent-rgb), 0.08);
+}
+
+.p-step-card .step-badge {
+  font-family: var(--sdl-font-mono);
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--sdl-accent-500);
+  background: var(--sdl-accent-50);
+  border: 1px solid var(--sdl-accent-200);
+  width: 42px;
+  height: 42px;
+  border-radius: var(--sdl-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.p-step-card h4 {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--sdl-ink-900);
+  margin-bottom: 0.5rem;
+}
+
+.p-step-card p {
+  font-size: 0.875rem;
+  color: var(--sdl-slate-600);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN & MOBILE BREAKPOINTS
+   ============================================================ */
+@media (max-width: 1024px) {
+  .sdl-ship-grid {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-sticky-card {
+    position: static;
+  }
+  .process-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  /* 1. Compact, Focused Mobile Hero */
+  .sdl-ship-hero {
+    padding: 2.75rem 0 2rem;
+  }
+  .sdl-ship-breadcrumbs {
+    display: none; /* Hide clutter on mobile */
+  }
+  .ship-hero-title {
+    font-size: 1.85rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+  .ship-hero-subtitle {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  .ship-hero-trust-strip {
+    display: none; /* Hide bulky checkmarks */
+  }
+  .sdl-ship-workspace {
+    margin-top: 0; /* Remove negative margin clash */
+    padding-top: 0.5rem;
+  }
+
+  /* 2. Sleek 4-Segmented Step Bar on Mobile */
+  .form-steps-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.375rem;
+    margin-bottom: 0.75rem;
+  }
+  .step-nav-item {
+    padding: 0.5rem 0.25rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: var(--sdl-radius-lg);
+    gap: 0.25rem;
+  }
+  .step-nav-item .step-num {
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+  }
+  .step-label-group .step-sub {
+    display: none; /* Hide long city/weight strings in step tabs */
+  }
+  .step-label-group .step-title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+  }
+
+  /* 3. Mobile Step Progress Bar */
+  .mobile-step-summary-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: var(--sdl-white);
+    border: 1px solid var(--sdl-slate-200);
+    border-radius: var(--sdl-radius-lg);
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+  }
+  .mobile-step-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8125rem;
+  }
+  .mobile-step-text strong {
+    color: var(--sdl-ink-900);
+  }
+  .step-badge-mini {
+    font-size: 0.6875rem;
+    font-weight: 800;
+    color: var(--sdl-accent-500);
+    background: var(--sdl-accent-50);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+  }
+  .mobile-step-track {
+    width: 100%;
+    height: 4px;
+    background: #f1f5f9;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .mobile-step-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--sdl-accent-500) 0%, var(--sdl-accent-400) 100%);
+    border-radius: 999px;
+  }
+
+  /* 4. Streamlined Form Section Card */
+  .form-section-card {
+    padding: 1.25rem 1rem;
+    border-radius: var(--sdl-radius-xl);
+  }
+  .sec-header {
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.875rem;
+  }
+  .sec-icon {
+    display: none; /* Hide 44px circle so title aligns neatly */
+  }
+  .sec-header h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.125rem;
+  }
+  .sec-header p {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  /* 5. 16px Font Size to Prevent iOS Safari Auto-Zoom */
+  .sdl-input, select.sdl-input {
+    font-size: 16px !important;
+    padding: 0.75rem 0.875rem;
+    min-height: 48px;
+  }
+
+  .form-fields-grid {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+  .form-group, .form-group.span-2, .form-group.mini {
+    grid-column: span 1;
+  }
+
+  /* Tender Mode Toggle (Segmented on Mobile) */
+  .tender-mode-wrap {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+  }
+  .tender-toggle-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .tender-card {
+    padding: 0.75rem 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.375rem;
+    border-radius: var(--sdl-radius-lg);
+  }
+  .tender-card p {
+    display: none; /* Hide long description on mobile */
+  }
+  .tender-card strong {
+    font-size: 0.8125rem;
+    margin: 0;
+  }
+
+  /* 6. Step 3: Mobile Pieces Builder */
+  .piece-builder-row {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.75rem;
+    border-radius: var(--sdl-radius-lg);
+  }
+  .piece-badge-col {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 0;
+    border-bottom: 1px solid var(--sdl-slate-200);
+    padding-bottom: 0.5rem;
+  }
+  .piece-inputs-col {
+    gap: 0.75rem;
+  }
+  .piece-dim-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  .add-piece-btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  /* 7. Step 4: Services on Mobile */
+  .services-select-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .service-option-card {
+    padding: 1rem;
+    border-radius: var(--sdl-radius-lg);
+  }
+  .service-option-card .serv-head strong {
+    font-size: 0.9375rem;
+  }
+
+  /* 8. Full-Width 48px Action Buttons */
+  .form-step-actions.dual {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .form-step-actions.dual button,
+  .form-step-actions button {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    font-size: 0.9375rem;
+  }
+
+  /* 9. Hide Redundant Bottom Clutter on Mobile */
+  .sdl-ship-sidebar {
+    display: none; /* Hides duplicate summary card on mobile */
+  }
+  .sdl-ship-process-section {
+    display: none; /* Hides 4 large infographic cards on mobile */
+  }
+
+  /* 10. Confirmation View Mobile Polish */
+  .sdl-booking-confirmed-card {
+    padding: 1.5rem 1rem;
+    border-radius: var(--sdl-radius-xl);
+  }
+  .confirm-header h2 {
+    font-size: 1.625rem;
+  }
+  .confirm-barcode-block {
+    padding: 1rem;
+  }
+  .barcode-render-stage {
+    padding: 0.75rem 0.25rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .confirm-action-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .confirm-action-row button {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+  .confirm-pieces-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .ship-hero-title {
+    font-size: 1.625rem;
+  }
+  .ship-hero-badge {
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.625rem;
+  }
+  .step-label-group .step-title {
+    font-size: 0.625rem;
+  }
+  .barcode-block-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.375rem;
+  }
+}
+
+/* Units toggle and transport mode (tracker 2.7/2.8) */
+.ship-unit-toggle {
+  margin-top: 0.5rem;
+}
+
+.transport-mode-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin: 1.25rem 0;
+  max-width: 360px;
+}
+
+/* Collection and service choices are buttons (keyboard access): reset button defaults */
+.tender-card,
+.service-option-card {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+}
+
+.tender-card:focus-visible,
+.service-option-card:focus-visible {
+  outline: 3px solid var(--sdl-accent-400);
+  outline-offset: 2px;
+}
+
+.tender-card {
+  align-items: center;
+}
+
+/* Next steps after booking (CONTENT §7.3) */
+.ship-next-steps {
+  margin: 0.25rem 0 0;
+  padding-left: 1.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--sdl-slate-600);
+  line-height: 1.5;
+}
+
+/* "Print labels": only the tracking ID block and the piece labels are printed */
+@media print {
+  body:has(.ship-print-labels) .sdl-header-wrapper,
+  body:has(.ship-print-labels) .sdl-pro-footer-wrapper,
+  .sdl-page-ship .sdl-ship-hero,
+  .sdl-page-ship .sdl-ship-process-section,
+  .sdl-booking-confirmed-card > :not(.ship-print-labels) {
+    display: none !important;
+  }
+
+  .sdl-page-ship,
+  .sdl-ship-workspace,
+  .sdl-booking-confirmed-card {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
+
+  .ship-print-labels .confirm-barcode-block,
+  .ship-print-labels .confirm-piece-card {
+    break-inside: avoid;
+  }
+}
+
+/* The ghost button is styled for dark heroes; on this white card it needs a dark outline. */
+.confirm-action-row .btn-corp-ghost {
+  color: var(--sdl-ink-900);
+  background: var(--sdl-white);
+  border: 1px solid var(--sdl-slate-300);
+}
+
+.confirm-action-row .btn-corp-ghost:hover {
+  border-color: var(--sdl-ink-900);
+  background: var(--sdl-slate-50);
+}
+
+/* Narrow screens: the text spans the whole hero, so the overlay stays dark edge to edge. */
+@media (max-width: 768px) {
+  .sdl-ship-hero-bg {
+    background: rgba(var(--sdl-ink-rgb), 0.85);
+  }
+}

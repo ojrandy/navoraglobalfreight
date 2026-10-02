@@ -1,0 +1,127 @@
+/* ==========================================================================
+   SDL GLOBAL LOGISTICS — TRACKING SEARCH LOADING STATE
+   Shown while a tracking-number/quote-ID search is resolving, instead of the
+   result page just appearing instantly with no transition.
+   ========================================================================== */
+
+.sdl-tracking-loading-shell {
+  min-height: 62vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.25rem;
+  box-sizing: border-box;
+}
+
+.tracking-loading-card {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Radar / pulse rings around the truck badge */
+.tracking-loading-radar {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.75rem;
+}
+
+.tl-radar-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--sdl-accent-500, var(--sdl-accent-500));
+  opacity: 0;
+  animation: tl-radar-expand 2.1s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+
+.tl-ring-2 {
+  animation-delay: 0.7s;
+}
+
+@keyframes tl-radar-expand {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+.tl-radar-icon-badge {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--sdl-ink-900, var(--sdl-ink-900));
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px -4px rgba(var(--sdl-ink-rgb), 0.35);
+  z-index: 1;
+}
+
+.tracking-loading-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--sdl-ink-900, var(--sdl-ink-900));
+  letter-spacing: -0.01em;
+}
+
+.tracking-loading-sub {
+  margin: 0 0 1.75rem;
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.tl-query-code {
+  color: var(--sdl-accent-500, var(--sdl-accent-500));
+  font-weight: 700;
+}
+
+/* Indeterminate progress bar */
+.tracking-loading-bar-track {
+  width: 100%;
+  max-width: 260px;
+  height: 5px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+  overflow: hidden;
+  margin-bottom: 1.1rem;
+}
+
+.tracking-loading-bar-fill {
+  height: 100%;
+  width: 40%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--sdl-accent-400, var(--sdl-accent-400)), var(--sdl-accent-500, var(--sdl-accent-500)));
+  animation: tl-bar-slide 1.15s ease-in-out infinite;
+}
+
+@keyframes tl-bar-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+
+@media (max-width: 480px) {
+  .sdl-tracking-loading-shell {
+    min-height: 52vh;
+    padding: 2.5rem 1rem;
+  }
+}
