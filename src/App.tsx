@@ -190,14 +190,6 @@ function MainAppContent() {
     setRobotsNoIndex(currentPage === 'admin' || isAdminHost());
   }, [currentPage, liveShipment, currentQuote]);
 
-  // Smartsupp live chat (loaded in index.html) is for customers only — keep it off the admin console.
-  // Calls queue until the loader finishes, so this is safe before the widget has arrived.
-  useEffect(() => {
-    const smartsupp = (window as { smartsupp?: (...args: unknown[]) => void }).smartsupp;
-    if (!smartsupp) return;
-    smartsupp(currentPage === 'admin' || isAdminHost() ? 'chat:hide' : 'chat:show');
-  }, [currentPage]);
-
   // Initialize from hash if available
   useEffect(() => {
     const handleHash = async () => {
