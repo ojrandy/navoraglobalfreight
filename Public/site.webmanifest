@@ -1,7 +1,7 @@
 {
-  "name": "SDL Global Logistics",
-  "short_name": "SDL",
-  "description": "SDL Global Logistics moves express parcels, freight, vehicles and high-value cargo worldwide, with one tracking ID, live milestones and signed proof of delivery.",
+  "name": "Navora Global Freight",
+  "short_name": "Navora",
+  "description": "Navora Global Freight moves express parcels, freight, vehicles and high-value cargo worldwide, with one tracking ID, live milestones and signed proof of delivery.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFFFFF",

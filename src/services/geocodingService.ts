@@ -1,5 +1,5 @@
 /**
- * SDL Global Logistics — Hybrid Geocoding & Address Intelligence Service
+ * Hybrid Geocoding & Address Intelligence Service
  * Combines dynamic OpenStreetMap / Nominatim live address resolution (worldwide, free text)
  * with an instant in-memory cache and two offline tables: the global gateway network
  * (src/data/gateways.ts) and the U.S. metro list.

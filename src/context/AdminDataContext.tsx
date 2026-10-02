@@ -12,7 +12,7 @@ import { shipmentStatusLabel } from '../shared/shipmentStatus';
 
 // The server assigns every tracking ID (BRAND_GUIDE §7). Shipments are built here as drafts
 // without one, and this stamps the ID the server returned onto the draft: the ID, the barcode,
-// and each piece's id and child label (DLS7K2M9-01).
+// and each piece's id and child label (NGF7K2M9-01).
 function withTrackingId<T extends Partial<Shipment>>(draft: T, trackingNumber: string): T {
   return {
     ...draft,
@@ -52,7 +52,7 @@ interface AdminDataContextType {
   convertQuoteToShipment: (quoteId: string) => Promise<Shipment | undefined>;
   /** Persists a new shipment; resolves with the server-assigned tracking ID applied. Rejects if the server refuses it. */
   createShipment: (shipmentData: Partial<Shipment>) => Promise<Shipment>;
-  /** Return to origin, persisted server-side: the return is its own shipment with a server-assigned DLS ID. */
+  /** Return to origin, persisted server-side: the return is its own shipment with a server-assigned NGF ID. */
   initiateReturn: (trackingNumber: string, reason: string) => Promise<{ success: boolean; error?: string; returnTrackingNumber?: string }>;
   updateSettings: (newSettings: Partial<AdminSettings>) => Promise<{ success: boolean; error?: string }>;
   markNotificationRead: (id: string) => void;
@@ -212,7 +212,7 @@ const normalizeShipment = (s: any): Shipment => {
     return () => unsubscribe();
   }, []);
 
-  // Normalises SDL IDs ("dls 7k2-m9", child label DLS7K2M9-01 -> DLS7K2M9); anything else is
+  // Normalises tracking IDs ("ngf 7k2-m9", child label NGF7K2M9-01 -> NGF7K2M9); anything else is
   // matched as typed.
   const getShipment = (trackingNumber: string) => {
     const wanted = parseTrackingInput(trackingNumber)?.trackingId ?? trackingNumber.trim().toUpperCase();

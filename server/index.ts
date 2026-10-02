@@ -16,6 +16,7 @@ import { statsRouter } from './routes/stats.js';
 import { authRouter } from './routes/auth.js';
 import { messagesRouter } from './routes/messages.js';
 import { seoRouter } from './seo.js';
+import { COMPANY } from '../src/config/brand.js';
 import { requireAdminAuth, SESSION_COOKIE } from './middleware/auth.js';
 
 dotenv.config(); // reload trigger for tsx watch after .env changes
@@ -125,7 +126,7 @@ if (ADMIN_PROXY_TARGET) {
   app.get('/api/health', (req, res) => {
     res.json({
       status: 'ok',
-      service: 'SDL Global Logistics API',
+      service: `${COMPANY} API`,
       version: '1.0.0',
       timestamp: new Date().toISOString()
     });
@@ -225,7 +226,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 // Start Server
 app.listen(PORT, () => {
   console.log(`====================================================`);
-  console.log(`🚀 SDL Global Logistics API running on port ${PORT}`);
+  console.log(`🚀 ${COMPANY} API running on port ${PORT}`);
   if (ADMIN_PROXY_TARGET) {
     console.log(`🔀 Admin-proxy mode — /api forwards to ${ADMIN_PROXY_TARGET}`);
   } else {

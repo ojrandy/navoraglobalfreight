@@ -1,5 +1,5 @@
 /**
- * SDL Global Logistics — Autonomous Logistics Planning & Dynamic Timeline Engine
+ * Autonomous Logistics Planning & Dynamic Timeline Engine
  * Generates automated planned timelines, predicts milestone timestamps,
  * enforces 3-state milestone taxonomy (CONFIRMED, ESTIMATED, PENDING_CONFIRMATION),
  * and handles state-machine transitions (Hold, Delay, Return, Deliver) with full audit logging.

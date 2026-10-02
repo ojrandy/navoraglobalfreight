@@ -121,7 +121,7 @@ const INDUSTRIES: { id: IndustryTab; icon: React.ReactNode; title: string; body:
 const STEPS: { title: string; body: string; icon: React.ReactNode }[] = [
   {
     title: 'Book & Label',
-    body: 'Book online or with a coordinator. You get your 8-character SDL tracking ID and a barcode label for every piece straight away.',
+    body: `Book online or with a coordinator. You get your 8-character ${COMPANY_SHORT} tracking ID and a barcode label for every piece straight away.`,
     icon: <FileText size={22} className="text-accent" />
   },
   {
@@ -172,7 +172,7 @@ const MODES: { label: string; icon: React.ReactNode }[] = [
 const FAQS = [
   {
     q: 'Do I need an account to track a shipment?',
-    a: 'No. Enter your 8-character tracking ID (for example DLS7K2M9) on the Track page and you’ll see its status and milestones straight away. Personal details are masked for privacy.'
+    a: 'No. Enter your 8-character tracking ID (for example NGF7K2M9) on the Track page and you’ll see its status and milestones straight away. Personal details are masked for privacy.'
   },
   {
     q: 'How does live tracking work?',
@@ -180,7 +180,7 @@ const FAQS = [
   },
   {
     q: 'Can I track a multi-piece shipment under one ID?',
-    a: 'Yes. All pieces share one tracking ID, and each piece has its own label (for example DLS7K2M9-01, -02), so you can see every carton individually.'
+    a: 'Yes. All pieces share one tracking ID, and each piece has its own label (for example NGF7K2M9-01, -02), so you can see every carton individually.'
   },
   {
     q: 'Do you handle customs clearance?',
@@ -218,7 +218,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
   const activeGatewayTime = formatGatewayTime(activeGateway.timeZone, now);
   const activeGatewayLanes = getLanePartners(activeGateway.code).map((code) => getGateway(code)?.city ?? code);
 
-  // Stored as a message in the admin inbox; the server issues the SDL-TKT reference.
+  // Stored as a message in the admin inbox; the server issues the NGF-TKT reference.
   const handleCallbackSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!cbName.trim() || !cbPhone.trim() || cbSubmitting) return;
@@ -255,7 +255,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
         <ResponsiveImage
           name="hero-home"
           mobileName="hero-home-mobile"
-          alt="SDL Global Logistics truck at a container port at sunset, with a cargo ship, cranes and an SDL aircraft overhead"
+          alt={`${COMPANY} truck at a container port at sunset, with a cargo ship, cranes and a ${COMPANY_SHORT} aircraft overhead`}
           eager
           sizes="100vw"
           className="corp-hero-media"
@@ -270,8 +270,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
             </div>
 
             <h1 className="corp-hero-title">
-              Fast, Safe, <br />
-              <span className="sdl-highlight">Reliable.</span>
+              Connecting Markets, <br />
+              <span className="sdl-highlight">Delivering Trust.</span>
             </h1>
 
             <p className="corp-hero-subtitle">
@@ -359,12 +359,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
       </section>
 
       {/* =========================================================================
-          2. WHY SHIPPERS CHOOSE SDL (CONTENT.md §2.2)
+          2. WHY SHIPPERS CHOOSE US (CONTENT.md §2.2)
           ========================================================================= */}
       <section className="corp-why-choose-section">
         <div className="sdl-container-wide">
           <div className="section-center-header">
-            <span className="section-eyebrow">WHY SDL</span>
+            <span className="section-eyebrow">WHY {COMPANY_SHORT.toUpperCase()}</span>
             <h2>Why shippers around the world choose {COMPANY_SHORT}</h2>
             <p className="section-desc-sub">
               Global reach only matters if every shipment is handled like it’s the only one. That’s the standard we work to.
@@ -821,11 +821,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
 
               <div className="bc-canvas-wrap-thermal">
                 <div className="laser-sweep-line" />
-                <Barcode value="DLS7K2M9" width={2.2} height={68} />
+                <Barcode value="NGF7K2M9" width={2.2} height={68} />
               </div>
 
               <div className="thermal-footer font-mono">
-                <span>TRACKING ID: DLS7K2M9</span>
+                <span>TRACKING ID: NGF7K2M9</span>
                 <span>PIECE 01/01</span>
               </div>
             </div>

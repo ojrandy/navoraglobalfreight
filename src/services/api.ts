@@ -192,7 +192,7 @@ export const api = {
     return handleResponse<Shipment>(res);
   },
 
-  // Return to origin: the server creates the return as its own shipment with a new DLS ID.
+  // Return to origin: the server creates the return as its own shipment with a new NGF ID.
   async initiateReturn(trackingNumber: string, reason: string, operator?: string): Promise<{ original: Shipment; returnShipment: Shipment }> {
     const res = await fetch(`${API_BASE}/shipments/${encodeURIComponent(trackingNumber)}/return`, {
       method: 'POST',

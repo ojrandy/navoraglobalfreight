@@ -60,7 +60,7 @@ import { generateShipmentPlan } from '../../services/planningEngine';
 import { useAdminData } from '../../context/AdminDataContext';
 import { AdminViewType } from '../AdminLayout';
 import { Shipment, ShipmentStatus, TrackingEvent } from '../../types/shipment';
-import { ADMIN_ROLE_LABEL, COMPANY, COMPANY_SHORT, INTAKE_DESK, LEGAL_NAME, TRACKING_PREFIX } from '../../config/brand';
+import { ADMIN_ROLE_LABEL, COMPANY, COMPANY_SHORT, INTAKE_DESK, LEGAL_NAME, REFERENCE_PREFIX, TRACKING_PREFIX } from '../../config/brand';
 import { generateReference } from '../../shared/references';
 import './CreateShipmentView.css';
 import { Barcode as TrackingBarcode } from '../../components/Barcode';
@@ -343,7 +343,7 @@ export const CreateShipmentView: React.FC<CreateShipmentViewProps> = ({
   // STEP 7 / Creation State
   // ----------------------------------------------------
   // Set from the server's response on create: the server assigns every tracking ID
-  // (BRAND_GUIDE §7). Until then the UI shows the DLS····· placeholder.
+  // (BRAND_GUIDE §7). Until then the UI shows the NGF····· placeholder.
   const [generatedTrackingNumber, setGeneratedTrackingNumber] = useState<string>('');
   const [createdShipmentRecord, setCreatedShipmentRecord] = useState<Shipment | null>(null);
   const [isCopied, setIsCopied] = useState(false);
@@ -746,7 +746,7 @@ export const CreateShipmentView: React.FC<CreateShipmentViewProps> = ({
   const handleFinalCreateShipment = async () => {
     if (isCreatingShipment) return;
     setIsCreatingShipment(true);
-    // Piece labels (DLSxxxxx-NN) are stamped from the server-assigned ID in createShipment.
+    // Piece labels (NGFxxxxx-NN) are stamped from the server-assigned ID in createShipment.
     const formattedPieces = shipmentType === 'Vehicle'
       ? [
           {
@@ -2652,7 +2652,7 @@ export const CreateShipmentView: React.FC<CreateShipmentViewProps> = ({
                           className="font-mono"
                           value={docSealNumber}
                           onChange={e => setDocSealNumber(e.target.value.toUpperCase())}
-                          placeholder="SDL-SL-892401"
+                          placeholder={`${REFERENCE_PREFIX}-SL-892401`}
                         />
                         <span className="field-hint-txt" style={{ fontSize: '0.65rem' }}>Sequential tamper-evident barcode seal</span>
                       </div>

@@ -1,6 +1,6 @@
-# SDL Global Logistics — Content Deck (all site copy)
+# Navora Global Freight — Content Deck (all site copy)
 
-> **Context:** The SDL platform is **already built and working**: public website, tracking engine, Express/SQLite API,
+> **Context:** The Navora platform is **already built and working**: public website, tracking engine, Express/SQLite API,
 > admin console, documents and quotes. Claude is acting as a **senior professional developer** who has taken over this
 > existing codebase to rebrand and improve it. Nothing here is built from scratch; every task modifies the working system
 > in place and must leave it working. See `CLAUDE.md §0`.
@@ -15,10 +15,10 @@ ship a page with a visible `{{…}}`. Hide the element if the value is missing.
 
 | Placeholder | Value |
 |---|---|
-| `{{COMPANY}}` | SDL Global Logistics |
-| `{{LEGAL_NAME}}` | SDL Global Logistics Ltd |
-| `{{EMAIL}}` | info@sdlgloballogistics.com |
-| `{{DOMAIN}}` | sdlgloballogistics.com |
+| `{{COMPANY}}` | Navora Global Freight |
+| `{{LEGAL_NAME}}` | Navora Global Freight |
+| `{{EMAIL}}` | info@navoraglobalfreight.com |
+| `{{DOMAIN}}` | navoraglobalfreight.com |
 | `{{PHONE}}` / `{{WHATSAPP}}` | TBD (owner) |
 | `{{HQ_ADDRESS}}` | TBD (owner) |
 | `{{YEAR_FOUNDED}}` | TBD (owner). If unknown, remove the "years" stat |
@@ -31,23 +31,23 @@ Spelling: International/British English (see BRAND_GUIDE §3).
 ## 1. Global: metadata, header, footer
 
 ### 1.1 `index.html` and per-page meta
-- **Default title:** `SDL Global Logistics | Worldwide Express, Freight & Secure Cargo`
-- **Default description:** `SDL Global Logistics moves express parcels, freight, vehicles and high-value cargo worldwide, with one tracking ID, live milestones and signed proof of delivery.`
-- **OG title:** `SDL Global Logistics: Fast, Safe, Reliable`
+- **Default title:** `Navora Global Freight | Worldwide Express, Freight & Secure Cargo`
+- **Default description:** `Navora Global Freight moves express parcels, freight, vehicles and high-value cargo worldwide, with one tracking ID, live milestones and signed proof of delivery.`
+- **OG title:** `Navora Global Freight: Connecting Markets, Delivering Trust`
 - **OG description:** same as the default description. **OG image:** `/brand/og-image.jpg`
 
 | Page | `<title>` | Meta description |
 |---|---|---|
-| Home | SDL Global Logistics \| Worldwide Express, Freight & Secure Cargo | (default) |
-| Track | Track a Shipment \| SDL Global Logistics | Enter your 8-character SDL tracking ID to see live milestones, location and delivery status. |
-| Services | Logistics Services \| SDL Global Logistics | Priority express, scheduled air, ocean and road freight, vehicle shipping and secure high-value transport, worldwide. |
-| Quote | Get a Rate Quote \| SDL Global Logistics | Tell us what you're moving and where. A logistics coordinator will send your rate. |
-| Ship | Book a Shipment \| SDL Global Logistics | Book a pickup, build a multi-piece shipment and get your tracking ID in minutes. |
-| About | About Us \| SDL Global Logistics | Who we are, how we work and why shippers around the world trust SDL with cargo that matters. |
-| Locations | Global Network \| SDL Global Logistics | The gateways and trade lanes that connect SDL shipments across Africa, Europe, the Middle East, Asia and the Americas. |
-| Help | Help Centre \| SDL Global Logistics | Answers on tracking, booking, customs, documents and deliveries. |
-| Contact | Contact Us \| SDL Global Logistics | Talk to an SDL coordinator, any time zone, any day. |
-| Legal | Policies \| SDL Global Logistics | Privacy, terms of service, shipping terms and accessibility. |
+| Home | Navora Global Freight \| Worldwide Express, Freight & Secure Cargo | (default) |
+| Track | Track a Shipment \| Navora Global Freight | Enter your 8-character Navora tracking ID to see live milestones, location and delivery status. |
+| Services | Logistics Services \| Navora Global Freight | Priority express, scheduled air, ocean and road freight, vehicle shipping and secure high-value transport, worldwide. |
+| Quote | Get a Rate Quote \| Navora Global Freight | Tell us what you're moving and where. A logistics coordinator will send your rate. |
+| Ship | Book a Shipment \| Navora Global Freight | Book a pickup, build a multi-piece shipment and get your tracking ID in minutes. |
+| About | About Us \| Navora Global Freight | Who we are, how we work and why shippers around the world trust Navora with cargo that matters. |
+| Locations | Global Network \| Navora Global Freight | The gateways and trade lanes that connect Navora shipments across Africa, Europe, the Middle East, Asia and the Americas. |
+| Help | Help Centre \| Navora Global Freight | Answers on tracking, booking, customs, documents and deliveries. |
+| Contact | Contact Us \| Navora Global Freight | Talk to a Navora coordinator, any time zone, any day. |
+| Legal | Policies \| Navora Global Freight | Privacy, terms of service, shipping terms and accessibility. |
 
 ### 1.2 Header
 - Nav: **Track** · **Ship** · **Services** · **Network** (→ Locations) · **About** · **Help** · **Contact**
@@ -56,7 +56,7 @@ Spelling: International/British English (see BRAND_GUIDE §3).
 - Mobile drawer footer: `Need help? {{EMAIL}}`
 
 ### 1.3 Footer
-**Brand block:** logo (white) + `Fast, Safe, Reliable.`
+**Brand block:** logo (white) + `Connecting Markets, Delivering Trust.`
 `Express, freight and secure cargo across borders, with one tracking ID and one accountable team from pickup to proof of delivery.`
 
 **Trust strip (4 items, replaces "Nationwide Coverage" and friends):**
@@ -67,11 +67,11 @@ Spelling: International/British English (see BRAND_GUIDE §3).
 
 **Columns**
 - *Services:* Priority Express · Freight & Linehaul · Vehicle Shipping · Secure Vault · Get a Quote
-- *Company:* About SDL · Global Network · Contact · Careers (hide until live)
+- *Company:* About Navora · Global Network · Contact · Careers (hide until live)
 - *Support:* Track a Shipment · Help Centre · Book a Shipment · Report an Issue
 - *Legal:* Privacy Policy · Terms of Service · Shipping Terms · Cookie Policy · Accessibility
 
-**Bottom line:** `© {year} SDL Global Logistics Ltd. All rights reserved.` · `{{HQ_ADDRESS}}` (hidden if empty)
+**Bottom line:** `© {year} Navora Global Freight. All rights reserved.` · `{{HQ_ADDRESS}}` (hidden if empty)
 **Social:** only show icons that have a real URL.
 
 ---
@@ -80,20 +80,20 @@ Spelling: International/British English (see BRAND_GUIDE §3).
 
 ### 2.1 Hero
 - **Badge:** `WORLDWIDE LOGISTICS NETWORK`
-- **H1:** `Fast, Safe,` **`Reliable.`** (the second line takes the accent highlight)
+- **H1:** `Connecting Markets,` **`Delivering Trust.`** (the second line takes the accent highlight)
 - **Hero image:** `images/landingimage.png` on web (`hero-home`), `images/landingimage-mobile.png` on phones (`hero-home-mobile`, below 768px)
 - **Sub:** `Express parcels, freight, vehicles and high-value cargo, moved across borders by a team that answers, with one tracking ID from pickup to signed delivery.`
 - **Buttons:** `Get a Rate Quote` (primary) · `Track a Shipment` (ghost)
-- **Inline track field (if present):** placeholder `Enter tracking ID, e.g. DLS7K2M9`, button `Track`
+- **Inline track field (if present):** placeholder `Enter tracking ID, e.g. NGF7K2M9`, button `Track`
 - **Guarantee panel.** Title `OUR SERVICE PROMISE` (remove the "CERTIFIED" badge unless a real certification exists)
   1. **Agreed Delivery Windows.** You get a committed pickup and delivery window, and we tell you the moment anything changes.
   2. **Unbroken Chain of Custody.** Every hand-off is scanned, every high-value item is sealed, and every delivery is signed.
   3. **Real People, Every Time Zone.** A named coordinator follows your shipment and replies around the clock.
 - **Hotline line:** `Priority line: {{PHONE}}` (hidden if empty; fall back to `{{EMAIL}}`)
 
-### 2.2 Why shippers choose SDL (3 floating cards)
-- **Eyebrow:** `WHY SDL`
-- **H2:** `Why shippers around the world choose SDL`
+### 2.2 Why shippers choose Navora (3 floating cards)
+- **Eyebrow:** `WHY Navora`
+- **H2:** `Why shippers around the world choose Navora`
 - **Intro:** `Global reach only matters if every shipment is handled like it's the only one. That's the standard we work to.`
 1. **Priority Express, Worldwide.** Door-to-door express for documents and parcels that can't wait. Booked in minutes, collected fast, cleared and delivered on an agreed window.
 2. **Scheduled Freight on Every Mode.** Air, ocean and road departures on fixed schedules. Consolidated or dedicated, with one booking, one tracking ID and one invoice.
@@ -101,21 +101,21 @@ Spelling: International/British English (see BRAND_GUIDE §3).
 
 ### 2.3 How it works (4 steps; the connecting line animates, see MOTION §4)
 - **Eyebrow:** `HOW IT WORKS`
-- **H2:** `How SDL moves your shipment`
+- **H2:** `How Navora moves your shipment`
 - **Intro:** `Four stages, one tracking ID, and full visibility from the first scan to the final signature.`
-1. **Book & Label.** Book online or with a coordinator. You get your 8-character SDL tracking ID and a barcode label for every piece straight away.
+1. **Book & Label.** Book online or with a coordinator. You get your 8-character Navora tracking ID and a barcode label for every piece straight away.
 2. **Collect & Verify.** We collect from your door, weigh and scan every piece at the origin gateway, and prepare the export and customs documents.
 3. **Move Across Borders.** Your cargo travels on the fastest suitable lane: air, ocean or road. Customs clearance and each transfer are logged live.
 4. **Deliver & Sign.** Final-mile delivery to the door, with a signed digital proof of delivery sent to you the moment it lands.
-- **CTA strip under the steps** (reuses §3.6, owner approved 2026-09-28): `Ready to ship with SDL? Get a rate in minutes, or talk to a coordinator about your lane.` · Buttons `Get a Quote` · `Contact Us`
+- **CTA strip under the steps** (reuses §3.6, owner approved 2026-09-28): `Ready to ship with Navora? Get a rate in minutes, or talk to a coordinator about your lane.` · Buttons `Get a Quote` · `Contact Us`
 
 ### 2.4 About strip
-- **Eyebrow:** `ABOUT SDL`
+- **Eyebrow:** `ABOUT Navora`
 - **H2:** `We believe global shipping should feel local: visible, fast and dependable.`
-- **Body:** `SDL Global Logistics was built for shippers who are tired of losing sight of their cargo the moment it leaves the building. We bring express, freight and secure transport under one roof, so one team owns your shipment from pickup to proof of delivery, wherever in the world it's going.`
+- **Body:** `Navora Global Freight was built for shippers who are tired of losing sight of their cargo the moment it leaves the building. We bring express, freight and secure transport under one roof, so one team owns your shipment from pickup to proof of delivery, wherever in the world it's going.`
 - **Stat tiles (always three):** **24/7** "Global operations desk" · **1** "Tracking ID from start to finish" · **5** "Continents served" (from §2.7). When `{{YEAR_FOUNDED}}` is confirmed, "Years moving cargo" replaces "Continents served".
 - **Photo caption** (reuses §2.1, owner approved 2026-09-28): **Real People, Every Time Zone** · `A named coordinator follows your shipment`
-- **Link:** `More about SDL →`
+- **Link:** `More about Navora →`
 
 ### 2.5 Services (4 image cards)
 - **Eyebrow:** `WHAT WE MOVE`
@@ -149,7 +149,7 @@ Spelling: International/British English (see BRAND_GUIDE §3).
 2. **Committed Schedules.** Agreed windows, proactive updates and no silent delays.
 3. **Vetted Handlers.** Every driver, agent and handler in our chain is vetted and accountable.
 4. **Privacy by Design.** Public tracking masks names and addresses. Your data stays yours.
-5. **Compliance First.** Export, import and dangerous-goods rules are respected on every lane. *(Replace "Certified Quality Standards" unless SDL holds a named certification; if it does, name it.)*
+5. **Compliance First.** Export, import and dangerous-goods rules are respected on every lane. *(Replace "Certified Quality Standards" unless Navora holds a named certification; if it does, name it.)*
 6. **Digital Documents.** Waybills, invoices and proof of delivery, available online at any time.
 7. **Piece-Level Barcodes.** Every carton carries its own scannable label, linked to one tracking ID.
 8. **24/7 Support.** A real coordinator, whatever the hour and wherever you are.
@@ -157,10 +157,10 @@ Spelling: International/British English (see BRAND_GUIDE §3).
 ### 2.9 Barcode spotlight
 - **Eyebrow:** `SMART LABELS`
 - **H2:** `One label. Every checkpoint. Zero guesswork.`
-- **Body:** `Every SDL piece carries a high-density Code 128 barcode linked to your tracking ID. Each scan, at collection, at the gateway, through customs and at the door, updates your tracking page instantly.`
+- **Body:** `Every Navora piece carries a high-density Code 128 barcode linked to your tracking ID. Each scan, at collection, at the gateway, through customs and at the door, updates your tracking page instantly.`
 - **Replace the invented metrics** with capability tiles: **8-character** "Tracking ID" · **Every piece** "Individually scanned" · **Live** "Milestone updates"
-- **Demo label header:** `SDL GLOBAL LOGISTICS` with the SDL mark (`/brand/sdl-mark.png`) on the right
-- **Demo label fields:** `ORIGIN: LOS (LAGOS)` · `DESTINATION: LHR (LONDON)` · `WEIGHT: 20.4 KG` · `SERVICE: PRIORITY EXPRESS` · barcode value `DLS7K2M9` · caption `TRACKING ID: DLS7K2M9`
+- **Demo label header:** `NAVORA GLOBAL FREIGHT` with the Navora mark (`/brand/mark.png`) on the right
+- **Demo label fields:** `ORIGIN: LOS (LAGOS)` · `DESTINATION: LHR (LONDON)` · `WEIGHT: 20.4 KG` · `SERVICE: PRIORITY EXPRESS` · barcode value `NGF7K2M9` · caption `TRACKING ID: NGF7K2M9`
 
 ### 2.10 Testimonials → "Our commitments" (until real testimonials exist)
 The current testimonials are invented people and companies, so they must not ship. **Option A (default):** replace the carousel with:
@@ -181,13 +181,13 @@ Remove the invented client logos. Replace with an icon row: **Air Freight · Oce
 - **Background:** `callback-banner` (3:1 crop of `images/landingimage.png`) under the dark overlay
 - **Fields:** Name · Phone (with country code) · Preferred time
 - **Button:** `Request a Callback`
-- **Success:** **Request received!** `A coordinator will call you shortly. Your reference is SDL-TKT-######.`
+- **Success:** **Request received!** `A coordinator will call you shortly. Your reference is NGF-TKT-######.`
 
 ### 2.13 FAQ (home, 5 items)
 - **Eyebrow / H2** (owner approved 2026-09-28): `COMMON QUESTIONS` · `Frequently Asked Questions`
-1. **Do I need an account to track a shipment?** No. Enter your 8-character tracking ID (for example DLS7K2M9) on the Track page and you'll see its status and milestones straight away. Personal details are masked for privacy.
+1. **Do I need an account to track a shipment?** No. Enter your 8-character tracking ID (for example NGF7K2M9) on the Track page and you'll see its status and milestones straight away. Personal details are masked for privacy.
 2. **How does live tracking work?** Every piece is scanned at each hand-off: collection, gateway, departure, arrival, customs and delivery. Between scans, we show your shipment's estimated position on its route.
-3. **Can I track a multi-piece shipment under one ID?** Yes. All pieces share one tracking ID, and each piece has its own label (for example DLS7K2M9-01, -02), so you can see every carton individually.
+3. **Can I track a multi-piece shipment under one ID?** Yes. All pieces share one tracking ID, and each piece has its own label (for example NGF7K2M9-01, -02), so you can see every carton individually.
 4. **Do you handle customs clearance?** Yes. We prepare the export and import documentation with you and manage clearance on your behalf. Duties and taxes are billed as agreed at booking.
 5. **Are my documents available online?** Yes. Your waybill, invoice and signed proof of delivery can be viewed and downloaded from your tracking page.
 
@@ -253,12 +253,12 @@ Remove the invented client logos. Replace with an icon row: **Air Freight · Oce
 4. **Enclosed Vehicle Care.** Soft-tie securing and enclosed transport for high-value vehicles.
 
 ### 3.5 Process strip
-- **H3:** `How every shipment moves through SDL`
+- **H3:** `How every shipment moves through Navora`
 - Digital Booking & Labels → Gateway Scan → Linehaul & Border Crossing → Signed Proof of Delivery
 - *Intro and step text:* reuse §2.3 (intro `Four stages, one tracking ID, and full visibility from the first scan to the final signature.` and the four step bodies, in order).
 
 ### 3.6 CTA (also used on About)
-- **H2:** `Ready to ship with SDL?`
+- **H2:** `Ready to ship with Navora?`
 - **Body:** `Get a rate in minutes, or talk to a coordinator about your lane.`
 - **Buttons:** `Get a Quote` · `Contact Us`
 
@@ -266,8 +266,8 @@ Remove the invented client logos. Replace with an icon row: **Air Freight · Oce
 
 ## 4. About page
 
-- **Hero eyebrow:** `ABOUT SDL` · **H1:** `Moving what matters, with nothing hidden.`
-- **Sub:** `SDL Global Logistics connects businesses and people to the world with express, freight and secure transport, and with the one thing logistics often forgets: accountability.`
+- **Hero eyebrow:** `ABOUT Navora` · **H1:** `Moving what matters, with nothing hidden.`
+- **Sub:** `Navora Global Freight connects businesses and people to the world with express, freight and secure transport, and with the one thing logistics often forgets: accountability.`
 
 - **Hero image:** `about-hero` (12:5 bottom band of `images/landingimage.png`). The credentials row shows only the admin "regulatory line" when it is set.
 
@@ -282,8 +282,8 @@ Remove the invented client logos. Replace with an icon row: **Air Freight · Oce
 
 **Our divisions:** the four services with their one-line summaries from §3.1. Eyebrow `DIVISIONS` · H2 `Our divisions`; each card lists the first three §3.1 highlights.
 
-**Our story** (replaces "The Evolution of Duolingo Express"). **H2:** `How SDL came to be`
-`SDL Global Logistics started with a simple frustration: once cargo crossed a border, shippers lost sight of it. Calls went unanswered, updates arrived late, and nobody owned the problem. We built SDL to fix that, joining express, freight and secure transport into one network, with one tracking ID and one team accountable from the first mile to the last.`
+**Our story** (replaces "The Evolution of Duolingo Express"). **H2:** `How Navora came to be`
+`Navora Global Freight started with a simple frustration: once cargo crossed a border, shippers lost sight of it. Calls went unanswered, updates arrived late, and nobody owned the problem. We built Navora to fix that, joining express, freight and secure transport into one network, with one tracking ID and one team accountable from the first mile to the last.`
 *(The owner should add real milestones, e.g. year founded, first lanes, first office. Don't invent a timeline.)*
 
 **Timeline cards** (only if the owner provides real dates; otherwise show them as capabilities without years):
@@ -294,7 +294,7 @@ Remove the invented client logos. Replace with an icon row: **Air Freight · Oce
 - *Section header while undated* (added 2026-09-28, owner to confirm): eyebrow `WHAT WE'VE BUILT` · H2 `Express, freight and secure transport under one roof` (from §2.4). Year badges appear per card only once real dates are supplied.
 
 **Compliance block.** **H3:** `Committed to safety and compliance`
-`We follow the export, import, security and dangerous-goods rules on every lane we operate, and we work only with vetted carriers and agents. Ask us for our compliance documents at any time.` *(Name specific licences only if SDL holds them.)*
+`We follow the export, import, security and dangerous-goods rules on every lane we operate, and we work only with vetted carriers and agents. Ask us for our compliance documents at any time.` *(Name specific licences only if Navora holds them.)*
 Eyebrow `SAFETY & COMPLIANCE`. Badge tiles reuse §2.8: **Compliance First** · **Vetted Handlers** · **Privacy by Design** · **Digital Documents** (plus the admin regulatory line when set). Background: `callback-banner` photo under the dark overlay.
 
 **CTA:** as §3.6.
@@ -317,14 +317,14 @@ Eyebrow `SAFETY & COMPLIANCE`. Badge tiles reuse §2.8: **Compliance First** · 
 
 ### 6.1 Track page
 - **H1:** `Track your shipment`
-- **Sub:** `Enter your 8-character SDL tracking ID to see where your shipment is right now.`
-- **Input placeholder:** `e.g. DLS7K2M9` · **Button:** `Track`
-- **Validation:** `Tracking IDs start with DLS and are 8 characters long, e.g. DLS7K2M9.`
+- **Sub:** `Enter your 8-character Navora tracking ID to see where your shipment is right now.`
+- **Input placeholder:** `e.g. NGF7K2M9` · **Button:** `Track`
+- **Validation:** `Tracking IDs start with NGF and are 8 characters long, e.g. NGF7K2M9.`
 - **Not found:** `We couldn't find a shipment with ID {id}. Check the characters and try again, or contact us and we'll look it up for you.`
 - **"Where to find your ID" (3 cards):**
   1. **Booking confirmation.** It's in the email or SMS we sent when your shipment was booked.
   2. **Waybill / label.** Printed at the top of your waybill and on every piece label.
-  3. **Your coordinator.** Any SDL coordinator can find it from your name, reference or phone number.
+  3. **Your coordinator.** Any Navora coordinator can find it from your name, reference or phone number.
 - **Multi-track (if kept):** **Track several shipments** · `Enter up to 10 tracking IDs, one per line.`
 - **Help banner:** **Need help with an active shipment?** `Our operations desk is available 24/7.` → `Contact Support`
 
@@ -335,14 +335,14 @@ Rotating lines: `Locating your shipment…` · `Checking the latest scans…` ·
 - Status names: **Booked** · **Collected** · **At origin gateway** · **Departed** · **In transit** · **Arrived at destination gateway** · **Customs clearance** · **Out for delivery** · **Delivered** · **On hold** · **Delayed** · **Returning to sender**
 - Panels: **Shipment summary** · **Route** · **Journey timeline** · **Pieces** · **Documents** · **Need help?**
 - Mode labels on legs: `By air` · `By sea` · `By road`
-- Public facility for admin actions: `SDL Operations Centre`
+- Public facility for admin actions: `Navora Operations Centre`
 - ETA line: `Estimated delivery: {date}, {window} ({local time zone})`
 - Delivered line: `Delivered {date} at {time}. Signed by {masked name}.`
 
 ### 6.4 Support modal
 - **H3:** `How can we help with this shipment?`
 - Fields: Tracking ID (pre-filled) · Issue type (Delay · Address change · Damage · Customs question · Other) · Message · Email
-- **Success:** `Ticket SDL-TKT-###### opened for {tracking ID}. We'll reply to {email} shortly.`
+- **Success:** `Ticket NGF-TKT-###### opened for {tracking ID}. We'll reply to {email} shortly.`
 - Also a **Name** field (the Messages inbox needs a name to reply to; owner approved 2026-09-29). Submit button: `Open ticket`.
 
 ### 6.5 Interface labels (owner approved 2026-09-29)
@@ -365,7 +365,7 @@ Rotating lines: `Locating your shipment…` · `Checking the latest scans…` ·
 - **What happens next:** 1. A coordinator reviews your lane and cargo. 2. You receive your rate by email with a secure quote link. 3. Accept it online and we'll book your collection.
 
 ### 7.2 Public Quote Result
-- **H1:** `Your SDL quote` · Labels: Quote reference · Valid until · Route · Service · Estimated transit · Charges breakdown · Total
+- **H1:** `Your Navora quote` · Labels: Quote reference · Valid until · Route · Service · Estimated transit · Charges breakdown · Total
 - Footer line: `{{DOMAIN}} · Secure quote link`
 - Buttons: `Accept & Book` · `Download PDF` · `Ask a question`
 
@@ -381,7 +381,7 @@ Reused where possible: service names and summaries (§3.1), add-ons (§3.4), sta
 - **Quote form:** sections `1. Route` (`From` / `To`) · `2. Cargo` · `3. Service` · `4. Your details`; fields `Pieces` · `Weight` · `Declared value` · `Dimensions` · `Contents` · `Service` · `Transport mode` · `Special instructions` · `Name` · `Company` · `Email` · `Phone`; submit `Request a Quote` (§8.1 quick link).
 - **Quote success:** `Quote reference {ref}` · `What happens next` · buttons `View your quote` · `Request another quote`.
 - **Quote Result:** status names `In review` · `Ready` · `Accepted` · `Booked` · `Declined` · `Expired`; while in review: `Quote request received` + the §7.1 next steps; charge lines `Transport ({route})` · `Oversize handling` · `Special handling` (only lines the coordinator filled in); after accepting: `Quote accepted` · `We'll book your collection.` (from §7.1 step 3) or `Tracking ID {ID}` once booked; `Copy reference`; side cards `Your details` · `24/7 Operations Desk`. "Download PDF" opens the browser's print dialog (Save as PDF).
-- **Ship page:** collection choice `Book a Collection` (§8.1) · `Drop-off at an SDL gateway` · `Collection time`; field labels `Sender name` · `Recipient name` · `Phone` · `Street address` · `Company` · `Delivery instructions` · `Contents`; buttons `Continue` · `Back` · `Add a piece` · `Book shipment` · `Print labels` · `Copy tracking ID` · `Book another shipment`.
+- **Ship page:** collection choice `Book a Collection` (§8.1) · `Drop-off at a Navora gateway` · `Collection time`; field labels `Sender name` · `Recipient name` · `Phone` · `Street address` · `Company` · `Delivery instructions` · `Contents`; buttons `Continue` · `Back` · `Add a piece` · `Book shipment` · `Print labels` · `Copy tracking ID` · `Book another shipment`.
 - **Ship summary note:** `Your coordinator confirms the rate before collection.`
 
 ---
@@ -396,7 +396,7 @@ Reused where possible: service names and summaries (§3.1), add-ons (§3.4), sta
 
 ### 8.2 Help: knowledge base (heading `Answers to common questions`)
 **Tracking**
-- *Where do I find my tracking ID?* On your booking confirmation, at the top of your waybill and on every piece label. It's 8 characters and starts with DLS (e.g. DLS7K2M9).
+- *Where do I find my tracking ID?* On your booking confirmation, at the top of your waybill and on every piece label. It's 8 characters and starts with NGF (e.g. NGF7K2M9).
 - *Why hasn't my tracking updated?* Updates appear at each scan. On long air or ocean legs there can be several hours between scans. The estimated position keeps moving in the meantime.
 - *How do multi-piece shipments work?* All pieces share one tracking ID. Each piece has its own label ending in -01, -02 and so on.
 
@@ -415,11 +415,11 @@ Reused where possible: service names and summaries (§3.1), add-ons (§3.4), sta
 - *What if my shipment is damaged?* Tell us within 7 days of delivery, with photos [confirm the period]. We'll open a claim and keep you updated.
 
 ### 8.3 Contact page
-- **H1:** `Talk to SDL`
+- **H1:** `Talk to Navora`
 - **Sub:** `Questions, quotes or a shipment that needs attention: a real coordinator will get back to you.`
 - **Channels:** Email `{{EMAIL}}` · Phone `{{PHONE}}` · WhatsApp `{{WHATSAPP}}` · Head office `{{HQ_ADDRESS}}` (hide any that are empty)
 - **Form title:** `Send us a message`. Fields: Name · Email · Phone (optional) · Topic (Quote · Active shipment · Billing · Partnership · Other) · Tracking ID (optional) · Message
-- **Success:** **Message received.** `Your reference is SDL-TKT-######. We'll reply to {email} as soon as possible.`
+- **Success:** **Message received.** `Your reference is NGF-TKT-######. We'll reply to {email} as soon as possible.`
 - **24/7 card:** **24/7 Operations Desk.** `For active shipments, include your tracking ID for the fastest help.` (Say "Average response under 30 minutes" only if confirmed.)
 - **FAQ block heading:** `Quick answers` (reuse 3–4 items from §8.2)
 
@@ -431,7 +431,7 @@ Reused where possible: service names and summaries (§3.1), add-ons (§3.4), sta
 
 ## 9. Global gateway list (owner to confirm or edit before Phase 2)
 
-Presented as "gateways we serve". Don't describe them as SDL-owned facilities unless they are.
+Presented as "gateways we serve". Don't describe them as Navora-owned facilities unless they are.
 
 | Code | Gateway | Country | ISO | Lat | Lng | Time zone | Modes |
 |---|---|---|---|---|---|---|---|
@@ -459,32 +459,32 @@ Presented as "gateways we serve". Don't describe them as SDL-owned facilities un
 ---
 
 ## 10. Admin console strings
-- Login: **SDL Operations Console** · `Sign in to manage shipments, tracking and documents.` · Button `Sign in` · Error `Incorrect password. Please try again.`
+- Login: **Navora Operations Console** · `Sign in to manage shipments, tracking and documents.` · Button `Sign in` · Error `Incorrect password. Please try again.`
 - Sidebar brand: logo + `Operations Console`
 - Role label: `Administrator` (replaces "Super Admin" in the UI)
-- Default intake sender: `SDL Intake Desk`
-- Settings defaults: company `SDL Global Logistics Ltd`, email `{{EMAIL}}`, phone `{{PHONE}}`, address `{{HQ_ADDRESS}}`, currency `USD` (editable)
+- Default intake sender: `Navora Intake Desk`
+- Settings defaults: company `Navora Global Freight`, email `{{EMAIL}}`, phone `{{PHONE}}`, address `{{HQ_ADDRESS}}`, currency `USD` (editable)
 - *Added 2026-09-29 with 3.13 (owner to confirm):* login field placeholder `Password`, busy state `Signing in…`; the operator card and profile menu show `Administrator` · `Operations Console` (replacing "Terminal Dispatcher #01" / "Root Dispatch"); menu links `Settings` · `Document Center`.
 
 ## 11. Generated documents (waybill, BOL, invoice, POD, seal label)
-- Header: logo + `SDL Global Logistics Ltd` + `{{HQ_ADDRESS}} · {{EMAIL}} · {{DOMAIN}}`
+- Header: logo + `Navora Global Freight` + `{{HQ_ADDRESS}} · {{EMAIL}} · {{DOMAIN}}`
 - Title labels: `Air Waybill / House Waybill` (air), `Bill of Lading` (ocean/road), `Commercial Invoice`, `Proof of Delivery`, `Security Seal Record`
-- ID line: `Tracking ID / Waybill No.: DLS7K2M9`
-- Pouch line: `SDL Tamper-Evident Document Pouch · Seal No. SDL-SL-######`
-- Footer: `This document was generated by SDL Global Logistics Ltd. Carriage is subject to SDL's Shipping Terms at {{DOMAIN}}/#/legal.`
-- *Added 2026-09-29 with 3.12 (owner to confirm):* the Document Center also produces three types not named above, titled `Shipping Label`, `Shipment Receipt` and `Certificate of Cargo Insurance`. Charge lines: `Transport` · `Oversize handling` · `Special handling`, totals `TOTAL DUE` / `TOTAL PAID`. Insurance certificate text: `The cargo described below is insured by {insurer} under policy {policy no.}, subject to that policy's terms, conditions and exclusions.` and claims line `Tell SDL about any loss or damage within 7 days of delivery, quoting the tracking ID above, with photos and proof of value.` (7 days: same [confirm] as Help §8.2). **Proof of Delivery** and **Security Seal Record** have no document type yet (see tracker Blocked).
+- ID line: `Tracking ID / Waybill No.: NGF7K2M9`
+- Pouch line: `Navora Tamper-Evident Document Pouch · Seal No. NGF-SL-######`
+- Footer: `This document was generated by Navora Global Freight. Carriage is subject to Navora's Shipping Terms at {{DOMAIN}}/#/legal.`
+- *Added 2026-09-29 with 3.12 (owner to confirm):* the Document Center also produces three types not named above, titled `Shipping Label`, `Shipment Receipt` and `Certificate of Cargo Insurance`. Charge lines: `Transport` · `Oversize handling` · `Special handling`, totals `TOTAL DUE` / `TOTAL PAID`. Insurance certificate text: `The cargo described below is insured by {insurer} under policy {policy no.}, subject to that policy's terms, conditions and exclusions.` and claims line `Tell Navora about any loss or damage within 7 days of delivery, quoting the tracking ID above, with photos and proof of value.` (7 days: same [confirm] as Help §8.2). **Proof of Delivery** and **Security Seal Record** have no document type yet (see tracker Blocked).
 
 ## 12. Image alt text
 Approved 2026-09-26. Files are generated into `Public/images/sdl/` by `scripts/optimize-images.mjs`.
-Several SDL photos show the logo lettered as "SOL" (AI-generated artwork), so the alt text says "SDL" and describes the scene.
+Several Navora photos show the logo lettered as "SOL" (AI-generated artwork), so the alt text says "Navora" and describes the scene.
 
 | Image (slot) | Source | Alt |
 |---|---|---|
-| hero-home / hero-home-mobile | images/landingimage(-mobile).png | SDL Global Logistics truck at a container port at sunset, with a cargo ship, cranes and an SDL aircraft overhead |
+| hero-home / hero-home-mobile | images/landingimage(-mobile).png | Navora Global Freight truck at a container port at sunset, with a cargo ship, cranes and a Navora aircraft overhead |
 | callback-banner | images/landingimage.png (3:1 crop) | (decorative background behind the callback form, empty alt) |
-| services-hero | images/landingimage.png (12:5, top band) | SDL aircraft taking off over port cranes and container stacks at sunset |
-| about-hero | images/landingimage.png (12:5, bottom band) | SDL truck and container ship on the quay at sunset |
-| track-hero | images/landingimage.png (2:1 crop) | SDL truck, cargo ship and aircraft at a container port at sunset |
+| services-hero | images/landingimage.png (12:5, top band) | Navora aircraft taking off over port cranes and container stacks at sunset |
+| about-hero | images/landingimage.png (12:5, bottom band) | Navora truck and container ship on the quay at sunset |
+| track-hero | images/landingimage.png (2:1 crop) | Navora truck, cargo ship and aircraft at a container port at sunset |
 | locations-hero | images/free-cc0/locations-hero.webp | Aerial view of rows of shipping containers at a port terminal |
 | service-priority-express | images/free-pexels/service-priority-express.jpg | Ground crew raising a cargo pallet to the hold door of a wide-body aircraft |
 | service-freight-linehaul | images/free-pexels/service-freight-linehaul.jpg | Dock workers on a container ship deck as gantry cranes load stacked containers |
@@ -494,10 +494,10 @@ Several SDL photos show the logo lettered as "SOL" (AI-generated artwork), so th
 | industry-technology | images/free-cc0/industry-technology.webp | Server rack with network cables and status lights |
 | industry-automotive | images/site/automotive-parts.jpg | Mechanic working on a car engine with a spanner |
 | industry-ecommerce | images/site/ecommerce-retail.jpg | Online seller packing parcels next to a laptop |
-| track-result-vehicle | images/brand-img3.PNG | Two SDL trucks travelling along a highway at sunset |
+| track-result-vehicle | images/brand-img3.PNG | Two Navora trucks travelling along a highway at sunset |
 | about-operations | images/free-pexels/about-operations.jpg | Warehouse staff member checking stock on a tablet between loaded pallet racks |
 | about-team | images/free-pexels/about-team.jpg (cropped) | Smiling support coordinator wearing a headset |
-| contact-team | images/brand-img5.PNG | SDL team member carrying a branded backpack at an airport cargo area |
+| contact-team | images/brand-img5.PNG | Navora team member carrying a branded backpack at an airport cargo area |
 | og-image | images/landingimage.png | (social preview, no alt needed) |
 
 Not used yet: `brand-img6`, `brand-img8` (marketing text baked into the image). `hero-globe-fallback` is produced in Prompt 24 from the 3D globe.
@@ -512,11 +512,11 @@ Tabs: **Privacy Policy · Terms of Service · Shipping Terms · Cookie Policy ·
 - **Accessibility:** commitment to WCAG 2.2 AA · reduced-motion support · how to report a barrier ({{EMAIL}}).
 
 ### 13.1 Draft text (added 2026-09-29 with 3.11, **lawyer review required**)
-The text below is rendered from `src/data/legalDocs.ts`; change both together. Page H1: `Legal`. Each tab shows `Last updated: 29 September 2026`. The Head-office sentence is left out while {{HQ_ADDRESS}} is empty. {{JURISDICTION}} is not shown: the governing-law clause names "the country in which SDL Global Logistics Ltd is registered" until it is confirmed (TODO in the code). Differences from the outline above: no analytics are installed, so Privacy and Cookies say so; Cookies also lists the browser-storage keys and the third-party services the pages load.
+The text below is rendered from `src/data/legalDocs.ts`; change both together. Page H1: `Legal`. Each tab shows `Last updated: 29 September 2026`. The Head-office sentence is left out while {{HQ_ADDRESS}} is empty. {{JURISDICTION}} is not shown: the governing-law clause names "the country in which Navora Global Freight is registered" until it is confirmed (TODO in the code). Differences from the outline above: no analytics are installed, so Privacy and Cookies say so; Cookies also lists the browser-storage keys and the third-party services the pages load.
 
 **Privacy Policy**
 1. *Who we are.*
-   SDL Global Logistics Ltd ("SDL", "we") runs this website and carries the shipments booked through it. Our head office is at {{HQ_ADDRESS}}. For anything about your personal data, write to {{EMAIL}}.
+   Navora Global Freight ("Navora", "we") runs this website and carries the shipments booked through it. Our head office is at {{HQ_ADDRESS}}. For anything about your personal data, write to {{EMAIL}}.
 2. *What we collect.*
    - Sender and recipient details you give us when you book or ask for a quote: names, company, phone numbers, email and delivery addresses.
    - Shipment data: contents, weights, sizes, declared value, and the scans and events recorded as the shipment moves.
@@ -555,7 +555,7 @@ The text below is rendered from `src/data/legalDocs.ts`; change both together. P
 6. *Changes to these terms.*
    We may update these terms. The date at the top of this page shows the current version.
 7. *Governing law.*
-   These terms are governed by the laws of the country in which SDL Global Logistics Ltd is registered. Nothing in them takes away rights you have under the consumer law of the country where you live.
+   These terms are governed by the laws of the country in which Navora Global Freight is registered. Nothing in them takes away rights you have under the consumer law of the country where you live.
 
 **Shipping Terms**
 1. *Booking and acceptance.*
@@ -581,7 +581,7 @@ The text below is rendered from `src/data/legalDocs.ts`; change both together. P
 
 **Cookie Policy**
 1. *Cookies we use.*
-   We use one essential cookie, sdl.sid. It keeps SDL staff signed in to our operations console for up to 12 hours. It is not set for visitors to the public website.
+   We use one essential cookie, sdl.sid. It keeps Navora staff signed in to our operations console for up to 12 hours. It is not set for visitors to the public website.
    We do not use analytics or advertising cookies. If we add analytics, we will update this page and ask for your consent where the law requires it.
 2. *Choices saved in your browser.*
    Some pages remember a few choices in your browser's local storage. This data stays on your device and is not sent to us:

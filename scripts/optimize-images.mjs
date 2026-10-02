@@ -1,4 +1,4 @@
-// Prepares SDL brand assets and responsive photos from the untouched originals in images/.
+// Prepares brand assets and responsive photos from the untouched originals in images/.
 // Run with: node scripts/optimize-images.mjs            (everything)
 //           node scripts/optimize-images.mjs --brand    (logos, mark, icons and OG image only)
 //           node scripts/optimize-images.mjs --icons    (favicon and app icons only)

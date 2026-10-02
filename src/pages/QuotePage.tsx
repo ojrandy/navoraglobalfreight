@@ -69,7 +69,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
   const [destState, setDestState] = useState('');
   const [destZip, setDestZip] = useState('');
 
-  // '' = let SDL recommend the mode
+  // '' = let us recommend the mode
   const [transportMode, setTransportMode] = useState<TransportMode | ''>('');
   const units = useUnitLabels();
   const money = useCurrency();

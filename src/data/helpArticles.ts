@@ -23,7 +23,7 @@ export const HELP_ARTICLES: HelpArticle[] = [
     id: 'find-id',
     category: 'tracking',
     question: 'Where do I find my tracking ID?',
-    answer: "On your booking confirmation, at the top of your waybill and on every piece label. It's 8 characters and starts with DLS (e.g. DLS7K2M9).",
+    answer: "On your booking confirmation, at the top of your waybill and on every piece label. It's 8 characters and starts with NGF (e.g. NGF7K2M9).",
   },
   {
     id: 'not-updated',

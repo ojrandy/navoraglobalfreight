@@ -169,7 +169,7 @@ const ADD_ONS: { title: string; body: string; icon: React.ReactNode; tone: strin
 
 // CONTENT.md §3.5 (step text reuses §2.3)
 const PROCESS: { title: string; body: string }[] = [
-  { title: 'Digital Booking & Labels', body: 'Book online or with a coordinator. You get your 8-character SDL tracking ID and a barcode label for every piece straight away.' },
+  { title: 'Digital Booking & Labels', body: `Book online or with a coordinator. You get your 8-character ${COMPANY_SHORT} tracking ID and a barcode label for every piece straight away.` },
   { title: 'Gateway Scan', body: 'We collect from your door, weigh and scan every piece at the origin gateway, and prepare the export and customs documents.' },
   { title: 'Linehaul & Border Crossing', body: 'Your cargo travels on the fastest suitable lane: air, ocean or road. Customs clearance and each transfer are logged live.' },
   { title: 'Signed Proof of Delivery', body: 'Final-mile delivery to the door, with a signed digital proof of delivery sent to you the moment it lands.' }
@@ -200,7 +200,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, initialS
       <section className="services-hero-section">
         <ResponsiveImage
           name="services-hero"
-          alt="SDL aircraft taking off over port cranes and container stacks at sunset"
+          alt={`${COMPANY_SHORT} aircraft taking off over port cranes and container stacks at sunset`}
           eager
           sizes="100vw"
           className="services-hero-media"

@@ -96,7 +96,7 @@ const PICKUP_WINDOWS = [
   'Tomorrow afternoon, 1:00 PM – 5:00 PM (local time)'
 ];
 
-const DROP_OFF_LABEL = `Drop-off at an ${COMPANY_SHORT} gateway`;
+const DROP_OFF_LABEL = `Drop-off at a ${COMPANY_SHORT} gateway`;
 
 const SERVICE_ICONS: Record<ServiceOptionId, React.ElementType> = {
   express: Clock,
@@ -110,7 +110,7 @@ const STEP_TITLES = ['Sender & collection', 'Recipient & delivery', 'Pieces', 'S
 
 // CONTENT §7.3 "How booking works": stage names, bodies from §2.3 (as on Services §3.5).
 const BOOKING_STAGES = [
-  { title: 'Booking', body: 'Book online or with a coordinator. You get your 8-character SDL tracking ID and a barcode label for every piece straight away.' },
+  { title: 'Booking', body: `Book online or with a coordinator. You get your 8-character ${COMPANY_SHORT} tracking ID and a barcode label for every piece straight away.` },
   { title: 'Gateway scan', body: 'We collect from your door, weigh and scan every piece at the origin gateway, and prepare the export and customs documents.' },
   { title: 'Linehaul & border crossing', body: 'Your cargo travels on the fastest suitable lane: air, ocean or road. Customs clearance and each transfer are logged live.' },
   { title: 'Proof of delivery', body: 'Final-mile delivery to the door, with a signed digital proof of delivery sent to you the moment it lands.' }
@@ -169,7 +169,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
 
   // Form State - Service (one of the four §7.1 services)
   const [selectedService, setSelectedService] = useState<ServiceOptionId>('express');
-  // '' = let SDL recommend
+  // '' = let us recommend
   const [transportMode, setTransportMode] = useState<TransportMode | ''>('');
   const [declaredValue, setDeclaredValue] = useState<number | ''>('');
   const [requireSignature, setRequireSignature] = useState(true);
@@ -285,7 +285,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
       countryCode
     });
 
-    // Piece ids and labels (DLSxxxxx-NN) are stamped from the server-assigned ID in createShipment.
+    // Piece ids and labels (NGFxxxxx-NN) are stamped from the server-assigned ID in createShipment.
     const piecesFormatted = piecesList.map((p, idx) => ({
       id: '',
       pieceNumber: idx + 1,

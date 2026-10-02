@@ -114,7 +114,7 @@ export const ShipmentControlModal: React.FC<ShipmentControlModalProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // A return is created server-side as its own shipment with a new DLS ID (BRAND_GUIDE §7),
+    // A return is created server-side as its own shipment with a new NGF ID (BRAND_GUIDE §7),
     // so both records are persisted; local state is updated from the server's response.
     if (targetAction === 'RETURN') {
       if (isSubmittingReturn) return;

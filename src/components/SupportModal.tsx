@@ -28,7 +28,7 @@ export const SupportModal: React.FC<SupportModalProps> = ({
   const [message, setMessage] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
-  // The server's ticket reference (SDL-TKT-######) and the values it was opened with.
+  // The server's ticket reference (NGF-TKT-######) and the values it was opened with.
   const [ticket, setTicket] = useState<{ id: string; trackingNumber: string; email: string } | null>(null);
 
   // Each opening starts from the shipment it was opened for.
@@ -112,7 +112,7 @@ export const SupportModal: React.FC<SupportModalProps> = ({
                   type="text"
                   value={trackingNumber}
                   onChange={(e) => setTrackingNumber(e.target.value)}
-                  placeholder="e.g. DLS7K2M9"
+                  placeholder="e.g. NGF7K2M9"
                   className="sdl-input font-mono"
                 />
               </div>

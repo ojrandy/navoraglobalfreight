@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SDL GLOBAL LOGISTICS — EXECUTIVE ADMIN COMMAND CENTER SHELL
+   EXECUTIVE ADMIN COMMAND CENTER SHELL
    Palette: Ink surfaces (--sdl-ink-950, --sdl-ink-900) · SDL red accent (--sdl-accent-500)
    Authoritative, High-Density, Self-Explanatory Dispatch Terminal
    ========================================================================== */
@@ -375,10 +375,11 @@
   letter-spacing: 0.16em;
   color: #475569;
   text-transform: uppercase;
-  white-space: nowrap;
+  line-height: 1.5;
 }
 
 .motto-line {
+  flex-shrink: 0;
   width: 32px;
   height: 2.5px;
   background-color: var(--sdl-accent-500);

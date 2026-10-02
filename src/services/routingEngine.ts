@@ -1,5 +1,5 @@
 /**
- * SDL Global Logistics — Route Geometry Service (tracker 2.3)
+ * Route Geometry Service (tracker 2.3)
  *
  * A route is a list of legs. Road legs follow roads (OSRM when reachable, a smooth synthetic
  * road line otherwise); air and sea legs are great-circle arcs between gateways. A long air or

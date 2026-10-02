@@ -24,7 +24,7 @@ import { Shipment } from './types/shipment';
 import { QuoteRequest } from './types/admin';
 import { api } from './services/api';
 import { simulationEngine } from './services/simulationEngine';
-import { ADMIN_HOST, ADMIN_CONSOLE_NAME, COMPANY, SITE_URL } from './config/brand';
+import { ADMIN_HOST, ADMIN_CONSOLE_NAME, COMPANY, COMPANY_SHORT, SITE_URL } from './config/brand';
 import './styles/global.css';
 
 const loadAdminApp = () => import('./admin/AdminApp');
@@ -67,18 +67,18 @@ interface PageMeta {
 }
 
 const DEFAULT_DESCRIPTION =
-  'SDL Global Logistics moves express parcels, freight, vehicles and high-value cargo worldwide, with one tracking ID, live milestones and signed proof of delivery.';
+  `${COMPANY} moves express parcels, freight, vehicles and high-value cargo worldwide, with one tracking ID, live milestones and signed proof of delivery.`;
 
 const PAGE_META: Record<string, PageMeta> = {
   home: { title: `${COMPANY} | Worldwide Express, Freight & Secure Cargo`, description: DEFAULT_DESCRIPTION },
-  track: { title: `Track a Shipment | ${COMPANY}`, description: 'Enter your 8-character SDL tracking ID to see live milestones, location and delivery status.' },
+  track: { title: `Track a Shipment | ${COMPANY}`, description: `Enter your 8-character ${COMPANY_SHORT} tracking ID to see live milestones, location and delivery status.` },
   services: { title: `Logistics Services | ${COMPANY}`, description: 'Priority express, scheduled air, ocean and road freight, vehicle shipping and secure high-value transport, worldwide.' },
   quote: { title: `Get a Rate Quote | ${COMPANY}`, description: "Tell us what you're moving and where. A logistics coordinator will send your rate." },
   ship: { title: `Book a Shipment | ${COMPANY}`, description: 'Book a pickup, build a multi-piece shipment and get your tracking ID in minutes.' },
-  about: { title: `About Us | ${COMPANY}`, description: 'Who we are, how we work and why shippers around the world trust SDL with cargo that matters.' },
-  locations: { title: `Global Network | ${COMPANY}`, description: 'The gateways and trade lanes that connect SDL shipments across Africa, Europe, the Middle East, Asia and the Americas.' },
+  about: { title: `About Us | ${COMPANY}`, description: `Who we are, how we work and why shippers around the world trust ${COMPANY_SHORT} with cargo that matters.` },
+  locations: { title: `Global Network | ${COMPANY}`, description: `The gateways and trade lanes that connect ${COMPANY_SHORT} shipments across Africa, Europe, the Middle East, Asia and the Americas.` },
   help: { title: `Help Centre | ${COMPANY}`, description: 'Answers on tracking, booking, customs, documents and deliveries.' },
-  contact: { title: `Contact Us | ${COMPANY}`, description: 'Talk to an SDL coordinator, any time zone, any day.' },
+  contact: { title: `Contact Us | ${COMPANY}`, description: `Talk to a ${COMPANY_SHORT} coordinator, any time zone, any day.` },
   legal: { title: `Policies | ${COMPANY}`, description: 'Privacy, terms of service, shipping terms and accessibility.' },
 };
 

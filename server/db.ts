@@ -3,18 +3,18 @@ import path from 'path';
 import fs from 'fs';
 import { COMPANY, DOMAIN, EMAIL, LEGAL_NAME } from '../src/config/brand.js';
 
-// Placeholder contact details the pre-rebrand seed wrote into settings, and what replaces them.
-const OLD_BRAND_SETTINGS: Record<string, { old: string; next: string }> = {
-  companyName: { old: 'Duolingo Express Logistics LLC', next: LEGAL_NAME },
-  supportPhone: { old: '(800) 555-DUO-EXP', next: '' },
-  dispatchEmail: { old: 'dispatch@duolingoexpress.com', next: EMAIL },
-  headquartersAddress: { old: 'JFK International Cargo Terminal, Jamaica, NY 11430', next: '' },
-  dotNumber: { old: 'USDOT #3894210 · MC-892401', next: '' },
+// Defaults that earlier brands' seeds wrote into settings, and what replaces them.
+const OLD_BRAND_SETTINGS: Record<string, { old: string[]; next: string }> = {
+  companyName: { old: ['Duolingo Express Logistics LLC', 'SDL Global Logistics Ltd'], next: LEGAL_NAME },
+  supportPhone: { old: ['(800) 555-DUO-EXP'], next: '' },
+  dispatchEmail: { old: ['dispatch@duolingoexpress.com', 'info@sdlgloballogistics.com'], next: EMAIL },
+  headquartersAddress: { old: ['JFK International Cargo Terminal, Jamaica, NY 11430'], next: '' },
+  dotNumber: { old: ['USDOT #3894210 · MC-892401'], next: '' },
 };
 
-// Old-brand wording that rows written before the SDL rebrand still carry (tracking-event
+// Old-brand wording that rows written before the rebrand still carry (tracking-event
 // descriptions, BOL carrier names, settings text). Most specific first, so a legal name
-// becomes the legal name rather than "SDL Global Logistics LLC".
+// becomes the legal name rather than "<company> LLC".
 const OLD_BRAND_TEXT: [RegExp, string][] = [
   [/Duolingo Express(?:\s+\w+){0,4}\s+(?:LLC|Inc|Ltd)\b\.?/gi, LEGAL_NAME],
   [/dispatch@duolingoexpress\.com/gi, EMAIL],
@@ -60,7 +60,7 @@ export const dataDir = process.env.DB_PATH
   : path.join(process.cwd(), 'data');
 
 export const DB_FILE = 'sdl_global.db';
-// Default file name before the SDL rebrand, only checked so startup can warn that it's unused.
+// Default file name before the rebrand, only checked so startup can warn that it's unused.
 const LEGACY_DB_FILE = 'duolingo_express.db';
 
 // The admin-subdomain deployment runs in proxy mode (ADMIN_PROXY_TARGET, see server/index.ts)
@@ -78,10 +78,10 @@ if (!process.env.ADMIN_PROXY_TARGET && !fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
 }
 
-// SDL starts with a fresh database (DEPLOYMENT.md §4), so the pre-rebrand database file is
+// The rebranded app starts with a fresh database (DEPLOYMENT.md §4), so the pre-rebrand database file is
 // never opened or migrated. Say so at startup, so it isn't mistaken for live data.
 if (!process.env.ADMIN_PROXY_TARGET && fs.existsSync(path.join(dataDir, LEGACY_DB_FILE))) {
-  console.warn(`⚠️ Ignoring ${LEGACY_DB_FILE} in ${dataDir}: SDL uses ${DB_FILE}. Delete the old file once you no longer need it.`);
+  console.warn(`⚠️ Ignoring ${LEGACY_DB_FILE} in ${dataDir}: the app uses ${DB_FILE}. Delete the old file once you no longer need it.`);
 }
 
 // enableForeignKeyConstraints: without it, the ON DELETE CASCADE declared on
@@ -323,7 +323,7 @@ export function initDatabase() {
   try { db.exec(`ALTER TABLE shipments ADD COLUMN handling_requirements_json TEXT;`); } catch (e) {}
   try { db.exec(`ALTER TABLE shipments ADD COLUMN pickup_window TEXT;`); } catch (e) {}
   try { db.exec(`ALTER TABLE shipments ADD COLUMN internal_pricing_note TEXT;`); } catch (e) {}
-  // Returns (BRAND_GUIDE §7): a return is its own shipment row with its own DLS ID.
+  // Returns (BRAND_GUIDE §7): a return is its own shipment row with its own NGF ID.
   // return_leg_json on the original points at it; return_of_tracking on the return points back.
   try { db.exec(`ALTER TABLE shipments ADD COLUMN return_leg_json TEXT;`); } catch (e) {}
   try { db.exec(`ALTER TABLE shipments ADD COLUMN return_of_tracking TEXT;`); } catch (e) {}
@@ -396,12 +396,12 @@ export function initDatabase() {
       delete existing.headquarters;
       changed = true;
     }
-    // Migration: databases seeded before the SDL rebrand still carry the old brand's placeholder
+    // Migration: databases seeded before a rebrand still carry the old brand's placeholder
     // contact details, which override src/config/brand.ts on the public site. Replace a field
     // only while it still holds that exact placeholder, so anything the owner has entered in
     // admin Settings is never touched.
     for (const [field, value] of Object.entries(OLD_BRAND_SETTINGS)) {
-      if (existing[field] === value.old) {
+      if (value.old.includes(existing[field])) {
         existing[field] = value.next;
         changed = true;
       }
