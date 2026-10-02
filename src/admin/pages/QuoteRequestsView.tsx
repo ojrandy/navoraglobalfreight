@@ -175,7 +175,7 @@ export const QuoteRequestsView: React.FC = () => {
   };
 
   return (
-    <div className="sdl-quote-requests-workspace animate-fade-in">
+    <div className="ngf-quote-requests-workspace animate-fade-in">
       {successToast && (
         <div className="quote-toast-success animate-fade-in">
           <CheckCircle2 size={16} className="text-emerald" />

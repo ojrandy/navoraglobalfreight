@@ -69,19 +69,19 @@ const AddressFields: React.FC<AddressFieldsProps> = (f) => (
   <>
     <div className="form-group">
       <label htmlFor={`${f.idPrefix}-country`}>Country *</label>
-      <CountrySelect id={`${f.idPrefix}-country`} value={f.country} onChange={f.onCountry} className="sdl-input" required />
+      <CountrySelect id={`${f.idPrefix}-country`} value={f.country} onChange={f.onCountry} className="ngf-input" required />
     </div>
     <div className="form-group">
       <label htmlFor={`${f.idPrefix}-city`}>City *</label>
-      <input id={`${f.idPrefix}-city`} type="text" required value={f.city} onChange={(e) => f.onCity(e.target.value)} className="sdl-input" placeholder={f.cityPlaceholder} />
+      <input id={`${f.idPrefix}-city`} type="text" required value={f.city} onChange={(e) => f.onCity(e.target.value)} className="ngf-input" placeholder={f.cityPlaceholder} />
     </div>
     <div className="form-group">
-      <label htmlFor={`${f.idPrefix}-region`}>{regionLabel(f.country)} <span className="sdl-field-optional">(optional)</span></label>
-      <input id={`${f.idPrefix}-region`} type="text" value={f.region} onChange={(e) => f.onRegion(e.target.value)} className="sdl-input" />
+      <label htmlFor={`${f.idPrefix}-region`}>{regionLabel(f.country)} <span className="ngf-field-optional">(optional)</span></label>
+      <input id={`${f.idPrefix}-region`} type="text" value={f.region} onChange={(e) => f.onRegion(e.target.value)} className="ngf-input" />
     </div>
     <div className="form-group">
-      <label htmlFor={`${f.idPrefix}-postcode`}>{postcodeLabel(f.country)} <span className="sdl-field-optional">(optional)</span></label>
-      <input id={`${f.idPrefix}-postcode`} type="text" value={f.postcode} onChange={(e) => f.onPostcode(e.target.value)} className="sdl-input font-mono" />
+      <label htmlFor={`${f.idPrefix}-postcode`}>{postcodeLabel(f.country)} <span className="ngf-field-optional">(optional)</span></label>
+      <input id={`${f.idPrefix}-postcode`} type="text" value={f.postcode} onChange={(e) => f.onPostcode(e.target.value)} className="ngf-input font-mono" />
     </div>
   </>
 );
@@ -416,14 +416,14 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
   };
 
   return (
-    <div className="sdl-page-ship">
+    <div className="ngf-page-ship">
       {/* =========================================================================
           1. CINEMATIC HERO SECTION
           ========================================================================= */}
-      <section className="sdl-ship-hero">
-        <div className="sdl-ship-hero-bg" />
-        <div className="sdl-container-wide ship-hero-container">
-          <nav className="sdl-ship-breadcrumbs" aria-label="Breadcrumb">
+      <section className="ngf-ship-hero">
+        <div className="ngf-ship-hero-bg" />
+        <div className="ngf-container-wide ship-hero-container">
+          <nav className="ngf-ship-breadcrumbs" aria-label="Breadcrumb">
             <a href="#/" onClick={(e) => { e.preventDefault(); onNavigate('home'); }} className="crumb-link">Home</a>
             <span className="crumb-sep">/</span>
             <span className="crumb-current" aria-current="page">Book a shipment</span>
@@ -436,10 +436,10 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
       {/* =========================================================================
           2. MAIN FORM CONTAINER & STICKY LIVE SUMMARY
           ========================================================================= */}
-      <div className="sdl-container-wide sdl-ship-workspace">
+      <div className="ngf-container-wide ngf-ship-workspace">
         {submittedBooking ? (
           /* BOOKING CONFIRMATION SCREEN */
-          <div className="sdl-booking-confirmed-card animate-fade-in">
+          <div className="ngf-booking-confirmed-card animate-fade-in">
             <div className="confirm-header" role="status">
               <CheckCircle2 size={56} className="confirm-check-icon text-emerald" />
               <h2>Shipment booked</h2>
@@ -562,9 +562,9 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
           </div>
         ) : (
           /* MULTI-STEP BOOKING FORM + STICKY SIDEBAR */
-          <div className="sdl-ship-grid">
+          <div className="ngf-ship-grid">
             {/* Left Column: Multi-Section Form */}
-            <div className="sdl-ship-main-form">
+            <div className="ngf-ship-main-form">
               {/* Unified Responsive Step Stepper */}
               <div className="form-steps-nav">
                 <button
@@ -649,13 +649,13 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
 
                   <div className="form-fields-grid">
                     <div className="form-group span-2">
-                      <label htmlFor="ship-sender-company">Company <span className="sdl-field-optional">(optional)</span></label>
+                      <label htmlFor="ship-sender-company">Company <span className="ngf-field-optional">(optional)</span></label>
                       <input
                         id="ship-sender-company"
                         type="text"
                         value={senderCompany}
                         onChange={(e) => setSenderCompany(e.target.value)}
-                        className="sdl-input"
+                        className="ngf-input"
                       />
                     </div>
 
@@ -667,13 +667,13 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                         required
                         value={senderContact}
                         onChange={(e) => setSenderContact(e.target.value)}
-                        className="sdl-input"
+                        className="ngf-input"
                       />
                     </div>
 
                     <div className="form-group">
                       <label htmlFor="sender-phone">Phone *</label>
-                      <PhoneInput id="sender-phone" required value={senderPhone} onChange={setSenderPhone} defaultCountry={senderCountry || 'US'} className="sdl-input" />
+                      <PhoneInput id="sender-phone" required value={senderPhone} onChange={setSenderPhone} defaultCountry={senderCountry || 'US'} className="ngf-input" />
                     </div>
 
                     <div className="form-group span-2">
@@ -684,7 +684,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                         required
                         value={senderAddress}
                         onChange={(e) => setSenderAddress(e.target.value)}
-                        className="sdl-input"
+                        className="ngf-input"
                       />
                     </div>
 
@@ -740,7 +740,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                           id="ship-collection-window"
                           value={pickupWindow}
                           onChange={(e) => setPickupWindow(e.target.value)}
-                          className="sdl-input"
+                          className="ngf-input"
                         >
                           {PICKUP_WINDOWS.map((w) => (
                             <option key={w} value={w}>{w}</option>
@@ -775,13 +775,13 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
 
                   <div className="form-fields-grid">
                     <div className="form-group span-2">
-                      <label htmlFor="ship-recipient-company">Company <span className="sdl-field-optional">(optional)</span></label>
+                      <label htmlFor="ship-recipient-company">Company <span className="ngf-field-optional">(optional)</span></label>
                       <input
                         id="ship-recipient-company"
                         type="text"
                         value={recipientCompany}
                         onChange={(e) => setRecipientCompany(e.target.value)}
-                        className="sdl-input"
+                        className="ngf-input"
                       />
                     </div>
 
@@ -793,13 +793,13 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                         required
                         value={recipientContact}
                         onChange={(e) => setRecipientContact(e.target.value)}
-                        className="sdl-input"
+                        className="ngf-input"
                       />
                     </div>
 
                     <div className="form-group">
                       <label htmlFor="recipient-phone">Phone *</label>
-                      <PhoneInput id="recipient-phone" required value={recipientPhone} onChange={setRecipientPhone} defaultCountry={recipientCountry || senderCountry || 'US'} className="sdl-input" />
+                      <PhoneInput id="recipient-phone" required value={recipientPhone} onChange={setRecipientPhone} defaultCountry={recipientCountry || senderCountry || 'US'} className="ngf-input" />
                     </div>
 
                     <div className="form-group span-2">
@@ -810,7 +810,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                         required
                         value={recipientAddress}
                         onChange={(e) => setRecipientAddress(e.target.value)}
-                        className="sdl-input"
+                        className="ngf-input"
                       />
                     </div>
 
@@ -828,13 +828,13 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                     />
 
                     <div className="form-group span-2">
-                      <label htmlFor="ship-delivery-instructions">Delivery instructions <span className="sdl-field-optional">(optional)</span></label>
+                      <label htmlFor="ship-delivery-instructions">Delivery instructions <span className="ngf-field-optional">(optional)</span></label>
                       <input
                         id="ship-delivery-instructions"
                         type="text"
                         value={deliveryInstructions}
                         onChange={(e) => setDeliveryInstructions(e.target.value)}
-                        className="sdl-input"
+                        className="ngf-input"
                       />
                     </div>
                   </div>
@@ -910,7 +910,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                                 required
                                 value={piece.weight}
                                 onChange={(v) => handleUpdatePiece(index, 'weight', v)}
-                                className="sdl-input"
+                                className="ngf-input"
                               />
                             </div>
 
@@ -922,7 +922,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                                 min="0"
                                 value={piece.length}
                                 onChange={(v) => handleUpdatePiece(index, 'length', v)}
-                                className="sdl-input"
+                                className="ngf-input"
                               />
                             </div>
 
@@ -934,7 +934,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                                 min="0"
                                 value={piece.width}
                                 onChange={(v) => handleUpdatePiece(index, 'width', v)}
-                                className="sdl-input"
+                                className="ngf-input"
                               />
                             </div>
 
@@ -946,20 +946,20 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                                 min="0"
                                 value={piece.height}
                                 onChange={(v) => handleUpdatePiece(index, 'height', v)}
-                                className="sdl-input"
+                                className="ngf-input"
                               />
                             </div>
                           </div>
 
                           <div className="p-field-desc">
-                            <label htmlFor={`ship-piece-${index}-contents`}>Contents <span className="sdl-field-optional">(optional)</span></label>
+                            <label htmlFor={`ship-piece-${index}-contents`}>Contents <span className="ngf-field-optional">(optional)</span></label>
                             <input
                               id={`ship-piece-${index}-contents`}
                               type="text"
                               value={piece.description}
                               onChange={(e) => handleUpdatePiece(index, 'description', e.target.value)}
                               placeholder="e.g. Machine spare parts"
-                              className="sdl-input"
+                              className="ngf-input"
                             />
                           </div>
                         </div>
@@ -1029,7 +1029,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                       id="ship-mode"
                       value={transportMode}
                       onChange={(e) => setTransportMode(e.target.value as TransportMode | '')}
-                      className="sdl-input"
+                      className="ngf-input"
                     >
                       <option value="">Let {COMPANY} recommend</option>
                       <option value="Air">{TRANSPORT_MODE_LABELS.Air}</option>
@@ -1067,7 +1067,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                     </div>
 
                     <div className="declared-value-row">
-                      <label htmlFor="ship-declared-value">Declared value ({money.currency}) <span className="sdl-field-optional">(optional)</span></label>
+                      <label htmlFor="ship-declared-value">Declared value ({money.currency}) <span className="ngf-field-optional">(optional)</span></label>
                       <div className="value-input-wrap">
                         <span className="curr-sym">{money.symbol}</span>
                         <MoneyInput
@@ -1075,7 +1075,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                           min="0"
                           value={declaredValue}
                           onChange={setDeclaredValue}
-                          className="sdl-input font-mono"
+                          className="ngf-input font-mono"
                         />
                       </div>
                     </div>
@@ -1116,7 +1116,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
             </div>
 
             {/* Right Column: Summary */}
-            <aside className="sdl-ship-sidebar">
+            <aside className="ngf-ship-sidebar">
               <div className="sidebar-sticky-card">
                 <div className="sidebar-head">
                   <h3>Summary</h3>
@@ -1192,8 +1192,8 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
       {/* =========================================================================
           3. HOW BOOKING WORKS (CONTENT §7.3)
           ========================================================================= */}
-      <section className="sdl-ship-process-section">
-        <div className="sdl-container-wide">
+      <section className="ngf-ship-process-section">
+        <div className="ngf-container-wide">
           <div className="section-center-header">
             <h2>How booking works</h2>
             <div className="section-header-line" />

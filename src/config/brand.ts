@@ -25,12 +25,12 @@ export const ADMIN_CONSOLE_NAME = `${COMPANY_SHORT} Operations Console`;
 
 // Role label shown in the admin UI (CONTENT §10), also written as the operator on new records.
 export const ADMIN_ROLE_LABEL = 'Administrator';
-// Records created before the rebrand store the operator as "Super Admin". They're left as
+// Older records may store the operator as "Super Admin". They're left as
 // stored (audit history is not rewritten); the UI shows the current label instead.
 export function displayOperator(operator?: string | null): string {
   return !operator || operator === 'Super Admin' ? ADMIN_ROLE_LABEL : operator;
 }
-// Public-facing desk names (REBRAND_MAP §1, CONTENT §10).
+// Public-facing desk names (CONTENT §10).
 export const OPERATIONS_CENTRE = `${COMPANY_SHORT} Operations Centre`;
 export const INTAKE_DESK = `${COMPANY_SHORT} Intake Desk`;
 

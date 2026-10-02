@@ -1,5 +1,5 @@
 /* PUBLIC QUOTE RESULT PAGE */
-.sdl-quote-result-page {
+.ngf-quote-result-page {
   background-color: #f8fafc;
   min-height: calc(100vh - 200px);
   padding-bottom: 4rem;
@@ -7,14 +7,14 @@
 
 .quote-res-hero {
   position: relative;
-  background-color: var(--sdl-ink-950);
+  background-color: var(--ngf-ink-950);
   /* Slot quote-result-hero from scripts/optimize-images.mjs: 1600 here, 1024 on phones. */
   background-image:
     linear-gradient(135deg, rgba(15, 23, 42, 0.93) 0%, rgba(30, 41, 59, 0.88) 100%),
-    url('/images/sdl/quote-result-hero-1600.jpg');
+    url('/images/site/quote-result-hero-1600.jpg');
   background-image:
     linear-gradient(135deg, rgba(15, 23, 42, 0.93) 0%, rgba(30, 41, 59, 0.88) 100%),
-    image-set(url('/images/sdl/quote-result-hero-1600.webp') type('image/webp'), url('/images/sdl/quote-result-hero-1600.jpg') type('image/jpeg'));
+    image-set(url('/images/site/quote-result-hero-1600.webp') type('image/webp'), url('/images/site/quote-result-hero-1600.jpg') type('image/jpeg'));
   background-size: cover;
   background-position: center;
   color: #ffffff;
@@ -26,10 +26,10 @@
   .quote-res-hero {
     background-image:
       linear-gradient(135deg, rgba(15, 23, 42, 0.93) 0%, rgba(30, 41, 59, 0.88) 100%),
-      url('/images/sdl/quote-result-hero-1024.jpg');
+      url('/images/site/quote-result-hero-1024.jpg');
     background-image:
       linear-gradient(135deg, rgba(15, 23, 42, 0.93) 0%, rgba(30, 41, 59, 0.88) 100%),
-      image-set(url('/images/sdl/quote-result-hero-1024.webp') type('image/webp'), url('/images/sdl/quote-result-hero-1024.jpg') type('image/jpeg'));
+      image-set(url('/images/site/quote-result-hero-1024.webp') type('image/webp'), url('/images/site/quote-result-hero-1024.jpg') type('image/jpeg'));
   }
 }
 
@@ -597,7 +597,7 @@
 }
 
 .contact-desk-card {
-  background: var(--sdl-ink-950);
+  background: var(--ngf-ink-950);
   color: #ffffff;
   border: none;
 }
@@ -645,8 +645,8 @@
   /* Hide all website navigation, hero bars, and footers */
   header,
   footer,
-  .sdl-header,
-  .sdl-footer,
+  .ngf-header,
+  .ngf-footer,
   .screen-only-quotation-view,
   .hero-actions-box,
   .btn-print-quote,
@@ -655,9 +655,9 @@
   }
 
   body,
-  .sdl-app-shell,
-  .sdl-main-view,
-  .sdl-quote-result-page {
+  .ngf-app-shell,
+  .ngf-main-view,
+  .ngf-quote-result-page {
     background: #ffffff !important;
     padding: 0 !important;
     margin: 0 !important;
@@ -737,7 +737,7 @@
 
   .print-divider {
     height: 2px;
-    background: var(--sdl-ink-950);
+    background: var(--ngf-ink-950);
     margin: 12px 0 16px;
   }
 

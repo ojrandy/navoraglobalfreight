@@ -13,7 +13,7 @@ import {
   Car
 } from 'lucide-react';
 import { ResponsiveImage } from '../components/ResponsiveImage';
-import { SdlImageName } from '../data/sdlImages';
+import { SiteImageName } from '../data/siteImages';
 import { COMPANY_SHORT } from '../config/brand';
 import './ServicesPage.css';
 
@@ -120,7 +120,7 @@ const SERVICE_TIERS: ServiceTier[] = [
 ];
 
 // CONTENT.md §3.3; bullets reuse §2.6, photos and alt text from §12.
-const INDUSTRIES: { id: string; title: string; icon: React.ReactNode; desc: string; bullets: string[]; image: SdlImageName; alt: string }[] = [
+const INDUSTRIES: { id: string; title: string; icon: React.ReactNode; desc: string; bullets: string[]; image: SiteImageName; alt: string }[] = [
   {
     id: 'healthcare',
     title: 'Healthcare & Life Sciences',
@@ -193,7 +193,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, initialS
   const activeIndustry = INDUSTRIES.find((ind) => ind.id === activeIndustryTab) || INDUSTRIES[0];
 
   return (
-    <div className="sdl-page-services">
+    <div className="ngf-page-services">
       {/* =========================================================================
           1. HERO (CONTENT.md §3)
           ========================================================================= */}
@@ -207,7 +207,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, initialS
           imgClassName="services-hero-img"
         />
         <div className="services-hero-overlay" />
-        <div className="sdl-container-wide services-hero-inner">
+        <div className="ngf-container-wide services-hero-inner">
           <div className="services-hero-badge animate-fade-in">
             <span className="services-badge-dot" />
             <span>OUR SERVICES</span>
@@ -245,7 +245,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, initialS
           2. SERVICE TIERS (CONTENT.md §3.1)
           ========================================================================= */}
       <section id="service-tiers" className="services-explorer-section">
-        <div className="sdl-container-wide">
+        <div className="ngf-container-wide">
           <div className="section-center-header">
             <span className="section-eyebrow">SERVICE TIERS</span>
             <h2>Choose a service to see how it works</h2>
@@ -342,7 +342,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, initialS
           3. COMPARISON TABLE (CONTENT.md §3.2)
           ========================================================================= */}
       <section className="services-matrix-section">
-        <div className="sdl-container-wide">
+        <div className="ngf-container-wide">
           <div className="section-center-header">
             <span className="section-eyebrow">COMPARE</span>
             <h2>Compare speed and capability</h2>
@@ -400,7 +400,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, initialS
           4. INDUSTRIES (CONTENT.md §3.3)
           ========================================================================= */}
       <section className="services-industry-section">
-        <div className="sdl-container-wide">
+        <div className="ngf-container-wide">
           <div className="section-center-header">
             <span className="section-eyebrow">INDUSTRIES</span>
             <h2>Solutions tailored to your industry</h2>
@@ -473,7 +473,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, initialS
           5. ADD-ONS (CONTENT.md §3.4)
           ========================================================================= */}
       <section className="services-addons-section">
-        <div className="sdl-container-wide">
+        <div className="ngf-container-wide">
           <div className="section-center-header">
             <span className="section-eyebrow">ADD-ONS</span>
             <h2>Extra care when you need it</h2>
@@ -499,7 +499,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, initialS
           6. PROCESS STRIP (CONTENT.md §3.5)
           ========================================================================= */}
       <section className="services-lifecycle-section">
-        <div className="sdl-container-wide">
+        <div className="ngf-container-wide">
           <div className="lifecycle-header">
             <span className="lifecycle-eyebrow">HOW IT WORKS</span>
             <h3>How every shipment moves through {COMPANY_SHORT}</h3>
@@ -522,7 +522,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate, initialS
           7. CTA (CONTENT.md §3.6)
           ========================================================================= */}
       <section className="services-bottom-cta">
-        <div className="sdl-container-wide">
+        <div className="ngf-container-wide">
           <div className="services-cta-card">
             <div className="services-cta-content">
               <h2>Ready to ship with {COMPANY_SHORT}?</h2>

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   DOCUMENT CENTER VIEW CSS (SDL Global Logistics Admin)
+   DOCUMENT CENTER VIEW CSS (Navora Admin)
    Clean, modern, light-mode logistics document vault.
    ========================================================================== */
 
@@ -45,7 +45,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  background: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
   color: #ffffff;
   border: none;
   padding: 0.6rem 1.15rem;
@@ -53,13 +53,13 @@
   font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 1px 3px rgba(var(--sdl-accent-rgb), 0.2);
+  box-shadow: 0 1px 3px rgba(var(--ngf-accent-rgb), 0.2);
   transition: all 0.15s ease;
 }
 
 .btn-generate-doc-primary:hover {
-  background: var(--sdl-accent-600);
-  box-shadow: 0 2px 6px rgba(var(--sdl-accent-rgb), 0.3);
+  background: var(--ngf-accent-600);
+  box-shadow: 0 2px 6px rgba(var(--ngf-accent-rgb), 0.3);
   transform: translateY(-1px);
 }
 
@@ -91,9 +91,9 @@
 }
 
 .doc-summary-card.active {
-  border-color: var(--sdl-accent-500);
-  background: var(--sdl-accent-50);
-  box-shadow: 0 0 0 2px rgba(var(--sdl-accent-rgb), 0.15);
+  border-color: var(--ngf-accent-500);
+  background: var(--ngf-accent-50);
+  box-shadow: 0 0 0 2px rgba(var(--ngf-accent-rgb), 0.15);
 }
 
 .summary-card-icon-wrap {
@@ -107,7 +107,7 @@
 
 .icon-blue {
   background: #eff6ff;
-  color: var(--sdl-primary-900);
+  color: var(--ngf-primary-900);
 }
 
 .icon-emerald {
@@ -134,7 +134,7 @@
   color: #7c3aed !important;
 }
 
-.doc-summary-card.active .icon-blue { background: var(--sdl-primary-900); color: #ffffff; }
+.doc-summary-card.active .icon-blue { background: var(--ngf-primary-900); color: #ffffff; }
 .doc-summary-card.active .icon-emerald { background: #059669; color: #ffffff; }
 .doc-summary-card.active .icon-indigo { background: #4f46e5; color: #ffffff; }
 .doc-summary-card.active .icon-amber { background: #d97706; color: #ffffff; }
@@ -191,8 +191,8 @@
 }
 
 .doc-nav-tab.active {
-  color: var(--sdl-accent-500);
-  border-bottom-color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
+  border-bottom-color: var(--ngf-accent-500);
 }
 
 .tab-count-pill {
@@ -206,8 +206,8 @@
 }
 
 .doc-nav-tab.active .tab-count-pill {
-  background: var(--sdl-accent-100);
-  color: var(--sdl-accent-600);
+  background: var(--ngf-accent-100);
+  color: var(--ngf-accent-600);
 }
 
 /* ==========================================================================
@@ -251,8 +251,8 @@
 
 .doc-search-input:focus {
   background: #ffffff;
-  border-color: var(--sdl-accent-500);
-  box-shadow: 0 0 0 2px rgba(var(--sdl-accent-rgb), 0.1);
+  border-color: var(--ngf-accent-500);
+  box-shadow: 0 0 0 2px rgba(var(--ngf-accent-rgb), 0.1);
 }
 
 .clear-search-btn {
@@ -291,7 +291,7 @@
 }
 
 .filter-select:focus {
-  border-color: var(--sdl-accent-500);
+  border-color: var(--ngf-accent-500);
 }
 
 /* ==========================================================================
@@ -324,7 +324,7 @@
 }
 
 .doc-master-table thead tr {
-  background: var(--sdl-ink-950);
+  background: var(--ngf-ink-950);
 }
 
 .doc-master-table th {
@@ -402,7 +402,7 @@
 }
 
 .doc-number-cell strong {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   font-weight: 700;
 }
 
@@ -523,8 +523,8 @@
 }
 
 .btn-view-doc-primary:hover {
-  background: var(--sdl-accent-500);
-  border-color: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
+  border-color: var(--ngf-accent-500);
   color: #ffffff;
 }
 
@@ -586,7 +586,7 @@
 
 .dropdown-item:hover {
   background: #f1f5f9;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
 }
 
 .dropdown-divider {
@@ -638,7 +638,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  background: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
   color: #ffffff;
   border: none;
   padding: 0.5rem 1rem;
@@ -673,7 +673,7 @@
 .doc-preview-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(var(--sdl-ink-rgb), 0.6);
+  background: rgba(var(--ngf-ink-rgb), 0.6);
   backdrop-filter: blur(3px);
   display: flex;
   align-items: center;
@@ -699,7 +699,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.85rem 1.25rem;
-  background: var(--sdl-ink-950);
+  background: var(--ngf-ink-950);
   color: #ffffff;
 }
 
@@ -728,7 +728,7 @@
 }
 
 .preview-version-pill {
-  background: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
   color: #ffffff;
   font-size: 0.7rem;
   font-weight: 800;
@@ -810,7 +810,7 @@
 }
 
 .v-chip.current {
-  background: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
   color: #ffffff;
   font-weight: 700;
 }
@@ -883,7 +883,7 @@
 .shipping-label-paper {
   background: #ffffff;
   border: 2px solid #0f172a;
-  border-top: 6px solid var(--sdl-accent-500);
+  border-top: 6px solid var(--ngf-accent-500);
   width: 100%;
   max-width: 580px;
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
@@ -930,8 +930,8 @@
 }
 
 .lbl-service-stamp {
-  border: 1.5px solid var(--sdl-accent-500);
-  background: var(--sdl-accent-50);
+  border: 1.5px solid var(--ngf-accent-500);
+  background: var(--ngf-accent-50);
   border-radius: 4px;
   padding: 0.25rem 0.65rem;
   text-align: center;
@@ -942,7 +942,7 @@
 .lbl-service-stamp span {
   font-size: 0.6rem;
   font-weight: 800;
-  color: var(--sdl-accent-600);
+  color: var(--ngf-accent-600);
   letter-spacing: 0.04em;
 }
 
@@ -990,7 +990,7 @@
 
 .lbl-to-box {
   padding: 0.65rem 0.65rem 0.65rem 0.85rem;
-  border-left: 4px solid var(--sdl-accent-500);
+  border-left: 4px solid var(--ngf-accent-500);
   font-size: 0.85rem;
   display: flex;
   flex-direction: column;
@@ -1054,7 +1054,7 @@
 .lbl-hub-route-tag {
   font-size: 0.65rem;
   font-weight: 900;
-  background: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
   color: #ffffff;
   padding: 0.15rem 0.45rem;
   border-radius: 3px;
@@ -1143,7 +1143,7 @@
 }
 
 .lbl-footer-id {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   font-weight: 800;
 }
 
@@ -1153,7 +1153,7 @@
 .receipt-paper {
   background: #ffffff;
   border: 1px solid #cbd5e1;
-  border-top: 5px solid var(--sdl-accent-500);
+  border-top: 5px solid var(--ngf-accent-500);
   border-radius: 8px;
   width: 100%;
   max-width: 680px;
@@ -1200,7 +1200,7 @@
 }
 
 .rec-meta-id {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
 }
 
 .rec-status-pill {
@@ -1256,7 +1256,7 @@
 .rec-card-lbl {
   font-size: 0.65rem;
   font-weight: 800;
-  color: var(--sdl-accent-600);
+  color: var(--ngf-accent-600);
   letter-spacing: 0.04em;
   margin-bottom: 0.15rem;
 }
@@ -1350,7 +1350,7 @@
 .invoice-paper {
   background: #ffffff;
   border: 1px solid #cbd5e1;
-  border-top: 5px solid var(--sdl-accent-500);
+  border-top: 5px solid var(--ngf-accent-500);
   border-radius: 8px;
   width: 100%;
   max-width: 720px;
@@ -1387,7 +1387,7 @@
 .inv-masthead-title h1 {
   font-size: 1.8rem;
   font-weight: 900;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   margin: 0;
   letter-spacing: -0.02em;
 }
@@ -1395,12 +1395,12 @@
 .inv-id-badge {
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
 }
 
 .inv-divider {
   height: 2px;
-  background: var(--sdl-ink-950);
+  background: var(--ngf-ink-950);
 }
 
 .inv-parties-grid {
@@ -1471,7 +1471,7 @@
 }
 
 .inv-items-table th {
-  background: var(--sdl-ink-950);
+  background: var(--ngf-ink-950);
   color: #ffffff;
   padding: 0.55rem 0.75rem;
   font-weight: 700;
@@ -1525,7 +1525,7 @@
 .bol-paper {
   background: #ffffff;
   border: 1.5px solid #0f172a;
-  border-top: 5px solid var(--sdl-accent-500);
+  border-top: 5px solid var(--ngf-accent-500);
   width: 100%;
   max-width: 760px;
   padding: 1.5rem;
@@ -1559,7 +1559,7 @@
 }
 
 .bol-id-value {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
 }
 
 .bol-parties-container {
@@ -1688,7 +1688,7 @@
 .ins-paper {
   background: #ffffff;
   border: 1.5px solid #0f172a;
-  border-top: 5px solid var(--sdl-accent-500);
+  border-top: 5px solid var(--ngf-accent-500);
   width: 100%;
   max-width: 760px;
   padding: 1.5rem;
@@ -1723,7 +1723,7 @@
 }
 
 .ins-id-value {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
 }
 
 .ins-title-band {
@@ -1990,7 +1990,7 @@
 .doc-generate-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(var(--sdl-ink-rgb), 0.6);
+  background: rgba(var(--ngf-ink-rgb), 0.6);
   backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
@@ -2089,8 +2089,8 @@
 
 .doc-type-radio-card.selected {
   background: #eff6ff;
-  border-color: var(--sdl-accent-500);
-  box-shadow: 0 0 0 1px var(--sdl-accent-500);
+  border-color: var(--ngf-accent-500);
+  box-shadow: 0 0 0 1px var(--ngf-accent-500);
 }
 
 .doc-type-radio-card div {
@@ -2121,8 +2121,8 @@
 }
 
 .modal-shipment-select:focus {
-  border-color: var(--sdl-accent-500);
-  box-shadow: 0 0 0 2px rgba(var(--sdl-accent-rgb), 0.1);
+  border-color: var(--ngf-accent-500);
+  box-shadow: 0 0 0 2px rgba(var(--ngf-accent-rgb), 0.1);
 }
 
 .insured-value-input-wrap {
@@ -2136,8 +2136,8 @@
 }
 
 .insured-value-input-wrap:focus-within {
-  border-color: var(--sdl-accent-500);
-  box-shadow: 0 0 0 2px rgba(var(--sdl-accent-rgb), 0.1);
+  border-color: var(--ngf-accent-500);
+  box-shadow: 0 0 0 2px rgba(var(--ngf-accent-rgb), 0.1);
 }
 
 .insured-value-prefix {
@@ -2232,7 +2232,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
   color: #ffffff;
   border: none;
   padding: 0.55rem 1.15rem;
@@ -2243,7 +2243,7 @@
 }
 
 .btn-submit-generate:hover {
-  background: var(--sdl-accent-600);
+  background: var(--ngf-accent-600);
 }
 
 /* ==========================================================================
@@ -2257,7 +2257,7 @@
 .doc-delete-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(var(--sdl-ink-rgb), 0.45);
+  background: rgba(var(--ngf-ink-rgb), 0.45);
   backdrop-filter: blur(6px);
   z-index: 1100;
   display: flex;
@@ -2375,7 +2375,7 @@
   position: fixed;
   top: 1.5rem;
   right: 1.5rem;
-  background: var(--sdl-ink-950);
+  background: var(--ngf-ink-950);
   color: #ffffff;
   border: 1px solid #334155;
   border-radius: 8px;

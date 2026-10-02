@@ -19,7 +19,7 @@ export const TrackingLoadingScreen: React.FC<TrackingLoadingScreenProps> = ({ qu
   }, []);
 
   return (
-    <section className="sdl-tracking-loading-shell">
+    <section className="ngf-tracking-loading-shell">
       <div className="tracking-loading-card">
         <div className="tracking-loading-radar">
           <div className="tl-radar-ring tl-ring-1" />

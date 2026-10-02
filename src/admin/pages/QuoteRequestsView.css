@@ -1,8 +1,8 @@
 /* ==========================================================================
-   QUOTE REQUESTS WORKSPACE STYLES - SDL GLOBAL LOGISTICS
+   QUOTE REQUESTS WORKSPACE STYLES - NAVORA GLOBAL FREIGHT
    ========================================================================== */
 
-.sdl-quote-requests-workspace {
+.ngf-quote-requests-workspace {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -124,7 +124,7 @@
   flex-shrink: 0;
 }
 
-.qr-circle-icon.accent { background-color: var(--sdl-accent-500); }
+.qr-circle-icon.accent { background-color: var(--ngf-accent-500); }
 .qr-circle-icon.blue { background-color: #2563eb; }
 .qr-circle-icon.emerald { background-color: #059669; }
 .qr-circle-icon.green { background-color: #10b981; }
@@ -142,7 +142,7 @@
 .qr-card-number {
   font-size: 2rem;
   font-weight: 800;
-  color: var(--sdl-ink-950);
+  color: var(--ngf-ink-950);
   line-height: 1.1;
   letter-spacing: -0.025em;
 }
@@ -158,7 +158,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -166,7 +166,7 @@
   font-size: 0.88rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(var(--sdl-accent-rgb), 0.2);
+  box-shadow: 0 2px 8px rgba(var(--ngf-accent-rgb), 0.2);
   transition: all 0.15s ease;
 }
 
@@ -214,7 +214,7 @@
 }
 
 .quote-search-input:focus {
-  border-color: var(--sdl-accent-500);
+  border-color: var(--ngf-accent-500);
   background: #ffffff;
 }
 
@@ -246,7 +246,7 @@
 }
 
 .filter-select:focus {
-  border-color: var(--sdl-accent-500);
+  border-color: var(--ngf-accent-500);
 }
 
 /* ==========================================================================
@@ -267,11 +267,11 @@
 }
 
 .quotes-master-table thead tr {
-  background: var(--sdl-ink-950);
+  background: var(--ngf-ink-950);
 }
 
 .quotes-master-table th {
-  background-color: var(--sdl-ink-950);
+  background-color: var(--ngf-ink-950);
   color: #ffffff;
   font-size: 0.6875rem;
   font-weight: 800;
@@ -314,7 +314,7 @@
 }
 
 .quote-id-txt {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   font-weight: 700;
 }
 
@@ -399,8 +399,8 @@
 }
 
 .btn-review-row:hover {
-  background: var(--sdl-accent-500);
-  border-color: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
+  border-color: var(--ngf-accent-500);
   color: #ffffff;
 }
 
@@ -500,7 +500,7 @@
   gap: 0.45rem;
   background: none;
   border: none;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   font-size: 0.88rem;
   font-weight: 700;
   cursor: pointer;
@@ -593,7 +593,7 @@
 }
 
 .route-node small {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   font-weight: 600;
   font-size: 0.78rem;
 }
@@ -613,7 +613,7 @@
 }
 
 .route-divider-arrow .arrow {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
 }
 
 /* Parties Grid */
@@ -778,7 +778,7 @@
 }
 
 .piece-id-tag {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   font-weight: 700;
   font-size: 0.75rem;
 }
@@ -920,8 +920,8 @@
 }
 
 .validity-date-input:focus {
-  border-color: var(--sdl-accent-500);
-  box-shadow: 0 0 0 2px rgba(var(--sdl-accent-rgb), 0.1);
+  border-color: var(--ngf-accent-500);
+  box-shadow: 0 0 0 2px rgba(var(--ngf-accent-rgb), 0.1);
 }
 
 .validity-help-text {
@@ -959,7 +959,7 @@
 }
 
 .internal-notes-textarea:focus {
-  border-color: var(--sdl-accent-500);
+  border-color: var(--ngf-accent-500);
   background: #ffffff;
 }
 
@@ -979,7 +979,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -988,7 +988,7 @@
   font-weight: 800;
   cursor: pointer;
   transition: all 0.15s ease;
-  box-shadow: 0 2px 8px rgba(var(--sdl-accent-rgb), 0.2);
+  box-shadow: 0 2px 8px rgba(var(--ngf-accent-rgb), 0.2);
 }
 
 .btn-publish-quote-primary:hover {
@@ -1189,7 +1189,7 @@
 .quote-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(var(--sdl-ink-rgb), 0.6);
+  background: rgba(var(--ngf-ink-rgb), 0.6);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -1302,7 +1302,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
   color: #ffffff;
   border: none;
   border-radius: 6px;
@@ -1329,7 +1329,7 @@
 .form-section-title {
   font-size: 0.75rem;
   font-weight: 800;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin-top: 0.25rem;
@@ -1364,7 +1364,7 @@
 }
 
 .modal-input:focus {
-  border-color: var(--sdl-accent-500);
+  border-color: var(--ngf-accent-500);
 }
 
 @media (max-width: 900px) {

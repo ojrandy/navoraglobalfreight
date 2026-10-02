@@ -6,7 +6,7 @@
 .delete-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(var(--sdl-ink-rgb), 0.45);
+  background: rgba(var(--ngf-ink-rgb), 0.45);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   z-index: 99999;
@@ -138,7 +138,7 @@
 }
 
 .inline-arrow {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   margin: 0 0.15rem;
 }
 

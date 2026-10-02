@@ -5,7 +5,7 @@
 .trash-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(var(--sdl-ink-rgb), 0.45);
+  background: rgba(var(--ngf-ink-rgb), 0.45);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   z-index: 99999;
@@ -176,7 +176,7 @@
   align-items: center;
   gap: 0.35rem;
   padding: 0.4rem 0.75rem;
-  background: var(--sdl-ink-950);
+  background: var(--ngf-ink-950);
   border: none;
   border-radius: 6px;
   font-size: 0.75rem;
@@ -187,7 +187,7 @@
 }
 
 .trash-btn-restore:hover {
-  background: var(--sdl-ink-800);
+  background: var(--ngf-ink-800);
 }
 
 .trash-btn-restore:disabled {

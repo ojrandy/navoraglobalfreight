@@ -70,20 +70,20 @@ export const SupportModal: React.FC<SupportModalProps> = ({
   };
 
   return (
-    <div className="sdl-support-overlay" onClick={onClose}>
+    <div className="ngf-support-overlay" onClick={onClose}>
       <div
-        className="sdl-support-card"
+        className="ngf-support-card"
         role="dialog"
         aria-modal="true"
-        aria-labelledby="sdl-support-title"
+        aria-labelledby="ngf-support-title"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="sdl-support-header">
+        <div className="ngf-support-header">
           <div className="support-header-left">
             <div className="support-icon-pill">
               <Headphones size={18} />
             </div>
-            <h3 id="sdl-support-title">How can we help with this shipment?</h3>
+            <h3 id="ngf-support-title">How can we help with this shipment?</h3>
           </div>
           <button type="button" className="support-close-btn" onClick={onClose} aria-label="Close">
             <X size={20} />
@@ -91,19 +91,19 @@ export const SupportModal: React.FC<SupportModalProps> = ({
         </div>
 
         {ticket ? (
-          <div className="sdl-support-success" role="status">
+          <div className="ngf-support-success" role="status">
             <CheckCircle size={44} className="text-emerald" />
             <p>
               Ticket <strong className="font-mono">{ticket.id}</strong> opened
               {ticket.trackingNumber && <> for <strong className="font-mono">{ticket.trackingNumber}</strong></>}.
               {' '}We'll reply to <strong>{ticket.email}</strong> shortly.
             </p>
-            <button type="button" className="sdl-btn-secondary" onClick={onClose}>
+            <button type="button" className="ngf-btn-secondary" onClick={onClose}>
               Close
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="sdl-support-form">
+          <form onSubmit={handleSubmit} className="ngf-support-form">
             <div className="form-row-2">
               <div className="form-group">
                 <label htmlFor="support-tracking">Tracking ID</label>
@@ -113,7 +113,7 @@ export const SupportModal: React.FC<SupportModalProps> = ({
                   value={trackingNumber}
                   onChange={(e) => setTrackingNumber(e.target.value)}
                   placeholder="e.g. NGF7K2M9"
-                  className="sdl-input font-mono"
+                  className="ngf-input font-mono"
                 />
               </div>
 
@@ -123,7 +123,7 @@ export const SupportModal: React.FC<SupportModalProps> = ({
                   id="support-issue"
                   value={issueType}
                   onChange={(e) => setIssueType(e.target.value as SupportIssueType)}
-                  className="sdl-input"
+                  className="ngf-input"
                 >
                   {SUPPORT_ISSUE_TYPES.map((type) => (
                     <option key={type} value={type}>{type}</option>
@@ -140,7 +140,7 @@ export const SupportModal: React.FC<SupportModalProps> = ({
                 rows={3}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="sdl-input"
+                className="ngf-input"
               />
             </div>
 
@@ -154,7 +154,7 @@ export const SupportModal: React.FC<SupportModalProps> = ({
                   autoComplete="name"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className="sdl-input"
+                  className="ngf-input"
                 />
               </div>
 
@@ -168,7 +168,7 @@ export const SupportModal: React.FC<SupportModalProps> = ({
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@company.com"
-                  className="sdl-input"
+                  className="ngf-input"
                 />
               </div>
             </div>
@@ -176,10 +176,10 @@ export const SupportModal: React.FC<SupportModalProps> = ({
             {error && <p className="support-error" role="alert">{error}</p>}
 
             <div className="support-form-actions">
-              <button type="button" className="sdl-btn-secondary" onClick={onClose}>
+              <button type="button" className="ngf-btn-secondary" onClick={onClose}>
                 Cancel
               </button>
-              <button type="submit" className="sdl-btn-primary" disabled={submitting}>
+              <button type="submit" className="ngf-btn-primary" disabled={submitting}>
                 <Send size={15} /> {submitting ? 'Opening…' : 'Open ticket'}
               </button>
             </div>

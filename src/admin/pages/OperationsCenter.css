@@ -1,7 +1,7 @@
 /* ==========================================================================
    ENTERPRISE DASHBOARD STYLING
    High-density, professional carrier terminal layout.
-   Palette: Ink (--sdl-ink-900, --sdl-ink-950) · SDL red accent (--sdl-accent-500),
+   Palette: Ink (--ngf-ink-900, --ngf-ink-950) · brand red accent (--ngf-accent-500),
    Crisp Slate (#1e293b, #64748b), Pure White (#ffffff).
    ========================================================================== */
 
@@ -135,10 +135,10 @@
   flex-shrink: 0;
 }
 
-.ops-circle-icon.accent { background-color: var(--sdl-accent-500); }
+.ops-circle-icon.accent { background-color: var(--ngf-accent-500); }
 .ops-circle-icon.blue { background-color: #2563eb; }
 .ops-circle-icon.green { background-color: #10b981; }
-.ops-circle-icon.amber { background-color: var(--sdl-accent-500); }
+.ops-circle-icon.amber { background-color: var(--ngf-accent-500); }
 .ops-circle-icon.red { background-color: #ef4444; }
 
 .ops-card-label {
@@ -152,7 +152,7 @@
 .ops-card-number {
   font-size: 2.15rem;
   font-weight: 800;
-  color: var(--sdl-ink-950);
+  color: var(--ngf-ink-950);
   line-height: 1.1;
   letter-spacing: -0.025em;
   margin-top: 0.15rem;
@@ -223,7 +223,7 @@
 .ops-section-title {
   font-size: 1.15rem;
   font-weight: 800;
-  color: var(--sdl-ink-950);
+  color: var(--ngf-ink-950);
   margin: 0;
   letter-spacing: -0.015em;
 }
@@ -281,7 +281,7 @@
 }
 
 .filter-tab-btn.active {
-  background: var(--sdl-ink-950);
+  background: var(--ngf-ink-950);
   color: #ffffff;
   font-weight: 800;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
@@ -317,8 +317,8 @@
 
 .table-search-input:focus {
   background: #ffffff;
-  border-color: var(--sdl-accent-500);
-  box-shadow: 0 0 0 2px rgba(var(--sdl-accent-rgb), 0.12);
+  border-color: var(--ngf-accent-500);
+  box-shadow: 0 0 0 2px rgba(var(--ngf-accent-rgb), 0.12);
 }
 
 .ops-btn-secondary {
@@ -366,7 +366,7 @@
 }
 
 .ops-btn-primary {
-  background: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
   color: #ffffff;
   border: none;
   padding: 0.4rem 0.9rem;
@@ -378,7 +378,7 @@
 }
 
 .ops-btn-primary:hover {
-  background: var(--sdl-accent-600);
+  background: var(--ngf-accent-600);
 }
 
 /* ==========================================================================
@@ -404,11 +404,11 @@
 }
 
 .ops-data-table thead tr {
-  background: var(--sdl-ink-950);
+  background: var(--ngf-ink-950);
 }
 
 .ops-data-table th {
-  background-color: var(--sdl-ink-950);
+  background-color: var(--ngf-ink-950);
   color: #ffffff;
   font-weight: 800;
   padding: 0.95rem 1rem;
@@ -501,9 +501,9 @@
 }
 
 .ops-service-pill.express {
-  background: var(--sdl-accent-50);
-  color: var(--sdl-accent-500);
-  border: 1px solid var(--sdl-accent-200);
+  background: var(--ngf-accent-50);
+  color: var(--ngf-accent-500);
+  border: 1px solid var(--ngf-accent-200);
 }
 
 .ops-service-pill.priority {
@@ -544,7 +544,7 @@
 .ops-route-dest {
   font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   white-space: nowrap;
 }
 
@@ -620,11 +620,11 @@
 .chip-dot.slate { background: #94a3b8; }
 
 .ops-status-chip.out-delivery {
-  background: var(--sdl-warning-50);
-  color: var(--sdl-warning-700);
-  border: 1px solid var(--sdl-warning-200);
+  background: var(--ngf-warning-50);
+  color: var(--ngf-warning-700);
+  border: 1px solid var(--ngf-warning-200);
 }
-.chip-dot.amber { background: var(--sdl-warning-500); }
+.chip-dot.amber { background: var(--ngf-warning-500); }
 
 .ops-status-chip.delivered {
   background: #f0fdf4;
@@ -676,10 +676,10 @@
   align-items: center;
   gap: 0.2rem;
   padding: 0.28rem 0.58rem;
-  background: var(--sdl-accent-50);
-  border: 1px solid var(--sdl-accent-200);
+  background: var(--ngf-accent-50);
+  border: 1px solid var(--ngf-accent-200);
   border-radius: 9999px;
-  color: var(--sdl-accent-600);
+  color: var(--ngf-accent-600);
   font-size: 0.71rem;
   font-weight: 700;
   cursor: pointer;
@@ -689,8 +689,8 @@
 }
 
 .ops-control-btn:hover {
-  background: var(--sdl-accent-100);
-  border-color: var(--sdl-accent-300);
+  background: var(--ngf-accent-100);
+  border-color: var(--ngf-accent-300);
 }
 
 .ops-control-btn.sim-active {

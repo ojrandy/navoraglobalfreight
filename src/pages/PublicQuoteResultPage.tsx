@@ -105,14 +105,14 @@ export const PublicQuoteResultPage: React.FC<PublicQuoteResultPageProps> = ({
   const askQuestion = () => onNavigate('contact');
 
   return (
-    <div className="sdl-quote-result-page animate-fade-in">
+    <div className="ngf-quote-result-page animate-fade-in">
       {/* =========================================================================
           SCREEN-ONLY VIEW (CONTENT §7.2)
           ========================================================================= */}
       <div className="screen-only-quotation-view">
         {/* Top Banner */}
         <div className="quote-res-hero">
-          <div className="sdl-container-wide hero-content-flex">
+          <div className="ngf-container-wide hero-content-flex">
             <div>
               <h1>Your {COMPANY_SHORT} quote</h1>
               <p className="hero-subtext">
@@ -135,7 +135,7 @@ export const PublicQuoteResultPage: React.FC<PublicQuoteResultPageProps> = ({
         </div>
 
         {/* Main Content Body */}
-        <div className="sdl-container-wide quote-res-body">
+        <div className="ngf-container-wide quote-res-body">
           {/* STATUS BAR */}
           <div className={`quote-status-alert-strip ${isPublished ? 'status-ready' : 'status-review'}`}>
             <div className="alert-left">

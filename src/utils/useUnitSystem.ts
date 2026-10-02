@@ -4,7 +4,7 @@ import type { UnitSystem } from '../shared/units';
 // The viewer's weight/dimension units: kg/cm by default, lb/in when toggled. A per-viewer
 // preference (localStorage), shared live by every form and display on the page.
 
-const STORAGE_KEY = 'sdl_units';
+const STORAGE_KEY = 'ngf_units';
 const listeners = new Set<(system: UnitSystem) => void>();
 
 function readStored(): UnitSystem {

@@ -1,8 +1,8 @@
 # Navora Global Freight — Content Deck (all site copy)
 
 > **Context:** The Navora platform is **already built and working**: public website, tracking engine, Express/SQLite API,
-> admin console, documents and quotes. Claude is acting as a **senior professional developer** who has taken over this
-> existing codebase to rebrand and improve it. Nothing here is built from scratch; every task modifies the working system
+> admin console, documents and quotes. Claude is acting as a **senior professional developer** who maintains and improves this
+> existing codebase. Nothing here is built from scratch; every task modifies the working system
 > in place and must leave it working. See `CLAUDE.md §0`.
 
 **Approach:** the pages, sections and components already exist. Swap this copy into the existing markup, keeping the current layout and structure unless a doc says otherwise.
@@ -282,7 +282,7 @@ Remove the invented client logos. Replace with an icon row: **Air Freight · Oce
 
 **Our divisions:** the four services with their one-line summaries from §3.1. Eyebrow `DIVISIONS` · H2 `Our divisions`; each card lists the first three §3.1 highlights.
 
-**Our story** (replaces "The Evolution of Duolingo Express"). **H2:** `How Navora came to be`
+**Our story.** **H2:** `How Navora came to be`
 `Navora Global Freight started with a simple frustration: once cargo crossed a border, shippers lost sight of it. Calls went unanswered, updates arrived late, and nobody owned the problem. We built Navora to fix that, joining express, freight and secure transport into one network, with one tracking ID and one team accountable from the first mile to the last.`
 *(The owner should add real milestones, e.g. year founded, first lanes, first office. Don't invent a timeline.)*
 
@@ -475,7 +475,7 @@ Presented as "gateways we serve". Don't describe them as Navora-owned facilities
 - *Added 2026-09-29 with 3.12 (owner to confirm):* the Document Center also produces three types not named above, titled `Shipping Label`, `Shipment Receipt` and `Certificate of Cargo Insurance`. Charge lines: `Transport` · `Oversize handling` · `Special handling`, totals `TOTAL DUE` / `TOTAL PAID`. Insurance certificate text: `The cargo described below is insured by {insurer} under policy {policy no.}, subject to that policy's terms, conditions and exclusions.` and claims line `Tell Navora about any loss or damage within 7 days of delivery, quoting the tracking ID above, with photos and proof of value.` (7 days: same [confirm] as Help §8.2). **Proof of Delivery** and **Security Seal Record** have no document type yet (see tracker Blocked).
 
 ## 12. Image alt text
-Approved 2026-09-26; photos replaced with free stock 2026-10-02 (sources and photographers in `images/free-stock/SOURCES.md`). Files are generated into `Public/images/sdl/` by `scripts/optimize-images.mjs`.
+Approved 2026-09-26; photos replaced with free stock 2026-10-02 (sources and photographers in `images/free-stock/SOURCES.md`). Files are generated into `Public/images/site/` by `scripts/optimize-images.mjs`.
 No photo shows the Navora name or any other company's branding, so the alt text describes only what is in the picture. Each page uses its own photos (Track Result reuses the Track header photo on purpose).
 
 | Image (slot) | Source | Alt |
@@ -585,13 +585,13 @@ The text below is rendered from `src/data/legalDocs.ts`; change both together. P
 
 **Cookie Policy**
 1. *Cookies we use.*
-   We use one essential cookie, sdl.sid. It keeps Navora staff signed in to our operations console for up to 12 hours. It is not set for visitors to the public website.
+   We use one essential cookie, ngf.sid. It keeps Navora staff signed in to our operations console for up to 12 hours. It is not set for visitors to the public website.
    We do not use analytics or advertising cookies. If we add analytics, we will update this page and ask for your consent where the law requires it.
 2. *Choices saved in your browser.*
    Some pages remember a few choices in your browser's local storage. This data stays on your device and is not sent to us:
-   - sdl_recent_tracking: tracking IDs you looked up recently, so you can open them again.
-   - sdl_units: whether you prefer metric or imperial units.
-   - sdl_live_shipment_stream: the latest update for a shipment you are viewing, so other open tabs stay in step.
+   - ngf_recent_tracking: tracking IDs you looked up recently, so you can open them again.
+   - ngf_units: whether you prefer metric or imperial units.
+   - ngf_live_shipment_stream: the latest update for a shipment you are viewing, so other open tabs stay in step.
    You can clear these at any time in your browser settings.
 3. *Other services our pages use.*
    Our pages load map tiles from Esri (ArcGIS), fonts from Google Fonts and some photos from Unsplash, and use OpenStreetMap Nominatim and OSRM to look up addresses and routes. These services receive your IP address when your browser contacts them.

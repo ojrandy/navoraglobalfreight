@@ -164,7 +164,7 @@ export const JourneyMap: React.FC<JourneyMapProps> = ({
     const isActuallyMoving = shipmentStatus === 'IN_TRANSIT';
 
     return leaflet.divIcon({
-      className: 'sdl-clean-map-marker',
+      className: 'ngf-clean-map-marker',
       html: `
         <div class="map-pin-container ${colorClass} ${isActuallyMoving ? 'is-simulating' : ''}">
           ${isCurrent && !isDelivered ? `<div class="radar-glow-ring ${isActuallyMoving ? 'active-pulse' : ''}"></div>` : ''}
@@ -506,7 +506,7 @@ export const JourneyMap: React.FC<JourneyMapProps> = ({
     : `${destPt.name}, ${destPt.state}`;
 
   return (
-    <div className={`sdl-journey-map-card ${className}`}>
+    <div className={`ngf-journey-map-card ${className}`}>
       {/* 1. Gorgeous 3-Column Route Stages Header */}
       <div className="map-route-stages-header">
         {/* Origin Node */}

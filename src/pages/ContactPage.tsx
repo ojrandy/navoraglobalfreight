@@ -106,13 +106,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, initialGat
   };
 
   return (
-    <div className="sdl-page-contact">
+    <div className="ngf-page-contact">
       {/* =========================================================================
           1. HERO (CONTENT §8.3)
           ========================================================================= */}
-      <section className="sdl-contact-hero">
+      <section className="ngf-contact-hero">
         <div className="contact-hero-bg-overlay" />
-        <div className="sdl-container-wide contact-hero-inner">
+        <div className="ngf-container-wide contact-hero-inner">
           {/* Regulatory line from admin Settings, only when set (tracker Blocked #20). */}
           {regulatoryLine && (
             <div className="contact-hero-pill animate-fade-in">
@@ -131,7 +131,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, initialGat
       {/* =========================================================================
           2. FORM & CHANNELS
           ========================================================================= */}
-      <div className="sdl-container-wide sdl-contact-body">
+      <div className="ngf-container-wide ngf-contact-body">
         <div className="contact-grid">
           {/* Left Column: Form & Confirmation */}
           <div className="contact-form-card">
@@ -193,7 +193,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, initialGat
                       autoComplete="name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="sdl-input"
+                      className="ngf-input"
                     />
                   </div>
 
@@ -207,14 +207,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, initialGat
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="name@company.com"
-                      className="sdl-input"
+                      className="ngf-input"
                     />
                   </div>
                 </div>
 
                 <div className="form-row-2">
                   <div className="form-group">
-                    <label htmlFor="contact-phone">Phone <span className="sdl-field-optional">(optional)</span></label>
+                    <label htmlFor="contact-phone">Phone <span className="ngf-field-optional">(optional)</span></label>
                     <input
                       id="contact-phone"
                       type="tel"
@@ -222,7 +222,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, initialGat
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="With country code, e.g. +44"
-                      className="sdl-input"
+                      className="ngf-input"
                     />
                   </div>
 
@@ -233,7 +233,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, initialGat
                       required
                       value={topic}
                       onChange={(e) => setTopic(e.target.value)}
-                      className="sdl-input"
+                      className="ngf-input"
                     >
                       <option value="" disabled>Choose a topic</option>
                       {TOPICS.map((t) => (
@@ -245,24 +245,24 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, initialGat
 
                 <div className="form-row-2">
                   <div className="form-group">
-                    <label htmlFor="contact-tracking">Tracking ID <span className="sdl-field-optional">(optional)</span></label>
+                    <label htmlFor="contact-tracking">Tracking ID <span className="ngf-field-optional">(optional)</span></label>
                     <input
                       id="contact-tracking"
                       type="text"
                       value={tracking}
                       onChange={(e) => setTracking(e.target.value)}
                       placeholder="e.g. NGF7K2M9"
-                      className="sdl-input font-mono"
+                      className="ngf-input font-mono"
                     />
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="contact-gateway">Gateway <span className="sdl-field-optional">(optional)</span></label>
+                    <label htmlFor="contact-gateway">Gateway <span className="ngf-field-optional">(optional)</span></label>
                     <select
                       id="contact-gateway"
                       value={gatewayCode}
                       onChange={(e) => setGatewayCode(e.target.value)}
-                      className="sdl-input"
+                      className="ngf-input"
                     >
                       <option value="">No specific gateway</option>
                       {GATEWAYS.map((gw) => (
@@ -280,7 +280,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, initialGat
                     rows={5}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="sdl-input"
+                    className="ngf-input"
                   />
                 </div>
 
@@ -348,7 +348,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, initialGat
         {/* =========================================================================
             3. QUICK ANSWERS (CONTENT §8.3, items from §8.2)
             ========================================================================= */}
-        <section className="sdl-contact-faq-section">
+        <section className="ngf-contact-faq-section">
           <div className="section-center-header">
             <h2>Quick answers</h2>
             <div className="section-header-line" />

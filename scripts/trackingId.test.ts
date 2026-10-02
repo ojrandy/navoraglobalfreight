@@ -53,7 +53,7 @@ test('isValidTrackingId: strict ^NGF[2-9A-HJ-NP-Z]{5}$', () => {
   for (const ok of ['NGF7K2M9', 'NGFQ4X8T', 'NGF22222', 'NGFZZZZZ']) assert.ok(isValidTrackingId(ok), ok);
   for (const bad of [
     '', 'NGF7K2M', 'NGF7K2M9X', 'ngf7k2m9', 'NGF7K2M0', 'NGF7K2MO', 'NGF7K2M1', 'NGF7K2MI',
-    'DXP7K2M9', 'DLS7K2M9', 'NGF 7K2M9', 'NGF7K2M9-01', 'RTO-NGF7K2M9', 'DXP-2026-ABCDEFGH'
+    'ABC7K2M9', 'XYZ7K2M9', 'NGF 7K2M9', 'NGF7K2M9-01', 'RTO-NGF7K2M9', 'ABC-2026-ABCDEFGH'
   ]) assert.ok(!isValidTrackingId(bad), bad);
 });
 
@@ -72,7 +72,7 @@ test('parsePieceLabel: NGFXXXXX-NN resolves to parent and piece number', () => {
 test('parseTrackingInput: IDs and child labels resolve to the 8-character parent', () => {
   assert.deepEqual(parseTrackingInput('ngf 7k2-m9'), { trackingId: 'NGF7K2M9' });
   assert.deepEqual(parseTrackingInput('NGF7K2M9-03'), { trackingId: 'NGF7K2M9', piece: 3 });
-  assert.equal(parseTrackingInput('DXP-2026-ABCD1234'), null);
+  assert.equal(parseTrackingInput('ABC-2026-ABCD1234'), null);
   assert.equal(parseTrackingInput('hello'), null);
   assert.equal(parseTrackingInput(''), null);
 });

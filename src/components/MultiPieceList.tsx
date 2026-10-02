@@ -23,22 +23,22 @@ export const MultiPieceList: React.FC<MultiPieceListProps> = ({
 }) => {
   const [unitSystem] = useUnitSystem();
   return (
-    <div className={`sdl-pieces-card ${className}`}>
-      <div className="sdl-pieces-header">
-        <h3 className="sdl-pieces-title">Pieces</h3>
-        <span className="sdl-pieces-count-badge">{pieces.length}</span>
+    <div className={`ngf-pieces-card ${className}`}>
+      <div className="ngf-pieces-header">
+        <h3 className="ngf-pieces-title">Pieces</h3>
+        <span className="ngf-pieces-count-badge">{pieces.length}</span>
       </div>
 
-      <div className="sdl-pieces-grid">
+      <div className="ngf-pieces-grid">
         {pieces.map((piece) => (
-          <div key={piece.id} className="sdl-piece-item">
+          <div key={piece.id} className="ngf-piece-item">
             <div className="piece-item-top">
               <div className="piece-meta">
                 <span className="piece-label">Piece {String(piece.pieceNumber).padStart(2, '0')}</span>
                 <span className="piece-tracking-id">{piece.trackingNumber}</span>
               </div>
               <div className="piece-status-wrap">
-                <span className="sdl-badge-in-transit-sm">{statusLabel.toUpperCase()}</span>
+                <span className="ngf-badge-in-transit-sm">{statusLabel.toUpperCase()}</span>
                 {locationText && <span className="piece-location">{locationText}</span>}
               </div>
             </div>

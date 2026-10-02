@@ -3,24 +3,24 @@
    Zero Freight/Train/Ship · 24/7 Dispatch Desk · Mobile-First
    ============================================================ */
 
-.sdl-page-contact {
+.ngf-page-contact {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding-bottom: 6rem;
   background-color: #f8fafc;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 /* ============================================================
    1. CINEMATIC HERO SECTION
    ============================================================ */
-.sdl-contact-hero {
+.ngf-contact-hero {
   position: relative;
   background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=85');
   background-size: cover;
   background-position: center 30%;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
   padding: 5.5rem 0 6rem;
   overflow: hidden;
 }
@@ -30,8 +30,8 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(var(--sdl-ink-rgb), 0.88) 0%,
-    rgba(var(--sdl-ink-rgb), 0.58) 50%,
+    rgba(var(--ngf-ink-rgb), 0.88) 0%,
+    rgba(var(--ngf-ink-rgb), 0.58) 50%,
     rgba(15, 34, 56, 0.22) 100%
   );
   z-index: 1;
@@ -47,9 +47,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(var(--sdl-accent-rgb), 0.15);
-  color: var(--sdl-accent-400);
-  border: 1px solid rgba(var(--sdl-accent-rgb), 0.35);
+  background: rgba(var(--ngf-accent-rgb), 0.15);
+  color: var(--ngf-accent-400);
+  border: 1px solid rgba(var(--ngf-accent-rgb), 0.35);
   padding: 0.375rem 0.875rem;
   border-radius: 9999px;
   font-size: 0.75rem;
@@ -62,22 +62,22 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--sdl-accent-500);
+  background-color: var(--ngf-accent-500);
   animation: pulse-dot 2s infinite ease-in-out;
 }
 
 .contact-hero-title {
-  font-family: var(--sdl-font-display);
+  font-family: var(--ngf-font-display);
   font-size: 3.25rem;
   font-weight: 800;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
 }
 
 .contact-highlight-accent {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   font-weight: 800;
 }
 
@@ -91,7 +91,7 @@
 /* ============================================================
    2. MAIN BODY & GRID
    ============================================================ */
-.sdl-contact-body {
+.ngf-contact-body {
   margin-top: 3.5rem;
 }
 
@@ -104,9 +104,9 @@
 
 /* Left Column: Form Card */
 .contact-form-card {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-2xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-2xl);
   padding: 2.5rem;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
 }
@@ -117,20 +117,20 @@
   justify-content: space-between;
   gap: 1.5rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1.5px solid var(--sdl-slate-100);
+  border-bottom: 1.5px solid var(--ngf-slate-100);
   margin-bottom: 1.75rem;
 }
 
 .form-header-row h3 {
   font-size: 1.375rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 0.25rem;
 }
 
 .form-header-row p {
   font-size: 0.875rem;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   margin: 0;
   line-height: 1.4;
 }
@@ -139,7 +139,7 @@
 .contact-form-error {
   background: #fef2f2;
   border: 1.5px solid #fecaca;
-  border-radius: var(--sdl-radius-md);
+  border-radius: var(--ngf-radius-md);
   padding: 0.75rem 1rem;
   color: #991b1b;
   font-size: 0.8125rem;
@@ -168,10 +168,10 @@
 .contact-form label {
   font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--sdl-slate-700);
+  color: var(--ngf-slate-700);
 }
 
-.contact-form textarea.sdl-input {
+.contact-form textarea.ngf-input {
   resize: vertical;
   line-height: 1.6;
 }
@@ -205,17 +205,17 @@
 }
 
 .contact-success-wrap h3 {
-  font-family: var(--sdl-font-display);
+  font-family: var(--ngf-font-display);
   font-size: 1.75rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 1.5rem;
 }
 
 .ticket-summary-box {
   background: #f8fafc;
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   padding: 1.5rem;
   width: 100%;
   max-width: 480px;
@@ -226,7 +226,7 @@
 .tkt-label {
   font-size: 0.6875rem;
   font-weight: 800;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   letter-spacing: 0.05em;
   display: block;
   margin-bottom: 0.375rem;
@@ -235,14 +235,14 @@
 .tkt-id {
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   display: block;
   margin-bottom: 0.75rem;
 }
 
 .ticket-summary-box p {
   font-size: 0.875rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   line-height: 1.5;
   margin-bottom: 1rem;
 }
@@ -257,9 +257,9 @@
 
 /* Right Column: Direct Info Card */
 .contact-info-card {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-2xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-2xl);
   padding: 2.25rem;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
 }
@@ -267,7 +267,7 @@
 .card-top-tag {
   font-size: 0.6875rem;
   font-weight: 800;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   letter-spacing: 0.06em;
   display: block;
   margin-bottom: 0.375rem;
@@ -276,7 +276,7 @@
 .contact-info-card h3 {
   font-size: 1.375rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 1.75rem;
 }
 
@@ -286,13 +286,13 @@
   gap: 1rem;
   padding-bottom: 1.5rem;
   margin-bottom: 1.5rem;
-  border-bottom: 1px solid var(--sdl-slate-100);
+  border-bottom: 1px solid var(--ngf-slate-100);
 }
 
 .channel-icon {
   width: 44px;
   height: 44px;
-  border-radius: var(--sdl-radius-lg);
+  border-radius: var(--ngf-radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -300,9 +300,9 @@
 }
 
 .channel-icon.icon-accent {
-  background: var(--sdl-accent-50);
-  color: var(--sdl-accent-500);
-  border: 1px solid var(--sdl-accent-200);
+  background: var(--ngf-accent-50);
+  color: var(--ngf-accent-500);
+  border: 1px solid var(--ngf-accent-200);
 }
 
 .channel-icon.icon-emerald {
@@ -320,7 +320,7 @@
 .contact-channel-item small {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   text-transform: uppercase;
   display: block;
   margin-bottom: 0.125rem;
@@ -328,7 +328,7 @@
 
 .contact-channel-item strong {
   font-size: 1rem;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   display: block;
   overflow-wrap: anywhere;
 }
@@ -340,13 +340,13 @@
 
 .contact-channel-item strong a:hover,
 .contact-channel-item strong a:focus-visible {
-  color: var(--sdl-accent-600);
+  color: var(--ngf-accent-600);
   text-decoration: underline;
 }
 
 .contact-channel-item p {
   font-size: 0.8125rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   margin: 0.125rem 0 0;
   line-height: 1.4;
 }
@@ -355,7 +355,7 @@
 .emergency-box {
   background: #fffbeb;
   border: 1.5px solid #fef3c7;
-  border-radius: var(--sdl-radius-xl);
+  border-radius: var(--ngf-radius-xl);
   padding: 1.25rem;
 }
 
@@ -382,10 +382,10 @@
 /* ============================================================
    3. FAQ ACCORDION SECTION
    ============================================================ */
-.sdl-contact-faq-section {
+.ngf-contact-faq-section {
   margin-top: 6rem;
   padding-top: 5rem;
-  border-top: 1px solid var(--sdl-slate-200);
+  border-top: 1px solid var(--ngf-slate-200);
 }
 
 .contact-faq-accordion {
@@ -397,20 +397,20 @@
 }
 
 .contact-faq-item {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   overflow: hidden;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .contact-faq-item:hover {
-  border-color: var(--sdl-accent-300);
+  border-color: var(--ngf-accent-300);
 }
 
 .contact-faq-item.active {
-  border-color: var(--sdl-accent-500);
-  box-shadow: 0 8px 20px rgba(var(--sdl-accent-rgb), 0.08);
+  border-color: var(--ngf-accent-500);
+  box-shadow: 0 8px 20px rgba(var(--ngf-accent-rgb), 0.08);
 }
 
 .faq-question-btn {
@@ -425,9 +425,9 @@
   border: none;
   font-size: 1rem;
   font-weight: 700;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   cursor: pointer;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .faq-question-btn:hover {
@@ -442,13 +442,13 @@
 
 .faq-answer-body {
   padding: 0 1.5rem 1.25rem 3.25rem;
-  border-top: 1px solid var(--sdl-slate-100);
+  border-top: 1px solid var(--ngf-slate-100);
   padding-top: 1rem;
 }
 
 .faq-answer-body p {
   font-size: 0.9375rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   line-height: 1.65;
   margin: 0;
 }
@@ -464,7 +464,7 @@
 }
 
 @media (max-width: 768px) {
-  .sdl-contact-hero {
+  .ngf-contact-hero {
     padding: 3.5rem 0 3rem;
   }
   .contact-hero-title {
@@ -474,12 +474,12 @@
   .contact-hero-lead {
     font-size: 1rem;
   }
-  .sdl-contact-body {
+  .ngf-contact-body {
     margin-top: 2rem;
   }
   .contact-form-card {
     padding: 1.5rem 1.125rem;
-    border-radius: var(--sdl-radius-xl);
+    border-radius: var(--ngf-radius-xl);
   }
   .form-header-row {
     flex-direction: column;
@@ -490,13 +490,13 @@
     grid-template-columns: 1fr;
     gap: 0;
   }
-  .sdl-input, select.sdl-input {
+  .ngf-input, select.ngf-input {
     font-size: 16px !important;
     min-height: 48px;
   }
   .contact-info-card {
     padding: 1.5rem 1.125rem;
-    border-radius: var(--sdl-radius-xl);
+    border-radius: var(--ngf-radius-xl);
   }
   .faq-answer-body {
     padding-left: 1.5rem;
@@ -513,7 +513,7 @@
 }
 
 @media (max-width: 480px) {
-  .sdl-contact-hero {
+  .ngf-contact-hero {
     padding: 3rem 0 2.5rem;
   }
   .contact-hero-title {
@@ -531,19 +531,19 @@
 
 /* The ghost button is styled for dark heroes; on this white card it needs a dark outline. */
 .success-action-row .btn-corp-ghost {
-  color: var(--sdl-ink-900);
-  background: var(--sdl-white);
-  border: 1px solid var(--sdl-slate-300);
+  color: var(--ngf-ink-900);
+  background: var(--ngf-white);
+  border: 1px solid var(--ngf-slate-300);
 }
 
 .success-action-row .btn-corp-ghost:hover {
-  border-color: var(--sdl-ink-900);
-  background: var(--sdl-slate-50);
+  border-color: var(--ngf-ink-900);
+  background: var(--ngf-slate-50);
 }
 
 /* Narrow screens: the text spans the whole hero, so the overlay stays dark edge to edge. */
 @media (max-width: 768px) {
   .contact-hero-bg-overlay {
-    background: rgba(var(--sdl-ink-rgb), 0.85);
+    background: rgba(var(--ngf-ink-rgb), 0.85);
   }
 }

@@ -3,24 +3,24 @@
    Zero Freight/Train/Ship · 24/7 Dispatch Desk · Mobile-First
    ============================================================ */
 
-.sdl-page-legal {
+.ngf-page-legal {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding-bottom: 6rem;
   background-color: #f8fafc;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 /* ============================================================
    1. CINEMATIC HERO SECTION
    ============================================================ */
-.sdl-legal-hero {
+.ngf-legal-hero {
   position: relative;
   background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&auto=format&fit=crop&q=85');
   background-size: cover;
   background-position: center 30%;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
   padding: 5.5rem 0 6rem;
   overflow: hidden;
 }
@@ -30,8 +30,8 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(var(--sdl-ink-rgb), 0.88) 0%,
-    rgba(var(--sdl-ink-rgb), 0.58) 50%,
+    rgba(var(--ngf-ink-rgb), 0.88) 0%,
+    rgba(var(--ngf-ink-rgb), 0.58) 50%,
     rgba(15, 34, 56, 0.22) 100%
   );
   z-index: 1;
@@ -47,9 +47,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(var(--sdl-accent-rgb), 0.15);
-  color: var(--sdl-accent-400);
-  border: 1px solid rgba(var(--sdl-accent-rgb), 0.35);
+  background: rgba(var(--ngf-accent-rgb), 0.15);
+  color: var(--ngf-accent-400);
+  border: 1px solid rgba(var(--ngf-accent-rgb), 0.35);
   padding: 0.375rem 0.875rem;
   border-radius: 9999px;
   font-size: 0.75rem;
@@ -62,22 +62,22 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--sdl-accent-500);
+  background-color: var(--ngf-accent-500);
   animation: pulse-dot 2s infinite ease-in-out;
 }
 
 .legal-hero-title {
-  font-family: var(--sdl-font-display);
+  font-family: var(--ngf-font-display);
   font-size: 3.25rem;
   font-weight: 800;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
 }
 
 .legal-highlight-accent {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   font-weight: 800;
 }
 
@@ -91,7 +91,7 @@
 /* ============================================================
    2. CONTENT WRAPPER & SIDEBAR
    ============================================================ */
-.sdl-legal-content-wrap {
+.ngf-legal-content-wrap {
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 2.5rem;
@@ -100,9 +100,9 @@
 }
 
 .legal-sidebar-card {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   padding: 1.5rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
   position: sticky;
@@ -113,7 +113,7 @@
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.08em;
-  color: var(--sdl-slate-400);
+  color: var(--ngf-slate-400);
   margin-bottom: 1rem;
   text-transform: uppercase;
 }
@@ -129,39 +129,39 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.8125rem 1rem;
-  border-radius: var(--sdl-radius-md);
+  border-radius: var(--ngf-radius-md);
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   text-align: left;
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .legal-nav-btn:hover {
   background: #f1f5f9;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 .legal-nav-btn.active {
-  background: var(--sdl-accent-50);
-  color: var(--sdl-accent-500);
-  border-left: 3px solid var(--sdl-accent-500);
+  background: var(--ngf-accent-50);
+  color: var(--ngf-accent-500);
+  border-left: 3px solid var(--ngf-accent-500);
 }
 
 /* Main Document Body */
-.sdl-legal-document {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-2xl);
+.ngf-legal-document {
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-2xl);
   padding: 3rem 2.75rem;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
 }
 
 .legal-doc-header {
-  border-bottom: 1.5px solid var(--sdl-slate-100);
+  border-bottom: 1.5px solid var(--ngf-slate-100);
   padding-bottom: 1.75rem;
   margin-bottom: 2.25rem;
 }
@@ -169,17 +169,17 @@
 .doc-type-tag {
   font-size: 0.6875rem;
   font-weight: 800;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   letter-spacing: 0.08em;
   display: block;
   margin-bottom: 0.5rem;
 }
 
 .legal-doc-header h2 {
-  font-family: var(--sdl-font-display);
+  font-family: var(--ngf-font-display);
   font-size: 2rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 0.75rem;
 }
 
@@ -188,7 +188,7 @@
   align-items: center;
   gap: 0.75rem;
   font-size: 0.8125rem;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   flex-wrap: wrap;
 }
 
@@ -202,12 +202,12 @@
   font-size: 1.25rem;
   font-weight: 800;
   margin-bottom: 0.75rem;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 .legal-section p {
   font-size: 0.9375rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   line-height: 1.75;
   margin: 0;
 }
@@ -225,7 +225,7 @@
   flex-direction: column;
   gap: 0.375rem;
   font-size: 0.9375rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   line-height: 1.65;
 }
 
@@ -233,7 +233,7 @@
    RESPONSIVE DESIGN & MOBILE BREAKPOINTS
    ============================================================ */
 @media (max-width: 900px) {
-  .sdl-legal-hero {
+  .ngf-legal-hero {
     padding: 3.5rem 0 3rem;
   }
   .legal-hero-title {
@@ -243,7 +243,7 @@
   .legal-hero-lead {
     font-size: 1rem;
   }
-  .sdl-legal-content-wrap {
+  .ngf-legal-content-wrap {
     /* minmax(0, …): a plain 1fr column grows to fit the tab row, pushing the page sideways. */
     grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
@@ -265,15 +265,15 @@
     padding: 0.625rem 0.875rem;
     font-size: 0.8125rem;
     border-left: none;
-    border-radius: var(--sdl-radius-md);
+    border-radius: var(--ngf-radius-md);
   }
   .legal-nav-btn.active {
     border-left: none;
-    border-bottom: 2px solid var(--sdl-accent-500);
+    border-bottom: 2px solid var(--ngf-accent-500);
   }
-  .sdl-legal-document {
+  .ngf-legal-document {
     padding: 1.75rem 1.25rem;
-    border-radius: var(--sdl-radius-xl);
+    border-radius: var(--ngf-radius-xl);
   }
   .legal-doc-header h2 {
     font-size: 1.5rem;

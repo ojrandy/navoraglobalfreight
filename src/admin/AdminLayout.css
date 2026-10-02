@@ -1,16 +1,16 @@
 /* ==========================================================================
    EXECUTIVE ADMIN COMMAND CENTER SHELL
-   Palette: Ink surfaces (--sdl-ink-950, --sdl-ink-900) · SDL red accent (--sdl-accent-500)
+   Palette: Ink surfaces (--ngf-ink-950, --ngf-ink-900) · brand red accent (--ngf-accent-500)
    Authoritative, High-Density, Self-Explanatory Dispatch Terminal
    ========================================================================== */
 
-.sdl-admin-root {
+.ngf-admin-root {
   display: flex;
   min-height: 100vh;
   width: 100%;
   background-color: #f8fafc;
   color: #0f172a;
-  font-family: var(--sdl-font-sans, 'Inter', sans-serif);
+  font-family: var(--ngf-font-sans, 'Inter', sans-serif);
   position: relative;
   overflow-x: hidden;
 }
@@ -18,11 +18,11 @@
 /* ==========================================================================
    1. EXECUTIVE DISPATCH COMMAND SIDEBAR (LEFT)
    ========================================================================== */
-.sdl-admin-sidebar {
+.ngf-admin-sidebar {
   width: 280px;
   min-width: 280px;
-  background-color: var(--sdl-ink-950, var(--sdl-ink-950));
-  background-image: linear-gradient(180deg, var(--sdl-ink-950) 0%, var(--sdl-ink-900) 100%);
+  background-color: var(--ngf-ink-950, var(--ngf-ink-950));
+  background-image: linear-gradient(180deg, var(--ngf-ink-950) 0%, var(--ngf-ink-900) 100%);
   color: #94a3b8;
   display: flex;
   flex-direction: column;
@@ -38,11 +38,11 @@
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sdl-admin-sidebar::-webkit-scrollbar {
+.ngf-admin-sidebar::-webkit-scrollbar {
   width: 4px;
 }
-.sdl-admin-sidebar::-webkit-scrollbar-thumb {
-  background: var(--sdl-ink-800);
+.ngf-admin-sidebar::-webkit-scrollbar-thumb {
+  background: var(--ngf-ink-800);
   border-radius: 4px;
 }
 
@@ -79,10 +79,10 @@
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 6px;
-  font-family: var(--sdl-font-mono, monospace);
+  font-family: var(--ngf-font-mono, monospace);
   font-size: 0.65rem;
   font-weight: 700;
-  color: var(--sdl-accent-400);
+  color: var(--ngf-accent-400);
   letter-spacing: 0.06em;
   width: fit-content;
 }
@@ -175,11 +175,11 @@
 }
 
 .admin-nav-btn.active {
-  background: linear-gradient(90deg, rgba(var(--sdl-accent-rgb), 0.16) 0%, rgba(var(--sdl-accent-rgb), 0.04) 100%);
+  background: linear-gradient(90deg, rgba(var(--ngf-accent-rgb), 0.16) 0%, rgba(var(--ngf-accent-rgb), 0.04) 100%);
   color: #ffffff;
-  border-color: rgba(var(--sdl-accent-rgb), 0.3);
-  border-left: 3px solid var(--sdl-accent-500, var(--sdl-accent-500));
-  box-shadow: 0 2px 10px rgba(var(--sdl-accent-rgb), 0.1);
+  border-color: rgba(var(--ngf-accent-rgb), 0.3);
+  border-left: 3px solid var(--ngf-accent-500, var(--ngf-accent-500));
+  box-shadow: 0 2px 10px rgba(var(--ngf-accent-rgb), 0.1);
 }
 
 .nav-btn-icon-wrap {
@@ -201,9 +201,9 @@
 }
 
 .admin-nav-btn.active .nav-btn-icon-wrap {
-  background: var(--sdl-accent-500, var(--sdl-accent-500));
+  background: var(--ngf-accent-500, var(--ngf-accent-500));
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(var(--sdl-accent-rgb), 0.35);
+  box-shadow: 0 2px 8px rgba(var(--ngf-accent-rgb), 0.35);
 }
 
 .nav-btn-text {
@@ -255,11 +255,11 @@
   font-weight: 800;
   padding: 0.15rem 0.55rem;
   border-radius: 9999px;
-  background: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
   color: #ffffff;
   margin-left: auto;
   letter-spacing: 0.04em;
-  box-shadow: 0 2px 8px rgba(var(--sdl-accent-rgb), 0.4);
+  box-shadow: 0 2px 8px rgba(var(--ngf-accent-rgb), 0.4);
 }
 
 .live-telemetry-tag {
@@ -321,7 +321,7 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: var(--sdl-ink-800);
+  background: var(--ngf-ink-800);
   border: 1.5px solid #334155;
   color: #ffffff;
   font-size: 0.75rem;
@@ -338,7 +338,7 @@
   height: 8px;
   border-radius: 50%;
   background-color: #10b981;
-  border: 2px solid var(--sdl-ink-950);
+  border: 2px solid var(--ngf-ink-950);
   position: absolute;
   bottom: -1px;
   right: -1px;
@@ -382,7 +382,7 @@
   flex-shrink: 0;
   width: 32px;
   height: 2.5px;
-  background-color: var(--sdl-accent-500);
+  background-color: var(--ngf-accent-500);
   border-radius: 9999px;
   display: inline-block;
 }
@@ -390,7 +390,7 @@
 /* ==========================================================================
    2. MAIN WORKSPACE WRAPPER & TOP DISPATCH HEADER
    ========================================================================= */
-.sdl-admin-main-wrapper {
+.ngf-admin-main-wrapper {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -400,7 +400,7 @@
   background-color: #f8fafc;
 }
 
-.sdl-admin-page-content {
+.ngf-admin-page-content {
   padding: 1.25rem 1.5rem 3rem;
   flex: 1;
   width: 100%;
@@ -410,7 +410,7 @@
 }
 
 /* TOP DISPATCH HEADER BAR */
-.sdl-admin-top-header {
+.ngf-admin-top-header {
   height: 58px;
   background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
@@ -498,8 +498,8 @@
 
 .universal-search-input:focus {
   background: #ffffff;
-  border-color: var(--sdl-accent-500, var(--sdl-accent-500));
-  box-shadow: 0 0 0 3px rgba(var(--sdl-accent-rgb), 0.12);
+  border-color: var(--ngf-accent-500, var(--ngf-accent-500));
+  box-shadow: 0 0 0 3px rgba(var(--ngf-accent-rgb), 0.12);
 }
 
 .universal-search-input::placeholder {
@@ -667,7 +667,7 @@
   flex-shrink: 0;
 }
 
-.item-dot.quote { background: var(--sdl-accent-500); }
+.item-dot.quote { background: var(--ngf-accent-500); }
 .item-dot.delay { background: #ef4444; }
 
 .item-content strong {
@@ -686,7 +686,7 @@
 .item-time {
   font-size: 0.65rem;
   color: #94a3b8;
-  font-family: var(--sdl-font-mono, monospace);
+  font-family: var(--ngf-font-mono, monospace);
 }
 
 /* User Profile Pill */
@@ -715,7 +715,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--sdl-ink-950);
+  background: var(--ngf-ink-950);
   color: #ffffff;
   font-size: 0.72rem;
   font-weight: 800;
@@ -814,12 +814,12 @@
 }
 
 .menu-popover-links .menu-exit-link {
-  color: var(--sdl-accent-500, var(--sdl-accent-500));
+  color: var(--ngf-accent-500, var(--ngf-accent-500));
 }
 
 .menu-popover-links .menu-exit-link:hover {
-  background: var(--sdl-accent-50);
-  color: var(--sdl-accent-600);
+  background: var(--ngf-accent-50);
+  color: var(--ngf-accent-600);
 }
 
 /* ==========================================================================
@@ -829,7 +829,7 @@
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  background: var(--sdl-ink-950);
+  background: var(--ngf-ink-950);
   color: #ffffff;
   padding: 0.85rem 1.25rem;
   border-radius: 10px;
@@ -839,7 +839,7 @@
   gap: 0.65rem;
   font-size: 0.85rem;
   font-weight: 600;
-  border-left: 4px solid var(--sdl-accent-500, var(--sdl-accent-500));
+  border-left: 4px solid var(--ngf-accent-500, var(--ngf-accent-500));
   z-index: 1000;
 }
 
@@ -861,7 +861,7 @@
 }
 
 @media (max-width: 900px) {
-  .sdl-admin-sidebar {
+  .ngf-admin-sidebar {
     position: fixed;
     left: 0;
     top: 0;
@@ -870,11 +870,11 @@
     box-shadow: 10px 0 25px rgba(0, 0, 0, 0.3);
   }
 
-  .sdl-admin-sidebar.open {
+  .ngf-admin-sidebar.open {
     transform: translateX(0);
   }
 
-  .sdl-admin-main-wrapper {
+  .ngf-admin-main-wrapper {
     margin-left: 0;
     width: 100%;
   }
@@ -891,11 +891,11 @@
     width: 180px;
   }
 
-  .sdl-admin-top-header {
+  .ngf-admin-top-header {
     padding: 0 1.25rem;
   }
 
-  .sdl-admin-page-content {
+  .ngf-admin-page-content {
     padding: 1.25rem 1rem 3rem;
   }
 
@@ -918,7 +918,7 @@
      phone. Trimming padding/gaps, dropping the title's box treatment down to plain text, and
      collapsing the profile button to just its avatar (the name/role text added no value at
      this width and was the biggest space hog) gives the same controls real breathing room. */
-  .sdl-admin-top-header {
+  .ngf-admin-top-header {
     padding: 0 0.85rem;
     gap: 0.5rem;
   }

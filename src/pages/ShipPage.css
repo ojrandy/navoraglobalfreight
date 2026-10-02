@@ -3,45 +3,45 @@
    Strictly Zero Freight/Train/Ship · 4 Core Services · Mobile-First
    ============================================================ */
 
-.sdl-page-ship {
+.ngf-page-ship {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding-bottom: 6rem;
   background-color: #f8fafc;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 /* ============================================================
    1. CINEMATIC HERO SECTION
    ============================================================ */
-.sdl-ship-hero {
+.ngf-ship-hero {
   position: relative;
-  background-color: var(--sdl-ink-950);
+  background-color: var(--ngf-ink-950);
   /* Slot ship-hero from scripts/optimize-images.mjs: 1600 here, 1024 on phones. */
-  background-image: url('/images/sdl/ship-hero-1600.jpg');
-  background-image: image-set(url('/images/sdl/ship-hero-1600.webp') type('image/webp'), url('/images/sdl/ship-hero-1600.jpg') type('image/jpeg'));
+  background-image: url('/images/site/ship-hero-1600.jpg');
+  background-image: image-set(url('/images/site/ship-hero-1600.webp') type('image/webp'), url('/images/site/ship-hero-1600.jpg') type('image/jpeg'));
   background-size: cover;
   background-position: center 40%;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
   padding: 5rem 0 5.5rem;
   overflow: hidden;
 }
 
 @media (max-width: 767px) {
-  .sdl-ship-hero {
-    background-image: url('/images/sdl/ship-hero-1024.jpg');
-    background-image: image-set(url('/images/sdl/ship-hero-1024.webp') type('image/webp'), url('/images/sdl/ship-hero-1024.jpg') type('image/jpeg'));
+  .ngf-ship-hero {
+    background-image: url('/images/site/ship-hero-1024.jpg');
+    background-image: image-set(url('/images/site/ship-hero-1024.webp') type('image/webp'), url('/images/site/ship-hero-1024.jpg') type('image/jpeg'));
   }
 }
 
-.sdl-ship-hero-bg {
+.ngf-ship-hero-bg {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(var(--sdl-ink-rgb), 0.88) 0%,
-    rgba(var(--sdl-ink-rgb), 0.58) 50%,
+    rgba(var(--ngf-ink-rgb), 0.88) 0%,
+    rgba(var(--ngf-ink-rgb), 0.58) 50%,
     rgba(15, 34, 56, 0.22) 100%
   );
   z-index: 1;
@@ -52,7 +52,7 @@
   z-index: 2;
 }
 
-.sdl-ship-breadcrumbs {
+.ngf-ship-breadcrumbs {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -62,14 +62,14 @@
 }
 
 .crumb-link {
-  color: var(--sdl-accent-400);
+  color: var(--ngf-accent-400);
   cursor: pointer;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .crumb-link:hover {
   text-decoration: underline;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
 }
 
 .crumb-sep {
@@ -84,9 +84,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(var(--sdl-accent-rgb), 0.15);
-  color: var(--sdl-accent-400);
-  border: 1px solid rgba(var(--sdl-accent-rgb), 0.35);
+  background: rgba(var(--ngf-accent-rgb), 0.15);
+  color: var(--ngf-accent-400);
+  border: 1px solid rgba(var(--ngf-accent-rgb), 0.35);
   padding: 0.375rem 0.875rem;
   border-radius: 9999px;
   font-size: 0.75rem;
@@ -99,15 +99,15 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--sdl-accent-500);
+  background-color: var(--ngf-accent-500);
   animation: pulse-dot 2s infinite ease-in-out;
 }
 
 .ship-hero-title {
-  font-family: var(--sdl-font-display);
+  font-family: var(--ngf-font-display);
   font-size: 3.25rem;
   font-weight: 800;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin-bottom: 0.875rem;
@@ -115,7 +115,7 @@
 }
 
 .ship-highlight-accent {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   font-weight: 800;
 }
 
@@ -146,13 +146,13 @@
 /* ============================================================
    2. MAIN WORKSPACE & GRID LAYOUT
    ============================================================ */
-.sdl-ship-workspace {
+.ngf-ship-workspace {
   margin-top: -2.5rem;
   position: relative;
   z-index: 10;
 }
 
-.sdl-ship-grid {
+.ngf-ship-grid {
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 2rem;
@@ -162,9 +162,9 @@
 /* Mobile-Only Progress & Snapshot (Hidden on Desktop) */
 .mobile-step-progress-banner {
   display: none;
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   padding: 1rem 1.25rem;
   margin-bottom: 0.75rem;
 }
@@ -179,17 +179,17 @@
 .mobile-step-tag {
   font-size: 0.6875rem;
   font-weight: 800;
-  color: var(--sdl-accent-500);
-  background: var(--sdl-accent-50);
+  color: var(--ngf-accent-500);
+  background: var(--ngf-accent-50);
   padding: 0.2rem 0.5rem;
-  border-radius: var(--sdl-radius-sm);
+  border-radius: var(--ngf-radius-sm);
   letter-spacing: 0.05em;
 }
 
 .mobile-step-name {
   font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 .mobile-step-track {
@@ -202,7 +202,7 @@
 
 .mobile-step-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--sdl-accent-500) 0%, var(--sdl-accent-400) 100%);
+  background: linear-gradient(90deg, var(--ngf-accent-500) 0%, var(--ngf-accent-400) 100%);
   border-radius: 9999px;
   transition: width 0.3s ease;
 }
@@ -211,9 +211,9 @@
   display: none;
   align-items: center;
   justify-content: space-between;
-  background: rgba(var(--sdl-accent-rgb), 0.08);
-  border: 1px solid rgba(var(--sdl-accent-rgb), 0.2);
-  border-radius: var(--sdl-radius-lg);
+  background: rgba(var(--ngf-accent-rgb), 0.08);
+  border: 1px solid rgba(var(--ngf-accent-rgb), 0.2);
+  border-radius: var(--ngf-radius-lg);
   padding: 0.625rem 1rem;
   margin-bottom: 1rem;
   font-size: 0.75rem;
@@ -224,14 +224,14 @@
   align-items: center;
   gap: 0.375rem;
   font-weight: 700;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 .snapshot-metrics {
   display: flex;
   align-items: center;
   gap: 0.375rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   font-weight: 700;
 }
 
@@ -244,18 +244,18 @@
 }
 
 .step-nav-item {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   padding: 0.875rem 1rem;
   display: flex;
   align-items: center;
   gap: 0.625rem;
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   cursor: pointer;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
   text-align: left;
 }
 
@@ -264,31 +264,31 @@
   height: 28px;
   border-radius: 50%;
   background: #f1f5f9;
-  color: var(--sdl-slate-700);
+  color: var(--ngf-slate-700);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.8125rem;
   font-weight: 800;
   flex-shrink: 0;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .step-nav-item:hover {
-  border-color: var(--sdl-accent-300);
-  color: var(--sdl-accent-500);
+  border-color: var(--ngf-accent-300);
+  color: var(--ngf-accent-500);
 }
 
 .step-nav-item.active {
-  background: var(--sdl-ink-900);
-  border-color: var(--sdl-ink-900);
-  color: var(--sdl-white);
-  box-shadow: 0 4px 12px rgba(var(--sdl-ink-rgb), 0.15);
+  background: var(--ngf-ink-900);
+  border-color: var(--ngf-ink-900);
+  color: var(--ngf-white);
+  box-shadow: 0 4px 12px rgba(var(--ngf-ink-rgb), 0.15);
 }
 
 .step-nav-item.active .step-num {
-  background: var(--sdl-accent-500);
-  color: var(--sdl-white);
+  background: var(--ngf-accent-500);
+  color: var(--ngf-white);
 }
 
 .step-nav-item.completed {
@@ -298,16 +298,16 @@
 
 .step-nav-item.completed .step-num {
   background: #10b981;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
 }
 
 /* The admin wizard's .step-sub (slate-400, 2.6:1) also reaches this page; slate-500 reads at 4.8:1. */
 .step-nav-item .step-sub {
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
 }
 
 .step-nav-item.active .step-sub {
-  color: var(--sdl-slate-300);
+  color: var(--ngf-slate-300);
 }
 
 /* Validation Error Alert */
@@ -316,7 +316,7 @@
   border: 1.5px solid #fecaca;
   color: #991b1b;
   padding: 0.875rem 1.25rem;
-  border-radius: var(--sdl-radius-lg);
+  border-radius: var(--ngf-radius-lg);
   font-size: 0.875rem;
   font-weight: 600;
   display: flex;
@@ -327,9 +327,9 @@
 
 /* Form Section Card */
 .form-section-card {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-2xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-2xl);
   padding: 2.25rem;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
 }
@@ -339,17 +339,17 @@
   align-items: flex-start;
   gap: 1rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1.5px solid var(--sdl-slate-100);
+  border-bottom: 1.5px solid var(--ngf-slate-100);
   margin-bottom: 2rem;
 }
 
 .sec-icon {
   width: 44px;
   height: 44px;
-  border-radius: var(--sdl-radius-lg);
-  background: var(--sdl-accent-50);
-  color: var(--sdl-accent-500);
-  border: 1px solid var(--sdl-accent-200);
+  border-radius: var(--ngf-radius-lg);
+  background: var(--ngf-accent-50);
+  color: var(--ngf-accent-500);
+  border: 1px solid var(--ngf-accent-200);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,13 +359,13 @@
 .sec-header h3 {
   font-size: 1.375rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 0.25rem;
 }
 
 .sec-header p {
   font-size: 0.875rem;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   margin: 0;
 }
 
@@ -377,24 +377,24 @@
 }
 
 .add-piece-btn {
-  background: var(--sdl-accent-50);
-  border: 1px solid var(--sdl-accent-300);
-  color: var(--sdl-accent-500);
+  background: var(--ngf-accent-50);
+  border: 1px solid var(--ngf-accent-300);
+  color: var(--ngf-accent-500);
   padding: 0.5rem 1rem;
-  border-radius: var(--sdl-radius-md);
+  border-radius: var(--ngf-radius-md);
   font-size: 0.8125rem;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
   cursor: pointer;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .add-piece-btn:hover {
-  background: var(--sdl-accent-500);
-  color: var(--sdl-white);
-  border-color: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
+  color: var(--ngf-white);
+  border-color: var(--ngf-accent-500);
 }
 
 /* Fields Grid */
@@ -422,38 +422,38 @@
 .form-group label {
   font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--sdl-slate-700);
+  color: var(--ngf-slate-700);
 }
 
-.sdl-input {
+.ngf-input {
   width: 100%;
   padding: 0.875rem 1rem;
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-md);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-md);
   font-size: 0.9375rem;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   background: #f8fafc;
   outline: none;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
-.sdl-input:focus {
-  border-color: var(--sdl-accent-500);
-  background: var(--sdl-white);
-  box-shadow: 0 0 0 3px rgba(var(--sdl-accent-rgb), 0.12);
+.ngf-input:focus {
+  border-color: var(--ngf-accent-500);
+  background: var(--ngf-white);
+  box-shadow: 0 0 0 3px rgba(var(--ngf-accent-rgb), 0.12);
 }
 
 /* Tender Mode Switcher */
 .tender-mode-wrap {
   margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--sdl-slate-100);
+  border-top: 1px solid var(--ngf-slate-100);
 }
 
 .section-sublabel {
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   display: block;
   margin-bottom: 1rem;
 }
@@ -466,38 +466,38 @@
 }
 
 .tender-card {
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   padding: 1.25rem;
   display: flex;
   align-items: flex-start;
   gap: 0.875rem;
   cursor: pointer;
   background: #f8fafc;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .tender-card:hover {
-  border-color: var(--sdl-accent-300);
-  background: var(--sdl-white);
+  border-color: var(--ngf-accent-300);
+  background: var(--ngf-white);
 }
 
 .tender-card.selected {
-  border-color: var(--sdl-accent-500);
-  background: var(--sdl-white);
-  box-shadow: 0 0 0 3px rgba(var(--sdl-accent-rgb), 0.12);
+  border-color: var(--ngf-accent-500);
+  background: var(--ngf-white);
+  box-shadow: 0 0 0 3px rgba(var(--ngf-accent-rgb), 0.12);
 }
 
 .tender-card strong {
   display: block;
   font-size: 0.9375rem;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 0.25rem;
 }
 
 .tender-card p {
   font-size: 0.8125rem;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   margin: 0;
   line-height: 1.4;
 }
@@ -509,7 +509,7 @@
 .pickup-window-select label {
   font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--sdl-slate-700);
+  color: var(--ngf-slate-700);
   display: block;
   margin-bottom: 0.375rem;
 }
@@ -526,8 +526,8 @@
   gap: 1rem;
   padding: 1.25rem;
   background: #f8fafc;
-  border: 1px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
 }
 
 .piece-badge-col {
@@ -539,10 +539,10 @@
 }
 
 .p-badge {
-  background: var(--sdl-ink-900);
-  color: var(--sdl-white);
+  background: var(--ngf-ink-900);
+  color: var(--ngf-white);
   padding: 0.35rem 0.625rem;
-  border-radius: var(--sdl-radius-sm);
+  border-radius: var(--ngf-radius-sm);
   font-size: 0.8125rem;
   font-weight: 800;
 }
@@ -558,12 +558,12 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .p-delete-btn:hover {
   background: #dc2626;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
 }
 
 .piece-inputs-col {
@@ -582,7 +582,7 @@
 .p-field label {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   display: block;
   margin-bottom: 0.25rem;
 }
@@ -590,7 +590,7 @@
 .p-field-desc label {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   display: block;
   margin-bottom: 0.25rem;
 }
@@ -604,39 +604,39 @@
 }
 
 .service-option-card {
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   padding: 1.5rem;
   cursor: pointer;
   background: #f8fafc;
   position: relative;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
 .service-option-card:hover {
-  border-color: var(--sdl-accent-300);
-  background: var(--sdl-white);
+  border-color: var(--ngf-accent-300);
+  background: var(--ngf-white);
 }
 
 .service-option-card.selected {
-  border-color: var(--sdl-accent-500);
-  background: var(--sdl-white);
-  box-shadow: 0 0 0 3px rgba(var(--sdl-accent-rgb), 0.12);
+  border-color: var(--ngf-accent-500);
+  background: var(--ngf-white);
+  box-shadow: 0 0 0 3px rgba(var(--ngf-accent-rgb), 0.12);
 }
 
 .service-option-card .pop-badge {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: var(--sdl-accent-100);
-  color: var(--sdl-accent-600);
+  background: var(--ngf-accent-100);
+  color: var(--ngf-accent-600);
   font-size: 0.6875rem;
   font-weight: 800;
   padding: 0.2rem 0.5rem;
-  border-radius: var(--sdl-radius-sm);
+  border-radius: var(--ngf-radius-sm);
   letter-spacing: 0.04em;
 }
 
@@ -648,28 +648,28 @@
 
 .serv-head strong {
   font-size: 1rem;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 .serv-transit {
   font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
 }
 
 .serv-rate-status {
   font-size: 0.6875rem;
   font-weight: 700;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   background: #f1f5f9;
   padding: 0.25rem 0.5rem;
-  border-radius: var(--sdl-radius-sm);
+  border-radius: var(--ngf-radius-sm);
   width: fit-content;
 }
 
 .service-option-card small {
   font-size: 0.75rem;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
 }
 
 /* Addons Grid */
@@ -678,7 +678,7 @@
   flex-direction: column;
   gap: 1rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--sdl-slate-100);
+  border-top: 1px solid var(--ngf-slate-100);
 }
 
 .addon-checkbox-row {
@@ -691,7 +691,7 @@
   width: 18px;
   height: 18px;
   margin-top: 2px;
-  accent-color: var(--sdl-accent-500);
+  accent-color: var(--ngf-accent-500);
   cursor: pointer;
 }
 
@@ -702,13 +702,13 @@
 .addon-checkbox-row strong {
   display: block;
   font-size: 0.875rem;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 .addon-checkbox-row small {
   display: block;
   font-size: 0.75rem;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
 }
 
 .declared-value-row {
@@ -718,7 +718,7 @@
 .declared-value-row label {
   font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--sdl-slate-700);
+  color: var(--ngf-slate-700);
   display: block;
   margin-bottom: 0.375rem;
 }
@@ -734,7 +734,7 @@
   position: absolute;
   left: 12px;
   font-weight: 700;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
 }
 
 .value-input-wrap input {
@@ -747,7 +747,7 @@
   justify-content: flex-end;
   margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--sdl-slate-100);
+  border-top: 1px solid var(--ngf-slate-100);
 }
 
 .form-step-actions.dual {
@@ -764,9 +764,9 @@
 .sidebar-sticky-card {
   position: sticky;
   top: 100px;
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-2xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-2xl);
   padding: 1.75rem;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
 }
@@ -776,32 +776,32 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 1.25rem;
-  border-bottom: 1.5px solid var(--sdl-slate-100);
+  border-bottom: 1.5px solid var(--ngf-slate-100);
   margin-bottom: 1.25rem;
 }
 
 .sidebar-head h3 {
   font-size: 1.125rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin: 0;
 }
 
 .badge-live {
   font-size: 0.6875rem;
   font-weight: 800;
-  background: var(--sdl-accent-50);
-  color: var(--sdl-accent-500);
-  border: 1px solid var(--sdl-accent-200);
+  background: var(--ngf-accent-50);
+  color: var(--ngf-accent-500);
+  border: 1px solid var(--ngf-accent-200);
   padding: 0.2rem 0.5rem;
-  border-radius: var(--sdl-radius-sm);
+  border-radius: var(--ngf-radius-sm);
   letter-spacing: 0.04em;
 }
 
 .sidebar-route-preview {
   background: #f8fafc;
-  border: 1px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-lg);
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-lg);
   padding: 1rem;
   margin-bottom: 1.25rem;
   display: flex;
@@ -818,13 +818,13 @@
 .route-loc small {
   font-size: 0.6875rem;
   font-weight: 700;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   display: block;
 }
 
 .route-loc strong {
   font-size: 0.875rem;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 .route-arrow-line {
@@ -836,7 +836,7 @@
 .route-line {
   width: 2px;
   height: 16px;
-  background: var(--sdl-accent-400);
+  background: var(--ngf-accent-400);
 }
 
 .sidebar-specs-list {
@@ -844,7 +844,7 @@
   flex-direction: column;
   gap: 0.75rem;
   padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--sdl-slate-100);
+  border-bottom: 1px solid var(--ngf-slate-100);
   margin-bottom: 1.25rem;
 }
 
@@ -856,17 +856,17 @@
 }
 
 .spec-row span {
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
 }
 
 .spec-row strong {
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 .sidebar-pricing-breakdown {
   background: #fffbeb;
   border: 1px solid #fef3c7;
-  border-radius: var(--sdl-radius-lg);
+  border-radius: var(--ngf-radius-lg);
   padding: 1rem;
   margin-bottom: 1.25rem;
 }
@@ -897,17 +897,17 @@
   align-items: flex-start;
   gap: 0.625rem;
   font-size: 0.75rem;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   line-height: 1.4;
 }
 
 /* ============================================================
    4. BOOKING CONFIRMED SCREEN
    ============================================================ */
-.sdl-booking-confirmed-card {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-2xl);
+.ngf-booking-confirmed-card {
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-2xl);
   padding: 3rem;
   max-width: 900px;
   margin: 0 auto;
@@ -934,29 +934,29 @@
 }
 
 .confirm-header h2 {
-  font-family: var(--sdl-font-display);
+  font-family: var(--ngf-font-display);
   font-size: 2.25rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin: 1rem 0 0.5rem;
 }
 
 .confirm-header p {
   font-size: 1rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   line-height: 1.6;
 }
 
 .admin-rate-notice-banner {
-  background: var(--sdl-accent-50);
-  border: 1.5px solid var(--sdl-accent-100);
-  border-radius: var(--sdl-radius-xl);
+  background: var(--ngf-accent-50);
+  border: 1.5px solid var(--ngf-accent-100);
+  border-radius: var(--ngf-radius-xl);
   padding: 1.25rem;
   display: flex;
   align-items: flex-start;
   gap: 1rem;
   margin-bottom: 2rem;
-  color: var(--sdl-accent-700);
+  color: var(--ngf-accent-700);
 }
 
 .admin-rate-notice-banner strong {
@@ -969,13 +969,13 @@
   font-size: 0.875rem;
   line-height: 1.5;
   margin: 0;
-  color: var(--sdl-accent-600);
+  color: var(--ngf-accent-600);
 }
 
 .confirm-barcode-block {
   background: #f8fafc;
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   padding: 1.5rem;
   margin-bottom: 2rem;
 }
@@ -990,20 +990,20 @@
 .barcode-tag {
   font-size: 0.6875rem;
   font-weight: 800;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   letter-spacing: 0.05em;
 }
 
 .barcode-service {
   font-size: 0.75rem;
   font-weight: 800;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
 }
 
 .barcode-render-stage {
-  background: var(--sdl-white);
-  border: 1px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-md);
+  background: var(--ngf-white);
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-md);
   padding: 1.5rem;
   display: flex;
   justify-content: center;
@@ -1015,7 +1015,7 @@
   align-items: center;
   justify-content: space-between;
   font-size: 0.8125rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   flex-wrap: wrap;
   gap: 0.75rem;
 }
@@ -1029,8 +1029,8 @@
 
 .confirm-piece-card {
   background: #f8fafc;
-  border: 1px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-lg);
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-lg);
   padding: 1rem;
 }
 
@@ -1043,18 +1043,18 @@
 }
 
 .piece-barcode-render {
-  background: var(--sdl-white);
-  border: 1px solid var(--sdl-slate-200);
+  background: var(--ngf-white);
+  border: 1px solid var(--ngf-slate-200);
   padding: 0.75rem;
-  border-radius: var(--sdl-radius-sm);
+  border-radius: var(--ngf-radius-sm);
   display: flex;
   justify-content: center;
 }
 
 .confirm-instructions-card {
   background: #f8fafc;
-  border: 1px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   padding: 1.25rem;
   display: flex;
   align-items: flex-start;
@@ -1065,13 +1065,13 @@
 .confirm-instructions-card h4 {
   font-size: 0.9375rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin: 0 0 0.25rem;
 }
 
 .confirm-instructions-card p {
   font-size: 0.875rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   margin: 0;
   line-height: 1.5;
 }
@@ -1090,10 +1090,10 @@
 /* ============================================================
    5. HOW SHIPMENT INTAKE WORKS SECTION
    ============================================================ */
-.sdl-ship-process-section {
+.ngf-ship-process-section {
   padding: 6rem 0;
-  background-color: var(--sdl-white);
-  border-top: 1px solid var(--sdl-slate-200);
+  background-color: var(--ngf-white);
+  border-top: 1px solid var(--ngf-slate-200);
   margin-top: 5rem;
 }
 
@@ -1106,31 +1106,31 @@
 
 .p-step-card {
   background: #f8fafc;
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .p-step-card:hover {
-  border-color: var(--sdl-accent-400);
+  border-color: var(--ngf-accent-400);
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(var(--sdl-accent-rgb), 0.08);
+  box-shadow: 0 12px 24px rgba(var(--ngf-accent-rgb), 0.08);
 }
 
 .p-step-card .step-badge {
-  font-family: var(--sdl-font-mono);
+  font-family: var(--ngf-font-mono);
   font-size: 1.125rem;
   font-weight: 800;
-  color: var(--sdl-accent-500);
-  background: var(--sdl-accent-50);
-  border: 1px solid var(--sdl-accent-200);
+  color: var(--ngf-accent-500);
+  background: var(--ngf-accent-50);
+  border: 1px solid var(--ngf-accent-200);
   width: 42px;
   height: 42px;
-  border-radius: var(--sdl-radius-lg);
+  border-radius: var(--ngf-radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1140,13 +1140,13 @@
 .p-step-card h4 {
   font-size: 1.125rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 0.5rem;
 }
 
 .p-step-card p {
   font-size: 0.875rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   line-height: 1.6;
   margin: 0;
 }
@@ -1155,7 +1155,7 @@
    RESPONSIVE DESIGN & MOBILE BREAKPOINTS
    ============================================================ */
 @media (max-width: 1024px) {
-  .sdl-ship-grid {
+  .ngf-ship-grid {
     grid-template-columns: 1fr;
   }
   .sidebar-sticky-card {
@@ -1168,10 +1168,10 @@
 
 @media (max-width: 768px) {
   /* 1. Compact, Focused Mobile Hero */
-  .sdl-ship-hero {
+  .ngf-ship-hero {
     padding: 2.75rem 0 2rem;
   }
-  .sdl-ship-breadcrumbs {
+  .ngf-ship-breadcrumbs {
     display: none; /* Hide clutter on mobile */
   }
   .ship-hero-title {
@@ -1187,7 +1187,7 @@
   .ship-hero-trust-strip {
     display: none; /* Hide bulky checkmarks */
   }
-  .sdl-ship-workspace {
+  .ngf-ship-workspace {
     margin-top: 0; /* Remove negative margin clash */
     padding-top: 0.5rem;
   }
@@ -1204,7 +1204,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    border-radius: var(--sdl-radius-lg);
+    border-radius: var(--ngf-radius-lg);
     gap: 0.25rem;
   }
   .step-nav-item .step-num {
@@ -1225,9 +1225,9 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    background: var(--sdl-white);
-    border: 1px solid var(--sdl-slate-200);
-    border-radius: var(--sdl-radius-lg);
+    background: var(--ngf-white);
+    border: 1px solid var(--ngf-slate-200);
+    border-radius: var(--ngf-radius-lg);
     padding: 0.75rem 1rem;
     margin-bottom: 1rem;
   }
@@ -1238,13 +1238,13 @@
     font-size: 0.8125rem;
   }
   .mobile-step-text strong {
-    color: var(--sdl-ink-900);
+    color: var(--ngf-ink-900);
   }
   .step-badge-mini {
     font-size: 0.6875rem;
     font-weight: 800;
-    color: var(--sdl-accent-500);
-    background: var(--sdl-accent-50);
+    color: var(--ngf-accent-500);
+    background: var(--ngf-accent-50);
     padding: 0.15rem 0.4rem;
     border-radius: 4px;
   }
@@ -1257,14 +1257,14 @@
   }
   .mobile-step-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--sdl-accent-500) 0%, var(--sdl-accent-400) 100%);
+    background: linear-gradient(90deg, var(--ngf-accent-500) 0%, var(--ngf-accent-400) 100%);
     border-radius: 999px;
   }
 
   /* 4. Streamlined Form Section Card */
   .form-section-card {
     padding: 1.25rem 1rem;
-    border-radius: var(--sdl-radius-xl);
+    border-radius: var(--ngf-radius-xl);
   }
   .sec-header {
     margin-bottom: 1.25rem;
@@ -1283,7 +1283,7 @@
   }
 
   /* 5. 16px Font Size to Prevent iOS Safari Auto-Zoom */
-  .sdl-input, select.sdl-input {
+  .ngf-input, select.ngf-input {
     font-size: 16px !important;
     padding: 0.75rem 0.875rem;
     min-height: 48px;
@@ -1313,7 +1313,7 @@
     align-items: center;
     text-align: center;
     gap: 0.375rem;
-    border-radius: var(--sdl-radius-lg);
+    border-radius: var(--ngf-radius-lg);
   }
   .tender-card p {
     display: none; /* Hide long description on mobile */
@@ -1328,7 +1328,7 @@
     flex-direction: column;
     padding: 1rem;
     gap: 0.75rem;
-    border-radius: var(--sdl-radius-lg);
+    border-radius: var(--ngf-radius-lg);
   }
   .piece-badge-col {
     flex-direction: row;
@@ -1336,7 +1336,7 @@
     justify-content: space-between;
     width: 100%;
     padding-top: 0;
-    border-bottom: 1px solid var(--sdl-slate-200);
+    border-bottom: 1px solid var(--ngf-slate-200);
     padding-bottom: 0.5rem;
   }
   .piece-inputs-col {
@@ -1359,7 +1359,7 @@
   }
   .service-option-card {
     padding: 1rem;
-    border-radius: var(--sdl-radius-lg);
+    border-radius: var(--ngf-radius-lg);
   }
   .service-option-card .serv-head strong {
     font-size: 0.9375rem;
@@ -1380,17 +1380,17 @@
   }
 
   /* 9. Hide Redundant Bottom Clutter on Mobile */
-  .sdl-ship-sidebar {
+  .ngf-ship-sidebar {
     display: none; /* Hides duplicate summary card on mobile */
   }
-  .sdl-ship-process-section {
+  .ngf-ship-process-section {
     display: none; /* Hides 4 large infographic cards on mobile */
   }
 
   /* 10. Confirmation View Mobile Polish */
-  .sdl-booking-confirmed-card {
+  .ngf-booking-confirmed-card {
     padding: 1.5rem 1rem;
-    border-radius: var(--sdl-radius-xl);
+    border-radius: var(--ngf-radius-xl);
   }
   .confirm-header h2 {
     font-size: 1.625rem;
@@ -1459,7 +1459,7 @@
 
 .tender-card:focus-visible,
 .service-option-card:focus-visible {
-  outline: 3px solid var(--sdl-accent-400);
+  outline: 3px solid var(--ngf-accent-400);
   outline-offset: 2px;
 }
 
@@ -1475,23 +1475,23 @@
   flex-direction: column;
   gap: 0.25rem;
   font-size: 0.875rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   line-height: 1.5;
 }
 
 /* "Print labels": only the tracking ID block and the piece labels are printed */
 @media print {
-  body:has(.ship-print-labels) .sdl-header-wrapper,
-  body:has(.ship-print-labels) .sdl-pro-footer-wrapper,
-  .sdl-page-ship .sdl-ship-hero,
-  .sdl-page-ship .sdl-ship-process-section,
-  .sdl-booking-confirmed-card > :not(.ship-print-labels) {
+  body:has(.ship-print-labels) .ngf-header-wrapper,
+  body:has(.ship-print-labels) .ngf-pro-footer-wrapper,
+  .ngf-page-ship .ngf-ship-hero,
+  .ngf-page-ship .ngf-ship-process-section,
+  .ngf-booking-confirmed-card > :not(.ship-print-labels) {
     display: none !important;
   }
 
-  .sdl-page-ship,
-  .sdl-ship-workspace,
-  .sdl-booking-confirmed-card {
+  .ngf-page-ship,
+  .ngf-ship-workspace,
+  .ngf-booking-confirmed-card {
     margin: 0 !important;
     padding: 0 !important;
     border: 0 !important;
@@ -1507,19 +1507,19 @@
 
 /* The ghost button is styled for dark heroes; on this white card it needs a dark outline. */
 .confirm-action-row .btn-corp-ghost {
-  color: var(--sdl-ink-900);
-  background: var(--sdl-white);
-  border: 1px solid var(--sdl-slate-300);
+  color: var(--ngf-ink-900);
+  background: var(--ngf-white);
+  border: 1px solid var(--ngf-slate-300);
 }
 
 .confirm-action-row .btn-corp-ghost:hover {
-  border-color: var(--sdl-ink-900);
-  background: var(--sdl-slate-50);
+  border-color: var(--ngf-ink-900);
+  background: var(--ngf-slate-50);
 }
 
 /* Narrow screens: the text spans the whole hero, so the overlay stays dark edge to edge. */
 @media (max-width: 768px) {
-  .sdl-ship-hero-bg {
-    background: rgba(var(--sdl-ink-rgb), 0.85);
+  .ngf-ship-hero-bg {
+    background: rgba(var(--ngf-ink-rgb), 0.85);
   }
 }

@@ -371,7 +371,7 @@ export const TrackingEventsView: React.FC<TrackingEventsViewProps> = ({ onSelect
   };
 
   return (
-    <div className="sdl-tracking-events-workspace animate-fade-in">
+    <div className="ngf-tracking-events-workspace animate-fade-in">
       {successToast && (
         <div className="tracking-toast-success animate-fade-in">
           <CheckCircle2 size={16} className="text-emerald" />

@@ -3,7 +3,7 @@
    100% Faithful to Reference Logistics Dispatch Mockup
    ============================================================ */
 
-.sdl-redesign-tracking-page {
+.ngf-redesign-tracking-page {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -16,15 +16,15 @@
 /* ============================================================
    0. CINEMATIC HERO BANNER (DUSK HIGHWAY COMMERCIAL LINEHAUL)
    ============================================================ */
-.sdl-cinematic-hero-section {
+.ngf-cinematic-hero-section {
   position: relative;
   width: 100%;
   overflow: hidden;
-  background-color: var(--sdl-ink-900);
+  background-color: var(--ngf-ink-900);
   margin-bottom: 2rem;
 }
 
-.sdl-hero-backdrop-img {
+.ngf-hero-backdrop-img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -32,12 +32,12 @@
   overflow: hidden;
 }
 
-.sdl-hero-backdrop-img .hero-bg-media {
+.ngf-hero-backdrop-img .hero-bg-media {
   width: 100%;
   height: 100%;
 }
 
-.sdl-hero-backdrop-img .hero-bg-photo,
+.ngf-hero-backdrop-img .hero-bg-photo,
 .hero-bg-photo {
   width: 100%;
   height: 100%;
@@ -47,13 +47,13 @@
   transform: scale(1.02);
 }
 
-.sdl-hero-overlay {
+.ngf-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(var(--sdl-ink-rgb), 0.95) 0%, rgba(var(--sdl-ink-rgb), 0.88) 45%, rgba(var(--sdl-ink-rgb), 0.5) 100%);
+  background: linear-gradient(90deg, rgba(var(--ngf-ink-rgb), 0.95) 0%, rgba(var(--ngf-ink-rgb), 0.88) 45%, rgba(var(--ngf-ink-rgb), 0.5) 100%);
 }
 
-.sdl-hero-content-wrap {
+.ngf-hero-content-wrap {
   position: relative;
   z-index: 2;
   max-width: 1240px;
@@ -62,7 +62,7 @@
   color: #ffffff;
 }
 
-.sdl-hero-top-bar {
+.ngf-hero-top-bar {
   margin-bottom: 1rem;
 }
 
@@ -164,7 +164,7 @@
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
   align-items: center;
-  background: rgba(var(--sdl-ink-rgb), 0.78);
+  background: rgba(var(--ngf-ink-rgb), 0.78);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -239,14 +239,14 @@
   margin: 0 1rem;
 }
 
-.sdl-track-container {
+.ngf-track-container {
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-.sdl-track-search-card {
+.ngf-track-search-card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
@@ -314,7 +314,7 @@
 
 .track-search-btn {
   padding: 0.65rem 1.35rem;
-  background: var(--sdl-primary-900);
+  background: var(--ngf-primary-900);
   color: #ffffff;
   font-size: 0.875rem;
   font-weight: 700;
@@ -331,7 +331,7 @@
 /* ============================================================
    2. HERO CONSIGNMENT SUMMARY CARD (3 COLUMNS)
    ============================================================ */
-.sdl-hero-summary-card {
+.ngf-hero-summary-card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 16px;
@@ -573,7 +573,7 @@
 }
 
 .realtime-live-chip.simulating {
-  background: var(--sdl-ink-950);
+  background: var(--ngf-ink-950);
   border-color: rgba(56, 139, 253, 0.4);
   color: #93c5fd;
   font-weight: 700;
@@ -683,18 +683,18 @@
 /* ============================================================
    3. ROUTE MAP SECTION
    ============================================================ */
-.sdl-route-map-section {
+.ngf-route-map-section {
   margin-bottom: 2rem;
 }
 
-.sdl-route-title {
+.ngf-route-title {
   margin-bottom: 0.75rem;
 }
 
 /* ============================================================
    4. MAIN LOWER CONTENT GRID (2 COLUMNS)
    ============================================================ */
-.sdl-main-content-grid {
+.ngf-main-content-grid {
   display: grid;
   grid-template-columns: 1fr 1.8fr;
   gap: 2rem;
@@ -840,9 +840,9 @@
 }
 
 .t-tag.current {
-  background: var(--sdl-primary-900);
+  background: var(--ngf-primary-900);
   color: #ffffff;
-  box-shadow: 0 0 0 2px rgba(var(--sdl-primary-rgb), 0.2);
+  box-shadow: 0 0 0 2px rgba(var(--ngf-primary-rgb), 0.2);
 }
 
 .t-tag.estimated {
@@ -857,9 +857,9 @@
 }
 
 .t-icon-badge.current {
-  background: var(--sdl-primary-900);
+  background: var(--ngf-primary-900);
   color: #ffffff;
-  box-shadow: 0 0 0 4px rgba(var(--sdl-primary-rgb), 0.22);
+  box-shadow: 0 0 0 4px rgba(var(--ngf-primary-rgb), 0.22);
 }
 
 .t-icon-badge.estimated {
@@ -893,7 +893,7 @@
 }
 
 .t-event-title.text-blue {
-  color: var(--sdl-primary-900);
+  color: var(--ngf-primary-900);
 }
 
 .t-event-meta-sub {
@@ -931,7 +931,7 @@
   border-radius: 10px;
   font-size: 0.825rem;
   font-weight: 700;
-  color: var(--sdl-primary-900);
+  color: var(--ngf-primary-900);
   cursor: pointer;
   transition: all 0.15s ease;
   margin-top: 1.25rem;
@@ -1029,9 +1029,9 @@
 }
 
 .gallery-arrow-btn:hover {
-  background: var(--sdl-primary-900);
+  background: var(--ngf-primary-900);
   color: #ffffff;
-  border-color: var(--sdl-primary-900);
+  border-color: var(--ngf-primary-900);
 }
 
 .veh-main-photo-frame {
@@ -1063,7 +1063,7 @@
   bottom: 0.75rem;
   width: 32px;
   height: 32px;
-  background: rgba(var(--sdl-ink-rgb), 0.75);
+  background: rgba(var(--ngf-ink-rgb), 0.75);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -1077,8 +1077,8 @@
 }
 
 .veh-expand-btn:hover {
-  background: var(--sdl-primary-900);
-  border-color: var(--sdl-primary-900);
+  background: var(--ngf-primary-900);
+  border-color: var(--ngf-primary-900);
 }
 
 /* 6 Thumbnail buttons row */
@@ -1102,8 +1102,8 @@
 }
 
 .veh-thumb-btn.active {
-  border-color: var(--sdl-primary-900);
-  box-shadow: 0 0 0 2px rgba(var(--sdl-primary-rgb), 0.25);
+  border-color: var(--ngf-primary-900);
+  box-shadow: 0 0 0 2px rgba(var(--ngf-primary-rgb), 0.25);
 }
 
 .thumb-img {
@@ -1115,7 +1115,7 @@
 .veh-thumb-more-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(var(--sdl-ink-rgb), 0.78);
+  background: rgba(var(--ngf-ink-rgb), 0.78);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1199,7 +1199,7 @@
 }
 
 .inline-copy-btn:hover {
-  color: var(--sdl-primary-900);
+  color: var(--ngf-primary-900);
 }
 
 .status-highlight {
@@ -1278,7 +1278,7 @@
   gap: 0.4rem;
   font-size: 0.825rem;
   font-weight: 700;
-  color: var(--sdl-primary-900);
+  color: var(--ngf-primary-900);
   text-decoration: none;
   margin-top: 0.35rem;
   transition: color 0.15s ease;
@@ -1295,7 +1295,7 @@
   gap: 0.4rem;
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--sdl-primary-900);
+  color: var(--ngf-primary-900);
   text-decoration: none;
   margin-top: 0.3rem;
   transition: color 0.15s ease;
@@ -1407,15 +1407,15 @@
 
 /* ACCENT CALL DISPATCH BUTTON */
 .accent-dispatch-btn {
-  background: var(--sdl-accent-500) !important;
-  border-color: var(--sdl-accent-400) !important;
+  background: var(--ngf-accent-500) !important;
+  border-color: var(--ngf-accent-400) !important;
   color: #ffffff !important;
   font-weight: 800;
-  box-shadow: 0 4px 14px rgba(var(--sdl-accent-rgb), 0.3);
+  box-shadow: 0 4px 14px rgba(var(--ngf-accent-rgb), 0.3);
 }
 
 .accent-dispatch-btn:hover {
-  background: var(--sdl-accent-500) !important;
+  background: var(--ngf-accent-500) !important;
 }
 
 /* LIGHTBOX MODAL */
@@ -1423,7 +1423,7 @@
   position: fixed;
   inset: 0;
   z-index: 10000;
-  background: rgba(var(--sdl-ink-rgb), 0.92);
+  background: rgba(var(--ngf-ink-rgb), 0.92);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   display: flex;
@@ -1487,7 +1487,7 @@
 }
 
 .lightbox-arrow-btn:hover {
-  background: var(--sdl-primary-900);
+  background: var(--ngf-primary-900);
 }
 
 .handling-pill {
@@ -1514,15 +1514,15 @@
 /* ============================================================
    5. NEED HELP WITH THIS SHIPMENT BANNER
    ============================================================ */
-.sdl-help-banner-card {
-  background: var(--sdl-ink-900);
-  border: 1px solid var(--sdl-ink-700);
+.ngf-help-banner-card {
+  background: var(--ngf-ink-900);
+  border: 1px solid var(--ngf-ink-700);
   border-radius: 16px;
   padding: 1.75rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 10px 25px -5px rgba(var(--sdl-ink-rgb), 0.2);
+  box-shadow: 0 10px 25px -5px rgba(var(--ngf-ink-rgb), 0.2);
   margin-bottom: 2rem;
   flex-wrap: wrap;
   gap: 1.5rem;
@@ -1553,7 +1553,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: var(--sdl-ink-700);
+  background: var(--ngf-ink-700);
   color: #38bdf8;
   display: flex;
   align-items: center;
@@ -1616,7 +1616,7 @@
 /* ============================================================
    6. BOTTOM TRUST & VERIFICATION STRIP
    ============================================================ */
-.sdl-bottom-trust-strip {
+.ngf-bottom-trust-strip {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1645,7 +1645,7 @@
     grid-template-columns: 1fr;
     gap: 1.75rem;
   }
-  .sdl-main-content-grid {
+  .ngf-main-content-grid {
     grid-template-columns: 1fr;
   }
   .parties-two-col-layout {
@@ -1915,7 +1915,7 @@
 .alerts-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(var(--sdl-ink-rgb), 0.6);
+  background: rgba(var(--ngf-ink-rgb), 0.6);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -1975,7 +1975,7 @@
   gap: 0.5rem;
   width: 100%;
   padding: 0.75rem;
-  background: var(--sdl-primary-900);
+  background: var(--ngf-primary-900);
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -2040,7 +2040,7 @@
   border-radius: 10px;
   background: #eff6ff;
   border: 1px solid #bfdbfe;
-  color: var(--sdl-primary-900);
+  color: var(--ngf-primary-900);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2069,7 +2069,7 @@
 .corridor-city {
   font-size: 0.95rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   line-height: 1.2;
 }
 
@@ -2110,7 +2110,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   font-weight: 700;
 }
 
@@ -2125,7 +2125,7 @@
 
 .corridor-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--sdl-primary-900) 0%, #38bdf8 70%, #10b981 100%);
+  background: linear-gradient(90deg, var(--ngf-primary-900) 0%, #38bdf8 70%, #10b981 100%);
   border-radius: 9999px;
   position: relative;
   transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2195,9 +2195,9 @@
 }
 
 .lifecycle-step.active .step-dot {
-  background: var(--sdl-primary-900);
-  border-color: var(--sdl-primary-900);
-  box-shadow: 0 0 0 4px rgba(var(--sdl-primary-rgb), 0.18);
+  background: var(--ngf-primary-900);
+  border-color: var(--ngf-primary-900);
+  box-shadow: 0 0 0 4px rgba(var(--ngf-primary-rgb), 0.18);
 }
 
 .step-live-pulse {
@@ -2225,7 +2225,7 @@
 
 .lifecycle-step.completed .step-txt,
 .lifecycle-step.active .step-txt {
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 .lifecycle-line {
@@ -2299,7 +2299,7 @@
 .security-card-title {
   font-size: 0.98rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin: 0 0 2px 0;
 }
 
@@ -2319,7 +2319,7 @@
   border-radius: 9999px;
   font-size: 0.7rem;
   font-weight: 700;
-  color: var(--sdl-primary-900);
+  color: var(--ngf-primary-900);
 }
 
 .security-specs-grid {
@@ -2349,7 +2349,7 @@
 .sec-val {
   font-size: 0.825rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 /* Proof of Delivery Strip */
@@ -2434,7 +2434,7 @@
 }
 
 .help-btn.phone-btn {
-  background: var(--sdl-primary-900);
+  background: var(--ngf-primary-900);
   color: #ffffff;
   border: 1px solid #38bdf8;
   display: inline-flex;
@@ -2450,7 +2450,7 @@
 }
 
 .help-btn.phone-btn:hover {
-  background: var(--sdl-primary-800);
+  background: var(--ngf-primary-800);
   color: #ffffff;
 }
 
@@ -2475,18 +2475,18 @@
     padding-bottom: 1rem;
     border-bottom: 1px solid #f1f5f9;
   }
-  .sdl-main-content-grid {
+  .ngf-main-content-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 }
 
 @media (max-width: 768px) {
-  .sdl-redesign-tracking-page {
+  .ngf-redesign-tracking-page {
     padding: 0 0 3rem;
     background: #f8fafc;
   }
-  .sdl-hero-content-wrap {
+  .ngf-hero-content-wrap {
     padding: 1.5rem 1rem 1.75rem;
   }
   .hero-tracking-number {
@@ -2507,7 +2507,7 @@
     gap: 0.85rem;
     padding: 1rem;
   }
-  .sdl-track-container {
+  .ngf-track-container {
     padding: 0 0.85rem;
   }
   .tracking-top-alert-banner,
@@ -2516,12 +2516,12 @@
     gap: 0.75rem;
     align-items: flex-start;
   }
-  .sdl-track-search-card {
+  .ngf-track-search-card {
     padding: 1rem;
     border-radius: 14px;
     margin-bottom: 1rem;
   }
-  .sdl-hero-summary-card {
+  .ngf-hero-summary-card {
     padding: 1.25rem 1rem;
     border-radius: 16px;
     margin-bottom: 1.25rem;
@@ -2593,7 +2593,7 @@
   }
 
   /* Clean, unboxed lower content on mobile */
-  .sdl-main-content-grid {
+  .ngf-main-content-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
@@ -2631,7 +2631,7 @@
   }
 
   /* Concierge banner on mobile */
-  .sdl-help-banner-card {
+  .ngf-help-banner-card {
     flex-direction: column;
     align-items: stretch;
     gap: 1.25rem;

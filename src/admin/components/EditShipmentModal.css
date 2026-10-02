@@ -6,7 +6,7 @@
 .edit-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(var(--sdl-ink-rgb), 0.45);
+  background: rgba(var(--ngf-ink-rgb), 0.45);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   z-index: 99999;
@@ -63,9 +63,9 @@
   font-weight: 800;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--sdl-accent-500);
-  background: var(--sdl-accent-50);
-  border: 1px solid var(--sdl-accent-100);
+  color: var(--ngf-accent-500);
+  background: var(--ngf-accent-50);
+  border: 1px solid var(--ngf-accent-100);
   padding: 0.12rem 0.45rem;
   border-radius: 4px;
   width: fit-content;
@@ -228,8 +228,8 @@
 .edit-field input:focus,
 .edit-field select:focus,
 .edit-field textarea:focus {
-  border-color: var(--sdl-accent-500);
-  box-shadow: 0 0 0 2px rgba(var(--sdl-accent-rgb), 0.15);
+  border-color: var(--ngf-accent-500);
+  box-shadow: 0 0 0 2px rgba(var(--ngf-accent-rgb), 0.15);
 }
 
 .edit-field.checkbox-field {
@@ -248,7 +248,7 @@
 .edit-field.checkbox-field input[type="checkbox"] {
   width: 15px;
   height: 15px;
-  accent-color: var(--sdl-accent-500);
+  accent-color: var(--ngf-accent-500);
   cursor: pointer;
   flex-shrink: 0;
 }
@@ -286,21 +286,21 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.55rem 1.35rem;
-  background: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
   border: none;
   border-radius: 6px;
   font-size: 0.8125rem;
   font-weight: 700;
   color: #ffffff;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(var(--sdl-accent-rgb), 0.25);
+  box-shadow: 0 2px 6px rgba(var(--ngf-accent-rgb), 0.25);
   transition: all 0.15s ease;
 }
 
 .edit-btn-save:hover {
-  background: var(--sdl-accent-600);
+  background: var(--ngf-accent-600);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(var(--sdl-accent-rgb), 0.35);
+  box-shadow: 0 4px 12px rgba(var(--ngf-accent-rgb), 0.35);
 }
 
 

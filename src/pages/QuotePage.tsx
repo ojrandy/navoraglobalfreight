@@ -177,13 +177,13 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
   };
 
   return (
-    <div className="sdl-page-quote">
+    <div className="ngf-page-quote">
       {/* =========================================================================
           1. HERO (CONTENT §7.1)
           ========================================================================= */}
-      <section className="sdl-quote-hero">
+      <section className="ngf-quote-hero">
         <div className="quote-hero-bg-overlay" />
-        <div className="sdl-container-wide quote-hero-inner">
+        <div className="ngf-container-wide quote-hero-inner">
           <h1 className="quote-hero-title animate-fade-in">Get a rate quote</h1>
 
           <p className="quote-hero-lead animate-fade-in">
@@ -195,7 +195,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
       {/* =========================================================================
           2. MAIN BODY & FORM
           ========================================================================= */}
-      <div className="sdl-container-wide sdl-quote-body">
+      <div className="ngf-container-wide ngf-quote-body">
         {submitted ? (
           /* =========================================================================
              CONFIRMATION STATE
@@ -264,7 +264,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
           /* =========================================================================
              QUOTE FORM + SIDE CARD
              ========================================================================= */
-          <div className="sdl-quote-grid">
+          <div className="ngf-quote-grid">
             <div className="quote-form-card">
               {formError && (
                 <div className="quote-form-error animate-fade-in" role="alert">
@@ -293,7 +293,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
                           id={`${side.key}-country`}
                           value={side.country}
                           onChange={side.setCountry}
-                          className="sdl-input"
+                          className="ngf-input"
                           required
                         />
                       </div>
@@ -306,29 +306,29 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
                           value={side.city}
                           onChange={(e) => side.setCity(e.target.value)}
                           placeholder={side.key === 'origin' ? 'e.g. Lagos' : 'e.g. London'}
-                          className="sdl-input"
+                          className="ngf-input"
                         />
                       </div>
                     </div>
                     <div className="form-row-2">
                       <div className="form-group">
-                        <label htmlFor={`${side.key}-region`}>{regionLabel(side.country)} <span className="sdl-field-optional">(optional)</span></label>
+                        <label htmlFor={`${side.key}-region`}>{regionLabel(side.country)} <span className="ngf-field-optional">(optional)</span></label>
                         <input
                           id={`${side.key}-region`}
                           type="text"
                           value={side.region}
                           onChange={(e) => side.setRegion(e.target.value)}
-                          className="sdl-input"
+                          className="ngf-input"
                         />
                       </div>
                       <div className="form-group">
-                        <label htmlFor={`${side.key}-postcode`}>{postcodeLabel(side.country)} <span className="sdl-field-optional">(optional)</span></label>
+                        <label htmlFor={`${side.key}-postcode`}>{postcodeLabel(side.country)} <span className="ngf-field-optional">(optional)</span></label>
                         <input
                           id={`${side.key}-postcode`}
                           type="text"
                           value={side.postcode}
                           onChange={(e) => side.setPostcode(e.target.value)}
-                          className="sdl-input font-mono"
+                          className="ngf-input font-mono"
                         />
                       </div>
                     </div>
@@ -341,7 +341,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
                   <span>2. Cargo</span>
                 </div>
 
-                <div className="sdl-heading-with-units quote-units-row">
+                <div className="ngf-heading-with-units quote-units-row">
                   <span className="quote-units-label">Units</span>
                   <UnitToggle />
                 </div>
@@ -357,7 +357,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
                       value={pieces}
                       onChange={(e) => setPieces(e.target.value)}
                       placeholder="1"
-                      className="sdl-input font-mono"
+                      className="ngf-input font-mono"
                     />
                   </div>
 
@@ -372,29 +372,29 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
                       value={weight}
                       onChange={setWeight}
                       placeholder={units.system === 'metric' ? 'e.g. 6.5' : 'e.g. 14.5'}
-                      className="sdl-input font-mono"
+                      className="ngf-input font-mono"
                     />
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="quote-value">Declared value ({money.currency}) <span className="sdl-field-optional">(optional)</span></label>
+                    <label htmlFor="quote-value">Declared value ({money.currency}) <span className="ngf-field-optional">(optional)</span></label>
                     <MoneyInput
                       id="quote-value"
                       min="0"
                       value={declaredValue}
                       onChange={setDeclaredValue}
                       placeholder="e.g. 2500"
-                      className="sdl-input font-mono"
+                      className="ngf-input font-mono"
                     />
                   </div>
                 </div>
 
                 <div className="form-group">
-                  <label>Dimensions (L × W × H, {units.length}) <span className="sdl-field-optional">(optional)</span></label>
+                  <label>Dimensions (L × W × H, {units.length}) <span className="ngf-field-optional">(optional)</span></label>
                   <div className="dimensions-row">
-                    <MeasureInput kind="length" min="0" aria-label={`Length (${units.length})`} value={length} onChange={setLength} placeholder={`Length (${units.length})`} className="sdl-input font-mono" />
-                    <MeasureInput kind="length" min="0" aria-label={`Width (${units.length})`} value={width} onChange={setWidth} placeholder={`Width (${units.length})`} className="sdl-input font-mono" />
-                    <MeasureInput kind="length" min="0" aria-label={`Height (${units.length})`} value={height} onChange={setHeight} placeholder={`Height (${units.length})`} className="sdl-input font-mono" />
+                    <MeasureInput kind="length" min="0" aria-label={`Length (${units.length})`} value={length} onChange={setLength} placeholder={`Length (${units.length})`} className="ngf-input font-mono" />
+                    <MeasureInput kind="length" min="0" aria-label={`Width (${units.length})`} value={width} onChange={setWidth} placeholder={`Width (${units.length})`} className="ngf-input font-mono" />
+                    <MeasureInput kind="length" min="0" aria-label={`Height (${units.length})`} value={height} onChange={setHeight} placeholder={`Height (${units.length})`} className="ngf-input font-mono" />
                   </div>
                 </div>
 
@@ -407,7 +407,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
                     value={cargoDescription}
                     onChange={(e) => setCargoDescription(e.target.value)}
                     placeholder="e.g. Machine spare parts"
-                    className="sdl-input"
+                    className="ngf-input"
                   />
                 </div>
 
@@ -424,7 +424,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
                       id="quote-service"
                       value={service}
                       onChange={(e) => setService(e.target.value)}
-                      className="sdl-input"
+                      className="ngf-input"
                     >
                       {SERVICE_OPTIONS.map((s) => (
                         <option key={s.id} value={s.name}>{s.name}</option>
@@ -438,7 +438,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
                       id="quote-mode"
                       value={transportMode}
                       onChange={(e) => setTransportMode(e.target.value as TransportMode | '')}
-                      className="sdl-input"
+                      className="ngf-input"
                     >
                       <option value="">Let {COMPANY} recommend</option>
                       <option value="Air">{TRANSPORT_MODE_LABELS.Air}</option>
@@ -449,13 +449,13 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="quote-notes">Special instructions <span className="sdl-field-optional">(optional)</span></label>
+                  <label htmlFor="quote-notes">Special instructions <span className="ngf-field-optional">(optional)</span></label>
                   <textarea
                     id="quote-notes"
                     rows={3}
                     value={specialInstructions}
                     onChange={(e) => setSpecialInstructions(e.target.value)}
-                    className="sdl-input"
+                    className="ngf-input"
                   />
                 </div>
 
@@ -475,19 +475,19 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
                       autoComplete="name"
                       value={customerName}
                       onChange={(e) => setCustomerName(e.target.value)}
-                      className="sdl-input"
+                      className="ngf-input"
                     />
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="quote-company">Company <span className="sdl-field-optional">(optional)</span></label>
+                    <label htmlFor="quote-company">Company <span className="ngf-field-optional">(optional)</span></label>
                     <input
                       id="quote-company"
                       type="text"
                       autoComplete="organization"
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
-                      className="sdl-input"
+                      className="ngf-input"
                     />
                   </div>
                 </div>
@@ -503,18 +503,18 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
                       value={customerEmail}
                       onChange={(e) => setCustomerEmail(e.target.value)}
                       placeholder="name@company.com"
-                      className="sdl-input"
+                      className="ngf-input"
                     />
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="quote-phone">Phone <span className="sdl-field-optional">(optional)</span></label>
+                    <label htmlFor="quote-phone">Phone <span className="ngf-field-optional">(optional)</span></label>
                     <PhoneInput
                       id="quote-phone"
                       value={customerPhone}
                       onChange={setCustomerPhone}
                       defaultCountry={originCountry || 'US'}
-                      className="sdl-input font-mono"
+                      className="ngf-input font-mono"
                     />
                   </div>
                 </div>

@@ -47,7 +47,7 @@ export const Barcode: React.FC<BarcodeProps> = ({
   }, [value, width, height, displayValue, fontSize, lineColor, background]);
 
   return (
-    <div className={`sdl-barcode-container ${className}`} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div className={`ngf-barcode-container ${className}`} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center' }}>
       <svg ref={svgRef} />
     </div>
   );

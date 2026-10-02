@@ -3,24 +3,24 @@
    Zero Freight/Train/Ship · 24/7 Dispatch Desk · Mobile-First
    ============================================================ */
 
-.sdl-page-help {
+.ngf-page-help {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding-bottom: 6rem;
   background-color: #f8fafc;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 /* ============================================================
    1. CINEMATIC HERO SECTION
    ============================================================ */
-.sdl-help-hero {
+.ngf-help-hero {
   position: relative;
   background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&auto=format&fit=crop&q=85');
   background-size: cover;
   background-position: center 30%;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
   padding: 5.5rem 0 6rem;
   overflow: hidden;
 }
@@ -30,8 +30,8 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(var(--sdl-ink-rgb), 0.88) 0%,
-    rgba(var(--sdl-ink-rgb), 0.58) 50%,
+    rgba(var(--ngf-ink-rgb), 0.88) 0%,
+    rgba(var(--ngf-ink-rgb), 0.58) 50%,
     rgba(15, 34, 56, 0.22) 100%
   );
   z-index: 1;
@@ -47,9 +47,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(var(--sdl-accent-rgb), 0.15);
-  color: var(--sdl-accent-400);
-  border: 1px solid rgba(var(--sdl-accent-rgb), 0.35);
+  background: rgba(var(--ngf-accent-rgb), 0.15);
+  color: var(--ngf-accent-400);
+  border: 1px solid rgba(var(--ngf-accent-rgb), 0.35);
   padding: 0.375rem 0.875rem;
   border-radius: 9999px;
   font-size: 0.75rem;
@@ -62,22 +62,22 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--sdl-accent-500);
+  background-color: var(--ngf-accent-500);
   animation: pulse-dot 2s infinite ease-in-out;
 }
 
 .help-hero-title {
-  font-family: var(--sdl-font-display);
+  font-family: var(--ngf-font-display);
   font-size: 3.25rem;
   font-weight: 800;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin-bottom: 1.75rem;
 }
 
 .help-highlight-accent {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   font-weight: 800;
 }
 
@@ -104,7 +104,7 @@
 .help-search-icon {
   position: absolute;
   left: 1.25rem;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   pointer-events: none;
 }
 
@@ -112,14 +112,14 @@
   width: 100%;
   height: 56px;
   padding: 0 5rem 0 3.25rem;
-  background: var(--sdl-white);
+  background: var(--ngf-white);
   border: 2px solid #e2e8f0;
-  border-radius: var(--sdl-radius-xl);
-  color: var(--sdl-ink-900);
+  border-radius: var(--ngf-radius-xl);
+  color: var(--ngf-ink-900);
   font-size: 1rem;
   font-weight: 500;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25);
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .help-search-input::placeholder {
@@ -128,9 +128,9 @@
 
 .help-search-input:focus {
   outline: none;
-  background: var(--sdl-white);
-  border-color: var(--sdl-accent-500);
-  box-shadow: 0 0 0 4px rgba(var(--sdl-accent-rgb), 0.15);
+  background: var(--ngf-white);
+  border-color: var(--ngf-accent-500);
+  box-shadow: 0 0 0 4px rgba(var(--ngf-accent-rgb), 0.15);
 }
 
 .help-search-clear {
@@ -142,24 +142,24 @@
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.35rem 0.65rem;
-  border-radius: var(--sdl-radius-sm);
+  border-radius: var(--ngf-radius-sm);
   cursor: pointer;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .help-search-clear:hover {
   background: #e2e8f0;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 /* ============================================================
    2. NETWORK STATUS STRIP
    ============================================================ */
-.sdl-help-network-strip {
-  background: var(--sdl-ink-950);
+.ngf-help-network-strip {
+  background: var(--ngf-ink-950);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 1rem 0;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
 }
 
 .network-strip-inner {
@@ -214,7 +214,7 @@
 /* ============================================================
    3. CORE ASSISTANCE PILLARS
    ============================================================ */
-.sdl-help-body {
+.ngf-help-body {
   margin-top: 3.5rem;
 }
 
@@ -230,32 +230,32 @@
   font: inherit;
   text-align: left;
   width: 100%;
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   padding: 2rem 1.75rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
   cursor: pointer;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
   display: flex;
   flex-direction: column;
 }
 
 .help-pillar-card:focus-visible {
-  outline: 3px solid var(--sdl-accent-400);
+  outline: 3px solid var(--ngf-accent-400);
   outline-offset: 2px;
 }
 
 .help-pillar-card:hover {
   transform: translateY(-4px);
-  border-color: var(--sdl-accent-400);
-  box-shadow: 0 12px 25px -5px rgba(var(--sdl-accent-rgb), 0.1);
+  border-color: var(--ngf-accent-400);
+  box-shadow: 0 12px 25px -5px rgba(var(--ngf-accent-rgb), 0.1);
 }
 
 .pillar-icon {
   width: 52px;
   height: 52px;
-  border-radius: var(--sdl-radius-lg);
+  border-radius: var(--ngf-radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -263,9 +263,9 @@
 }
 
 .pillar-icon.icon-accent {
-  background: var(--sdl-accent-50);
-  color: var(--sdl-accent-500);
-  border: 1px solid var(--sdl-accent-200);
+  background: var(--ngf-accent-50);
+  color: var(--ngf-accent-500);
+  border: 1px solid var(--ngf-accent-200);
 }
 
 .pillar-icon.icon-emerald {
@@ -289,14 +289,14 @@
 .help-pillar-card h3 {
   font-size: 1.1875rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 0.75rem;
   flex: 1;
 }
 
 .help-pillar-card p {
   font-size: 0.875rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   line-height: 1.55;
   margin: 0 0 1.25rem;
   flex: 1;
@@ -308,8 +308,8 @@
   gap: 0.375rem;
   font-size: 0.8125rem;
   font-weight: 800;
-  color: var(--sdl-accent-500);
-  transition: var(--sdl-transition);
+  color: var(--ngf-accent-500);
+  transition: var(--ngf-transition);
 }
 
 .help-pillar-card:hover .pillar-action-link {
@@ -319,7 +319,7 @@
 /* ============================================================
    4. KNOWLEDGE BASE ACCORDION & TOPIC FILTER
    ============================================================ */
-.sdl-help-faq-section {
+.ngf-help-faq-section {
   padding-top: 1rem;
   margin-bottom: 5rem;
 }
@@ -334,26 +334,26 @@
 }
 
 .cat-pill {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
   border-radius: 9999px;
   padding: 0.5rem 1.125rem;
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   cursor: pointer;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .cat-pill:hover {
-  border-color: var(--sdl-accent-300);
-  color: var(--sdl-ink-900);
+  border-color: var(--ngf-accent-300);
+  color: var(--ngf-ink-900);
 }
 
 .cat-pill.active {
-  background: var(--sdl-ink-900);
-  border-color: var(--sdl-ink-900);
-  color: var(--sdl-white);
+  background: var(--ngf-ink-900);
+  border-color: var(--ngf-ink-900);
+  color: var(--ngf-white);
 }
 
 .help-faq-accordion {
@@ -365,20 +365,20 @@
 }
 
 .help-faq-item {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   overflow: hidden;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .help-faq-item:hover {
-  border-color: var(--sdl-accent-300);
+  border-color: var(--ngf-accent-300);
 }
 
 .help-faq-item.active {
-  border-color: var(--sdl-accent-500);
-  box-shadow: 0 8px 20px rgba(var(--sdl-accent-rgb), 0.08);
+  border-color: var(--ngf-accent-500);
+  box-shadow: 0 8px 20px rgba(var(--ngf-accent-rgb), 0.08);
 }
 
 .help-faq-header-btn {
@@ -393,9 +393,9 @@
   border: none;
   font-size: 1rem;
   font-weight: 700;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   cursor: pointer;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .help-faq-header-btn:hover {
@@ -412,7 +412,7 @@
 .faq-topic-badge {
   font-size: 0.6875rem;
   font-weight: 800;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   background: #f1f5f9;
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
@@ -420,13 +420,13 @@
 
 .help-faq-body {
   padding: 0 1.5rem 1.25rem 3.25rem;
-  border-top: 1px solid var(--sdl-slate-100);
+  border-top: 1px solid var(--ngf-slate-100);
   padding-top: 1rem;
 }
 
 .help-faq-body p {
   font-size: 0.9375rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   line-height: 1.65;
   margin: 0;
 }
@@ -434,21 +434,21 @@
 .help-empty-search {
   text-align: center;
   padding: 3.5rem 1.5rem;
-  background: var(--sdl-white);
-  border: 1.5px dashed var(--sdl-slate-300);
-  border-radius: var(--sdl-radius-xl);
+  background: var(--ngf-white);
+  border: 1.5px dashed var(--ngf-slate-300);
+  border-radius: var(--ngf-radius-xl);
 }
 
 .help-empty-search h3 {
   font-size: 1.25rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin: 1rem 0 0.5rem;
 }
 
 .help-empty-search p {
   font-size: 0.875rem;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   max-width: 480px;
   margin: 0 auto 1.5rem;
   line-height: 1.5;
@@ -457,38 +457,38 @@
 /* ============================================================
    5. IMMEDIATE ASSISTANCE CTA BOX
    ============================================================ */
-.sdl-help-cta-box {
-  background: linear-gradient(135deg, var(--sdl-ink-950) 0%, var(--sdl-ink-900) 100%);
-  border-radius: var(--sdl-radius-2xl);
+.ngf-help-cta-box {
+  background: linear-gradient(135deg, var(--ngf-ink-950) 0%, var(--ngf-ink-900) 100%);
+  border-radius: var(--ngf-radius-2xl);
   padding: 3.5rem 2.5rem;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
   text-align: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 15px 30px -10px rgba(var(--sdl-ink-rgb), 0.3);
+  box-shadow: 0 15px 30px -10px rgba(var(--ngf-ink-rgb), 0.3);
 }
 
 .help-cta-badge {
   display: inline-block;
   font-size: 0.6875rem;
   font-weight: 800;
-  color: var(--sdl-accent-400);
-  background: rgba(var(--sdl-accent-rgb), 0.15);
-  border: 1px solid rgba(var(--sdl-accent-rgb), 0.3);
+  color: var(--ngf-accent-400);
+  background: rgba(var(--ngf-accent-rgb), 0.15);
+  border: 1px solid rgba(var(--ngf-accent-rgb), 0.3);
   padding: 0.3rem 0.75rem;
   border-radius: 9999px;
   letter-spacing: 0.06em;
   margin-bottom: 1rem;
 }
 
-.sdl-help-cta-box h2 {
-  font-family: var(--sdl-font-display);
+.ngf-help-cta-box h2 {
+  font-family: var(--ngf-font-display);
   font-size: 2.25rem;
   font-weight: 800;
   margin-bottom: 0.75rem;
 }
 
-.sdl-help-cta-box p {
+.ngf-help-cta-box p {
   font-size: 1.0625rem;
   color: #cbd5e1;
   max-width: 600px;
@@ -514,7 +514,7 @@
 }
 
 @media (max-width: 768px) {
-  .sdl-help-hero {
+  .ngf-help-hero {
     padding: 3.5rem 0 3rem;
   }
   .help-hero-title {
@@ -568,11 +568,11 @@
   .help-faq-body {
     padding-left: 1.25rem;
   }
-  .sdl-help-cta-box {
+  .ngf-help-cta-box {
     padding: 2.25rem 1.25rem;
-    border-radius: var(--sdl-radius-xl);
+    border-radius: var(--ngf-radius-xl);
   }
-  .sdl-help-cta-box h2 {
+  .ngf-help-cta-box h2 {
     font-size: 1.625rem;
   }
   .help-cta-buttons {
@@ -602,19 +602,19 @@
 
 /* The ghost button is styled for dark heroes; on this white card it needs a dark outline. */
 .help-empty-search .btn-corp-ghost {
-  color: var(--sdl-ink-900);
-  background: var(--sdl-white);
-  border: 1px solid var(--sdl-slate-300);
+  color: var(--ngf-ink-900);
+  background: var(--ngf-white);
+  border: 1px solid var(--ngf-slate-300);
 }
 
 .help-empty-search .btn-corp-ghost:hover {
-  border-color: var(--sdl-ink-900);
-  background: var(--sdl-slate-50);
+  border-color: var(--ngf-ink-900);
+  background: var(--ngf-slate-50);
 }
 
 /* Narrow screens: the text spans the whole hero, so the overlay stays dark edge to edge. */
 @media (max-width: 768px) {
   .help-hero-bg-overlay {
-    background: rgba(var(--sdl-ink-rgb), 0.85);
+    background: rgba(var(--ngf-ink-rgb), 0.85);
   }
 }

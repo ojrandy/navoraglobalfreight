@@ -425,13 +425,13 @@ function MainAppContent() {
   }
 
   return (
-    <div className="sdl-app-shell">
+    <div className="ngf-app-shell">
       <Header
         activePage={currentPage}
         onNavigate={handleNavigate}
       />
 
-      <main className="sdl-main-view">
+      <main className="ngf-main-view">
         {isTrackSearching ? (
           <TrackingLoadingScreen query={trackSearchQuery} />
         ) : (

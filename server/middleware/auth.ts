@@ -23,9 +23,8 @@ declare module 'express-session' {
 // fetch/XHR/form request at all, so a forged request from another origin never even reaches
 // this middleware with a valid session in the first place. Removed rather than attempting a
 // third derivation; the session check below remains the real gate.
-// Admin session cookie. Renamed during the SDL rebrand; that rename signed every existing
-// admin session out once.
-export const SESSION_COOKIE = 'sdl.sid';
+// Admin session cookie name.
+export const SESSION_COOKIE = 'ngf.sid';
 
 export function requireAdminAuth(req: Request, res: Response, next: NextFunction) {
   if (!req.session?.isAdmin) {

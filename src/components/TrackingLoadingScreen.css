@@ -4,7 +4,7 @@
    result page just appearing instantly with no transition.
    ========================================================================== */
 
-.sdl-tracking-loading-shell {
+.ngf-tracking-loading-shell {
   min-height: 62vh;
   display: flex;
   align-items: center;
@@ -37,7 +37,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 2px solid var(--sdl-accent-500, var(--sdl-accent-500));
+  border: 2px solid var(--ngf-accent-500, var(--ngf-accent-500));
   opacity: 0;
   animation: tl-radar-expand 2.1s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
 }
@@ -62,12 +62,12 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--sdl-ink-900, var(--sdl-ink-900));
+  background: var(--ngf-ink-900, var(--ngf-ink-900));
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 20px -4px rgba(var(--sdl-ink-rgb), 0.35);
+  box-shadow: 0 8px 20px -4px rgba(var(--ngf-ink-rgb), 0.35);
   z-index: 1;
 }
 
@@ -75,7 +75,7 @@
   margin: 0 0 0.5rem;
   font-size: 1.25rem;
   font-weight: 800;
-  color: var(--sdl-ink-900, var(--sdl-ink-900));
+  color: var(--ngf-ink-900, var(--ngf-ink-900));
   letter-spacing: -0.01em;
 }
 
@@ -87,7 +87,7 @@
 }
 
 .tl-query-code {
-  color: var(--sdl-accent-500, var(--sdl-accent-500));
+  color: var(--ngf-accent-500, var(--ngf-accent-500));
   font-weight: 700;
 }
 
@@ -106,7 +106,7 @@
   height: 100%;
   width: 40%;
   border-radius: 9999px;
-  background: linear-gradient(90deg, var(--sdl-accent-400, var(--sdl-accent-400)), var(--sdl-accent-500, var(--sdl-accent-500)));
+  background: linear-gradient(90deg, var(--ngf-accent-400, var(--ngf-accent-400)), var(--ngf-accent-500, var(--ngf-accent-500)));
   animation: tl-bar-slide 1.15s ease-in-out infinite;
 }
 
@@ -120,7 +120,7 @@
 }
 
 @media (max-width: 480px) {
-  .sdl-tracking-loading-shell {
+  .ngf-tracking-loading-shell {
     min-height: 52vh;
     padding: 2.5rem 1rem;
   }

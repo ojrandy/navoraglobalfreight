@@ -487,12 +487,12 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
   const statusLine = isDelivered ? deliveredLine : etaLine;
 
   return (
-    <div className="sdl-redesign-tracking-page animate-fade-in">
+    <div className="ngf-redesign-tracking-page animate-fade-in">
       {/* =========================================================================
           0. HERO BANNER
           ========================================================================= */}
-      <section className="sdl-cinematic-hero-section">
-        <div className="sdl-hero-backdrop-img">
+      <section className="ngf-cinematic-hero-section">
+        <div className="ngf-hero-backdrop-img">
           <ResponsiveImage
             name="track-hero"
             alt="Lorry with its headlights on, driving a mountain road at dusk"
@@ -501,12 +501,12 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
             className="hero-bg-media"
             imgClassName="hero-bg-photo"
           />
-          <div className="sdl-hero-overlay" />
+          <div className="ngf-hero-overlay" />
         </div>
 
-        <div className="sdl-hero-content-wrap">
+        <div className="ngf-hero-content-wrap">
           {/* Top Breadcrumb & Status */}
-          <div className="sdl-hero-top-bar">
+          <div className="ngf-hero-top-bar">
             <button
               type="button"
               className="hero-back-link"
@@ -593,7 +593,7 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
       </section>
 
       {/* Main Content Body */}
-      <div className="sdl-track-container">
+      <div className="ngf-track-container">
         {/* Hold / Delay Advisory — surfaces the specific reason an admin recorded via
             Operations Control, instead of leaving a customer to guess why their shipment
             stopped moving or when it'll actually arrive. */}
@@ -632,7 +632,7 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
         {/* =========================================================================
             1. WHITE CONSIGNMENT SUMMARY CARD (3 COLUMNS + CORRIDOR RAIL)
             ========================================================================= */}
-        <section className="sdl-hero-summary-card">
+        <section className="ngf-hero-summary-card">
           <div className="hero-summary-grid">
             {/* Column 1: Tracking Number & Barcode */}
             <div className="hero-col-barcode">
@@ -784,8 +784,8 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
         {/* =========================================================================
             2. FULL-WIDTH INTERACTIVE ROUTE MAP
             ========================================================================= */}
-        <section className="sdl-route-map-section" aria-labelledby="track-route-title">
-          <h3 id="track-route-title" className="card-section-title sdl-route-title">Route</h3>
+        <section className="ngf-route-map-section" aria-labelledby="track-route-title">
+          <h3 id="track-route-title" className="card-section-title ngf-route-title">Route</h3>
           <JourneyMap
             checkpoints={routeCheckpoints}
             currentLocationText={currentLocationText}
@@ -805,7 +805,7 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
         {/* =========================================================================
             3. TWO-COLUMN MAIN CONTENT (LEFT: TIMELINE | RIGHT: VEHICLE & DETAILS)
             ========================================================================= */}
-        <section className="sdl-main-content-grid">
+        <section className="ngf-main-content-grid">
           {/* LEFT COLUMN: Clean Chronological Shipment Timeline */}
           <div id="shipment-timeline-section" className="content-col-timeline">
             <div className="timeline-card">
@@ -1101,7 +1101,7 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
 
             {/* Card 2: Shipment Details (2-Column Icon Grid) */}
             <div className="shipment-details-spec-card">
-              <div className="sdl-heading-with-units">
+              <div className="ngf-heading-with-units">
                 <h3 className="card-section-title">Shipment summary</h3>
                 <UnitToggle />
               </div>
@@ -1305,7 +1305,7 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
         {/* =========================================================================
             4. NEED HELP? (CONTENT §6.3 / §6.4)
             ========================================================================= */}
-        <section className="sdl-help-banner-card">
+        <section className="ngf-help-banner-card">
           <div className="help-banner-left">
             <ResponsiveImage
               name="track-result-vehicle"

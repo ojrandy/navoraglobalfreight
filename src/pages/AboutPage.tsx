@@ -93,7 +93,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
   // The admin "regulatory line" (Settings) shows only when set; no invented licence numbers.
   const { regulatoryLine } = useCompanyContact();
   return (
-    <div className="sdl-page-about">
+    <div className="ngf-page-about">
       {/* =========================================================================
           1. HERO (CONTENT.md §4)
           ========================================================================= */}
@@ -107,7 +107,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           imgClassName="about-hero-img"
         />
         <div className="about-hero-overlay" />
-        <div className="sdl-container-wide about-hero-inner">
+        <div className="ngf-container-wide about-hero-inner">
           <div className="about-hero-badge animate-fade-in">
             <span className="about-badge-dot" />
             <span>ABOUT {COMPANY_SHORT}</span>
@@ -136,7 +136,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           2. STAT CARDS (approved stats only)
           ========================================================================= */}
       <section className="about-stats-section">
-        <div className="sdl-container-wide">
+        <div className="ngf-container-wide">
           <div className="about-stats-grid">
             {STATS.map((stat) => (
               <div key={stat.title} className="about-stat-card">
@@ -153,7 +153,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           3. OUR STORY + OUR APPROACH
           ========================================================================= */}
       <section className="about-story-section">
-        <div className="sdl-container-wide">
+        <div className="ngf-container-wide">
           <div className="about-story-grid">
             <div className="about-story-content">
               <span className="section-eyebrow">OUR STORY</span>
@@ -205,7 +205,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           4. OUR DIVISIONS (CONTENT.md §4 → §3.1)
           ========================================================================= */}
       <section className="about-divisions-section">
-        <div className="sdl-container-wide">
+        <div className="ngf-container-wide">
           <div className="section-center-header">
             <span className="section-eyebrow">DIVISIONS</span>
             <h2>Our divisions</h2>
@@ -233,7 +233,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           5. WHAT WE'VE BUILT (timeline cards, undated until the owner supplies dates)
           ========================================================================= */}
       <section className="about-timeline-section">
-        <div className="sdl-container-wide">
+        <div className="ngf-container-wide">
           <div className="section-center-header">
             <span className="section-eyebrow">WHAT WE'VE BUILT</span>
             <h2>Express, freight and secure transport under one roof</h2>
@@ -264,7 +264,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           6. SAFETY & COMPLIANCE (CONTENT.md §4)
           ========================================================================= */}
       <section className="about-compliance-section">
-        <div className="sdl-container-wide">
+        <div className="ngf-container-wide">
           <div className="compliance-banner">
             <ResponsiveImage
               name="about-compliance"
@@ -308,7 +308,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           7. CTA (CONTENT.md §3.6)
           ========================================================================= */}
       <section className="about-bottom-cta">
-        <div className="sdl-container-wide">
+        <div className="ngf-container-wide">
           <div className="about-cta-card">
             <div className="about-cta-content">
               <h2>Ready to ship with {COMPANY_SHORT}?</h2>

@@ -3,33 +3,33 @@
    Zero Clutter · Hidden Mobile Topbar · Slide-in Drawer
    ============================================================ */
 
-.sdl-header-wrapper {
+.ngf-header-wrapper {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: var(--sdl-white);
+  background-color: var(--ngf-white);
   box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.08);
 }
 
 /* ============================================================
    1. TOP UTILITY BAR (Desktop Only - Clean Corporate Strip)
    ============================================================ */
-.sdl-topbar {
-  background-color: var(--sdl-ink-950);
+.ngf-topbar {
+  background-color: var(--ngf-ink-950);
   color: #94a3b8;
   font-size: 0.75rem;
   font-weight: 500;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.sdl-topbar-inner {
+.ngf-topbar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 38px;
 }
 
-.sdl-topbar-left {
+.ngf-topbar-left {
   display: flex;
   align-items: center;
   gap: 1.25rem;
@@ -42,7 +42,7 @@
 }
 
 .topbar-item strong {
-  color: var(--sdl-white);
+  color: var(--ngf-white);
   font-weight: 600;
 }
 
@@ -59,11 +59,11 @@
 }
 
 .topbar-link:hover {
-  color: var(--sdl-white);
+  color: var(--ngf-white);
 }
 
 .text-accent {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
 }
 
 .text-emerald {
@@ -73,12 +73,12 @@
 /* ============================================================
    2. MAIN NAVIGATION BAR (White Surface)
    ============================================================ */
-.sdl-main-header {
-  background-color: var(--sdl-white);
-  border-bottom: 1px solid var(--sdl-slate-200);
+.ngf-main-header {
+  background-color: var(--ngf-white);
+  border-bottom: 1px solid var(--ngf-slate-200);
 }
 
-.sdl-header-inner {
+.ngf-header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -86,7 +86,7 @@
 }
 
 /* Brand Logo */
-.sdl-logo-wrap {
+.ngf-logo-wrap {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -94,7 +94,7 @@
   user-select: none;
 }
 
-.sdl-brand-logo-img {
+.ngf-brand-logo-img {
   height: 52px;
   width: auto;
   max-width: 250px;
@@ -103,124 +103,124 @@
   transition: transform 0.2s ease;
 }
 
-.sdl-logo-wrap:hover .sdl-brand-logo-img {
+.ngf-logo-wrap:hover .ngf-brand-logo-img {
   transform: scale(1.02);
 }
 
-.sdl-fallback-logo {
-  font-family: var(--sdl-font-display);
+.ngf-fallback-logo {
+  font-family: var(--ngf-font-display);
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   letter-spacing: -0.02em;
 }
 
-.sdl-fallback-logo .text-accent {
-  color: var(--sdl-accent-500);
+.ngf-fallback-logo .text-accent {
+  color: var(--ngf-accent-500);
   margin-left: 0.15rem;
 }
 
 /* Desktop Nav Links */
-.sdl-nav-links {
+.ngf-nav-links {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
 
-.sdl-nav-link {
+.ngf-nav-link {
   font-size: 0.9375rem;
   font-weight: 700;
-  color: var(--sdl-slate-700);
+  color: var(--ngf-slate-700);
   background: transparent;
   border: none;
   padding: 0.5rem 0.25rem;
   position: relative;
   cursor: pointer;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
-.sdl-nav-link:hover {
-  color: var(--sdl-accent-500);
+.ngf-nav-link:hover {
+  color: var(--ngf-accent-500);
 }
 
-.sdl-nav-link.active {
-  color: var(--sdl-accent-500);
+.ngf-nav-link.active {
+  color: var(--ngf-accent-500);
 }
 
-.sdl-nav-link.active::after {
+.ngf-nav-link.active::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 2px;
-  background-color: var(--sdl-accent-500);
+  background-color: var(--ngf-accent-500);
   border-radius: 2px;
 }
 
 /* Primary Top Action Button */
-.sdl-header-actions {
+.ngf-header-actions {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.sdl-btn-top-quote {
+.ngf-btn-top-quote {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, var(--sdl-accent-500) 0%, var(--sdl-accent-500) 100%);
-  color: var(--sdl-white);
+  background: linear-gradient(135deg, var(--ngf-accent-500) 0%, var(--ngf-accent-500) 100%);
+  color: var(--ngf-white);
   padding: 0.6875rem 1.25rem;
-  border-radius: var(--sdl-radius-md);
+  border-radius: var(--ngf-radius-md);
   font-size: 0.875rem;
   font-weight: 700;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(var(--sdl-accent-rgb), 0.25);
-  transition: var(--sdl-transition);
+  box-shadow: 0 4px 12px rgba(var(--ngf-accent-rgb), 0.25);
+  transition: var(--ngf-transition);
 }
 
-.sdl-btn-top-quote:hover {
+.ngf-btn-top-quote:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(var(--sdl-accent-rgb), 0.35);
+  box-shadow: 0 6px 16px rgba(var(--ngf-accent-rgb), 0.35);
   filter: brightness(1.05);
 }
 
 /* Mobile Hamburger Toggle Button */
-.sdl-mobile-toggle-btn {
+.ngf-mobile-toggle-btn {
   display: none;
   width: 44px;
   height: 44px;
   background: #f8fafc;
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-md);
-  color: var(--sdl-ink-900);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-md);
+  color: var(--ngf-ink-900);
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.sdl-mobile-toggle-btn:hover {
-  background: var(--sdl-accent-50);
-  border-color: var(--sdl-accent-300);
-  color: var(--sdl-accent-500);
+.ngf-mobile-toggle-btn:hover {
+  background: var(--ngf-accent-50);
+  border-color: var(--ngf-accent-300);
+  color: var(--ngf-accent-500);
 }
 
-.sdl-mobile-toggle-btn.is-active {
-  background: var(--sdl-accent-50);
-  border-color: var(--sdl-accent-500);
-  color: var(--sdl-accent-500);
+.ngf-mobile-toggle-btn.is-active {
+  background: var(--ngf-accent-50);
+  border-color: var(--ngf-accent-500);
+  color: var(--ngf-accent-500);
 }
 
 /* ============================================================
    3. EXECUTIVE MOBILE SLIDE-IN DRAWER
    ============================================================ */
-.sdl-drawer-backdrop {
+.ngf-drawer-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(var(--sdl-ink-rgb), 0.65);
+  background: rgba(var(--ngf-ink-rgb), 0.65);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 9999;
@@ -229,7 +229,7 @@
   animation: fadeIn 0.25s ease;
 }
 
-.sdl-mobile-drawer-sheet {
+.ngf-mobile-drawer-sheet {
   width: 88%;
   max-width: 380px;
   height: 100%;
@@ -266,7 +266,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
-  border-bottom: 1.5px solid var(--sdl-slate-100);
+  border-bottom: 1.5px solid var(--ngf-slate-100);
   background: #ffffff;
   position: sticky;
   top: 0;
@@ -290,8 +290,8 @@
   height: 38px;
   border-radius: 50%;
   background: #f1f5f9;
-  border: 1px solid var(--sdl-slate-200);
-  color: var(--sdl-slate-600);
+  border: 1px solid var(--ngf-slate-200);
+  color: var(--ngf-slate-600);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -300,9 +300,9 @@
 }
 
 .drawer-close-btn:hover {
-  background: var(--sdl-accent-50);
-  color: var(--sdl-accent-500);
-  border-color: var(--sdl-accent-300);
+  background: var(--ngf-accent-50);
+  color: var(--ngf-accent-500);
+  border-color: var(--ngf-accent-300);
 }
 
 /* Drawer Quick Action Cards */
@@ -312,7 +312,7 @@
   gap: 0.625rem;
   padding: 1.25rem 1.5rem;
   background: #f8fafc;
-  border-bottom: 1px solid var(--sdl-slate-200);
+  border-bottom: 1px solid var(--ngf-slate-200);
 }
 
 .drawer-action-card {
@@ -320,8 +320,8 @@
   align-items: center;
   gap: 0.875rem;
   padding: 0.875rem 1rem;
-  border-radius: var(--sdl-radius-lg);
-  border: 1.5px solid var(--sdl-slate-200);
+  border-radius: var(--ngf-radius-lg);
+  border: 1.5px solid var(--ngf-slate-200);
   background: #ffffff;
   text-align: left;
   cursor: pointer;
@@ -337,7 +337,7 @@
 .action-icon-wrap {
   width: 40px;
   height: 40px;
-  border-radius: var(--sdl-radius-md);
+  border-radius: var(--ngf-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -345,14 +345,14 @@
 }
 
 .action-icon-wrap.accent {
-  background: var(--sdl-accent-50);
-  color: var(--sdl-accent-500);
-  border: 1px solid var(--sdl-accent-200);
+  background: var(--ngf-accent-50);
+  color: var(--ngf-accent-500);
+  border: 1px solid var(--ngf-accent-200);
 }
 
 .action-icon-wrap.navy {
-  background: var(--sdl-ink-950);
-  color: var(--sdl-accent-400);
+  background: var(--ngf-ink-950);
+  color: var(--ngf-accent-400);
   border: 1px solid #1e293b;
 }
 
@@ -363,26 +363,26 @@
 .action-text strong {
   font-size: 0.9375rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   display: block;
   line-height: 1.25;
 }
 
 .action-text small {
   font-size: 0.75rem;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   display: block;
   margin-top: 0.125rem;
 }
 
 .action-arrow {
-  color: var(--sdl-slate-400);
+  color: var(--ngf-slate-400);
   transition: transform 0.2s ease;
 }
 
 .drawer-action-card:hover .action-arrow {
   transform: translateX(3px);
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
 }
 
 /* Navigation List Section */
@@ -394,7 +394,7 @@
 .drawer-section-label {
   font-size: 0.6875rem;
   font-weight: 800;
-  color: var(--sdl-slate-400);
+  color: var(--ngf-slate-400);
   letter-spacing: 0.08em;
   display: block;
   margin-bottom: 0.75rem;
@@ -411,10 +411,10 @@
   align-items: center;
   gap: 0.875rem;
   padding: 0.8125rem 1rem;
-  border-radius: var(--sdl-radius-md);
+  border-radius: var(--ngf-radius-md);
   font-size: 0.9375rem;
   font-weight: 700;
-  color: var(--sdl-slate-700);
+  color: var(--ngf-slate-700);
   background: transparent;
   border: none;
   text-align: left;
@@ -423,44 +423,44 @@
 }
 
 .drawer-link .link-icon {
-  color: var(--sdl-slate-400);
+  color: var(--ngf-slate-400);
   transition: color 0.15s ease;
 }
 
 .drawer-link .link-chevron {
   margin-left: auto;
-  color: var(--sdl-slate-300);
+  color: var(--ngf-slate-300);
 }
 
 .drawer-link:hover {
   background: #f1f5f9;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 .drawer-link:hover .link-icon {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
 }
 
 .drawer-link.active {
-  background: var(--sdl-accent-50);
-  color: var(--sdl-accent-500);
-  border-left: 3px solid var(--sdl-accent-500);
+  background: var(--ngf-accent-50);
+  color: var(--ngf-accent-500);
+  border-left: 3px solid var(--ngf-accent-500);
 }
 
 .drawer-link.active .link-icon {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
 }
 
 .drawer-link.active .link-chevron {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
 }
 
 /* Drawer Footer Hotline Box */
 .drawer-footer-hotline {
   margin: 1.25rem 1.5rem 1.75rem;
   padding: 1.25rem;
-  background: var(--sdl-ink-950);
-  border-radius: var(--sdl-radius-xl);
+  background: var(--ngf-ink-950);
+  border-radius: var(--ngf-radius-xl);
   color: #ffffff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
@@ -493,15 +493,15 @@
   justify-content: center;
   gap: 0.5rem;
   width: 100%;
-  background: linear-gradient(135deg, var(--sdl-accent-500) 0%, var(--sdl-accent-500) 100%);
+  background: linear-gradient(135deg, var(--ngf-accent-500) 0%, var(--ngf-accent-500) 100%);
   color: #ffffff;
   padding: 0.75rem;
-  border-radius: var(--sdl-radius-md);
+  border-radius: var(--ngf-radius-md);
   font-size: 0.875rem;
   font-weight: 700;
   text-decoration: none;
   margin-bottom: 0.75rem;
-  box-shadow: 0 4px 12px rgba(var(--sdl-accent-rgb), 0.25);
+  box-shadow: 0 4px 12px rgba(var(--ngf-accent-rgb), 0.25);
   transition: all 0.2s ease;
 }
 
@@ -522,37 +522,37 @@
    RESPONSIVE DESIGN BREAKPOINTS
    ============================================================ */
 @media (max-width: 1024px) {
-  .sdl-nav-links, .sdl-header-actions {
+  .ngf-nav-links, .ngf-header-actions {
     display: none;
   }
-  .sdl-mobile-toggle-btn {
+  .ngf-mobile-toggle-btn {
     display: flex;
   }
 }
 
 /* HIDE TOP UTILITY BAR COMPLETELY ON MOBILE & TABLET */
 @media (max-width: 900px) {
-  .sdl-topbar {
+  .ngf-topbar {
     display: none !important;
   }
-  .sdl-header-inner {
+  .ngf-header-inner {
     height: 74px;
   }
-  .sdl-brand-logo-img {
+  .ngf-brand-logo-img {
     height: 46px;
     max-width: 210px;
   }
 }
 
 @media (max-width: 480px) {
-  .sdl-header-inner {
+  .ngf-header-inner {
     height: 68px;
   }
-  .sdl-brand-logo-img {
+  .ngf-brand-logo-img {
     height: 40px;
     max-width: 180px;
   }
-  .sdl-mobile-drawer-sheet {
+  .ngf-mobile-drawer-sheet {
     width: 92%;
   }
 }

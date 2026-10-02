@@ -7,11 +7,11 @@
 }
 
 html {
-  font-family: var(--sdl-font-sans);
+  font-family: var(--ngf-font-sans);
   font-size: 16px;
   line-height: 1.5;
-  color: var(--sdl-slate-800);
-  background-color: var(--sdl-slate-50);
+  color: var(--ngf-slate-800);
+  background-color: var(--ngf-slate-50);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
@@ -46,26 +46,26 @@ button {
    clicks. :where() keeps specificity at zero, so a component's own focus style still wins. The
    brand red is 5.5:1 on white and 3.2:1 on Ink, above the 3:1 minimum for focus indicators. */
 :where(a, button, [role="button"], [tabindex], summary, select, input, textarea):focus-visible {
-  outline: 2px solid var(--sdl-color-focus);
+  outline: 2px solid var(--ngf-color-focus);
   outline-offset: 2px;
 }
 
 /* "Skip to main content": hidden until focused by the first Tab press (Header.tsx). */
-.sdl-skip-link {
+.ngf-skip-link {
   position: fixed;
   top: 0.75rem;
   left: 0.75rem;
   z-index: 10000;
   padding: 0.75rem 1.25rem;
-  border-radius: var(--sdl-radius-md);
-  background: var(--sdl-ink-950);
-  color: var(--sdl-white);
+  border-radius: var(--ngf-radius-md);
+  background: var(--ngf-ink-950);
+  color: var(--ngf-white);
   font-weight: 600;
   font-size: 0.9375rem;
   transform: translateY(-200%);
 }
 
-.sdl-skip-link:focus {
+.ngf-skip-link:focus {
   transform: translateY(0);
 }
 
@@ -98,18 +98,18 @@ img, svg {
 }
 
 /* Layout Utilities */
-.sdl-container {
+.ngf-container {
   width: 100%;
-  max-width: var(--sdl-container-max);
+  max-width: var(--ngf-container-max);
   margin-left: auto;
   margin-right: auto;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
 
-.sdl-container-wide {
+.ngf-container-wide {
   width: 100%;
-  max-width: var(--sdl-container-wide);
+  max-width: var(--ngf-container-wide);
   margin-left: auto;
   margin-right: auto;
   padding-left: 1.5rem;
@@ -118,18 +118,18 @@ img, svg {
 
 /* Typography Utilities */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--sdl-font-display);
+  font-family: var(--ngf-font-display);
   font-weight: 700;
   line-height: 1.2;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
-.sdl-badge {
+.ngf-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
   padding: 0.25rem 0.75rem;
-  border-radius: var(--sdl-radius-full);
+  border-radius: var(--ngf-radius-full);
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -137,87 +137,87 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Status badges use semantic colours only (BRAND_GUIDE §4.1): in transit = info, delivered = success. */
-.sdl-badge-in-transit {
-  background-color: var(--sdl-info-100);
-  color: var(--sdl-info-700);
+.ngf-badge-in-transit {
+  background-color: var(--ngf-info-100);
+  color: var(--ngf-info-700);
   border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
-.sdl-badge-delivered {
-  background-color: var(--sdl-success-100);
-  color: var(--sdl-success-700);
+.ngf-badge-delivered {
+  background-color: var(--ngf-success-100);
+  color: var(--ngf-success-700);
   border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
-.sdl-badge-delayed {
-  background-color: var(--sdl-warning-100);
-  color: var(--sdl-warning-600);
+.ngf-badge-delayed {
+  background-color: var(--ngf-warning-100);
+  color: var(--ngf-warning-600);
   border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
-.sdl-badge-exception {
-  background-color: var(--sdl-danger-100);
-  color: var(--sdl-danger-600);
+.ngf-badge-exception {
+  background-color: var(--ngf-danger-100);
+  color: var(--ngf-danger-600);
   border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 /* Button Variants */
-.sdl-btn-primary {
+.ngf-btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: var(--sdl-primary-900);
-  color: var(--sdl-white);
+  background-color: var(--ngf-primary-900);
+  color: var(--ngf-white);
   padding: 0.75rem 1.375rem;
-  border-radius: var(--sdl-radius-md);
+  border-radius: var(--ngf-radius-md);
   font-weight: 600;
   font-size: 0.9375rem;
-  transition: var(--sdl-transition);
-  box-shadow: 0 2px 4px rgba(var(--sdl-primary-rgb), 0.2);
+  transition: var(--ngf-transition);
+  box-shadow: 0 2px 4px rgba(var(--ngf-primary-rgb), 0.2);
 }
 
-.sdl-btn-primary:hover {
-  background-color: var(--sdl-primary-800);
+.ngf-btn-primary:hover {
+  background-color: var(--ngf-primary-800);
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(var(--sdl-primary-rgb), 0.3);
+  box-shadow: 0 4px 10px rgba(var(--ngf-primary-rgb), 0.3);
 }
 
-.sdl-btn-secondary {
+.ngf-btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: var(--sdl-white);
-  color: var(--sdl-ink-900);
-  border: 1px solid var(--sdl-slate-300);
+  background-color: var(--ngf-white);
+  color: var(--ngf-ink-900);
+  border: 1px solid var(--ngf-slate-300);
   padding: 0.75rem 1.375rem;
-  border-radius: var(--sdl-radius-md);
+  border-radius: var(--ngf-radius-md);
   font-weight: 600;
   font-size: 0.9375rem;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
-.sdl-btn-secondary:hover {
-  background-color: var(--sdl-slate-100);
-  border-color: var(--sdl-slate-400);
+.ngf-btn-secondary:hover {
+  background-color: var(--ngf-slate-100);
+  border-color: var(--ngf-slate-400);
 }
 
-.sdl-btn-dark {
+.ngf-btn-dark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: var(--sdl-ink-900);
-  color: var(--sdl-white);
+  background-color: var(--ngf-ink-900);
+  color: var(--ngf-white);
   padding: 0.75rem 1.375rem;
-  border-radius: var(--sdl-radius-md);
+  border-radius: var(--ngf-radius-md);
   font-weight: 600;
   font-size: 0.9375rem;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
-.sdl-btn-dark:hover {
-  background-color: var(--sdl-ink-950);
+.ngf-btn-dark:hover {
+  background-color: var(--ngf-ink-950);
   transform: translateY(-1px);
 }

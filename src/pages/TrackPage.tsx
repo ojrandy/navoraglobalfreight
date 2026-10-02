@@ -69,7 +69,7 @@ export const TrackPage: React.FC<TrackPageProps> = ({ onTrack, onNavigate, notFo
   // Load recent searches from localStorage
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('sdl_recent_tracking');
+      const saved = localStorage.getItem('ngf_recent_tracking');
       if (saved) {
         setRecentSearches(JSON.parse(saved).slice(0, 4));
       }
@@ -84,7 +84,7 @@ export const TrackPage: React.FC<TrackPageProps> = ({ onTrack, onNavigate, notFo
       const existing = recentSearches.filter(n => n.toUpperCase() !== clean);
       const updated = [clean, ...existing].slice(0, 4);
       setRecentSearches(updated);
-      localStorage.setItem('sdl_recent_tracking', JSON.stringify(updated));
+      localStorage.setItem('ngf_recent_tracking', JSON.stringify(updated));
     } catch (e) {
       // ignore
     }
@@ -150,7 +150,7 @@ export const TrackPage: React.FC<TrackPageProps> = ({ onTrack, onNavigate, notFo
   });
 
   return (
-    <div className="sdl-page-track">
+    <div className="ngf-page-track">
       {/* =========================================================================
           1. TRACKING HERO
           ========================================================================= */}
@@ -164,7 +164,7 @@ export const TrackPage: React.FC<TrackPageProps> = ({ onTrack, onNavigate, notFo
           imgClassName="track-hero-img"
         />
         <div className="track-hero-bg-overlay" />
-        <div className="sdl-container-wide track-hero-container">
+        <div className="ngf-container-wide track-hero-container">
           <div className="track-hero-header">
             <h1 className="track-hero-headline animate-fade-in">Track your shipment</h1>
             <p className="track-hero-subtext animate-fade-in">
@@ -300,7 +300,7 @@ export const TrackPage: React.FC<TrackPageProps> = ({ onTrack, onNavigate, notFo
           3. WHERE TO FIND YOUR ID
           ========================================================================= */}
       <section className="track-reference-section">
-        <div className="sdl-container-wide">
+        <div className="ngf-container-wide">
           <div className="section-center-header">
             <h2>Where to find your ID</h2>
             <div className="section-header-line" />
@@ -338,7 +338,7 @@ export const TrackPage: React.FC<TrackPageProps> = ({ onTrack, onNavigate, notFo
           4. HELP BANNER
           ========================================================================= */}
       <section className="track-support-section">
-        <div className="sdl-container-wide">
+        <div className="ngf-container-wide">
           <div className="track-support-card">
             <div className="support-card-content">
               <h2>Need help with an active shipment?</h2>

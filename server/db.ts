@@ -1,50 +1,7 @@
 import { DatabaseSync } from 'node:sqlite';
 import path from 'path';
 import fs from 'fs';
-import { COMPANY, DOMAIN, EMAIL, LEGAL_NAME } from '../src/config/brand.js';
-
-// Defaults that earlier brands' seeds wrote into settings, and what replaces them.
-const OLD_BRAND_SETTINGS: Record<string, { old: string[]; next: string }> = {
-  companyName: { old: ['Duolingo Express Logistics LLC', 'SDL Global Logistics Ltd'], next: LEGAL_NAME },
-  supportPhone: { old: ['(800) 555-DUO-EXP'], next: '' },
-  dispatchEmail: { old: ['dispatch@duolingoexpress.com', 'info@sdlgloballogistics.com'], next: EMAIL },
-  headquartersAddress: { old: ['JFK International Cargo Terminal, Jamaica, NY 11430'], next: '' },
-  dotNumber: { old: ['USDOT #3894210 · MC-892401'], next: '' },
-};
-
-// Old-brand wording that rows written before the rebrand still carry (tracking-event
-// descriptions, BOL carrier names, settings text). Most specific first, so a legal name
-// becomes the legal name rather than "<company> LLC".
-const OLD_BRAND_TEXT: [RegExp, string][] = [
-  [/Duolingo Express(?:\s+\w+){0,4}\s+(?:LLC|Inc|Ltd)\b\.?/gi, LEGAL_NAME],
-  [/dispatch@duolingoexpress\.com/gi, EMAIL],
-  [/[\w.+-]*@duolingoexpress\.com/gi, EMAIL],
-  [/duolingoexpress\.com/gi, DOMAIN],
-  [/Duolingo Express Logistics/gi, COMPANY],
-  [/Duolingo Express/gi, COMPANY],
-  [/Duolingo Logistics/gi, COMPANY],
-  [/Duolingo/gi, COMPANY],
-];
-
-// Rewrites old-brand wording in every text column of every table. Runs at startup; rows
-// without the old brand are never touched, so after the first run it only reads.
-function replaceOldBrandText() {
-  const tables = db.prepare(`SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%'`).all() as { name: string }[];
-  for (const { name: table } of tables) {
-    const columns = (db.prepare(`PRAGMA table_info(${table})`).all() as { name: string; type: string }[])
-      .filter((c) => c.type.toUpperCase() === 'TEXT');
-    for (const { name: column } of columns) {
-      const rows = db.prepare(`SELECT rowid AS rid, ${column} AS v FROM ${table} WHERE lower(${column}) LIKE '%duolingo%'`).all() as { rid: number; v: string }[];
-      if (rows.length === 0) continue;
-      const update = db.prepare(`UPDATE ${table} SET ${column} = ? WHERE rowid = ?`);
-      for (const row of rows) {
-        const next = OLD_BRAND_TEXT.reduce((text, [pattern, replacement]) => text.replace(pattern, replacement), row.v);
-        update.run(next, row.rid);
-      }
-      console.log(`Rebrand: replaced old brand text in ${rows.length} ${table}.${column} value(s).`);
-    }
-  }
-}
+import { EMAIL, LEGAL_NAME } from '../src/config/brand.js';
 
 // DB_PATH lets a real deployment point the database file somewhere OUTSIDE the directory
 // git/the deploy process manages, e.g. a persistent storage path a host provides separately
@@ -59,9 +16,7 @@ export const dataDir = process.env.DB_PATH
   ? path.dirname(process.env.DB_PATH)
   : path.join(process.cwd(), 'data');
 
-export const DB_FILE = 'sdl_global.db';
-// Default file name before the rebrand, only checked so startup can warn that it's unused.
-const LEGACY_DB_FILE = 'duolingo_express.db';
+export const DB_FILE = 'navora.db';
 
 // The admin-subdomain deployment runs in proxy mode (ADMIN_PROXY_TARGET, see server/index.ts)
 // and never touches a database — every route file still does a static `import { db } from
@@ -76,12 +31,6 @@ export const dbPath = process.env.ADMIN_PROXY_TARGET
 
 if (!process.env.ADMIN_PROXY_TARGET && !fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
-}
-
-// The rebranded app starts with a fresh database (DEPLOYMENT.md §4), so the pre-rebrand database file is
-// never opened or migrated. Say so at startup, so it isn't mistaken for live data.
-if (!process.env.ADMIN_PROXY_TARGET && fs.existsSync(path.join(dataDir, LEGACY_DB_FILE))) {
-  console.warn(`⚠️ Ignoring ${LEGACY_DB_FILE} in ${dataDir}: the app uses ${DB_FILE}. Delete the old file once you no longer need it.`);
 }
 
 // enableForeignKeyConstraints: without it, the ON DELETE CASCADE declared on
@@ -396,20 +345,8 @@ export function initDatabase() {
       delete existing.headquarters;
       changed = true;
     }
-    // Migration: databases seeded before a rebrand still carry the old brand's placeholder
-    // contact details, which override src/config/brand.ts on the public site. Replace a field
-    // only while it still holds that exact placeholder, so anything the owner has entered in
-    // admin Settings is never touched.
-    for (const [field, value] of Object.entries(OLD_BRAND_SETTINGS)) {
-      if (value.old.includes(existing[field])) {
-        existing[field] = value.next;
-        changed = true;
-      }
-    }
     if (changed) {
       db.prepare(`UPDATE settings SET value_json = ? WHERE key = ?`).run(JSON.stringify(existing), 'general');
     }
   }
-
-  replaceOldBrandText();
 }

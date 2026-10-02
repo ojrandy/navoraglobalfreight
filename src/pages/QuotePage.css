@@ -3,24 +3,24 @@
    Zero Freight/Train/Ship · 24/7 Dispatch Desk · Mobile-First
    ============================================================ */
 
-.sdl-page-quote {
+.ngf-page-quote {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding-bottom: 6rem;
   background-color: #f8fafc;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 /* ============================================================
    1. CINEMATIC HERO SECTION
    ============================================================ */
-.sdl-quote-hero {
+.ngf-quote-hero {
   position: relative;
   background-image: url('https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=1920&auto=format&fit=crop&q=85');
   background-size: cover;
   background-position: center 30%;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
   padding: 5.5rem 0 6rem;
   overflow: hidden;
 }
@@ -30,8 +30,8 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(var(--sdl-ink-rgb), 0.88) 0%,
-    rgba(var(--sdl-ink-rgb), 0.58) 50%,
+    rgba(var(--ngf-ink-rgb), 0.88) 0%,
+    rgba(var(--ngf-ink-rgb), 0.58) 50%,
     rgba(15, 34, 56, 0.22) 100%
   );
   z-index: 1;
@@ -47,9 +47,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(var(--sdl-accent-rgb), 0.15);
-  color: var(--sdl-accent-400);
-  border: 1px solid rgba(var(--sdl-accent-rgb), 0.35);
+  background: rgba(var(--ngf-accent-rgb), 0.15);
+  color: var(--ngf-accent-400);
+  border: 1px solid rgba(var(--ngf-accent-rgb), 0.35);
   padding: 0.375rem 0.875rem;
   border-radius: 9999px;
   font-size: 0.75rem;
@@ -62,22 +62,22 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--sdl-accent-500);
+  background-color: var(--ngf-accent-500);
   animation: pulse-dot 2s infinite ease-in-out;
 }
 
 .quote-hero-title {
-  font-family: var(--sdl-font-display);
+  font-family: var(--ngf-font-display);
   font-size: 3.25rem;
   font-weight: 800;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
 }
 
 .quote-highlight-accent {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   font-weight: 800;
 }
 
@@ -91,11 +91,11 @@
 /* ============================================================
    2. MAIN BODY & GRID
    ============================================================ */
-.sdl-quote-body {
+.ngf-quote-body {
   margin-top: 3.5rem;
 }
 
-.sdl-quote-grid {
+.ngf-quote-grid {
   display: grid;
   grid-template-columns: 1.35fr 1fr;
   gap: 2.5rem;
@@ -104,29 +104,29 @@
 
 /* Form Card */
 .quote-form-card {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-2xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-2xl);
   padding: 2.5rem;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
 }
 
 .form-head-title {
   padding-bottom: 1.5rem;
-  border-bottom: 1.5px solid var(--sdl-slate-100);
+  border-bottom: 1.5px solid var(--ngf-slate-100);
   margin-bottom: 1.75rem;
 }
 
 .form-head-title h3 {
   font-size: 1.375rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 0.25rem;
 }
 
 .form-head-title p {
   font-size: 0.875rem;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   margin: 0;
   line-height: 1.4;
 }
@@ -134,7 +134,7 @@
 .quote-form-error {
   background: #fef2f2;
   border: 1.5px solid #fecaca;
-  border-radius: var(--sdl-radius-md);
+  border-radius: var(--ngf-radius-md);
   padding: 0.75rem 1rem;
   color: #991b1b;
   font-size: 0.8125rem;
@@ -152,9 +152,9 @@
   gap: 0.5rem;
   font-size: 0.875rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--sdl-slate-200);
+  border-bottom: 1px solid var(--ngf-slate-200);
   margin-top: 1.5rem;
   margin-bottom: 1.25rem;
 }
@@ -208,10 +208,10 @@
 .quote-calc-form label {
   font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--sdl-slate-700);
+  color: var(--ngf-slate-700);
 }
 
-.quote-calc-form textarea.sdl-input {
+.quote-calc-form textarea.ngf-input {
   resize: vertical;
   line-height: 1.55;
 }
@@ -233,9 +233,9 @@
 
 /* Side Card */
 .quote-policy-card {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-2xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-2xl);
   padding: 2.25rem;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
 }
@@ -243,7 +243,7 @@
 .policy-tag {
   font-size: 0.6875rem;
   font-weight: 800;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   letter-spacing: 0.06em;
   display: block;
   margin-bottom: 0.375rem;
@@ -252,13 +252,13 @@
 .quote-policy-card h3 {
   font-size: 1.375rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 0.75rem;
 }
 
 .quote-policy-card p {
   font-size: 0.875rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
@@ -271,9 +271,9 @@
    3. CONFIRMATION SCREEN
    ============================================================ */
 .quote-confirmation-card {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-2xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-2xl);
   padding: 3rem 2.5rem;
   max-width: 820px;
   margin: 0 auto;
@@ -284,11 +284,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(var(--sdl-accent-rgb), 0.1);
-  border: 1px solid rgba(var(--sdl-accent-rgb), 0.25);
+  background: rgba(var(--ngf-accent-rgb), 0.1);
+  border: 1px solid rgba(var(--ngf-accent-rgb), 0.25);
   padding: 0.375rem 0.875rem;
   border-radius: 9999px;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -299,7 +299,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--sdl-accent-500);
+  background-color: var(--ngf-accent-500);
   animation: pulse-dot 2s infinite ease-in-out;
 }
 
@@ -319,22 +319,22 @@
 }
 
 .confirm-header h2 {
-  font-family: var(--sdl-font-display);
+  font-family: var(--ngf-font-display);
   font-size: 2rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 0.5rem;
 }
 
 .confirm-header p {
   font-size: 1rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
 }
 
 .admin-review-info-box {
   background: #f8fafc;
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   padding: 1.5rem;
   margin-bottom: 2rem;
   display: flex;
@@ -351,21 +351,21 @@
 .info-box-head h4 {
   font-size: 1rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin: 0;
 }
 
 .admin-review-info-box p {
   font-size: 0.875rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   line-height: 1.6;
   margin: 0;
 }
 
 .quote-receipt-card {
   background: #f8fafc;
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   padding: 1.75rem;
   margin-bottom: 2rem;
 }
@@ -373,7 +373,7 @@
 .receipt-tag {
   font-size: 0.6875rem;
   font-weight: 800;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   letter-spacing: 0.06em;
   display: block;
   margin-bottom: 1.25rem;
@@ -394,19 +394,19 @@
 .rec-item.span-full {
   grid-column: span 2;
   padding-top: 0.75rem;
-  border-top: 1px solid var(--sdl-slate-200);
+  border-top: 1px solid var(--ngf-slate-200);
 }
 
 .rec-item small {
   font-size: 0.75rem;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   text-transform: uppercase;
   font-weight: 700;
 }
 
 .rec-item strong {
   font-size: 0.9375rem;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 .quote-confirm-actions {
@@ -420,14 +420,14 @@
    RESPONSIVE DESIGN & MOBILE BREAKPOINTS
    ============================================================ */
 @media (max-width: 1024px) {
-  .sdl-quote-grid {
+  .ngf-quote-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 }
 
 @media (max-width: 768px) {
-  .sdl-quote-hero {
+  .ngf-quote-hero {
     padding: 3.5rem 0 3rem;
   }
   .quote-hero-title {
@@ -437,12 +437,12 @@
   .quote-hero-lead {
     font-size: 1rem;
   }
-  .sdl-quote-body {
+  .ngf-quote-body {
     margin-top: 2rem;
   }
   .quote-form-card {
     padding: 1.5rem 1.125rem;
-    border-radius: var(--sdl-radius-xl);
+    border-radius: var(--ngf-radius-xl);
   }
   .form-row-2,
   .form-row-3 {
@@ -453,17 +453,17 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5rem;
   }
-  .sdl-input, select.sdl-input {
+  .ngf-input, select.ngf-input {
     font-size: 16px !important;
     min-height: 48px;
   }
   .quote-policy-card {
     padding: 1.5rem 1.125rem;
-    border-radius: var(--sdl-radius-xl);
+    border-radius: var(--ngf-radius-xl);
   }
   .quote-confirmation-card {
     padding: 1.75rem 1.125rem;
-    border-radius: var(--sdl-radius-xl);
+    border-radius: var(--ngf-radius-xl);
   }
   .receipt-grid {
     grid-template-columns: 1fr;
@@ -499,8 +499,8 @@
 
 /* International address blocks (country first) and the units row (tracker 2.6/2.7) */
 .quote-address-fieldset {
-  border: 1px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-lg);
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-lg);
   padding: 0.75rem 1rem 0.25rem;
   margin: 0 0 1rem;
   min-width: 0;
@@ -512,7 +512,7 @@
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
 }
 
 .quote-units-row {
@@ -522,7 +522,7 @@
 .quote-units-label {
   font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 /* "What happens next" (CONTENT §7.1) */
@@ -533,25 +533,25 @@
   flex-direction: column;
   gap: 0.375rem;
   font-size: 0.875rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   line-height: 1.6;
 }
 
 /* The ghost button is styled for dark heroes; on this white card it needs a dark outline. */
 .quote-confirm-actions .btn-corp-ghost {
-  color: var(--sdl-ink-900);
-  background: var(--sdl-white);
-  border: 1px solid var(--sdl-slate-300);
+  color: var(--ngf-ink-900);
+  background: var(--ngf-white);
+  border: 1px solid var(--ngf-slate-300);
 }
 
 .quote-confirm-actions .btn-corp-ghost:hover {
-  border-color: var(--sdl-ink-900);
-  background: var(--sdl-slate-50);
+  border-color: var(--ngf-ink-900);
+  background: var(--ngf-slate-50);
 }
 
 /* Narrow screens: the text spans the whole hero, so the overlay stays dark edge to edge. */
 @media (max-width: 768px) {
   .quote-hero-bg-overlay {
-    background: rgba(var(--sdl-ink-rgb), 0.85);
+    background: rgba(var(--ngf-ink-rgb), 0.85);
   }
 }

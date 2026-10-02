@@ -77,7 +77,7 @@ export const CountrySelect: React.FC<CountrySelectProps> = ({
   };
 
   return (
-    <div className="sdl-country-select">
+    <div className="ngf-country-select">
       <input
         id={inputId}
         type="text"
@@ -105,10 +105,10 @@ export const CountrySelect: React.FC<CountrySelectProps> = ({
         onBlur={onBlur}
         onKeyDown={onKeyDown}
       />
-      <ChevronDown size={16} className="sdl-country-chevron" aria-hidden="true" />
+      <ChevronDown size={16} className="ngf-country-chevron" aria-hidden="true" />
       {open && (
-        <ul id={listId} role="listbox" ref={listRef} className="sdl-country-list">
-          {matches.length === 0 && <li className="sdl-country-empty">No matching country</li>}
+        <ul id={listId} role="listbox" ref={listRef} className="ngf-country-list">
+          {matches.length === 0 && <li className="ngf-country-empty">No matching country</li>}
           {matches.map((c, i) => (
             <li
               key={c.code}
@@ -116,7 +116,7 @@ export const CountrySelect: React.FC<CountrySelectProps> = ({
               data-index={i}
               role="option"
               aria-selected={c.code === value}
-              className={`sdl-country-option ${i === active ? 'active' : ''} ${c.code === value ? 'selected' : ''}`}
+              className={`ngf-country-option ${i === active ? 'active' : ''} ${c.code === value ? 'selected' : ''}`}
               onMouseDown={(e) => {
                 e.preventDefault();
                 choose(c.code);

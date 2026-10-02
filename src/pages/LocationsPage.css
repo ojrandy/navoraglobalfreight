@@ -3,22 +3,22 @@
    Zero Freight/Train/Ship · 24/7 Dispatch Desk · Mobile-First
    ============================================================ */
 
-.sdl-page-locations {
+.ngf-page-locations {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding-bottom: 6rem;
   background-color: #f8fafc;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 /* ============================================================
    1. CINEMATIC HERO SECTION
    ============================================================ */
-.sdl-locations-hero {
+.ngf-locations-hero {
   position: relative;
-  background-color: var(--sdl-ink-950);
-  color: var(--sdl-white);
+  background-color: var(--ngf-ink-950);
+  color: var(--ngf-white);
   padding: 5.5rem 0 6rem;
   overflow: hidden;
 }
@@ -41,8 +41,8 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(var(--sdl-ink-rgb), 0.88) 0%,
-    rgba(var(--sdl-ink-rgb), 0.58) 50%,
+    rgba(var(--ngf-ink-rgb), 0.88) 0%,
+    rgba(var(--ngf-ink-rgb), 0.58) 50%,
     rgba(15, 34, 56, 0.22) 100%
   );
   z-index: 1;
@@ -58,9 +58,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(var(--sdl-accent-rgb), 0.15);
-  color: var(--sdl-accent-400);
-  border: 1px solid rgba(var(--sdl-accent-rgb), 0.35);
+  background: rgba(var(--ngf-accent-rgb), 0.15);
+  color: var(--ngf-accent-400);
+  border: 1px solid rgba(var(--ngf-accent-rgb), 0.35);
   padding: 0.375rem 0.875rem;
   border-radius: 9999px;
   font-size: 0.75rem;
@@ -73,22 +73,22 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--sdl-accent-500);
+  background-color: var(--ngf-accent-500);
   animation: pulse-dot 2s infinite ease-in-out;
 }
 
 .locations-hero-title {
-  font-family: var(--sdl-font-display);
+  font-family: var(--ngf-font-display);
   font-size: 3.25rem;
   font-weight: 800;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
 }
 
 .locations-highlight-accent {
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   font-weight: 800;
 }
 
@@ -102,7 +102,7 @@
 /* ============================================================
    2. CONTENT SECTION: MAP & CARDS
    ============================================================ */
-.sdl-locations-content {
+.ngf-locations-content {
   margin-top: 3.5rem;
   display: flex;
   flex-direction: column;
@@ -110,9 +110,9 @@
 }
 
 .locations-map-feature {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-2xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-2xl);
   padding: 2.25rem;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
 }
@@ -125,22 +125,22 @@
   display: inline-block;
   font-size: 0.6875rem;
   font-weight: 800;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   letter-spacing: 0.06em;
   margin-bottom: 0.375rem;
 }
 
 .map-card-header h3 {
-  font-family: var(--sdl-font-display);
+  font-family: var(--ngf-font-display);
   font-size: 1.75rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 0.375rem;
 }
 
 .map-card-header p {
   font-size: 0.9375rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   margin: 0;
 }
 
@@ -151,16 +151,16 @@
 }
 
 .facilities-section-head h2 {
-  font-family: var(--sdl-font-display);
+  font-family: var(--ngf-font-display);
   font-size: 2.25rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 0.5rem;
 }
 
 .facilities-section-head p {
   font-size: 1rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   line-height: 1.6;
 }
 
@@ -171,29 +171,29 @@
 }
 
 .facility-card {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-xl);
   padding: 2rem 1.75rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
   display: flex;
   flex-direction: column;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .facility-card:hover {
   transform: translateY(-4px);
-  border-color: var(--sdl-accent-400);
-  box-shadow: 0 12px 25px -5px rgba(var(--sdl-accent-rgb), 0.1);
+  border-color: var(--ngf-accent-400);
+  box-shadow: 0 12px 25px -5px rgba(var(--ngf-accent-rgb), 0.1);
 }
 
 .facility-icon-pill {
   width: 44px;
   height: 44px;
-  border-radius: var(--sdl-radius-lg);
-  background: var(--sdl-accent-50);
-  color: var(--sdl-accent-500);
-  border: 1px solid var(--sdl-accent-200);
+  border-radius: var(--ngf-radius-lg);
+  background: var(--ngf-accent-50);
+  color: var(--ngf-accent-500);
+  border: 1px solid var(--ngf-accent-200);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -203,28 +203,28 @@
 .facility-card h3 {
   font-size: 1.1875rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 0.375rem;
 }
 
 .fac-type {
   font-size: 0.6875rem;
   font-weight: 800;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   margin-bottom: 0.625rem;
   display: block;
 }
 
 .fac-address {
   font-size: 0.875rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   margin-bottom: 1.25rem;
   line-height: 1.5;
   flex: 1;
 }
 
 .fac-meta-info {
-  border-top: 1px solid var(--sdl-slate-100);
+  border-top: 1px solid var(--ngf-slate-100);
   padding-top: 1rem;
   display: flex;
   flex-direction: column;
@@ -236,11 +236,11 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.8125rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
 }
 
 .fac-meta-row strong {
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 /* Gateway cards */
@@ -262,8 +262,8 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--sdl-slate-500);
-  border-bottom: 1px solid var(--sdl-slate-200);
+  color: var(--ngf-slate-500);
+  border-bottom: 1px solid var(--ngf-slate-200);
   padding-bottom: 0.5rem;
   margin: 0;
 }
@@ -282,8 +282,8 @@
 .gateway-code-pill {
   font-size: 0.75rem;
   font-weight: 800;
-  color: var(--sdl-white);
-  background: var(--sdl-accent-500);
+  color: var(--ngf-white);
+  background: var(--ngf-accent-500);
   padding: 0.2rem 0.45rem;
   border-radius: 4px;
 }
@@ -307,8 +307,8 @@
 
 .gateway-mode-tag {
   background: #f1f5f9;
-  border: 1px solid var(--sdl-slate-200);
-  color: var(--sdl-slate-700);
+  border: 1px solid var(--ngf-slate-200);
+  color: var(--ngf-slate-700);
   padding: 0.2rem 0.55rem;
   border-radius: 4px;
   font-size: 0.75rem;
@@ -316,7 +316,7 @@
 }
 
 .gateway-offset {
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   font-size: 0.75rem;
 }
 
@@ -328,30 +328,30 @@
   gap: 0.5rem;
   width: 100%;
   background: transparent;
-  color: var(--sdl-accent-600);
-  border: 1.5px solid var(--sdl-accent-500);
-  border-radius: var(--sdl-radius-md);
+  color: var(--ngf-accent-600);
+  border: 1.5px solid var(--ngf-accent-500);
+  border-radius: var(--ngf-radius-md);
   padding: 0.625rem 1rem;
   font-size: 0.875rem;
   font-weight: 700;
   cursor: pointer;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .gateway-contact-btn:hover {
-  background: var(--sdl-accent-500);
-  color: var(--sdl-white);
+  background: var(--ngf-accent-500);
+  color: var(--ngf-white);
 }
 
 .gateway-contact-btn:focus-visible {
-  outline: 2px solid var(--sdl-accent-500);
+  outline: 2px solid var(--ngf-accent-500);
   outline-offset: 2px;
 }
 
 .gateways-footnote {
   text-align: center;
   font-size: 0.9375rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   margin: 0;
 }
 
@@ -365,7 +365,7 @@
 }
 
 @media (max-width: 768px) {
-  .sdl-locations-hero {
+  .ngf-locations-hero {
     padding: 3.5rem 0 3rem;
   }
   .locations-hero-title {
@@ -375,13 +375,13 @@
   .locations-hero-lead {
     font-size: 1rem;
   }
-  .sdl-locations-content {
+  .ngf-locations-content {
     margin-top: 2rem;
     gap: 2.5rem;
   }
   .locations-map-feature {
     padding: 1.5rem 1.125rem;
-    border-radius: var(--sdl-radius-xl);
+    border-radius: var(--ngf-radius-xl);
   }
   .map-card-header h3 {
     font-size: 1.375rem;

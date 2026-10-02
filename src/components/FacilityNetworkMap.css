@@ -24,8 +24,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  background: var(--sdl-ink-900);
-  color: var(--sdl-white);
+  background: var(--ngf-ink-900);
+  color: var(--ngf-white);
   border: none;
   border-radius: 9999px;
   padding: 0.45rem 0.875rem;
@@ -33,12 +33,12 @@
   font-weight: 700;
   cursor: pointer;
   white-space: nowrap;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
   flex-shrink: 0;
 }
 
 .btn-national-view:hover {
-  background: var(--sdl-ink-800);
+  background: var(--ngf-ink-800);
 }
 
 .facility-chips-list {
@@ -52,22 +52,22 @@
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
   border-radius: 9999px;
   padding: 0.4rem 0.875rem;
   font-size: 0.8125rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   cursor: pointer;
   white-space: nowrap;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
   flex-shrink: 0;
 }
 
 .facility-chip .chip-code {
   font-weight: 800;
-  color: var(--sdl-accent-500);
-  background: var(--sdl-accent-50);
+  color: var(--ngf-accent-500);
+  background: var(--ngf-accent-50);
   padding: 0.15rem 0.35rem;
   border-radius: 4px;
   font-size: 0.6875rem;
@@ -78,20 +78,20 @@
 }
 
 .facility-chip:hover {
-  border-color: var(--sdl-accent-300);
-  color: var(--sdl-ink-900);
+  border-color: var(--ngf-accent-300);
+  color: var(--ngf-ink-900);
 }
 
 .facility-chip.active {
-  background: var(--sdl-accent-50);
-  border-color: var(--sdl-accent-500);
-  color: var(--sdl-ink-900);
-  box-shadow: 0 2px 8px rgba(var(--sdl-accent-rgb), 0.12);
+  background: var(--ngf-accent-50);
+  border-color: var(--ngf-accent-500);
+  color: var(--ngf-ink-900);
+  box-shadow: 0 2px 8px rgba(var(--ngf-accent-rgb), 0.12);
 }
 
 .facility-chip.active .chip-code {
-  background: var(--sdl-accent-500);
-  color: var(--sdl-white);
+  background: var(--ngf-accent-500);
+  color: var(--ngf-white);
 }
 
 /* 2. Interactive Map Stage */
@@ -99,9 +99,9 @@
   position: relative;
   width: 100%;
   height: 480px;
-  border-radius: var(--sdl-radius-2xl);
+  border-radius: var(--ngf-radius-2xl);
   overflow: hidden;
-  border: 1.5px solid var(--sdl-slate-200);
+  border: 1.5px solid var(--ngf-slate-200);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
   /* Keep Leaflet's pane/control z-indexes from painting over the sticky header */
   isolation: isolate;
@@ -134,7 +134,7 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: rgba(var(--sdl-accent-rgb), 0.25);
+  background: rgba(var(--ngf-accent-rgb), 0.25);
   animation: pulse-ring 2.5s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
@@ -144,35 +144,35 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: var(--sdl-ink-950);
-  border: 2px solid var(--sdl-accent-500);
+  background: var(--ngf-ink-950);
+  border: 2px solid var(--ngf-accent-500);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(var(--sdl-accent-rgb), 0.35);
+  box-shadow: 0 4px 12px rgba(var(--ngf-accent-rgb), 0.35);
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .marker-pin-code {
   font-size: 0.625rem;
   font-weight: 800;
-  color: var(--sdl-white);
+  color: var(--ngf-white);
   letter-spacing: -0.02em;
 }
 
 .facility-map-marker-pin:hover .marker-pin-inner,
 .facility-map-marker-pin.active .marker-pin-inner {
   transform: scale(1.15);
-  background: var(--sdl-accent-500);
-  border-color: var(--sdl-white);
+  background: var(--ngf-accent-500);
+  border-color: var(--ngf-white);
 }
 
 /* World zoom: unselected pins become small dots */
 .pins-compact .facility-map-marker-pin:not(.active) .marker-pin-inner {
   width: 12px;
   height: 12px;
-  background: var(--sdl-accent-500);
-  border: 2px solid var(--sdl-white);
+  background: var(--ngf-accent-500);
+  border: 2px solid var(--ngf-white);
 }
 
 .pins-compact .facility-map-marker-pin:not(.active) .marker-pin-code,
@@ -205,22 +205,22 @@
 .facility-map-controls button {
   width: 36px;
   height: 36px;
-  border-radius: var(--sdl-radius-md);
-  background: var(--sdl-white);
-  border: 1px solid var(--sdl-slate-200);
-  color: var(--sdl-slate-700);
+  border-radius: var(--ngf-radius-md);
+  background: var(--ngf-white);
+  border: 1px solid var(--ngf-slate-200);
+  color: var(--ngf-slate-700);
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   cursor: pointer;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .facility-map-controls button:hover {
-  background: var(--sdl-accent-50);
-  color: var(--sdl-accent-500);
-  border-color: var(--sdl-accent-300);
+  background: var(--ngf-accent-50);
+  color: var(--ngf-accent-500);
+  border-color: var(--ngf-accent-300);
 }
 
 /* Legend Badge */
@@ -229,11 +229,11 @@
   bottom: 1rem;
   left: 1rem;
   z-index: 1000;
-  background: rgba(var(--sdl-ink-rgb), 0.88);
+  background: rgba(var(--ngf-ink-rgb), 0.88);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--sdl-radius-lg);
+  border-radius: var(--ngf-radius-lg);
   padding: 0.625rem 0.875rem;
   display: flex;
   align-items: center;
@@ -252,22 +252,22 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
   border: 1.5px solid #ffffff;
 }
 
 .legend-line-dash {
   width: 18px;
   height: 2px;
-  border-top: 2px dashed var(--sdl-accent-500);
+  border-top: 2px dashed var(--ngf-accent-500);
 }
 
 /* Leaflet Popup Styling */
 .leaflet-popup-content-wrapper {
-  background: var(--sdl-white);
-  border-radius: var(--sdl-radius-xl);
+  background: var(--ngf-white);
+  border-radius: var(--ngf-radius-xl);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
-  border: 1.5px solid var(--sdl-slate-200);
+  border: 1.5px solid var(--ngf-slate-200);
   padding: 0;
   overflow: hidden;
 }
@@ -281,7 +281,7 @@
 .facility-map-popup .popup-badge {
   font-size: 0.625rem;
   font-weight: 800;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   letter-spacing: 0.05em;
   margin-bottom: 0.25rem;
 }
@@ -289,30 +289,30 @@
 .facility-map-popup h4 {
   font-size: 0.9375rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin: 0 0 0.25rem;
   line-height: 1.3;
 }
 
 .facility-map-popup .popup-type {
   font-size: 0.75rem;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   margin: 0 0 0.5rem;
   line-height: 1.3;
 }
 
 .facility-map-popup .popup-address {
   font-size: 0.75rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   margin: 0 0 0.625rem;
 }
 
 
 /* 3. Selected Facility Spotlight Card */
 .facility-spotlight-card {
-  background: var(--sdl-white);
-  border: 1.5px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-2xl);
+  background: var(--ngf-white);
+  border: 1.5px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-2xl);
   padding: 2rem 2.25rem;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
 }
@@ -323,7 +323,7 @@
   justify-content: space-between;
   gap: 1.5rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1.5px solid var(--sdl-slate-100);
+  border-bottom: 1.5px solid var(--ngf-slate-100);
   margin-bottom: 1.5rem;
 }
 
@@ -333,21 +333,21 @@
   gap: 0.5rem;
   font-size: 0.75rem;
   font-weight: 800;
-  color: var(--sdl-accent-500);
+  color: var(--ngf-accent-500);
   margin-bottom: 0.375rem;
 }
 
 .spotlight-header h3 {
-  font-family: var(--sdl-font-display);
+  font-family: var(--ngf-font-display);
   font-size: 1.625rem;
   font-weight: 800;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
   margin-bottom: 0.25rem;
 }
 
 .spotlight-type {
   font-size: 0.875rem;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   margin: 0;
 }
 
@@ -356,20 +356,20 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: var(--sdl-accent-500);
-  color: var(--sdl-white);
+  background: var(--ngf-accent-500);
+  color: var(--ngf-white);
   border: none;
-  border-radius: var(--sdl-radius-md);
+  border-radius: var(--ngf-radius-md);
   padding: 0.75rem 1.25rem;
   font-size: 0.875rem;
   font-weight: 700;
   cursor: pointer;
   flex-shrink: 0;
-  transition: var(--sdl-transition);
+  transition: var(--ngf-transition);
 }
 
 .spotlight-contact-btn:hover {
-  background: var(--sdl-accent-600);
+  background: var(--ngf-accent-600);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -379,7 +379,7 @@
 }
 
 .spotlight-contact-btn:focus-visible {
-  outline: 2px solid var(--sdl-accent-500);
+  outline: 2px solid var(--ngf-accent-500);
   outline-offset: 2px;
 }
 
@@ -398,7 +398,7 @@
 .spotlight-info-item small {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
   text-transform: uppercase;
   display: block;
   margin-bottom: 0.125rem;
@@ -406,12 +406,12 @@
 
 .spotlight-info-item strong {
   font-size: 0.9375rem;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 .spotlight-info-item.span-full {
   grid-column: span 2;
-  border-top: 1px solid var(--sdl-slate-100);
+  border-top: 1px solid var(--ngf-slate-100);
   padding-top: 1.25rem;
 }
 
@@ -425,8 +425,8 @@
 
 .service-tag {
   background: #f1f5f9;
-  border: 1px solid var(--sdl-slate-200);
-  color: var(--sdl-slate-700);
+  border: 1px solid var(--ngf-slate-200);
+  color: var(--ngf-slate-700);
   padding: 0.3rem 0.65rem;
   border-radius: 4px;
   font-size: 0.75rem;
@@ -460,11 +460,11 @@
 @media (max-width: 640px) {
   .facility-map-stage {
     height: 340px;
-    border-radius: var(--sdl-radius-xl);
+    border-radius: var(--ngf-radius-xl);
   }
   .facility-spotlight-card {
     padding: 1.5rem 1.125rem;
-    border-radius: var(--sdl-radius-xl);
+    border-radius: var(--ngf-radius-xl);
   }
   .spotlight-header h3 {
     font-size: 1.25rem;

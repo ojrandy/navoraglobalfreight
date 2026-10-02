@@ -28,7 +28,7 @@ class SimulationEngine {
     try {
       if (typeof window !== 'undefined') {
         window.addEventListener('storage', (e) => {
-          if (e.key === 'sdl_live_shipment_stream' && e.newValue) {
+          if (e.key === 'ngf_live_shipment_stream' && e.newValue) {
             try {
               const data = JSON.parse(e.newValue);
               if (data && data.shipment) {
@@ -56,7 +56,7 @@ class SimulationEngine {
     this.notifyListeners(shipment);
     try {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('sdl_live_shipment_stream', JSON.stringify({
+        localStorage.setItem('ngf_live_shipment_stream', JSON.stringify({
           trackingNumber: shipment.trackingNumber,
           shipment,
           timestamp: Date.now()

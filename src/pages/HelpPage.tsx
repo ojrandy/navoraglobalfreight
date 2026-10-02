@@ -55,13 +55,13 @@ export const HelpPage: React.FC<HelpPageProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="sdl-page-help">
+    <div className="ngf-page-help">
       {/* =========================================================================
           1. HERO + SEARCH (CONTENT §8.1)
           ========================================================================= */}
-      <section className="sdl-help-hero">
+      <section className="ngf-help-hero">
         <div className="help-hero-bg-overlay" />
-        <div className="sdl-container-wide help-hero-inner">
+        <div className="ngf-container-wide help-hero-inner">
           <h1 className="help-hero-title animate-fade-in">How can we help?</h1>
 
           <div className="help-search-container animate-fade-in">
@@ -89,7 +89,7 @@ export const HelpPage: React.FC<HelpPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      <div className="sdl-container-wide sdl-help-body">
+      <div className="ngf-container-wide ngf-help-body">
         {/* =========================================================================
             2. QUICK LINKS
             ========================================================================= */}
@@ -106,7 +106,7 @@ export const HelpPage: React.FC<HelpPageProps> = ({ onNavigate }) => {
         {/* =========================================================================
             3. KNOWLEDGE BASE (CONTENT §8.2)
             ========================================================================= */}
-        <section className="sdl-help-faq-section">
+        <section className="ngf-help-faq-section">
           <div className="section-center-header">
             <h2>Answers to common questions</h2>
             <div className="section-header-line" />
@@ -183,7 +183,7 @@ export const HelpPage: React.FC<HelpPageProps> = ({ onNavigate }) => {
         {/* =========================================================================
             4. FOOTER BANNER
             ========================================================================= */}
-        <section className="sdl-help-cta-box">
+        <section className="ngf-help-cta-box">
           <div className="help-cta-content">
             <h2>Still need help with a shipment?</h2>
             <div className="help-cta-buttons">

@@ -1,6 +1,6 @@
 /* ==========================================================================
    ADMIN LOGIN GATE
-   Palette: Ink surfaces (--sdl-ink-950, --sdl-ink-900) · SDL red accent (--sdl-accent-500)
+   Palette: Ink surfaces (--ngf-ink-950, --ngf-ink-900) · brand red accent (--ngf-accent-500)
    ========================================================================== */
 
 .admin-login-shell {
@@ -9,10 +9,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 20% 20%, var(--sdl-ink-900) 0%, var(--sdl-ink-950) 60%);
+  background: radial-gradient(circle at 20% 20%, var(--ngf-ink-900) 0%, var(--ngf-ink-950) 60%);
   padding: 1.5rem;
   box-sizing: border-box;
-  font-family: var(--sdl-font-sans, 'Inter', sans-serif);
+  font-family: var(--ngf-font-sans, 'Inter', sans-serif);
 }
 
 .admin-login-card {
@@ -32,8 +32,8 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: var(--sdl-accent-50);
-  color: var(--sdl-accent-500);
+  background: var(--ngf-accent-50);
+  color: var(--ngf-accent-500);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,7 +44,7 @@
   margin: 0;
   font-size: 1.15rem;
   font-weight: 800;
-  color: var(--sdl-ink-950);
+  color: var(--ngf-ink-950);
   letter-spacing: -0.01em;
 }
 
@@ -81,15 +81,15 @@
   border: 1.5px solid #e2e8f0;
   border-radius: 0.6rem;
   font-size: 0.9rem;
-  color: var(--sdl-ink-950);
+  color: var(--ngf-ink-950);
   outline: none;
   box-sizing: border-box;
   transition: all 0.15s ease;
 }
 
 .admin-login-field input:focus {
-  border-color: var(--sdl-accent-500);
-  box-shadow: 0 0 0 3px rgba(var(--sdl-accent-rgb), 0.12);
+  border-color: var(--ngf-accent-500);
+  box-shadow: 0 0 0 3px rgba(var(--ngf-accent-rgb), 0.12);
 }
 
 .admin-login-error {
@@ -111,7 +111,7 @@
   justify-content: center;
   gap: 0.45rem;
   padding: 0.75rem 1rem;
-  background: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
   color: #ffffff;
   border: none;
   border-radius: 0.6rem;
@@ -119,11 +119,11 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 0.15s ease;
-  box-shadow: 0 2px 10px rgba(var(--sdl-accent-rgb), 0.3);
+  box-shadow: 0 2px 10px rgba(var(--ngf-accent-rgb), 0.3);
 }
 
 .admin-login-submit:hover:not(:disabled) {
-  background: var(--sdl-accent-600);
+  background: var(--ngf-accent-600);
   transform: translateY(-1px);
 }
 

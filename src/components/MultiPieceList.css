@@ -1,43 +1,43 @@
-.sdl-pieces-card {
-  background: var(--sdl-white);
-  border: 1px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-lg);
+.ngf-pieces-card {
+  background: var(--ngf-white);
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-lg);
   padding: 1.25rem 1.5rem;
-  box-shadow: var(--sdl-shadow-card);
+  box-shadow: var(--ngf-shadow-card);
 }
 
-.sdl-pieces-header {
+.ngf-pieces-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1.25rem;
 }
 
-.sdl-pieces-title {
+.ngf-pieces-title {
   font-size: 1.0625rem;
   font-weight: 700;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
-.sdl-pieces-count-badge {
-  background-color: var(--sdl-primary-50);
-  color: var(--sdl-primary-900);
+.ngf-pieces-count-badge {
+  background-color: var(--ngf-primary-50);
+  color: var(--ngf-primary-900);
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.25rem 0.625rem;
-  border-radius: var(--sdl-radius-full);
+  border-radius: var(--ngf-radius-full);
 }
 
-.sdl-pieces-grid {
+.ngf-pieces-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
-.sdl-piece-item {
-  background: var(--sdl-slate-50);
-  border: 1px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-md);
+.ngf-piece-item {
+  background: var(--ngf-slate-50);
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-md);
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -58,13 +58,13 @@
 .piece-label {
   font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--sdl-ink-900);
+  color: var(--ngf-ink-900);
 }
 
 .piece-tracking-id {
-  font-family: var(--sdl-font-mono);
+  font-family: var(--ngf-font-mono);
   font-size: 0.75rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
 }
 
 .piece-status-wrap {
@@ -74,24 +74,24 @@
   gap: 0.125rem;
 }
 
-.sdl-badge-in-transit-sm {
-  background-color: var(--sdl-info-100);
-  color: var(--sdl-info-700);
+.ngf-badge-in-transit-sm {
+  background-color: var(--ngf-info-100);
+  color: var(--ngf-info-700);
   font-size: 0.6875rem;
   font-weight: 700;
   padding: 0.125rem 0.5rem;
-  border-radius: var(--sdl-radius-sm);
+  border-radius: var(--ngf-radius-sm);
 }
 
 .piece-location {
   font-size: 0.75rem;
-  color: var(--sdl-slate-500);
+  color: var(--ngf-slate-500);
 }
 
 .piece-barcode-wrap {
-  background: var(--sdl-white);
-  border: 1px solid var(--sdl-slate-200);
-  border-radius: var(--sdl-radius-sm);
+  background: var(--ngf-white);
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-sm);
   padding: 0.5rem;
   display: flex;
   align-items: center;
@@ -104,16 +104,16 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.75rem;
-  color: var(--sdl-slate-600);
+  color: var(--ngf-slate-600);
   font-weight: 500;
 }
 
 .spec-dot {
-  color: var(--sdl-slate-400);
+  color: var(--ngf-slate-400);
 }
 
 @media (max-width: 768px) {
-  .sdl-pieces-grid {
+  .ngf-pieces-grid {
     grid-template-columns: 1fr;
   }
 }

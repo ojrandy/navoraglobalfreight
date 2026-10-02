@@ -1,8 +1,8 @@
 # 3D & Motion Specification
 
-> **Context:** The SDL platform is **already built and working**: public website, tracking engine, Express/SQLite API,
-> admin console, documents and quotes. Claude is acting as a **senior professional developer** who has taken over this
-> existing codebase to rebrand and improve it. Nothing here is built from scratch; every task modifies the working system
+> **Context:** The Navora platform is **already built and working**: public website, tracking engine, Express/SQLite API,
+> admin console, documents and quotes. Claude is acting as a **senior professional developer** who maintains and improves this
+> existing codebase. Nothing here is built from scratch; every task modifies the working system
 > in place and must leave it working. See `CLAUDE.md §0`.
 
 **Approach:** the 3D and motion layer is **added on top of** the existing pages and components. Wrap and enhance the existing markup; don't rebuild sections.
@@ -81,7 +81,7 @@ If a future feature truly needs them, add a note to the tracker's Decisions log 
 | Section | Effect |
 |---|---|
 | **Hero** | **3D globe** (right side on desktop, behind text at 40% opacity on mobile). Dotted landmasses, glowing gateway markers (CONTENT §9) and animated trade-route arcs (CONTENT §9 lanes) with light pulses travelling along them. Slow auto-rotate (0.05 rad/s), gentle drag-to-rotate on desktop, subtle pointer parallax. Headline words rise in with a 60 ms stagger. |
-| Why SDL (3 cards) | Staggered `reveal-up`, then `useTilt` on hover with a soft moving highlight. Cards "float" (layered shadow + 2 px translate). |
+| Why Navora (3 cards) | Staggered `reveal-up`, then `useTilt` on hover with a soft moving highlight. Cards "float" (layered shadow + 2 px translate). |
 | How it works | A dashed SVG path connects the 4 steps and **draws itself** as you scroll (`stroke-dashoffset` tied to section progress). Step icons pop in as the line reaches them. |
 | About strip | Image parallax (speed 0.15) + `useCountUp` on real stats. |
 | Services (4 image cards) | Tilt + inner image zoom (scale 1.00→1.05) on hover. Background image parallax on scroll. |
@@ -120,7 +120,7 @@ If a future feature truly needs them, add a note to the tracker's Decisions log 
   pulse is a shader uniform (`uTime`), not new geometry.
 - Canvas: `dpr={[1, 1.75]}`, `gl={{ antialias: true, powerPreference: 'low-power', alpha: true }}`,
   `frameloop="demand"` + invalidate on a rAF only while visible (IntersectionObserver) and the tab is visible.
-- Colours come from CSS tokens (`--sdl-primary-*`, `--sdl-accent-*`) read once at mount.
+- Colours come from CSS tokens (`--ngf-primary-*`, `--ngf-accent-*`) read once at mount.
 - Accessibility: `aria-hidden="true"` on the canvas. Everything it conveys is also stated in the hero text.
 - Dispose geometries and materials on unmount.
 

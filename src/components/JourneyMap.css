@@ -1,7 +1,7 @@
 /* ============================================================
    JOURNEY MAP COMPONENT STYLES
    ============================================================ */
-.sdl-journey-map-card {
+.ngf-journey-map-card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 16px;
@@ -253,7 +253,7 @@
 }
 
 /* 3. CUSTOM MAP MARKERS & PINS */
-.sdl-clean-map-marker {
+.ngf-clean-map-marker {
   background: transparent !important;
   border: none !important;
 }
@@ -374,7 +374,7 @@
 }
 
 .map-floating-alert.live-gps {
-  background: rgba(var(--sdl-ink-rgb), 0.88);
+  background: rgba(var(--ngf-ink-rgb), 0.88);
   border: 1px solid rgba(56, 139, 253, 0.4);
   color: #93c5fd;
   font-weight: 700;
@@ -430,16 +430,16 @@
 }
 
 .map-speed-btn:hover {
-  background: rgba(var(--sdl-accent-rgb), 0.3);
-  border-color: var(--sdl-accent-500);
-  color: var(--sdl-accent-200);
+  background: rgba(var(--ngf-accent-rgb), 0.3);
+  border-color: var(--ngf-accent-500);
+  color: var(--ngf-accent-200);
 }
 
 .map-speed-btn.active {
-  background: var(--sdl-accent-500);
-  border-color: var(--sdl-accent-500);
+  background: var(--ngf-accent-500);
+  border-color: var(--ngf-accent-500);
   color: #ffffff;
-  box-shadow: 0 0 8px rgba(var(--sdl-accent-rgb), 0.6);
+  box-shadow: 0 0 8px rgba(var(--ngf-accent-rgb), 0.6);
   font-weight: 800;
 }
 
