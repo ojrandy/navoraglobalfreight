@@ -9,7 +9,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 20% 20%, var(--ngf-ink-900) 0%, var(--ngf-ink-950) 60%);
+  /* Night-time aerial port photo under a dark ink overlay so the card stays the focal point.
+     The solid colour is the fallback while the image loads. */
+  background-color: var(--ngf-ink-950);
+  background-image:
+    radial-gradient(ellipse at center, rgba(10, 12, 16, 0.35) 0%, rgba(10, 12, 16, 0.82) 75%),
+    linear-gradient(180deg, rgba(10, 12, 16, 0.55) 0%, rgba(10, 12, 16, 0.25) 45%, rgba(10, 12, 16, 0.7) 100%),
+    url('/images/site/locations-hero-1600.jpg');
+  background-image:
+    radial-gradient(ellipse at center, rgba(10, 12, 16, 0.35) 0%, rgba(10, 12, 16, 0.82) 75%),
+    linear-gradient(180deg, rgba(10, 12, 16, 0.55) 0%, rgba(10, 12, 16, 0.25) 45%, rgba(10, 12, 16, 0.7) 100%),
+    image-set(url('/images/site/locations-hero-1600.webp') type('image/webp'), url('/images/site/locations-hero-1600.jpg') type('image/jpeg'));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 1.5rem;
   box-sizing: border-box;
   font-family: var(--ngf-font-sans, 'Inter', sans-serif);
@@ -145,4 +158,23 @@
 
 .admin-login-exit:hover {
   color: #475569;
+}
+
+/* Serve a lighter photo on phones and a sharper one on large screens. */
+@media (max-width: 768px) {
+  .admin-login-shell {
+    background-image:
+      radial-gradient(ellipse at center, rgba(10, 12, 16, 0.35) 0%, rgba(10, 12, 16, 0.82) 75%),
+      linear-gradient(180deg, rgba(10, 12, 16, 0.55) 0%, rgba(10, 12, 16, 0.25) 45%, rgba(10, 12, 16, 0.7) 100%),
+      image-set(url('/images/site/locations-hero-1024.webp') type('image/webp'), url('/images/site/locations-hero-1024.jpg') type('image/jpeg'));
+  }
+}
+
+@media (min-width: 1800px) {
+  .admin-login-shell {
+    background-image:
+      radial-gradient(ellipse at center, rgba(10, 12, 16, 0.35) 0%, rgba(10, 12, 16, 0.82) 75%),
+      linear-gradient(180deg, rgba(10, 12, 16, 0.55) 0%, rgba(10, 12, 16, 0.25) 45%, rgba(10, 12, 16, 0.7) 100%),
+      image-set(url('/images/site/locations-hero-2400.webp') type('image/webp'), url('/images/site/locations-hero-2400.jpg') type('image/jpeg'));
+  }
 }
