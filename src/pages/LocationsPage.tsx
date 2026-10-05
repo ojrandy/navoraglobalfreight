@@ -10,7 +10,7 @@ interface LocationsPageProps {
   onNavigate?: (page: string, param?: string) => void;
 }
 
-const REGION_ORDER: GatewayRegion[] = ['Africa', 'Europe', 'Middle East', 'Asia', 'Americas', 'Oceania'];
+const REGION_ORDER: GatewayRegion[] = ['Europe', 'Middle East', 'Asia', 'Americas', 'Oceania'];
 
 export const LocationsPage: React.FC<LocationsPageProps> = ({ onNavigate }) => {
   const now = useNow();

@@ -212,7 +212,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   // Global network map: selected gateway
-  const [activeGatewayCode, setActiveGatewayCode] = useState('LOS');
+  const [activeGatewayCode, setActiveGatewayCode] = useState(GATEWAYS[0].code);
   const activeGateway = getGateway(activeGatewayCode) ?? GATEWAYS[0];
   const now = useNow();
   const activeGatewayTime = formatGatewayTime(activeGateway.timeZone, now);
@@ -713,7 +713,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
               </div>
 
               <p className="hub-description-text">
-                Our gateways link Africa, Europe, the Middle East, Asia and the Americas, so your shipment always has a direct, well-travelled route.
+                Our gateways link Europe, the Middle East, Asia, the Americas and Oceania, so your shipment always has a direct, well-travelled route.
               </p>
 
               <div className="network-side-stats">
@@ -803,7 +803,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
               <div className="thermal-body-grid font-mono">
                 <div className="th-cell">
                   <small>ORIGIN</small>
-                  <strong>LOS (LAGOS)</strong>
+                  <strong>SIN (SINGAPORE)</strong>
                 </div>
                 <div className="th-cell">
                   <small>DESTINATION</small>

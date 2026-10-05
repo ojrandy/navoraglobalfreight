@@ -44,7 +44,7 @@ Spelling: International/British English (see BRAND_GUIDE §3).
 | Quote | Get a Rate Quote \| Navora Global Freight | Tell us what you're moving and where. A logistics coordinator will send your rate. |
 | Ship | Book a Shipment \| Navora Global Freight | Book a pickup, build a multi-piece shipment and get your tracking ID in minutes. |
 | About | About Us \| Navora Global Freight | Who we are, how we work and why shippers around the world trust Navora with cargo that matters. |
-| Locations | Global Network \| Navora Global Freight | The gateways and trade lanes that connect Navora shipments across Africa, Europe, the Middle East, Asia and the Americas. |
+| Locations | Global Network \| Navora Global Freight | The gateways and trade lanes that connect Navora shipments across Europe, the Middle East, Asia, the Americas and Oceania. |
 | Help | Help Centre \| Navora Global Freight | Answers on tracking, booking, customs, documents and deliveries. |
 | Contact | Contact Us \| Navora Global Freight | Talk to a Navora coordinator, any time zone, any day. |
 | Legal | Policies \| Navora Global Freight | Privacy, terms of service, shipping terms and accessibility. |
@@ -137,7 +137,7 @@ Spelling: International/British English (see BRAND_GUIDE §3).
 ### 2.7 Global network map (replaces "Active U.S. Trade Gateways")
 - **Eyebrow:** `GLOBAL NETWORK`
 - **H2:** `Connected across the world's key trade lanes`
-- **Intro:** `Our gateways link Africa, Europe, the Middle East, Asia and the Americas, so your shipment always has a direct, well-travelled route.`
+- **Intro:** `Our gateways link Europe, the Middle East, Asia, the Americas and Oceania, so your shipment always has a direct, well-travelled route.`
 - **Side stats** (replace the invented numbers): **5** "Continents served" · **Air · Ocean · Road** "Modes connected" · **24/7** "Operations desk". Only show gateway/country counts once confirmed.
 - **Legend:** `Gateway` · `Trade lane` · `Live shipment` (demo)
 - **CTA:** `View our network →`
@@ -271,7 +271,7 @@ Remove the invented client logos. Replace with an icon row: **Air Freight · Oce
 
 - **Hero image:** `about-hero` (12:5 crop of `images/free-stock/about-hero.jpg`). The credentials row shows only the admin "regulatory line" when it is set.
 
-**Stat cards** (reuse approved stats; no invented figures): **24/7** "Global operations desk" · `Our desk follows the sun across time zones.` — **1** "Tracking ID from start to finish" · `One team accountable from the first mile to the last.` — **5** "Continents served" · `Gateways across Africa, Europe, the Middle East, Asia and the Americas.` — **Air · Ocean · Road** "Modes connected" · `Air, ocean and road, connected.`
+**Stat cards** (reuse approved stats; no invented figures): **24/7** "Global operations desk" · `Our desk follows the sun across time zones.` — **1** "Tracking ID from start to finish" · `One team accountable from the first mile to the last.` — **5** "Continents served" · `Gateways across Europe, the Middle East, Asia, the Americas and Oceania.` — **Air · Ocean · Road** "Modes connected" · `Air, ocean and road, connected.`
 
 **Our approach (5 points)** (shown under the story text, eyebrow `OUR STORY`; photo `about-story` with the caption **24/7 Global operations desk** · `Our desk follows the sun across time zones.`)
 1. **Milestone Visibility.** Every scan and hand-off is recorded and visible to you.
@@ -435,10 +435,6 @@ Presented as "gateways we serve". Don't describe them as Navora-owned facilities
 
 | Code | Gateway | Country | ISO | Lat | Lng | Time zone | Modes |
 |---|---|---|---|---|---|---|---|
-| LOS | Lagos | Nigeria | NG | 6.5774 | 3.3212 | Africa/Lagos | Air · Ocean · Road |
-| ACC | Accra | Ghana | GH | 5.6052 | -0.1668 | Africa/Accra | Air · Road |
-| NBO | Nairobi | Kenya | KE | -1.3192 | 36.9278 | Africa/Nairobi | Air · Road |
-| JNB | Johannesburg | South Africa | ZA | -26.1392 | 28.2460 | Africa/Johannesburg | Air · Road |
 | LHR | London | United Kingdom | GB | 51.4700 | -0.4543 | Europe/London | Air · Road |
 | RTM | Rotterdam | Netherlands | NL | 51.9496 | 4.1453 | Europe/Amsterdam | Ocean · Road |
 | FRA | Frankfurt | Germany | DE | 50.0379 | 8.5622 | Europe/Berlin | Air · Road |
@@ -453,8 +449,12 @@ Presented as "gateways we serve". Don't describe them as Navora-owned facilities
 | YYZ | Toronto | Canada | CA | 43.6777 | -79.6248 | America/Toronto | Air · Road |
 | GRU | São Paulo | Brazil | BR | -23.4356 | -46.4731 | America/Sao_Paulo | Air · Ocean |
 | SYD | Sydney | Australia | AU | -33.9399 | 151.1753 | Australia/Sydney | Air · Ocean |
+| NRT | Tokyo | Japan | JP | 35.7720 | 140.3929 | Asia/Tokyo | Air · Ocean |
+| ICN | Seoul | South Korea | KR | 37.4602 | 126.4407 | Asia/Seoul | Air · Ocean |
+| ORD | Chicago | United States | US | 41.9742 | -87.9073 | America/Chicago | Air · Road |
+| MIA | Miami | United States | US | 25.7959 | -80.2870 | America/New_York | Air · Ocean · Road |
 
-**Hero-globe trade lanes (arcs):** LOS–LHR, LOS–DXB, LOS–JFK, LHR–JFK, DXB–SIN, SIN–SYD, PVG–RTM, HKG–LAX, FRA–DXB, JNB–DXB, NBO–LHR, GRU–JFK, IAH–RTM, YYZ–LHR, BOM–DXB.
+**Hero-globe trade lanes (arcs):** LHR–JFK, DXB–SIN, SIN–SYD, PVG–RTM, HKG–LAX, FRA–DXB, GRU–JFK, IAH–RTM, YYZ–LHR, BOM–DXB, NRT–LAX, ICN–FRA, ORD–LHR, ORD–PVG, MIA–GRU.
 
 ---
 

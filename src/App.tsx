@@ -76,7 +76,7 @@ const PAGE_META: Record<string, PageMeta> = {
   quote: { title: `Get a Rate Quote | ${COMPANY}`, description: "Tell us what you're moving and where. A logistics coordinator will send your rate." },
   ship: { title: `Book a Shipment | ${COMPANY}`, description: 'Book a pickup, build a multi-piece shipment and get your tracking ID in minutes.' },
   about: { title: `About Us | ${COMPANY}`, description: `Who we are, how we work and why shippers around the world trust ${COMPANY_SHORT} with cargo that matters.` },
-  locations: { title: `Global Network | ${COMPANY}`, description: `The gateways and trade lanes that connect ${COMPANY_SHORT} shipments across Africa, Europe, the Middle East, Asia and the Americas.` },
+  locations: { title: `Global Network | ${COMPANY}`, description: `The gateways and trade lanes that connect ${COMPANY_SHORT} shipments across Europe, the Middle East, Asia, the Americas and Oceania.` },
   help: { title: `Help Centre | ${COMPANY}`, description: 'Answers on tracking, booking, customs, documents and deliveries.' },
   contact: { title: `Contact Us | ${COMPANY}`, description: `Talk to a ${COMPANY_SHORT} coordinator, any time zone, any day.` },
   legal: { title: `Policies | ${COMPANY}`, description: 'Privacy, terms of service, shipping terms and accessibility.' },

@@ -31,7 +31,7 @@ interface AboutPageProps {
 const STATS = [
   { value: '24/7', title: 'Global operations desk', sub: 'Our desk follows the sun across time zones.' },
   { value: '1', title: 'Tracking ID from start to finish', sub: 'One team accountable from the first mile to the last.' },
-  { value: '5', title: 'Continents served', sub: 'Gateways across Africa, Europe, the Middle East, Asia and the Americas.' },
+  { value: '5', title: 'Continents served', sub: 'Gateways across Europe, the Middle East, Asia, the Americas and Oceania.' },
   { value: 'Air · Ocean · Road', title: 'Modes connected', sub: 'Air, ocean and road, connected.' }
 ];
 

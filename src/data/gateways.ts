@@ -3,7 +3,7 @@
 
 export type TransportMode = 'Air' | 'Ocean' | 'Road';
 
-export type GatewayRegion = 'Africa' | 'Europe' | 'Middle East' | 'Asia' | 'Americas' | 'Oceania';
+export type GatewayRegion = 'Europe' | 'Middle East' | 'Asia' | 'Americas' | 'Oceania';
 
 export interface Gateway {
   code: string;
@@ -19,10 +19,6 @@ export interface Gateway {
 }
 
 export const GATEWAYS: Gateway[] = [
-  { code: 'LOS', name: 'Lagos', city: 'Lagos', country: 'Nigeria', iso: 'NG', lat: 6.5774, lng: 3.3212, timeZone: 'Africa/Lagos', modes: ['Air', 'Ocean', 'Road'], region: 'Africa' },
-  { code: 'ACC', name: 'Accra', city: 'Accra', country: 'Ghana', iso: 'GH', lat: 5.6052, lng: -0.1668, timeZone: 'Africa/Accra', modes: ['Air', 'Road'], region: 'Africa' },
-  { code: 'NBO', name: 'Nairobi', city: 'Nairobi', country: 'Kenya', iso: 'KE', lat: -1.3192, lng: 36.9278, timeZone: 'Africa/Nairobi', modes: ['Air', 'Road'], region: 'Africa' },
-  { code: 'JNB', name: 'Johannesburg', city: 'Johannesburg', country: 'South Africa', iso: 'ZA', lat: -26.1392, lng: 28.2460, timeZone: 'Africa/Johannesburg', modes: ['Air', 'Road'], region: 'Africa' },
   { code: 'LHR', name: 'London', city: 'London', country: 'United Kingdom', iso: 'GB', lat: 51.4700, lng: -0.4543, timeZone: 'Europe/London', modes: ['Air', 'Road'], region: 'Europe' },
   { code: 'RTM', name: 'Rotterdam', city: 'Rotterdam', country: 'Netherlands', iso: 'NL', lat: 51.9496, lng: 4.1453, timeZone: 'Europe/Amsterdam', modes: ['Ocean', 'Road'], region: 'Europe' },
   { code: 'FRA', name: 'Frankfurt', city: 'Frankfurt', country: 'Germany', iso: 'DE', lat: 50.0379, lng: 8.5622, timeZone: 'Europe/Berlin', modes: ['Air', 'Road'], region: 'Europe' },
@@ -37,13 +33,17 @@ export const GATEWAYS: Gateway[] = [
   { code: 'YYZ', name: 'Toronto', city: 'Toronto', country: 'Canada', iso: 'CA', lat: 43.6777, lng: -79.6248, timeZone: 'America/Toronto', modes: ['Air', 'Road'], region: 'Americas' },
   { code: 'GRU', name: 'São Paulo', city: 'São Paulo', country: 'Brazil', iso: 'BR', lat: -23.4356, lng: -46.4731, timeZone: 'America/Sao_Paulo', modes: ['Air', 'Ocean'], region: 'Americas' },
   { code: 'SYD', name: 'Sydney', city: 'Sydney', country: 'Australia', iso: 'AU', lat: -33.9399, lng: 151.1753, timeZone: 'Australia/Sydney', modes: ['Air', 'Ocean'], region: 'Oceania' },
+  { code: 'NRT', name: 'Tokyo', city: 'Tokyo', country: 'Japan', iso: 'JP', lat: 35.7720, lng: 140.3929, timeZone: 'Asia/Tokyo', modes: ['Air', 'Ocean'], region: 'Asia' },
+  { code: 'ICN', name: 'Seoul', city: 'Seoul', country: 'South Korea', iso: 'KR', lat: 37.4602, lng: 126.4407, timeZone: 'Asia/Seoul', modes: ['Air', 'Ocean'], region: 'Asia' },
+  { code: 'ORD', name: 'Chicago', city: 'Chicago', country: 'United States', iso: 'US', lat: 41.9742, lng: -87.9073, timeZone: 'America/Chicago', modes: ['Air', 'Road'], region: 'Americas' },
+  { code: 'MIA', name: 'Miami', city: 'Miami', country: 'United States', iso: 'US', lat: 25.7959, lng: -80.2870, timeZone: 'America/New_York', modes: ['Air', 'Ocean', 'Road'], region: 'Americas' },
 ];
 
 // Scheduled trade lanes, drawn as great-circle arcs (CONTENT.md §9).
 export const TRADE_LANES: [string, string][] = [
-  ['LOS', 'LHR'], ['LOS', 'DXB'], ['LOS', 'JFK'], ['LHR', 'JFK'], ['DXB', 'SIN'],
-  ['SIN', 'SYD'], ['PVG', 'RTM'], ['HKG', 'LAX'], ['FRA', 'DXB'], ['JNB', 'DXB'],
-  ['NBO', 'LHR'], ['GRU', 'JFK'], ['IAH', 'RTM'], ['YYZ', 'LHR'], ['BOM', 'DXB'],
+  ['LHR', 'JFK'], ['DXB', 'SIN'], ['SIN', 'SYD'], ['PVG', 'RTM'], ['HKG', 'LAX'],
+  ['FRA', 'DXB'], ['GRU', 'JFK'], ['IAH', 'RTM'], ['YYZ', 'LHR'], ['BOM', 'DXB'],
+  ['NRT', 'LAX'], ['ICN', 'FRA'], ['ORD', 'LHR'], ['ORD', 'PVG'], ['MIA', 'GRU'],
 ];
 
 export function getGateway(code: string): Gateway | undefined {
