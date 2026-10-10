@@ -64,6 +64,7 @@ import { ADMIN_ROLE_LABEL, COMPANY, COMPANY_SHORT, INTAKE_DESK, LEGAL_NAME, REFE
 import { generateReference } from '../../shared/references';
 import './CreateShipmentView.css';
 import { Barcode as TrackingBarcode } from '../../components/Barcode';
+import { ShipmentImagesPanel } from '../components/ShipmentImagesPanel';
 import { documentTitle } from '../../components/DocumentBrand';
 
 interface CreateShipmentViewProps {
@@ -1281,6 +1282,13 @@ export const CreateShipmentView: React.FC<CreateShipmentViewProps> = ({
               <strong>{formatWeight(totalWeight, units.system)}</strong>
             </div>
           </div>
+
+          {/* Optional step: package images, now that the server has assigned the tracking ID. */}
+          {generatedTrackingNumber && (
+            <div className="success-images-step">
+              <ShipmentImagesPanel trackingNumber={generatedTrackingNumber} />
+            </div>
+          )}
 
           {/* Action Buttons */}
           <div className="success-action-buttons-grid">

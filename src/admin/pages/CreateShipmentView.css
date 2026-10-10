@@ -2692,3 +2692,14 @@
   justify-content: flex-end;
   margin-bottom: 1rem;
 }
+
+/* Optional package-images step on the success screen (docs/update.md B.3). */
+.success-images-step {
+  margin: 1.25rem 0;
+}
+
+@media print {
+  .success-images-step {
+    display: none;
+  }
+}
