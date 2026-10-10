@@ -225,3 +225,18 @@ export interface ContactMessage {
   gatewayLabel?: string;
   message: string;
 }
+
+/** One of the admin's payment accounts (docs/update.md C.3). Admin-only; never in public settings. */
+export interface AdminPaymentMethod {
+  id: string;
+  /** Key from src/shared/paymentMethods.ts. */
+  type: string;
+  /** Optional display name shown instead of the type's name. */
+  label: string | null;
+  details: Record<string, string>;
+  instructions: string | null;
+  enabled: boolean;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+}

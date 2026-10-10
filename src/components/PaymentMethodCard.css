@@ -1,0 +1,169 @@
+/* One payment account as the customer sees it (admin previews + track page). */
+
+.ngf-pm-card {
+  background: #ffffff;
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: 12px;
+  padding: 1rem;
+  min-width: 0;
+  text-align: left;
+}
+
+.ngf-pm-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.ngf-pm-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--ngf-slate-50);
+  border: 1px solid var(--ngf-slate-200);
+  flex-shrink: 0;
+}
+
+.ngf-pm-card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ngf-slate-900);
+  overflow-wrap: anywhere;
+}
+
+.ngf-pm-card-warning,
+.ngf-pm-card-note {
+  display: flex;
+  gap: 0.45rem;
+  align-items: flex-start;
+  margin: 0.75rem 0 0;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.ngf-pm-card-warning svg,
+.ngf-pm-card-note svg {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.ngf-pm-card-warning {
+  background: var(--ngf-warning-50, #fffbeb);
+  border: 1px solid var(--ngf-warning-100, #fef3c7);
+  color: #92400e;
+}
+
+.ngf-pm-card-note {
+  background: var(--ngf-info-50);
+  border: 1px solid var(--ngf-info-100);
+  color: var(--ngf-info-700);
+}
+
+.ngf-pm-card-fields {
+  margin: 0.75rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.ngf-pm-card-field dt {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ngf-slate-600);
+}
+
+.ngf-pm-card-field dd {
+  margin: 0.15rem 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.ngf-pm-card-value {
+  min-width: 0;
+  font-family: var(--ngf-font-mono);
+  font-size: 0.85rem;
+  color: var(--ngf-slate-900);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: 1.45;
+}
+
+.ngf-pm-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--ngf-slate-300);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--ngf-slate-800);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ngf-pm-copy:hover {
+  border-color: var(--ngf-slate-400);
+  background: var(--ngf-slate-50);
+}
+
+.ngf-pm-copy.is-copied {
+  border-color: var(--ngf-success-500);
+  color: var(--ngf-success-700);
+  background: var(--ngf-success-50);
+}
+
+.ngf-pm-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  background: var(--ngf-accent-600);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ngf-pm-card-link:hover {
+  background: var(--ngf-accent-700);
+}
+
+.ngf-pm-card-instructions {
+  margin: 0.75rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ngf-slate-700);
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.ngf-pm-copy:focus-visible,
+.ngf-pm-card-link:focus-visible {
+  outline: 2px solid var(--ngf-color-focus);
+  outline-offset: 2px;
+}
+
+.ngf-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -19,13 +19,15 @@ import {
   Sparkles,
   Phone,
   Mail,
-  Truck
+  Truck,
+  Wallet
 } from 'lucide-react';
 import { COMPANY_SHORT, EMAIL, LEGAL_NAME } from '../../config/brand';
 import { useAdminData } from '../../context/AdminDataContext';
 import './SettingsView.css';
 import { CURRENCY_NAMES, DISPLAY_CURRENCIES, formatMoney, resolveCurrency, type DisplayCurrency } from '../../shared/currency';
 import { MeasureInput, useUnitLabels } from '../../components/forms/UnitControls';
+import { PaymentMethodsManager } from '../components/PaymentMethodsManager';
 
 export const SettingsView: React.FC = () => {
   const { settings, updateSettings } = useAdminData();
@@ -107,7 +109,7 @@ export const SettingsView: React.FC = () => {
   };
 
   // Active Category Tab
-  const [activeTab, setActiveTab] = useState<'GENERAL' | 'PRIVACY' | 'TARIFF' | 'DOCUMENTS' | 'HUBS'>('GENERAL');
+  const [activeTab, setActiveTab] = useState<'GENERAL' | 'PRIVACY' | 'TARIFF' | 'DOCUMENTS' | 'HUBS' | 'PAYMENTS'>('GENERAL');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Handle Save
@@ -193,6 +195,8 @@ export const SettingsView: React.FC = () => {
           <p>Manage company identity, public tracking privacy, pricing defaults, and document rules.</p>
         </div>
 
+        {/* Payment methods save on their own (PaymentMethodsManager), never via Save All Settings. */}
+        {activeTab !== 'PAYMENTS' && (
         <div className="settings-header-actions">
           <button
             type="button"
@@ -211,6 +215,7 @@ export const SettingsView: React.FC = () => {
             <span>Save All Settings</span>
           </button>
         </div>
+        )}
       </div>
 
       {/* Settings Navigation Tabs */}
@@ -254,9 +259,21 @@ export const SettingsView: React.FC = () => {
           <Server size={16} />
           <span>Gateway Hub Telemetry</span>
         </button>
+
+        <button
+          className={`settings-tab-btn ${activeTab === 'PAYMENTS' ? 'active' : ''}`}
+          onClick={() => setActiveTab('PAYMENTS')}
+        >
+          <Wallet size={16} />
+          <span>Payment Methods</span>
+        </button>
       </div>
 
+      {/* Payment accounts: own API and table (docs/update.md C.4), kept outside the settings form. */}
+      {activeTab === 'PAYMENTS' && <PaymentMethodsManager />}
+
       {/* Settings Content Grid */}
+      {activeTab !== 'PAYMENTS' && (
       <form onSubmit={handleSaveAll} className="settings-form-wrapper">
         {/* =========================================================================
             SECTION 1: COMPANY & CARRIER PROFILE
@@ -745,6 +762,7 @@ export const SettingsView: React.FC = () => {
           </button>
         </div>
       </form>
+      )}
     </div>
   );
 };

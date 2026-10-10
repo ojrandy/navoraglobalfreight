@@ -387,6 +387,8 @@ The rest of the payment section (heading, status labels, proof form) is added in
 - **Western Union note:** `After sending, enter the MTCN (money transfer control number) as your payment reference.`
 - **MoneyGram note:** `After sending, enter the MoneyGram reference number as your payment reference.`
 - Optional fields the admin leaves empty are not shown.
+- **Copy buttons:** `Copy` → `Copied` (2 seconds) · screen-reader announcement `{field} copied` · if the browser blocks copying: `Could not copy. Select the {field} and copy it manually.`
+- The admin's own **instructions** for an account appear at the bottom of its card, as written.
 
 ---
 
