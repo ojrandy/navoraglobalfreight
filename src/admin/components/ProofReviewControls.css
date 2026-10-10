@@ -1,0 +1,95 @@
+/* Approve / Reject for a payment proof (update F.6). */
+
+.proof-review {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--ngf-slate-100);
+}
+
+.proof-review-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--ngf-slate-700);
+  cursor: pointer;
+}
+
+.proof-review-check input {
+  margin-top: 0.15rem;
+}
+
+.proof-review-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
+.proof-review-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: var(--ngf-radius-md);
+  background: var(--ngf-white);
+  color: var(--ngf-slate-700);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.proof-review-btn.approve {
+  background: var(--ngf-success-600);
+  border-color: var(--ngf-success-600);
+  color: var(--ngf-white);
+}
+
+.proof-review-btn.approve:hover:not(:disabled) {
+  background: var(--ngf-success-700);
+}
+
+.proof-review-btn.reject {
+  border-color: var(--ngf-danger-100);
+  color: var(--ngf-danger-600);
+}
+
+.proof-review-btn.reject:hover:not(:disabled) {
+  background: var(--ngf-danger-50);
+}
+
+.proof-review-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.proof-review-btn:focus-visible {
+  outline: 2px solid var(--ngf-color-focus);
+  outline-offset: 2px;
+}
+
+.proof-review-reject label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--ngf-slate-800);
+}
+
+.proof-review-reject textarea {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--ngf-slate-300);
+  border-radius: var(--ngf-radius-md);
+  font: inherit;
+  font-size: 0.875rem;
+  resize: vertical;
+}
+
+.proof-review-error {
+  margin: 0.5rem 0 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ngf-danger-600);
+}

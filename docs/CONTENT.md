@@ -420,6 +420,7 @@ Shown only when the shipment has a payment request. Hidden completely when the r
 - **Success:** `Thank you. Your proof of payment was sent. We'll check it and update this page.`
 - **Under review:** `Proof under review` · `We received your proof on {date} at {time}. Our team will check it and update this page.`
 - **Rejected:** `Proof not accepted: {reason}` · `Please check the details and send a new proof below.`
+- **Tracking event when the admin approves a proof** (update F.6, optional, on by default): title `Payment confirmed` · description `Payment received for: {charge reason}.` · facility `{{COMPANY_SHORT}} Operations Centre` (as in §6.3)
 - **Errors:** `We couldn't send your proof. Check your connection and try again.` · too many attempts: `Too many attempts. Please wait a while and try again.` · too many open proofs: `We already have proofs waiting for review for this payment. Our team will check them first.` · status changed: `This payment is no longer waiting for a proof. Refresh the page to see its current status.`
 
 ---

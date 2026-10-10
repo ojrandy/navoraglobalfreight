@@ -1,9 +1,13 @@
 import { Router, Request, Response } from 'express';
+import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { db } from '../db.js';
 import { deleteUpload, IMAGE_CONTENT_TYPES, resolveUploadPath } from '../uploads.js';
-import { PROOF_STATUSES } from '../../src/shared/paymentProof.js';
+import { eventTime } from '../eventTime.js';
+import { setDocumentPaymentStatus } from './documents.js';
+import { ADMIN_ROLE_LABEL, OPERATIONS_CENTRE } from '../../src/config/brand.js';
+import { PROOF_LIMITS, PROOF_STATUSES } from '../../src/shared/paymentProof.js';
 import type { AdminPaymentProof, ProofStatus, PublicProofStatus } from '../../src/shared/paymentProof.js';
 
 // Proofs of payment (docs/update.md Phase F). The screenshots are private: they are only served
@@ -118,6 +122,117 @@ paymentsRouter.get('/proofs/:id/file', (req: Request, res: Response) => {
     res.setHeader('Cache-Control', 'private, no-store');
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.sendFile(filePath);
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// ---- Review (docs/update.md F.6) ----
+
+type ReviewPaymentRow = { id: string; status: string; charge_reason: string; invoice_document_id: string | null };
+
+/** "Payment confirmed" event on the shipment's timeline (D-8). Its status stays what it is. */
+function addPaymentConfirmedEvent(tracking: string, chargeReason: string) {
+  const ship = db.prepare(`
+    SELECT status, current_location_city, current_location_state, current_location_lat, current_location_lng
+    FROM shipments WHERE tracking_number = ?`).get(tracking) as {
+      status: string; current_location_city: string | null; current_location_state: string | null;
+      current_location_lat: number | null; current_location_lng: number | null;
+    } | undefined;
+  if (!ship) return;
+  const location = [ship.current_location_city, ship.current_location_state].filter(Boolean).join(', ') || OPERATIONS_CENTRE;
+  const time = eventTime(location, { lat: ship.current_location_lat ?? undefined, lng: ship.current_location_lng ?? undefined });
+  db.prepare('UPDATE tracking_events SET current_flag = 0 WHERE shipment_tracking = ?').run(tracking);
+  const count = (db.prepare('SELECT COUNT(*) AS n FROM tracking_events WHERE shipment_tracking = ?').get(tracking) as { n: number }).n;
+  db.prepare(`
+    INSERT INTO tracking_events (
+      id, shipment_tracking, status, title, location, facility,
+      timestamp, description, operator_notes, delay_flag, completed, current_flag, sort_order,
+      recorded_by, occurred_at_ts, time_zone
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 1, 1, ?, ?, ?, ?)
+  `).run(
+    `e-pay-${crypto.randomUUID()}`, tracking, ship.status, 'Payment confirmed', location, OPERATIONS_CENTRE,
+    time.timestamp, `Payment received for: ${chargeReason}.`, 'Recorded when a proof of payment was approved.',
+    count + 1, ADMIN_ROLE_LABEL, time.occurredAtTs, time.timeZone,
+  );
+}
+
+function reviewable(id: string): { proof: ProofRow; payment: ReviewPaymentRow | undefined } | { error: [number, string] } {
+  const proof = db.prepare(`
+    SELECT pp.* FROM payment_proofs pp
+    JOIN shipments s ON s.tracking_number = pp.tracking_number AND s.deleted_at_ts IS NULL
+    WHERE pp.id = ?`).get(id) as ProofRow | undefined;
+  if (!proof) return { error: [404, 'Proof not found.'] };
+  if (proof.status !== 'SUBMITTED') return { error: [409, 'This proof has already been reviewed.'] };
+  const payment = db.prepare('SELECT id, status, charge_reason, invoice_document_id FROM shipment_payments WHERE id = ?')
+    .get(proof.payment_id) as ReviewPaymentRow | undefined;
+  return { proof, payment };
+}
+
+// POST /api/payments/proofs/:id/approve { addTrackingEvent?: boolean (default true, D-8) }
+// The request becomes PAID (paid_at set), its linked invoice is marked PAID, and optionally a
+// public "Payment confirmed" event is added. Only while the request is awaiting payment or under review.
+paymentsRouter.post('/proofs/:id/approve', (req: Request, res: Response) => {
+  try {
+    const found = reviewable(req.params.id as string);
+    if ('error' in found) return res.status(found.error[0]).json({ success: false, error: found.error[1] });
+    const { proof, payment } = found;
+    if (!payment || (payment.status !== 'AWAITING_PAYMENT' && payment.status !== 'UNDER_REVIEW')) {
+      const state = payment ? payment.status.toLowerCase().replace('_', ' ') : 'deleted';
+      return res.status(409).json({ success: false, error: `This payment request is ${state}, so the proof can't be approved. Reject it instead, or reopen the request first.` });
+    }
+    const addEvent = req.body?.addTrackingEvent !== false;
+    const now = new Date().toISOString();
+
+    db.exec('BEGIN');
+    try {
+      db.prepare("UPDATE payment_proofs SET status = 'APPROVED', reviewed_at = ? WHERE id = ?").run(now, proof.id);
+      db.prepare("UPDATE shipment_payments SET status = 'PAID', paid_at = ?, updated_at = ? WHERE id = ?").run(now, now, payment.id);
+      if (payment.invoice_document_id) setDocumentPaymentStatus(payment.invoice_document_id, 'PAID');
+      if (addEvent) addPaymentConfirmedEvent(proof.tracking_number, payment.charge_reason);
+      db.exec('COMMIT');
+    } catch (err) {
+      db.exec('ROLLBACK');
+      throw err;
+    }
+    res.json({ success: true, data: getProof(proof.id) });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// POST /api/payments/proofs/:id/reject { reason } — the reason is shown to the customer. A request
+// under review goes back to AWAITING_PAYMENT once no other proof is waiting, so the customer can
+// send a new one.
+paymentsRouter.post('/proofs/:id/reject', (req: Request, res: Response) => {
+  try {
+    const reason = typeof req.body?.reason === 'string' ? req.body.reason.trim().replace(/\s+/g, ' ') : '';
+    if (reason.length < PROOF_LIMITS.rejectReasonMin || reason.length > PROOF_LIMITS.rejectReasonMax) {
+      return res.status(400).json({
+        success: false, error: 'Some details need fixing.',
+        fieldErrors: { reason: `Tell the customer why (${PROOF_LIMITS.rejectReasonMin}–${PROOF_LIMITS.rejectReasonMax} characters). They will see this.` },
+      });
+    }
+    const found = reviewable(req.params.id as string);
+    if ('error' in found) return res.status(found.error[0]).json({ success: false, error: found.error[1] });
+    const { proof, payment } = found;
+    const now = new Date().toISOString();
+
+    db.exec('BEGIN');
+    try {
+      db.prepare("UPDATE payment_proofs SET status = 'REJECTED', admin_note = ?, reviewed_at = ? WHERE id = ?").run(reason, now, proof.id);
+      if (payment?.status === 'UNDER_REVIEW') {
+        const waiting = (db.prepare("SELECT COUNT(*) AS n FROM payment_proofs WHERE payment_id = ? AND status = 'SUBMITTED'").get(payment.id) as { n: number }).n;
+        if (waiting === 0) {
+          db.prepare("UPDATE shipment_payments SET status = 'AWAITING_PAYMENT', updated_at = ? WHERE id = ?").run(now, payment.id);
+        }
+      }
+      db.exec('COMMIT');
+    } catch (err) {
+      db.exec('ROLLBACK');
+      throw err;
+    }
+    res.json({ success: true, data: getProof(proof.id) });
   } catch (err: any) {
     res.status(500).json({ success: false, error: err.message });
   }

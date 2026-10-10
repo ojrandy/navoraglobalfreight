@@ -6,6 +6,7 @@ import { formatPaymentAmount } from '../../shared/paymentRequest';
 import { customerMethodView, isPaymentMethodType } from '../../shared/paymentMethods';
 import { PaymentIcon } from '../../components/PaymentIcon';
 import { ProofViewer } from '../components/ProofViewer';
+import { ProofReviewControls } from '../components/ProofReviewControls';
 import './PaymentsView.css';
 
 interface PaymentsViewProps {
@@ -91,6 +92,14 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({ searchQuery, onOpenS
     openerRef.current = opener;
     setViewing(proof);
   };
+  // Approving one proof also changes its request, which other proofs for that shipment show,
+  // so the list is reloaded after the reviewed proof is swapped in.
+  const handleReviewed = (updated: AdminPaymentProof) => {
+    setProofs((list) => list.map((p) => (p.id === updated.id ? updated : p)));
+    setViewing((current) => (current?.id === updated.id ? updated : current));
+    load();
+  };
+
   const closeViewer = useCallback(() => {
     setViewing(null);
     requestAnimationFrame(() => openerRef.current?.focus());
@@ -126,7 +135,7 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({ searchQuery, onOpenS
           <dt>Reference</dt>
           <dd className="font-mono">{p.reference || '—'}</dd>
         </div>
-        <div>
+        <div className="proof-fact-wide">
           <dt>For</dt>
           <dd>{p.payment?.chargeReason || '—'}</dd>
         </div>
@@ -202,6 +211,7 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({ searchQuery, onOpenS
                   <ExternalLink size={14} /><span>View shipment</span>
                 </button>
               </div>
+              <ProofReviewControls proof={p} onReviewed={handleReviewed} />
             </div>
           </article>
         ))}
@@ -210,6 +220,8 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({ searchQuery, onOpenS
       {viewing && (
         <ProofViewer src={viewing.fileUrl} title={`Payment screenshot · ${viewing.trackingNumber}`} onClose={closeViewer}>
           {details(viewing)}
+          {viewing.status === 'REJECTED' && viewing.adminNote && <p className="proof-note">Rejected: {viewing.adminNote}</p>}
+          <ProofReviewControls proof={viewing} onReviewed={handleReviewed} />
         </ProofViewer>
       )}
     </div>
