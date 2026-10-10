@@ -3,6 +3,7 @@ import { ArrowDown, ArrowUp, Eye, EyeOff, ImagePlus, Loader2, Trash2, Upload, X 
 import { api } from '../../services/api';
 import { compressImage, ImageCompressError } from '../../services/imageCompress';
 import { AdminShipmentImage } from '../../types/shipment';
+import { legacyPhotoUrls } from '../../shared/legacyPhotos';
 import './ShipmentImagesPanel.css';
 
 // Same limits as server/routes/shipmentImages.ts.
@@ -21,13 +22,16 @@ interface PendingImage {
 
 interface ShipmentImagesPanelProps {
   trackingNumber: string;
+  /** Older photo URLs on the record (photos_json): shown read-only, never edited here. */
+  legacyPhotos?: string[];
 }
 
 /**
  * Package images for one shipment (docs/update.md B.3). Every change is saved straight away
  * through the images API, independently of any surrounding form's Save button.
  */
-export const ShipmentImagesPanel: React.FC<ShipmentImagesPanelProps> = ({ trackingNumber }) => {
+export const ShipmentImagesPanel: React.FC<ShipmentImagesPanelProps> = ({ trackingNumber, legacyPhotos }) => {
+  const legacy = legacyPhotoUrls(legacyPhotos);
   const [images, setImages] = useState<AdminShipmentImage[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
@@ -339,6 +343,23 @@ export const ShipmentImagesPanel: React.FC<ShipmentImagesPanelProps> = ({ tracki
             );
           })}
         </ul>
+      )}
+
+      {legacy.length > 0 && (
+        <div className="ngf-images-legacy">
+          <h5>Earlier photos (read-only)</h5>
+          <p className="ngf-images-hint">Saved on this shipment before captions existed. They also show on the track page.</p>
+          <ul className="ngf-images-grid">
+            {legacy.map((url, i) => (
+              <li key={`${i}-${url.slice(0, 80)}`} className="ngf-images-card">
+                <div className="ngf-images-thumb">
+                  <img src={url} alt={`Shipment photo ${i + 1}`} width={160} height={120} loading="lazy" />
+                </div>
+                <p className="ngf-images-legacy-label">Shipment photo {i + 1}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </section>
   );

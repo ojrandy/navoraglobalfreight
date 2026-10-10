@@ -39,7 +39,7 @@ export const PackageGallery: React.FC<PackageGalleryProps> = ({ images }) => {
       <p className="ngf-gallery-intro">Photos our team has added for this shipment.</p>
       <ul className="ngf-gallery-grid">
         {images.map((image, index) => (
-          <li key={image.url}>
+          <li key={`${index}-${image.url.slice(0, 80)}`}>
             <figure className="ngf-gallery-item">
               <button
                 type="button"

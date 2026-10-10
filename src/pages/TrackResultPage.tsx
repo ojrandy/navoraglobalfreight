@@ -51,7 +51,8 @@ import { Barcode } from '../components/Barcode';
 import { JourneyMap } from '../components/JourneyMap';
 import { ResponsiveImage } from '../components/ResponsiveImage';
 import { MultiPieceList } from '../components/MultiPieceList';
-import { PackageGallery } from '../components/PackageGallery';
+import { PackageGallery, type GalleryImage } from '../components/PackageGallery';
+import { legacyPhotoUrls } from '../shared/legacyPhotos';
 import { shipmentStatusLabel, shipmentStatusTone } from '../shared/shipmentStatus';
 import { SupportModal } from '../components/SupportModal';
 import { calculateRouteGeometry, inferTransportMode } from '../services/routingEngine';
@@ -376,6 +377,12 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
     status as ShipmentStatus,
     progressPercent
   );
+
+  // Captioned package images first, then older uncaptioned photos (CONTENT.md §6.6).
+  const galleryImages: GalleryImage[] = useMemo(() => [
+    ...(liveShipment.images ?? []),
+    ...legacyPhotoUrls(liveShipment.photos).map((url, i) => ({ url, caption: `Shipment photo ${i + 1}`, width: null, height: null })),
+  ], [liveShipment.images, liveShipment.photos]);
 
   const eventsList: TrackingEvent[] = useMemo(() => {
     let sourceList = [...rawEventsList];
@@ -803,8 +810,9 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
           />
         </section>
 
-        {/* Package images (CONTENT.md §6.6); renders nothing when the admin has added none. */}
-        <PackageGallery images={liveShipment.images ?? []} />
+        {/* Package images (CONTENT.md §6.6), then any older photos saved on the record
+            (photos_json, no caption); renders nothing when there are none. */}
+        <PackageGallery images={galleryImages} />
 
         {/* =========================================================================
             3. TWO-COLUMN MAIN CONTENT (LEFT: TIMELINE | RIGHT: VEHICLE & DETAILS)
