@@ -251,6 +251,28 @@ export function initDatabase() {
     CREATE INDEX IF NOT EXISTS idx_shipment_images_tracking ON shipment_images (tracking_number);
   `);
 
+  // 9. Payment request, one per shipment (docs/update.md §5, D.1). The accounts the courier typed
+  // for this shipment live in methods_json (D-9: there is no shared account list). Written only
+  // through admin routes; the public track response gets a filtered view (src/shared/paymentRequest.ts).
+  // Follows the shipment's trash/restore; removed only on permanent delete.
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS shipment_payments (
+      id TEXT PRIMARY KEY,
+      tracking_number TEXT NOT NULL UNIQUE,
+      amount REAL NOT NULL,
+      currency TEXT NOT NULL,
+      charge_reason TEXT NOT NULL,
+      due_date TEXT,
+      methods_json TEXT NOT NULL,
+      invoice_document_id TEXT,
+      status TEXT NOT NULL,
+      customer_note TEXT,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      paid_at TEXT
+    );
+  `);
+
   // Safe dynamic migrations for existing databases. Must run after every CREATE TABLE above
   // (shipments through settings) — these ALTER statements target quote_requests, documents
   // and tracking_events too, and running them any earlier throws "no such table" on a

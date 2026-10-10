@@ -11,6 +11,7 @@ import { eventTimeDisplay } from '../../src/shared/timeZones.js';
 import { parseTransportMode } from '../../src/shared/transportMode.js';
 import { shipmentStatusLabel } from '../../src/shared/shipmentStatus.js';
 import { deleteAllShipmentImages } from './shipmentImages.js';
+import { deleteShipmentPayment } from './shipmentPayments.js';
 
 export const shipmentsRouter = Router();
 
@@ -911,6 +912,7 @@ shipmentsRouter.delete('/:trackingNumber/permanent', requireAdminAuth, (req: Req
     db.prepare('DELETE FROM shipments WHERE tracking_number = ?').run(tracking);
     // Package images: rows and files (only now; trash/restore leaves them untouched).
     deleteAllShipmentImages(tracking);
+    deleteShipmentPayment(tracking);
     res.json({ success: true, message: `Shipment ${tracking} permanently deleted.` });
   } catch (err: any) {
     res.status(500).json({ success: false, error: err.message });

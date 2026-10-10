@@ -10,6 +10,7 @@ import { initDatabase, dataDir, dbPath } from './db.js';
 import { ensureUploadDirs, uploadsDir } from './uploads.js';
 import { shipmentsRouter } from './routes/shipments.js';
 import { shipmentImagesRouter } from './routes/shipmentImages.js';
+import { shipmentPaymentsRouter } from './routes/shipmentPayments.js';
 import { quotesRouter } from './routes/quotes.js';
 import { documentsRouter } from './routes/documents.js';
 import { settingsRouter } from './routes/settings.js';
@@ -181,6 +182,8 @@ if (ADMIN_PROXY_TARGET) {
   app.use('/api/auth', authRouter);
   // Package images: admin-only routes under /api/shipments/:id/images, each gated individually.
   app.use('/api/shipments', shipmentImagesRouter);
+  // Payment request per shipment (admin-only routes under /api/shipments/:id/payment).
+  app.use('/api/shipments', shipmentPaymentsRouter);
   app.use('/api/shipments', shipmentsRouter);
   app.use('/api/quotes', quotesRouter);
   // documents is ALSO mixed public+admin (the public booking flow in ShipPage.tsx
