@@ -13,3 +13,14 @@ export const publicWriteLimiter = rateLimit({
   legacyHeaders: false,
   message: { success: false, error: 'Too many requests. Please try again in a few minutes.' }
 });
+
+// Proof-of-payment uploads from the track page (docs/update.md F.2). Each one carries an image
+// and moves a payment into review, so the ceiling is much lower than publicWriteLimiter.
+// The message is the one the customer sees (CONTENT.md §6.8).
+export const paymentProofLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  limit: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { success: false, code: 'RATE_LIMITED', error: 'Too many attempts. Please wait a while and try again.' }
+});

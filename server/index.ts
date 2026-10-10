@@ -15,6 +15,7 @@ import { quotesRouter } from './routes/quotes.js';
 import { documentsRouter } from './routes/documents.js';
 import { settingsRouter } from './routes/settings.js';
 import { trackRouter } from './routes/track.js';
+import { trackProofRouter } from './routes/trackProof.js';
 import { statsRouter } from './routes/stats.js';
 import { authRouter } from './routes/auth.js';
 import { messagesRouter } from './routes/messages.js';
@@ -196,6 +197,8 @@ if (ADMIN_PROXY_TARGET) {
   // toggles whose enforcement already happens server-side regardless of who can see the
   // toggle's value). PUT is gated per-route inside settings.ts instead.
   app.use('/api/settings', settingsRouter);
+  // Proof of payment from the track page (public, its own rate limit), then the track lookup.
+  app.use('/api/track', trackProofRouter);
   app.use('/api/track', trackRouter);
   // Contact form: POST is public (rate-limited); list and status changes are gated per-route.
   app.use('/api/messages', messagesRouter);
