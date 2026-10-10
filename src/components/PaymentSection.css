@@ -209,3 +209,72 @@
     transition: none;
   }
 }
+
+/* Paid (E.4): confirmation line, accounts collapsed behind a toggle. */
+.ngf-pay-received {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin-top: 0.85rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  background: var(--ngf-success-50);
+  border: 1px solid var(--ngf-success-100);
+  color: var(--ngf-success-700);
+}
+
+.ngf-pay-received svg {
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.ngf-pay-received strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.ngf-pay-received p {
+  margin: 0.15rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--ngf-slate-700);
+}
+
+.ngf-pay-methods-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--ngf-slate-300);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--ngf-slate-800);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ngf-pay-methods-toggle:hover {
+  border-color: var(--ngf-slate-400);
+  background: var(--ngf-slate-50);
+}
+
+.ngf-pay-methods-toggle svg {
+  transition: transform 0.2s ease;
+}
+
+.ngf-pay-methods-toggle.is-open svg {
+  transform: rotate(180deg);
+}
+
+.ngf-pay-methods-toggle:focus-visible {
+  outline: 2px solid var(--ngf-color-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ngf-pay-methods-toggle svg {
+    transition: none;
+  }
+}

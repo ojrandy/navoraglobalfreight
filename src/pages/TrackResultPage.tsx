@@ -817,8 +817,8 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
             (photos_json, no caption); renders nothing when there are none. */}
         <PackageGallery images={galleryImages} />
 
-        {/* Payment request (CONTENT.md §6.8); only when the shipment has one. */}
-        {liveShipment.payment && (
+        {/* Payment request (CONTENT.md §6.8); only when the shipment has one that isn't cancelled. */}
+        {liveShipment.payment && liveShipment.payment.status !== 'CANCELLED' && (
           <Suspense fallback={null}>
             <PaymentSection payment={liveShipment.payment} />
           </Suspense>
