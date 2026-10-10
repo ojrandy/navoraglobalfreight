@@ -243,9 +243,9 @@ removed from disk when the shipment is permanently deleted.
 
 ## 8. Blocked / Needs owner
 - [x] **Default currency** for new payment requests: **USD** (owner, 2026-10-09).
-- [ ] Which other currencies to offer in the payment-request picker (USD only, or also GBP/EUR…)?
+- [x] Which currencies the payment-request picker offers: **USD only for now** (owner, 2026-10-10; D-7).
 - [ ] **Account details** for each method. The admin enters these in the console after Phase C, not in code.
-- [ ] Should approving a payment add a public "Payment confirmed" tracking event by default? (on / off)
+- [x] Approving a payment adds a public "Payment confirmed" tracking event: **on by default** (owner, 2026-10-10; D-8). The checkbox stays so the admin can untick it.
 - [x] **Pre-existing test failures (not from this update):** 4 tests in `scripts/intl.test.ts`, `routing.test.ts` and `timeZones.test.ts` still expect the Lagos/Ibadan gateways removed in commit 584b7b6. Update the tests to the new gateways, or restore those gateways? → Owner: update the tests. Done 2026-10-10 (Tokyo, Osaka, Tateyama, Busan).
 
 ## 9. Decisions log
@@ -260,6 +260,8 @@ removed from disk when the shipment is permanently deleted.
 - **D-4** Exactly one payment request per shipment; a charge reason is always required and shown to the customer.
 - **D-5 (2026-10-09)** New-proof notifications go to the **admin dashboard** (badge, bell, panel with the screenshot, toast), **not email**. No SMTP or `nodemailer` needed.
 - **D-6 (2026-10-09)** Default currency for payment requests is **USD** (owner).
+- **D-7 (2026-10-10)** Payment requests are in **USD only** for now. The currency column stays (ISO 4217), so more can be added later without a schema change.
+- **D-8 (2026-10-10)** The "Payment confirmed" tracking event checkbox on Approve is **ticked by default**.
 
 ## 10. Change log
 - 2026-10-09: Update plan written (this file). No code changed yet.
