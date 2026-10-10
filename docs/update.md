@@ -201,7 +201,8 @@ removed from disk when the shipment is permanently deleted.
 | `GET /api/shipments/:id/images/:imageId/file` | admin | the image itself, visible or hidden, for console previews (`no-store`) |
 | `GET /media/:imageId.<ext>` | public | serve a **public** package image (404 otherwise), long cache. Usually `.webp`; `.jpg` when the browser could not encode WebP. The track response gives the full URL. |
 | `GET/POST /api/payment-methods` | admin | list / create accounts |
-| `PATCH/DELETE /api/payment-methods/:id` | admin | edit, enable/disable, reorder / delete (blocked while used by an open request; disable instead) |
+| `PATCH/DELETE /api/payment-methods/:id` | admin | edit details/label/instructions, enable/disable / delete (409 while ticked on an AWAITING_PAYMENT or UNDER_REVIEW request; disable instead). The type is fixed once created. |
+| `PUT /api/payment-methods/order` | admin | reorder: `{ ids: [...] }` |
 | `GET/PUT/DELETE /api/shipments/:id/payment` | admin | the shipment's single payment request |
 | `GET /api/track/:id` | public | **extended:** adds `images[]` (public only) and `payment` (amount, reason, status, **only the ticked + enabled methods**, latest proof status / rejection reason) |
 | `POST /api/track/:id/payment-proof` | public, rate-limited | submit proof (only while status is AWAITING_PAYMENT; max 3 open proofs) |
@@ -231,7 +232,7 @@ removed from disk when the shipment is permanently deleted.
 ### Phase C — Payment methods list (admin)
 - [x] C.1 `src/shared/paymentMethods.ts`: the 17 types from §4 with label, icon key, fields (name, label, required, validator: email, URL, IBAN checksum, UK sort code, US routing checksum, crypto address format), and the "customer sees" layout.
 - [x] C.2 Payment icons: add the SVGs locally (`src/assets/payment-icons/`), record each one's source/licence in this file, and build a `<PaymentIcon type>` component with a lucide fallback.
-- [ ] C.3 Create the `payment_methods` table and its admin-only API.
+- [x] C.3 Create the `payment_methods` table and its admin-only API.
 - [ ] C.4 Admin Settings → **Payment methods** page: a grid of method cards with icons, "Add method" (pick a type, then a form for that type's fields), edit, enable/disable, reorder and delete (blocked while in use).
 
 ### Phase D — Payment request per shipment (admin)
@@ -309,3 +310,4 @@ removed from disk when the shipment is permanently deleted.
 - 2026-10-10: B.7 Older `photos_json` photos shown read-only: after the captioned images on the track page (`Shipment photo {n}`) and in an "Earlier photos (read-only)" block in the admin panel. `src/shared/legacyPhotos.ts` keeps only http(s), site-relative or `data:image/` values (test in `scripts/legacyPhotos.test.ts`). Phase B regression on a scratch DB: booking, tracking, admin login, edit, events, quotes, documents list, settings, trash/restore/permanent delete all OK; `npm test` 38/38.
 - 2026-10-10: C.1 `src/shared/paymentMethods.ts` (17 types, fields, either/or rules, link/QR/warning/note builders, `validatePaymentDetails`, `customerMethodView`) + `src/shared/paymentValidation.ts` (email, https link with optional host check, phone, IBAN mod-97, sort code, ABA routing, SWIFT/BIC, crypto format per coin/network, $Cashtag, @handle, account digits). Field kinds extended with `swift`, `cashtag`, `handle`, `accountNumber`; fields can carry `options` (networks, account type). Customer copy in CONTENT.md §6.7. Tests: `scripts/paymentMethods.test.ts`.
 - 2026-10-10: C.2 14 Simple Icons SVGs in `src/assets/payment-icons/` (sources and guidelines in §4 "Icon sources"), generated path module + `scripts/payment-icons.mjs`, `<PaymentIcon type size />` (decorative, lucide fallback). Drawn from path data, so no Vite-specific imports and no raw HTML. Test: `scripts/paymentIcons.test.ts`.
+- 2026-10-10: C.3 `payment_methods` table + admin-only `/api/payment-methods` (list, create, edit, enable/disable, reorder, delete). Details validated and normalised by the shared registry; field errors returned per field; max 50 accounts; delete refused (409) while an open request ticks the method (check activates once D.1 creates `shipment_payments`). Tested on a scratch DB: 401 without session, `/api/settings` has no payment data.
