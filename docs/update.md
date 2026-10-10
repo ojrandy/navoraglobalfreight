@@ -170,7 +170,7 @@ removed from disk when the shipment is permanently deleted.
 |---|---|---|
 | `GET/POST /api/shipments/:id/images` | admin | list / upload (base64 WebP + caption) |
 | `PATCH/DELETE /api/shipments/:id/images/:imageId` | admin | caption, visibility, order / delete |
-| `GET /media/:imageId.webp` | public | serve a **public** package image (404 otherwise), long cache |
+| `GET /media/:imageId.<ext>` | public | serve a **public** package image (404 otherwise), long cache. Usually `.webp`; `.jpg` when the browser could not encode WebP. The track response gives the full URL. |
 | `GET/POST /api/payment-methods` | admin | list / create accounts |
 | `PATCH/DELETE /api/payment-methods/:id` | admin | edit, enable/disable, reorder / delete (blocked while used by an open request; disable instead) |
 | `GET/PUT/DELETE /api/shipments/:id/payment` | admin | the shipment's single payment request |
@@ -188,10 +188,10 @@ removed from disk when the shipment is permanently deleted.
 - [x] A.1 Add `UPLOADS_DIR` (default `data/uploads`, next to the default DB) with `images/` and `proofs/` subfolders, created on start. Document it in `.env.example` and `docs/DEPLOYMENT.md` (persistent folder outside the deploy dir, include it in backups).
 - [x] A.2 Server upload helper: decode base64, check magic bytes (WebP/JPEG/PNG only), enforce the size cap, write with a random name, and never trust client file names or paths.
 - [x] A.3 Client helper `src/services/imageCompress.ts`: load the file (incl. HEIC where the browser supports it), resize to ≤1600px, convert to WebP (JPEG fallback) and return base64 + dimensions. EXIF is stripped as a side effect.
-- [ ] A.4 `GET /media/:id.webp` route (public images only), with cache headers and `X-Content-Type-Options: nosniff`.
+- [x] A.4 `GET /media/:id.webp` route (public images only), with cache headers and `X-Content-Type-Options: nosniff`.
 
 ### Phase B — Package images
-- [ ] B.1 Create the `shipment_images` table in `server/db.ts` (`CREATE TABLE IF NOT EXISTS`, safe on existing DBs).
+- [x] B.1 Create the `shipment_images` table in `server/db.ts` (`CREATE TABLE IF NOT EXISTS`, safe on existing DBs). *(Done with A.4: the media route needs it to check visibility.)*
 - [ ] B.2 Admin image API (list / upload / caption / visibility / reorder / delete).
 - [ ] B.3 Admin UI: a "Package images" panel in `EditShipmentModal` with drag-and-drop/upload, a required caption field, a visibility toggle, reordering and delete. Add the same panel as an optional step in `CreateShipmentView`.
 - [ ] B.4 `server/routes/track.ts`: return public images (`url`, `caption`, `width`, `height`, `createdAt`).
@@ -266,3 +266,4 @@ removed from disk when the shipment is permanently deleted.
 - 2026-10-10: A.1 `UPLOADS_DIR` (`server/uploads.ts`; default `uploads/` next to the DB) with `images/` + `proofs/` created on start; documented in `.env.example` and DEPLOYMENT.md (incl. backups).
 - 2026-10-10: A.2 Upload helper in `server/uploads.ts`: base64/data-URL decode, magic-byte check (WebP/JPEG/PNG), 2 MB cap, `<uuid>.<ext>` names only, safe delete; tests in `scripts/uploads.test.ts`.
 - 2026-10-10: A.3 `src/services/imageCompress.ts`: resize ≤1600px, WebP (JPEG fallback, white background), quality steps down to fit 2 MB, EXIF dropped by the canvas redraw; HEIC via the browser's own decoder. Checked in headless Chrome (3000×2000 PNG → 1600×1067 WebP, 242 KB; non-images rejected).
+- 2026-10-10: A.4 + B.1 `shipment_images` table and public `GET /media/<id>.<ext>` (`server/routes/media.ts`): serves only visible images on non-trashed shipments, 1-year immutable cache, `nosniff`; hidden/trashed/unknown/proof/traversal requests all 404. Tested on a scratch DB, incl. after a restart.
