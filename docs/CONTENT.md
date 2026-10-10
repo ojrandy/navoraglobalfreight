@@ -352,6 +352,13 @@ Rotating lines: `Locating your shipment…` · `Checking the latest scans…` ·
 - Admin quick action (records a scan at a hub; shown publicly as In transit): `Hub scan`
 - Older status codes are shown as: Exception → On hold · Delivery attempted → Delayed · At facility (intermediate hub) → In transit · Created / Awaiting pickup → Booked · Cancelled → `Cancelled`
 
+### 6.6 Track Result: package images (added 2026-10-10 with update B.5, **owner to confirm**)
+- **Heading:** `Package images`
+- **Intro:** `Photos our team has added for this shipment.`
+- **Empty state:** `No photos have been added for this shipment yet.` (Not shown by default: the section is hidden when there are no photos.)
+- **Each photo:** the caption the admin wrote, shown under the photo and used as its alt text. Older photos saved without a caption: `Shipment photo {n}`.
+- **Full-screen viewer:** `Photo {n} of {total}` · buttons `Previous photo` · `Next photo` · `Close` · open-button label `Open photo: {caption}`
+
 ---
 
 ## 7. Quote, Ship, Public Quote Result
