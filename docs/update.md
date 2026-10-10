@@ -243,7 +243,7 @@ removed from disk when the shipment is permanently deleted.
 - [x] D.4 `server/routes/track.ts`: return the `payment` block with **only this shipment's accounts**, in the courier's order, plus the latest proof status and rejection reason. Never return another shipment's accounts or internal notes.
 
 ### Phase E — Payment section on the track page
-- [ ] E.1 Copy for the payment section, method instructions, status labels, proof form, success/error messages and the rejected state, added to `docs/CONTENT.md`.
+- [x] E.1 Copy for the payment section, method instructions, status labels, proof form, success/error messages and the rejected state, added to `docs/CONTENT.md`.
 - [ ] E.2 `PaymentSection` component: amount + currency (formatted with `Intl.NumberFormat`), charge reason, due date and status badge (*Awaiting payment · Proof under review · Paid · Cancelled*).
 - [ ] E.3 Method cards with icon + name; on mobile they are an accordion (one open at a time), on desktop a grid. Every field has a **Copy** button that confirms with a "Copied" toast and an `aria-live` announcement. QR codes for crypto addresses and payment links (add a small `qrcode` dependency, loaded only when a QR is shown). A network warning is shown for crypto.
 - [ ] E.4 When status is PAID, collapse the methods and show "Payment received". When CANCELLED, hide the section.
@@ -275,6 +275,7 @@ removed from disk when the shipment is permanently deleted.
 ## 8. Blocked / Needs owner
 - [x] **Default currency** for new payment requests: **USD** (owner, 2026-10-09).
 - [x] Which currencies the payment-request picker offers: **USD only for now** (owner, 2026-10-10; D-7).
+- [ ] **Copy review:** payment section, proof form and messages in CONTENT.md §6.8 (added with E.1): owner to confirm.
 - [x] **Copy review:** package-images text in CONTENT.md §6.6 and payment method names, field labels, warnings and notes in §6.7: **approved by the owner** (2026-10-10).
 - [x] **Account details:** there is no fixed account list. The courier types the accounts per shipment, at creation or later (owner, 2026-10-10; D-9).
 - [x] Approving a payment adds a public "Payment confirmed" tracking event: **on by default** (owner, 2026-10-10; D-8). The checkbox stays so the admin can untick it.
@@ -320,3 +321,4 @@ removed from disk when the shipment is permanently deleted.
 - 2026-10-10: D.2 `PaymentRequestEditor` (amount, USD, reason, due date, invoice link, note, per-shipment accounts via type tiles → type form, edit/remove/reorder, live customer preview) used in **Create Shipment step 5** (optional, clearly marked public; invalid draft blocks Create and returns to step 5; saved via `PUT /api/shipments/:id/payment` right after the ID is assigned; failure leaves the shipment, shows the error and a Try again button; summary in step 6 review; not in the browser draft) and in **Edit Shipment** (`ShipmentPaymentPanel`: add, edit, delete; saved on its own). Headless Chrome on a scratch DB: blocked create, happy path, forced 503 + retry, edit/delete/re-add, 1440/768/375 without overflow, no console errors.
 - 2026-10-10: D.3 `POST /api/shipments/:id/payment/status` (cancel / mark_paid / reopen, 409 on invalid transitions) + buttons in the Edit Shipment payment panel (with confirmations). Invoice paid/pending logic extracted from the documents route into `setDocumentPaymentStatus` and reused (route behaviour unchanged, re-tested). Scratch-DB API run + headless Chrome check (1440/375, no console errors).
 - 2026-10-10: D.4 `/api/track/:id` returns `payment` (amount, currency, reason, due date, status, customer note, paid time, and this shipment's accounts in order with their customer view: fields, link, QR value, warning, note, instructions) or `null`. Built by `publicPaymentView`; no invoice id or other internal fields. Scratch-DB check: two shipments never see each other's accounts; cancelled shows CANCELLED (hidden by E.4); deleted gives `null`. Latest proof status / rejection reason is added with the proofs table in F.4.
+- 2026-10-10: E.1 Payment section copy (summary, status badges, accounts heading, accordion, QR, copy toast, paid state, proof form, review/rejected states, errors) added to CONTENT.md §6.8 (flagged for owner review).

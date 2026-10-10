@@ -361,7 +361,7 @@ Rotating lines: `Locating your shipment…` · `Checking the latest scans…` ·
 
 ### 6.7 Payment methods: names, field labels, buttons, warnings (added 2026-10-10 with update C.1, **owner to confirm**)
 Source of truth in code: `src/shared/paymentMethods.ts`. The admin can override a method's display name per account.
-The rest of the payment section (heading, status labels, proof form) is added in update E.1.
+The rest of the payment section (heading, status labels, proof form) is in §6.8.
 
 | Method name | Fields shown to the customer (each with a Copy button) | Button / extra |
 |---|---|---|
@@ -389,6 +389,38 @@ The rest of the payment section (heading, status labels, proof form) is added in
 - Optional fields the admin leaves empty are not shown.
 - **Copy buttons:** `Copy` → `Copied` (2 seconds) · screen-reader announcement `{field} copied` · if the browser blocks copying: `Could not copy. Select the {field} and copy it manually.`
 - The admin's own **instructions** for an account appear at the bottom of its card, as written.
+
+### 6.8 Track Result: payment section (added 2026-10-10 with update E.1, **owner to confirm**)
+Shown only when the shipment has a payment request. Hidden completely when the request is cancelled.
+
+**Summary**
+- **Heading:** `Payment`
+- **Intro (awaiting payment):** `A payment is due for this shipment. Pay using any one of the accounts below, then send us your proof of payment.`
+- **Labels:** `Amount due` · `For` (the charge reason the admin wrote) · `Due by` (date, only when set) · `Note from our team` (the customer note, only when set)
+- **Status badges:** `Awaiting payment` · `Proof under review` · `Paid` · `Cancelled`
+
+**Payment accounts**
+- **Heading:** `How to pay`
+- **Sub:** `Choose one account. You only need to pay once.`
+- **Mobile accordion:** each method name is a button; screen-reader state `Show details` / `Hide details`. One open at a time.
+- **QR code:** button `Show QR code` / `Hide QR code` · image alt `QR code for {method}` · caption `Scan with your wallet or camera app.`
+- **Copy toast (visible, 2 seconds):** `{field} copied` (same text as the screen-reader announcement in §6.7)
+
+**Paid**
+- **Heading line:** `Payment received`
+- **Text:** `Thank you. We received your payment on {date}.` · without a date: `Thank you. We have received your payment.`
+- Accounts are collapsed: `Show payment accounts` / `Hide payment accounts`
+
+**Proof of payment (update F.3, F.4)**
+- **Heading:** `Send proof of payment`
+- **Intro:** `After paying, upload a screenshot or photo of the receipt so our team can confirm it.`
+- **Fields:** `Account you paid to` (placeholder `Choose an account`) · `Your name` (hint `The name the payment was sent from`) · `Amount sent` · `Payment reference (optional)` (hint `Transaction ID, MTCN or reference number`) · `Screenshot of the payment` (hint `JPG, PNG, WebP or HEIC. Only our team can see it.`)
+- **Buttons:** `Choose image` · `Change image` · `Remove image` · `Send proof` · while sending `Sending…`
+- **Field errors:** `Choose the account you paid to.` · `Enter the name the payment was sent from.` · `Enter the amount you sent.` · `Add a screenshot of the payment.` · `This file isn't an image. Upload a JPG, PNG, WebP or HEIC.` · `This image could not be read. Try another file or take a new screenshot.`
+- **Success:** `Thank you. Your proof of payment was sent. We'll check it and update this page.`
+- **Under review:** `Proof under review` · `We received your proof on {date} at {time}. Our team will check it and update this page.`
+- **Rejected:** `Proof not accepted: {reason}` · `Please check the details and send a new proof below.`
+- **Errors:** `We couldn't send your proof. Check your connection and try again.` · too many attempts: `Too many attempts. Please wait a while and try again.` · too many open proofs: `We already have proofs waiting for review for this payment. Our team will check them first.` · status changed: `This payment is no longer waiting for a proof. Refresh the page to see its current status.`
 
 ---
 
