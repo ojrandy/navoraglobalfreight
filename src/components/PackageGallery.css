@@ -1,0 +1,88 @@
+/* Track Result: Package images (CONTENT.md §6.6). */
+
+.ngf-gallery-section {
+  margin-bottom: 2rem;
+}
+
+.ngf-gallery-intro {
+  margin: 0.25rem 0 1rem;
+  font-size: 0.9rem;
+  color: var(--ngf-slate-600);
+}
+
+.ngf-gallery-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .ngf-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .ngf-gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.ngf-gallery-item {
+  margin: 0;
+  background: #ffffff;
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+.ngf-gallery-thumb {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: var(--ngf-slate-100);
+  cursor: zoom-in;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.ngf-gallery-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.ngf-gallery-thumb:hover img {
+  transform: scale(1.03);
+}
+
+.ngf-gallery-thumb:focus-visible {
+  outline: 3px solid var(--ngf-color-focus);
+  outline-offset: -3px;
+}
+
+.ngf-gallery-item figcaption {
+  padding: 0.7rem 0.9rem 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ngf-slate-800);
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ngf-gallery-thumb img {
+    transition: none;
+  }
+  .ngf-gallery-thumb:hover img {
+    transform: none;
+  }
+}

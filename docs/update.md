@@ -198,7 +198,7 @@ removed from disk when the shipment is permanently deleted.
 - [x] B.3 Admin UI: a "Package images" panel in `EditShipmentModal` with drag-and-drop/upload, a required caption field, a visibility toggle, reordering and delete. Add the same panel as an optional step in `CreateShipmentView`.
 - [x] B.4 `server/routes/track.ts`: return public images (`url`, `caption`, `width`, `height`, `createdAt`).
 - [x] B.5 Copy for the section (heading, intro line, empty state) added to `docs/CONTENT.md`.
-- [ ] B.6 `TrackResultPage`: "Package images" section with a responsive grid (1 column on mobile, 2–3 on desktop), captions under each image, and a keyboard-accessible full-screen view (Esc closes, arrows navigate). Explicit width/height and `loading="lazy"`. Hidden when there are no images.
+- [x] B.6 `TrackResultPage`: "Package images" section with a responsive grid (1 column on mobile, 2–3 on desktop), captions under each image, and a keyboard-accessible full-screen view (Esc closes, arrows navigate). Explicit width/height and `loading="lazy"`. Hidden when there are no images.
 - [ ] B.7 Show existing `photos_json` photos read-only alongside the new ones, so nothing already uploaded disappears.
 
 ### Phase C — Payment methods list (admin)
@@ -278,3 +278,4 @@ removed from disk when the shipment is permanently deleted.
 - 2026-10-10: B.4 `/api/track/:id` returns `images[]` (visible only, admin order; `url`, `caption`, `width`, `height`, `createdAt`). Types `PublicShipmentImage` / `AdminShipmentImage` added. Tested on a scratch DB: hidden image excluded, order respected.
 - 2026-10-10: B.3 `ShipmentImagesPanel` (admin) in `EditShipmentModal` and on the Create Shipment success screen (the tracking ID exists only after creation): drag-and-drop/choose files, browser compression, required caption, visibility toggle, move earlier/later, delete; saves on each change, Enter never submits the shipment form. Checked in headless Chrome at 1440/768/375 (no overflow, no console errors). Create-screen placement type-checked, not clicked through.
 - 2026-10-10: B.5 Package-images copy added to CONTENT.md §6.6 (flagged for owner review).
+- 2026-10-10: B.6 `PackageGallery` on the track page (after the route map; hidden with no images): 1/2/3-column grid, caption under each photo and as alt, width/height + lazy loading. `PackageImageViewer` is lazy-loaded (2.4 KB chunk, fetched on first open): Esc closes, ←/→ wrap, Tab trapped, focus returns to the thumbnail, body scroll locked, reduced-motion respected. Checked in headless Chrome at 1440/768/375: no overflow, no console errors.
