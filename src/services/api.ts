@@ -1,5 +1,5 @@
 import { AdminShipmentImage, Shipment, ShipmentStatus, TrackingEvent } from '../types/shipment';
-import { QuoteRequest, QuoteRequestPricing, QuoteRequestStatus, AdminSettings, AdminDocument, DocumentStatus, ContactMessage, ContactMessageStatus, AdminPaymentMethod } from '../types/admin';
+import { QuoteRequest, QuoteRequestPricing, QuoteRequestStatus, AdminSettings, AdminDocument, DocumentStatus, ContactMessage, ContactMessageStatus } from '../types/admin';
 
 const API_BASE = '/api';
 
@@ -252,44 +252,6 @@ export const api = {
       method: 'DELETE'
     });
     return handleResponse<AdminShipmentImage[]>(res);
-  },
-
-  // Payment methods (admin only). Every call returns the full, ordered list.
-  async getPaymentMethods(): Promise<AdminPaymentMethod[]> {
-    const res = await fetch(`${API_BASE}/payment-methods`);
-    return handleResponse<AdminPaymentMethod[]>(res);
-  },
-
-  async createPaymentMethod(method: { type: string; details: Record<string, string>; label?: string; instructions?: string; enabled?: boolean }): Promise<AdminPaymentMethod[]> {
-    const res = await fetch(`${API_BASE}/payment-methods`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(method)
-    });
-    return handleResponse<AdminPaymentMethod[]>(res);
-  },
-
-  async updatePaymentMethod(id: string, updates: { details?: Record<string, string>; label?: string; instructions?: string; enabled?: boolean }): Promise<AdminPaymentMethod[]> {
-    const res = await fetch(`${API_BASE}/payment-methods/${encodeURIComponent(id)}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updates)
-    });
-    return handleResponse<AdminPaymentMethod[]>(res);
-  },
-
-  async reorderPaymentMethods(ids: string[]): Promise<AdminPaymentMethod[]> {
-    const res = await fetch(`${API_BASE}/payment-methods/order`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ids })
-    });
-    return handleResponse<AdminPaymentMethod[]>(res);
-  },
-
-  async deletePaymentMethod(id: string): Promise<AdminPaymentMethod[]> {
-    const res = await fetch(`${API_BASE}/payment-methods/${encodeURIComponent(id)}`, { method: 'DELETE' });
-    return handleResponse<AdminPaymentMethod[]>(res);
   },
 
   // Admin Quotes

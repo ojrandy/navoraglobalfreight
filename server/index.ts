@@ -17,7 +17,6 @@ import { trackRouter } from './routes/track.js';
 import { statsRouter } from './routes/stats.js';
 import { authRouter } from './routes/auth.js';
 import { messagesRouter } from './routes/messages.js';
-import { paymentMethodsRouter } from './routes/paymentMethods.js';
 import { mediaRouter } from './routes/media.js';
 import { seoRouter } from './seo.js';
 import { COMPANY } from '../src/config/brand.js';
@@ -199,8 +198,6 @@ if (ADMIN_PROXY_TARGET) {
   app.use('/api/messages', messagesRouter);
   // Public package images (/media/<id>.<ext>); outside /api so they can be cached.
   app.use(mediaRouter);
-  // Payment accounts: admin-only in full (the track response exposes only ticked methods).
-  app.use('/api/payment-methods', requireAdminAuth, paymentMethodsRouter);
   app.use('/api/stats', requireAdminAuth, statsRouter);
 
   // 404 for anything under /api that didn't match a route above.

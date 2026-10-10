@@ -251,24 +251,6 @@ export function initDatabase() {
     CREATE INDEX IF NOT EXISTS idx_shipment_images_tracking ON shipment_images (tracking_number);
   `);
 
-  // 9. Payment methods (docs/update.md §5, C.3): the admin's own account list. Admin-only: never
-  // stored in settings (GET /api/settings is public), and the public track response only ever
-  // gets the methods ticked on that shipment's payment request. type is a key from
-  // src/shared/paymentMethods.ts; details_json holds that type's validated fields.
-  db.exec(`
-    CREATE TABLE IF NOT EXISTS payment_methods (
-      id TEXT PRIMARY KEY,
-      type TEXT NOT NULL,
-      label TEXT,
-      details_json TEXT NOT NULL,
-      instructions TEXT,
-      enabled INTEGER NOT NULL DEFAULT 1,
-      sort_order INTEGER NOT NULL DEFAULT 0,
-      created_at TEXT NOT NULL,
-      updated_at TEXT NOT NULL
-    );
-  `);
-
   // Safe dynamic migrations for existing databases. Must run after every CREATE TABLE above
   // (shipments through settings) — these ALTER statements target quote_requests, documents
   // and tracking_events too, and running them any earlier throws "no such table" on a
