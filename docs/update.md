@@ -169,7 +169,9 @@ removed from disk when the shipment is permanently deleted.
 | Method & path | Auth | Purpose |
 |---|---|---|
 | `GET/POST /api/shipments/:id/images` | admin | list / upload (base64 WebP + caption) |
-| `PATCH/DELETE /api/shipments/:id/images/:imageId` | admin | caption, visibility, order / delete |
+| `PATCH/DELETE /api/shipments/:id/images/:imageId` | admin | caption, visibility / delete |
+| `PUT /api/shipments/:id/images/order` | admin | reorder: `{ ids: [...] }` in the new order (one call instead of a PATCH per image) |
+| `GET /api/shipments/:id/images/:imageId/file` | admin | the image itself, visible or hidden, for console previews (`no-store`) |
 | `GET /media/:imageId.<ext>` | public | serve a **public** package image (404 otherwise), long cache. Usually `.webp`; `.jpg` when the browser could not encode WebP. The track response gives the full URL. |
 | `GET/POST /api/payment-methods` | admin | list / create accounts |
 | `PATCH/DELETE /api/payment-methods/:id` | admin | edit, enable/disable, reorder / delete (blocked while used by an open request; disable instead) |
@@ -192,7 +194,7 @@ removed from disk when the shipment is permanently deleted.
 
 ### Phase B — Package images
 - [x] B.1 Create the `shipment_images` table in `server/db.ts` (`CREATE TABLE IF NOT EXISTS`, safe on existing DBs). *(Done with A.4: the media route needs it to check visibility.)*
-- [ ] B.2 Admin image API (list / upload / caption / visibility / reorder / delete).
+- [x] B.2 Admin image API (list / upload / caption / visibility / reorder / delete).
 - [ ] B.3 Admin UI: a "Package images" panel in `EditShipmentModal` with drag-and-drop/upload, a required caption field, a visibility toggle, reordering and delete. Add the same panel as an optional step in `CreateShipmentView`.
 - [ ] B.4 `server/routes/track.ts`: return public images (`url`, `caption`, `width`, `height`, `createdAt`).
 - [ ] B.5 Copy for the section (heading, intro line, empty state) added to `docs/CONTENT.md`.
@@ -271,3 +273,4 @@ removed from disk when the shipment is permanently deleted.
 - 2026-10-10: A.3 `src/services/imageCompress.ts`: resize ≤1600px, WebP (JPEG fallback, white background), quality steps down to fit 2 MB, EXIF dropped by the canvas redraw; HEIC via the browser's own decoder. Checked in headless Chrome (3000×2000 PNG → 1600×1067 WebP, 242 KB; non-images rejected).
 - 2026-10-10: A.4 + B.1 `shipment_images` table and public `GET /media/<id>.<ext>` (`server/routes/media.ts`): serves only visible images on non-trashed shipments, 1-year immutable cache, `nosniff`; hidden/trashed/unknown/proof/traversal requests all 404. Tested on a scratch DB, incl. after a restart.
 - 2026-10-10: Fixed 4 tests that still used the removed Lagos/Ibadan gateways; they now use Tokyo (NRT), Osaka, Tateyama and Busan. `npm test`: 37/37 pass.
+- 2026-10-10: B.2 Admin image API (`server/routes/shipmentImages.ts`): list / upload (caption required, ≤120 chars, max 20 per shipment) / caption + visibility / reorder / delete, plus an admin-only file route for previews. Permanent shipment delete now also removes image rows and files; trash/restore leaves them. Tested on a scratch DB.
