@@ -476,3 +476,42 @@
     animation: none;
   }
 }
+
+/* Proof states (F.4): under review, not accepted. */
+.ngf-proof-state {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin-top: 1.25rem;
+  padding: 0.8rem 0.95rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.ngf-proof-state svg {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.ngf-proof-state strong {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.ngf-proof-state p {
+  margin: 0.15rem 0 0;
+  color: var(--ngf-slate-700);
+}
+
+.ngf-proof-state.is-review {
+  background: var(--ngf-info-50);
+  border: 1px solid var(--ngf-info-200);
+  color: var(--ngf-info-700);
+}
+
+.ngf-proof-state.is-rejected {
+  background: var(--ngf-danger-50);
+  border: 1px solid var(--ngf-danger-100);
+  color: var(--ngf-danger-600);
+}

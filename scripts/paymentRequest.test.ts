@@ -57,12 +57,17 @@ test('public view: only this request’s accounts, no internal fields', () => {
     ],
   };
   const view = publicPaymentView(stored);
-  assert.deepEqual(Object.keys(view).sort(), ['amount', 'chargeReason', 'currency', 'customerNote', 'dueDate', 'methods', 'paidAt', 'status']);
+  assert.deepEqual(Object.keys(view).sort(), ['amount', 'chargeReason', 'currency', 'customerNote', 'dueDate', 'methods', 'paidAt', 'proof', 'status']);
+  assert.equal(view.proof, null);
   assert.deepEqual(view.methods.map((m) => m.id), ['a1', 'a2']);
   assert.equal(view.methods[0].link?.label, 'Open PayPal');
   assert.equal(view.methods[1].label, 'BTC wallet');
   assert.equal(view.methods[1].instructions, 'Send the exact amount.');
   assert.ok(!JSON.stringify(view).includes('INV-2026-00321'));
+
+  // The latest proof is passed through as given (F.4); the server builds it without file or payer details.
+  const proof = { status: 'REJECTED' as const, submittedAt: '2026-10-10T10:00:00.000Z', rejectionReason: 'Amount does not match.' };
+  assert.deepEqual(publicPaymentView(stored, proof).proof, proof);
 });
 
 test('formatPaymentAmount', () => {

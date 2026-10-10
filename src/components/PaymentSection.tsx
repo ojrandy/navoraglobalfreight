@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import type { PaymentStatus, PublicPayment } from '../shared/paymentRequest';
 import { formatPaymentAmount } from '../shared/paymentRequest';
-import { CheckCircle2, ChevronDown } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ChevronDown, Clock } from 'lucide-react';
 import { PaymentMethodCard } from './PaymentMethodCard';
 import { PaymentProofForm } from './PaymentProofForm';
 import './PaymentSection.css';
@@ -30,6 +30,16 @@ function formatPaidDate(value: string | null): string | null {
   if (!value) return null;
   const d = new Date(value);
   return Number.isNaN(d.getTime()) ? null : new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(d);
+}
+
+/** "Oct 10, 2026" and "3:04 PM" in the visitor's own locale and time zone. */
+function formatSubmitted(value: string): { date: string; time: string } | null {
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return null;
+  return {
+    date: new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(d),
+    time: new Intl.DateTimeFormat(undefined, { timeStyle: 'short' }).format(d),
+  };
 }
 
 // Below this width the accounts are an accordion (one open at a time); above it, a grid.
@@ -79,6 +89,11 @@ export const PaymentSection: React.FC<PaymentSectionProps> = ({ trackingNumber, 
   if (payment.status === 'CANCELLED') return null;
 
   const paidDate = formatPaidDate(payment.paidAt);
+  // Proof states from the server (F.4); this visitor's own just-sent proof shows the thank-you line instead.
+  const latest = payment.proof;
+  const underReview = !sentAt && status === 'UNDER_REVIEW';
+  const submitted = underReview && latest?.status === 'SUBMITTED' ? formatSubmitted(latest.submittedAt) : null;
+  const rejected = !sentAt && status === 'AWAITING_PAYMENT' && latest?.status === 'REJECTED' ? latest : null;
   const methodsVisible = !isPaid || showPaidMethods;
 
   return (
@@ -165,6 +180,26 @@ export const PaymentSection: React.FC<PaymentSectionProps> = ({ trackingNumber, 
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      )}
+
+      {underReview && (
+        <div className="ngf-proof-state is-review">
+          <Clock size={18} aria-hidden="true" />
+          <div>
+            <strong>Proof under review</strong>
+            {submitted && <p>We received your proof on {submitted.date} at {submitted.time}. Our team will check it and update this page.</p>}
+          </div>
+        </div>
+      )}
+
+      {rejected && (
+        <div className="ngf-proof-state is-rejected">
+          <AlertCircle size={18} aria-hidden="true" />
+          <div>
+            <strong>Proof not accepted{rejected.rejectionReason ? `: ${rejected.rejectionReason}` : ''}</strong>
+            <p>Please check the details and send a new proof below.</p>
           </div>
         </div>
       )}

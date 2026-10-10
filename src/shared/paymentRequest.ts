@@ -1,6 +1,7 @@
 // A shipment's payment request (docs/update.md §5, D.1, D-9): amount, reason and the payment
 // accounts the courier typed for this shipment. Shared by the server (validation, the public
 // track response) and the admin editor, so both apply the same rules.
+import type { PublicProofStatus } from './paymentProof.js';
 import {
   CustomerMethodView, Details, PaymentMethodType, customerMethodView, isPaymentMethodType, validatePaymentDetails,
 } from './paymentMethods.js';
@@ -167,10 +168,12 @@ export interface PublicPayment {
   customerNote: string | null;
   paidAt: string | null;
   methods: PublicPaymentAccount[];
+  /** The latest proof sent for this request (F.4): status and time only, plus the rejection reason. */
+  proof: PublicProofStatus | null;
 }
 
 /** Builds the public payment block from a stored request: only this request's own accounts, in order. */
-export function publicPaymentView(payment: ShipmentPayment): PublicPayment {
+export function publicPaymentView(payment: ShipmentPayment, latestProof: PublicProofStatus | null = null): PublicPayment {
   return {
     amount: payment.amount,
     currency: payment.currency,
@@ -182,6 +185,7 @@ export function publicPaymentView(payment: ShipmentPayment): PublicPayment {
     methods: payment.methods
       .filter((m) => isPaymentMethodType(m.type))
       .map((m) => ({ id: m.id, ...customerMethodView(m.type, m.details, m.label), instructions: m.instructions })),
+    proof: latestProof,
   };
 }
 

@@ -5,6 +5,7 @@ import { eventTimeDisplay } from '../../src/shared/timeZones.js';
 import { parseTrackingInput } from '../../src/shared/trackingId.js';
 import { publicShipmentImages } from './shipmentImages.js';
 import { getShipmentPayment } from './shipmentPayments.js';
+import { latestPublicProof } from './paymentProofs.js';
 import { publicPaymentView } from '../../src/shared/paymentRequest.js';
 
 export const trackRouter = Router();
@@ -162,7 +163,8 @@ trackRouter.get('/:trackingNumber', (req: Request, res: Response) => {
       images: publicShipmentImages(row.tracking_number),
       // The shipment's payment request (docs/update.md D.4): only its own accounts, in the courier's
       // order, without internal fields such as the linked invoice. null when there is none.
-      payment: storedPayment ? publicPaymentView(storedPayment) : null,
+      // F.4 adds the latest proof's status, time and rejection reason (never the file or payer details).
+      payment: storedPayment ? publicPaymentView(storedPayment, latestPublicProof(storedPayment.id)) : null,
       totalWeightLbs: row.total_weight_lbs,
       totalPieces: row.total_pieces,
       origin: {
