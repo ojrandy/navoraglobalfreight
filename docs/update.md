@@ -246,7 +246,7 @@ removed from disk when the shipment is permanently deleted.
 - [ ] Which other currencies to offer in the payment-request picker (USD only, or also GBP/EUR…)?
 - [ ] **Account details** for each method. The admin enters these in the console after Phase C, not in code.
 - [ ] Should approving a payment add a public "Payment confirmed" tracking event by default? (on / off)
-- [ ] **Pre-existing test failures (not from this update):** 4 tests in `scripts/intl.test.ts`, `routing.test.ts` and `timeZones.test.ts` still expect the Lagos/Ibadan gateways removed in commit 584b7b6. Update the tests to the new gateways, or restore those gateways?
+- [x] **Pre-existing test failures (not from this update):** 4 tests in `scripts/intl.test.ts`, `routing.test.ts` and `timeZones.test.ts` still expect the Lagos/Ibadan gateways removed in commit 584b7b6. Update the tests to the new gateways, or restore those gateways? → Owner: update the tests. Done 2026-10-10 (Tokyo, Osaka, Tateyama, Busan).
 
 ## 9. Decisions log
 - **D-1 (2026-10-09) Gift cards are not offered as a payment method.** Gift cards are not a payment method for
@@ -268,3 +268,4 @@ removed from disk when the shipment is permanently deleted.
 - 2026-10-10: A.2 Upload helper in `server/uploads.ts`: base64/data-URL decode, magic-byte check (WebP/JPEG/PNG), 2 MB cap, `<uuid>.<ext>` names only, safe delete; tests in `scripts/uploads.test.ts`.
 - 2026-10-10: A.3 `src/services/imageCompress.ts`: resize ≤1600px, WebP (JPEG fallback, white background), quality steps down to fit 2 MB, EXIF dropped by the canvas redraw; HEIC via the browser's own decoder. Checked in headless Chrome (3000×2000 PNG → 1600×1067 WebP, 242 KB; non-images rejected).
 - 2026-10-10: A.4 + B.1 `shipment_images` table and public `GET /media/<id>.<ext>` (`server/routes/media.ts`): serves only visible images on non-trashed shipments, 1-year immutable cache, `nosniff`; hidden/trashed/unknown/proof/traversal requests all 404. Tested on a scratch DB, incl. after a restart.
+- 2026-10-10: Fixed 4 tests that still used the removed Lagos/Ibadan gateways; they now use Tokyo (NRT), Osaka, Tateyama and Busan. `npm test`: 37/37 pass.

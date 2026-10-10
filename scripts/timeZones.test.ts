@@ -29,7 +29,7 @@ test('zonedTimeToUtc: wall-clock time in a zone back to the instant', () => {
 });
 
 test('timeZoneForPlace: gateways, U.S. states, ISO/state clashes, coordinates', () => {
-  assert.equal(timeZoneForPlace({ city: 'Lagos', state: 'NG' }), 'Africa/Lagos');
+  assert.equal(timeZoneForPlace({ city: 'Tokyo', state: 'JP' }), 'Asia/Tokyo');
   assert.equal(timeZoneForPlace({ city: 'São Paulo' }), 'America/Sao_Paulo');
   assert.equal(timeZoneForPlace({ city: 'Sao Paulo', state: 'BR' }), 'America/Sao_Paulo');
   assert.equal(timeZoneForPlace({ city: 'Houston', state: 'TX' }), 'America/Chicago');
@@ -39,8 +39,8 @@ test('timeZoneForPlace: gateways, U.S. states, ISO/state clashes, coordinates', 
   assert.equal(timeZoneForPlace({ city: 'Toronto', state: 'CA' }), 'America/Toronto');
   assert.equal(timeZoneForPlace({ city: 'Sacramento', state: 'CA' }), 'America/Los_Angeles');
   // A non-gateway city in a gateway country.
-  assert.equal(timeZoneForPlace({ city: 'Abuja', state: 'NG' }), 'Africa/Lagos');
-  assert.equal(timeZoneForPlace({ city: 'Mombasa', country: 'Kenya' }), 'Africa/Nairobi');
+  assert.equal(timeZoneForPlace({ city: 'Osaka', state: 'JP' }), 'Asia/Tokyo');
+  assert.equal(timeZoneForPlace({ city: 'Busan', country: 'South Korea' }), 'Asia/Seoul');
   // Nearest gateway by coordinates, then a longitude-based Etc zone far from any gateway.
   assert.equal(timeZoneForPlace({ lat: 51.2, lng: 6.8 }), 'Europe/Berlin'); // Düsseldorf -> nearest is FRA
   assert.equal(timeZoneForPlace({ lat: -20, lng: -130 }), 'Etc/GMT+9');

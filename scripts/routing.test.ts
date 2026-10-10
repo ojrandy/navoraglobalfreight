@@ -12,7 +12,7 @@ const LAGOS = { lat: 6.5244, lng: 3.3792, name: 'Lagos' };
 const LONDON = { lat: 51.5074, lng: -0.1278, name: 'London' };
 const HOUSTON = { lat: 29.7604, lng: -95.3698, name: 'Houston' };
 const ROTTERDAM = { lat: 51.9244, lng: 4.4777, name: 'Rotterdam' };
-const IBADAN = { lat: 7.3775, lng: 3.947, name: 'Ibadan' };
+const TATEYAMA = { lat: 34.9965, lng: 139.8699, name: 'Tateyama' };
 const MANCHESTER = { lat: 53.4808, lng: -2.2426, name: 'Manchester' };
 const NEW_YORK = { lat: 40.7128, lng: -74.006, name: 'New York' };
 const LOS_ANGELES = { lat: 34.0522, lng: -118.2437, name: 'Los Angeles' };
@@ -34,7 +34,7 @@ test('inferTransportMode: stored mode wins, otherwise distance/region/cargo', ()
 test('Lagos -> London (air): one great-circle leg; position follows the arc', () => {
   const route = calculateRouteGeometry(LAGOS, LONDON, 'Air');
   assert.equal(route.mode, 'Air');
-  assert.equal(route.legs.length, 1, 'Lagos is next to the LOS gateway, so no feeder leg');
+  assert.equal(route.legs.length, 1, 'a direct air route, so no feeder leg');
   assert.equal(route.legs[0].mode, 'Air');
   assert.ok(route.distanceMiles > 3000 && route.distanceMiles < 3300, `${route.distanceMiles}`);
 
@@ -58,10 +58,10 @@ test('Houston -> Rotterdam (sea): one sea leg with sea distance and transit time
   assert.match(at20.corridorDescription, /^At sea/);
 });
 
-test('mixed legs: Ibadan -> Manchester is road, air, road; position interpolates by distance', () => {
-  const route = calculateRouteGeometry(IBADAN, MANCHESTER, 'Air');
+test('mixed legs: Tateyama -> Manchester is road, air, road; position interpolates by distance', () => {
+  const route = calculateRouteGeometry(TATEYAMA, MANCHESTER, 'Air');
   assert.deepEqual(route.legs.map((l) => l.mode), ['Road', 'Air', 'Road']);
-  assert.equal(route.legs[0].to.name, 'Lagos (LOS)');
+  assert.equal(route.legs[0].to.name, 'Tokyo (NRT)');
   assert.equal(route.legs[2].from.name, 'London (LHR)');
 
   // Leg ranges are contiguous and cover the whole polyline.
@@ -94,7 +94,7 @@ test('mixed legs: Ibadan -> Manchester is road, air, road; position interpolates
   }
   assert.deepEqual(modes, ['Road', 'Air', 'Road']);
 
-  // The road feeder (~80 mi of ~3,300) is a sliver of the route, not a third of it as an
+  // The road feeder (~65 mi of ~6,000) is a sliver of the route, not a third of it as an
   // index-based split would make it.
   assert.ok(firstRoadShare < 5, `first road leg share ${firstRoadShare}%`);
   assert.equal(calculateEstimatedPosition(route.polyline, firstRoadShare / 2, route.legs).mode, 'Road');
@@ -120,11 +120,11 @@ test('U.S. road routes are unchanged in shape: one road leg', () => {
 });
 
 test('geocoding: gateway table is an offline worldwide fallback', () => {
-  const lagos = resolveLocation('Lagos');
-  assert.equal(lagos?.countryCode, 'NG');
-  assert.equal(lagos?.timezone, 'Africa/Lagos');
-  assert.equal(lagos?.zip, undefined);
-  assert.equal(resolveLocation('LOS')?.city, 'Lagos');
+  const tokyo = resolveLocation('Tokyo');
+  assert.equal(tokyo?.countryCode, 'JP');
+  assert.equal(tokyo?.timezone, 'Asia/Tokyo');
+  assert.equal(tokyo?.zip, undefined);
+  assert.equal(resolveLocation('NRT')?.city, 'Tokyo');
   assert.equal(resolveLocation('London, United Kingdom')?.timezone, 'Europe/London');
   assert.equal(resolveLocation('Sao Paulo')?.city, 'São Paulo');
   assert.equal(resolveLocation('Toronto, CA')?.countryCode, 'CA');
@@ -135,10 +135,10 @@ test('geocoding: gateway table is an offline worldwide fallback', () => {
   assert.ok(Math.abs((houston?.lat ?? 0) - 29.7604) < 0.01);
   assert.equal(resolveLocation('Los Angeles, CA')?.countryCode, 'US');
   // Unknown town in a known country: that country's gateway, flagged as a guess.
-  const abuja = resolveLocation('Abuja, Nigeria');
-  assert.equal(abuja?.city, 'Abuja');
-  assert.equal(abuja?.countryCode, 'NG');
-  assert.equal(abuja?.isExactCoordinate, false);
+  const osaka = resolveLocation('Osaka, Japan');
+  assert.equal(osaka?.city, 'Osaka');
+  assert.equal(osaka?.countryCode, 'JP');
+  assert.equal(osaka?.isExactCoordinate, false);
   assert.equal(Object.keys(GLOBAL_GATEWAY_DATABASE).length, 18);
 });
 

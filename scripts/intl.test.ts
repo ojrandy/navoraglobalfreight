@@ -77,11 +77,11 @@ test('address: short region convention, country-aware lookup', () => {
   assert.equal(shortRegion('US', 'tx'), 'TX');
   assert.equal(shortRegion('NG', 'Lagos State'), 'NG');
   assert.equal(resolveAddress({ city: 'Houston', region: 'TX', countryCode: 'US' })?.timezone, 'America/Chicago');
-  assert.equal(resolveAddress({ city: 'Lagos', countryCode: 'NG' })?.isExactCoordinate, true);
+  assert.equal(resolveAddress({ city: 'Tokyo', countryCode: 'JP' })?.isExactCoordinate, true);
   // A non-gateway town in a gateway country: that country's gateway, flagged as a guess.
-  const ibadan = resolveAddress({ city: 'Ibadan', region: 'Oyo', countryCode: 'NG' });
-  assert.equal(ibadan?.city, 'Ibadan');
-  assert.equal(ibadan?.isExactCoordinate, false);
+  const osaka = resolveAddress({ city: 'Osaka', region: 'Osaka', countryCode: 'JP' });
+  assert.equal(osaka?.city, 'Osaka');
+  assert.equal(osaka?.isExactCoordinate, false);
   // "CA" is Canada here, never California.
   const montreal = resolveAddress({ city: 'Montreal', region: 'QC', countryCode: 'CA' });
   assert.equal(montreal?.countryCode, 'CA');
