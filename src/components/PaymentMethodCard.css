@@ -15,6 +15,40 @@
   gap: 0.6rem;
 }
 
+/* Accordion mode (track page, mobile): the whole head is the toggle button. */
+.ngf-pm-card-heading {
+  margin: 0;
+  font: inherit;
+}
+
+.ngf-pm-card-toggle {
+  width: 100%;
+  margin: -0.25rem 0;
+  padding: 0.25rem 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ngf-pm-card-chevron {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--ngf-slate-500);
+  transition: transform 0.2s ease;
+}
+
+.ngf-pm-card.is-open .ngf-pm-card-chevron {
+  transform: rotate(180deg);
+}
+
+.ngf-pm-card-toggle:focus-visible {
+  outline: 2px solid var(--ngf-color-focus);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
 .ngf-pm-card-icon {
   display: inline-flex;
   align-items: center;
@@ -150,7 +184,59 @@
   overflow-wrap: anywhere;
 }
 
+.ngf-pm-card-qr {
+  margin-top: 0.8rem;
+}
+
+.ngf-pm-qr-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--ngf-slate-300);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--ngf-slate-800);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ngf-pm-qr-toggle:hover {
+  border-color: var(--ngf-slate-400);
+  background: var(--ngf-slate-50);
+}
+
+.ngf-pm-qr {
+  margin: 0.75rem 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.ngf-pm-qr img,
+.ngf-pm-qr-placeholder {
+  display: block;
+  width: 180px;
+  height: 180px;
+  max-width: 100%;
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.ngf-pm-qr-placeholder {
+  background: var(--ngf-slate-50);
+}
+
+.ngf-pm-qr figcaption {
+  font-size: 0.78rem;
+  color: var(--ngf-slate-600);
+}
+
 .ngf-pm-copy:focus-visible,
+.ngf-pm-qr-toggle:focus-visible,
 .ngf-pm-card-link:focus-visible {
   outline: 2px solid var(--ngf-color-focus);
   outline-offset: 2px;
@@ -166,4 +252,10 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ngf-pm-card-chevron {
+    transition: none;
+  }
 }

@@ -129,3 +129,83 @@
   white-space: pre-line;
   overflow-wrap: anywhere;
 }
+
+/* Payment accounts: a grid on wider screens, an accordion on phones. */
+.ngf-pay-methods {
+  margin-top: 1.25rem;
+}
+
+.ngf-pay-methods-title {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--ngf-slate-900);
+}
+
+.ngf-pay-methods-sub {
+  margin: 0.25rem 0 0.85rem;
+  font-size: 0.88rem;
+  color: var(--ngf-slate-600);
+}
+
+.ngf-pay-methods-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.ngf-pay-methods-list > li {
+  min-width: 0;
+}
+
+.ngf-pay-methods-list.is-accordion {
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .ngf-pay-methods-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ngf-pay-methods-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* "{field} copied" toast; also the screen-reader announcement. */
+.ngf-pay-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 1000;
+  max-width: calc(100vw - 2rem);
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  background: var(--ngf-slate-900);
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: var(--ngf-shadow-lg);
+  transform: translate(-50%, 0.5rem);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.ngf-pay-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ngf-pay-toast {
+    transition: none;
+  }
+}
