@@ -65,6 +65,10 @@ import { generateReference } from '../../shared/references';
 import './CreateShipmentView.css';
 import { Barcode as TrackingBarcode } from '../../components/Barcode';
 import { ShipmentImagesPanel } from '../components/ShipmentImagesPanel';
+import {
+  PaymentDraft, PaymentRequestEditor, draftToRequest, emptyPaymentDraft, paymentDraftErrors, paymentDraftSummary,
+} from '../components/PaymentRequestEditor';
+import { api } from '../../services/api';
 import { documentTitle } from '../../components/DocumentBrand';
 
 interface CreateShipmentViewProps {
@@ -349,6 +353,16 @@ export const CreateShipmentView: React.FC<CreateShipmentViewProps> = ({
   const [createdShipmentRecord, setCreatedShipmentRecord] = useState<Shipment | null>(null);
   const [isCopied, setIsCopied] = useState(false);
   const [isCreatingShipment, setIsCreatingShipment] = useState(false);
+
+  // Optional payment request (docs/update.md D.2, D-9): the courier types the amount, reason and
+  // this shipment's payment accounts here, before the tracking ID exists. It is saved through the
+  // admin-only payment route right after the server assigns the ID (never through the public
+  // booking POST). Not included in the browser draft save.
+  const [paymentEnabled, setPaymentEnabled] = useState(false);
+  const [paymentDraft, setPaymentDraft] = useState<PaymentDraft>(emptyPaymentDraft);
+  const [paymentErrors, setPaymentErrors] = useState<Record<string, string>>({});
+  const [paymentSaveState, setPaymentSaveState] = useState<'idle' | 'saving' | 'saved' | 'failed'>('idle');
+  const [paymentSaveError, setPaymentSaveError] = useState('');
 
   // Live preview of the actual computed delivery plan (same engine used at final submit),
   // so the "Expected Delivery Date (ETA)" field shown to the admin reflects a real,
@@ -743,9 +757,33 @@ export const CreateShipmentView: React.FC<CreateShipmentViewProps> = ({
     }
   };
 
+  // Saves the step-5 payment request once the shipment has its tracking ID. A failure never undoes
+  // the shipment: the success screen says so and offers a retry.
+  const savePaymentRequest = async (trackingNumber: string) => {
+    setPaymentSaveState('saving');
+    setPaymentSaveError('');
+    try {
+      await api.saveShipmentPayment(trackingNumber, draftToRequest(paymentDraft));
+      setPaymentSaveState('saved');
+    } catch (err: any) {
+      setPaymentSaveState('failed');
+      setPaymentSaveError(err?.message || 'The server did not respond.');
+    }
+  };
+
   // Final Action: Create Shipment
   const handleFinalCreateShipment = async () => {
     if (isCreatingShipment) return;
+    // Check the optional payment request first, so nothing is created while it still has errors.
+    if (paymentEnabled) {
+      const paymentProblems = paymentDraftErrors(paymentDraft);
+      if (Object.keys(paymentProblems).length) {
+        setPaymentErrors(paymentProblems);
+        setCurrentStep(5);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+    }
     setIsCreatingShipment(true);
     // Piece labels (NGFxxxxx-NN) are stamped from the server-assigned ID in createShipment.
     const formattedPieces = shipmentType === 'Vehicle'
@@ -1150,6 +1188,9 @@ export const CreateShipmentView: React.FC<CreateShipmentViewProps> = ({
     const trackingNumber = created.trackingNumber;
     setGeneratedTrackingNumber(trackingNumber);
 
+    // 1b. The optional payment request, now that the tracking ID exists.
+    if (paymentEnabled) await savePaymentRequest(trackingNumber);
+
     // 2. Automatically generate the transport document (Bill of Lading, or Air Waybill for air)
     // in the Document Center, from what was entered in the wizard only: the seal is the real
     // document-pouch seal (document shipments), instructions are the admin's own handling notes.
@@ -1283,6 +1324,27 @@ export const CreateShipmentView: React.FC<CreateShipmentViewProps> = ({
             </div>
           </div>
 
+          {/* Payment request from step 5, saved once the tracking ID existed (update D.2). */}
+          {paymentSaveState !== 'idle' && (
+            <div className={`success-payment-status is-${paymentSaveState}`} role="status" aria-live="polite">
+              {paymentSaveState === 'saving' && <span>Saving the payment request…</span>}
+              {paymentSaveState === 'saved' && (
+                <span>Payment request saved: {paymentDraftSummary(paymentDraft)}. The customer sees it on the track page.</span>
+              )}
+              {paymentSaveState === 'failed' && (
+                <>
+                  <span>
+                    The shipment was created, but its payment request was not saved ({paymentSaveError}).
+                    Try again, or add it later from Edit Shipment.
+                  </span>
+                  <button type="button" className="success-payment-retry" onClick={() => savePaymentRequest(generatedTrackingNumber)}>
+                    Try again
+                  </button>
+                </>
+              )}
+            </div>
+          )}
+
           {/* Optional step: package images, now that the server has assigned the tracking ID. */}
           {generatedTrackingNumber && (
             <div className="success-images-step">
@@ -1319,6 +1381,11 @@ export const CreateShipmentView: React.FC<CreateShipmentViewProps> = ({
                 setCreatedShipmentRecord(null);
                 setCurrentStep(1);
                 setGeneratedTrackingNumber('');
+                setPaymentEnabled(false);
+                setPaymentDraft(emptyPaymentDraft());
+                setPaymentErrors({});
+                setPaymentSaveState('idle');
+                setPaymentSaveError('');
               }}
             >
               <Plus size={16} />
@@ -3519,6 +3586,43 @@ export const CreateShipmentView: React.FC<CreateShipmentViewProps> = ({
                   />
                 </div>
               </div>
+
+              {/* Customer payment request (update D.2): unlike the pricing above, this IS public. */}
+              <div className="create-payment-block">
+                <label className="create-payment-toggle">
+                  <input
+                    type="checkbox"
+                    checked={paymentEnabled}
+                    onChange={e => {
+                      setPaymentEnabled(e.target.checked);
+                      if (!e.target.checked) setPaymentErrors({});
+                    }}
+                  />
+                  <span>Add a payment request for the customer (optional)</span>
+                </label>
+                <p className="create-payment-hint">
+                  Unlike the pricing above, this <strong>is shown to the customer</strong> on the track page: the amount,
+                  what it is for, and the payment accounts you add for this shipment. It is saved as soon as the tracking
+                  ID is issued, and can be edited or deleted later from Edit Shipment.
+                </p>
+                {paymentEnabled && Object.keys(paymentErrors).length > 0 && (
+                  <p className="create-payment-alert" role="alert">
+                    Fix the highlighted payment details, then create the shipment.
+                  </p>
+                )}
+                {paymentEnabled && (
+                  <PaymentRequestEditor
+                    value={paymentDraft}
+                    onChange={d => {
+                      setPaymentDraft(d);
+                      // Once errors are showing, re-check as the courier fixes them.
+                      if (Object.keys(paymentErrors).length) setPaymentErrors(paymentDraftErrors(d));
+                    }}
+                    errors={paymentErrors}
+                    idPrefix="create-payment"
+                  />
+                )}
+              </div>
             </div>
           )}
 
@@ -3533,6 +3637,18 @@ export const CreateShipmentView: React.FC<CreateShipmentViewProps> = ({
               </div>
 
               <div className="review-summary-container">
+                {/* Review: customer payment request (step 5), public on the track page */}
+                <div className="review-segment">
+                  <span className="seg-title">CUSTOMER PAYMENT REQUEST</span>
+                  <div>
+                    {paymentEnabled ? (
+                      <strong>{paymentDraftSummary(paymentDraft)}</strong>
+                    ) : (
+                      <span>None. You can add one later from Edit Shipment.</span>
+                    )}
+                  </div>
+                </div>
+
                 {/* Review: Shipment & Cargo */}
                 <div className="review-segment">
                   <span className="seg-title">SHIPMENT & CARGO</span>

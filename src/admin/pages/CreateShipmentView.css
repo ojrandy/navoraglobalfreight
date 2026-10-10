@@ -2703,3 +2703,90 @@
     display: none;
   }
 }
+
+/* Step 5: optional customer payment request (docs/update.md D.2). */
+.create-payment-block {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--ngf-slate-200);
+  border-left: 4px solid var(--ngf-accent-500);
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.create-payment-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ngf-slate-900);
+  cursor: pointer;
+}
+
+.create-payment-toggle input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--ngf-accent-500);
+}
+
+.create-payment-hint {
+  margin: 0.4rem 0 0.9rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ngf-slate-700);
+}
+
+.create-payment-alert {
+  margin: 0 0 0.75rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 8px;
+  background: var(--ngf-danger-50);
+  color: var(--ngf-danger-600);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Success screen: result of saving the payment request. */
+.success-payment-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.25rem 0 0;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  text-align: left;
+  overflow-wrap: anywhere;
+  background: var(--ngf-slate-50);
+  color: var(--ngf-slate-800);
+}
+
+.success-payment-status.is-saved {
+  background: var(--ngf-success-50);
+  color: var(--ngf-success-700);
+}
+
+.success-payment-status.is-failed {
+  background: var(--ngf-danger-50);
+  color: var(--ngf-danger-600);
+}
+
+.success-payment-retry {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid currentColor;
+  border-radius: 7px;
+  background: #ffffff;
+  color: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media print {
+  .success-payment-status {
+    display: none;
+  }
+}

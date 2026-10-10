@@ -1,5 +1,17 @@
 import { AdminShipmentImage, Shipment, ShipmentStatus, TrackingEvent } from '../types/shipment';
 import { QuoteRequest, QuoteRequestPricing, QuoteRequestStatus, AdminSettings, AdminDocument, DocumentStatus, ContactMessage, ContactMessageStatus } from '../types/admin';
+import type { ShipmentPayment } from '../shared/paymentRequest';
+
+/** Body for PUT /api/shipments/:id/payment (validated by validatePaymentRequest on the server). */
+export interface PaymentRequestBody {
+  amount: number | string;
+  currency: string;
+  chargeReason: string;
+  dueDate?: string;
+  invoiceDocumentId?: string;
+  customerNote?: string;
+  methods: { id?: string; type: string; label?: string; details: Record<string, string>; instructions?: string }[];
+}
 
 const API_BASE = '/api';
 
@@ -252,6 +264,26 @@ export const api = {
       method: 'DELETE'
     });
     return handleResponse<AdminShipmentImage[]>(res);
+  },
+
+  // Payment request per shipment (admin only). Accounts are typed per shipment (update D-9).
+  async getShipmentPayment(trackingNumber: string): Promise<ShipmentPayment | null> {
+    const res = await fetch(`${API_BASE}/shipments/${encodeURIComponent(trackingNumber)}/payment`);
+    return handleResponse<ShipmentPayment | null>(res);
+  },
+
+  async saveShipmentPayment(trackingNumber: string, request: PaymentRequestBody): Promise<ShipmentPayment> {
+    const res = await fetch(`${API_BASE}/shipments/${encodeURIComponent(trackingNumber)}/payment`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(request)
+    });
+    return handleResponse<ShipmentPayment>(res);
+  },
+
+  async deleteShipmentPayment(trackingNumber: string): Promise<void> {
+    const res = await fetch(`${API_BASE}/shipments/${encodeURIComponent(trackingNumber)}/payment`, { method: 'DELETE' });
+    await handleResponse<null>(res);
   },
 
   // Admin Quotes

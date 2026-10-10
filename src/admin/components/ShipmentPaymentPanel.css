@@ -1,0 +1,190 @@
+/* Edit Shipment: payment request panel (update D.2/D.3). Same shell as the images panel. */
+
+.ngf-spp {
+  background: var(--ngf-slate-50);
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: 10px;
+  padding: 0.85rem 1rem 1rem;
+  text-align: left;
+  min-width: 0;
+}
+
+.ngf-spp-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.ngf-spp-head h4 {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ngf-slate-900);
+}
+
+.ngf-spp-hint {
+  margin: 0.25rem 0 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--ngf-slate-600);
+}
+
+.ngf-spp-message {
+  min-height: 1.1em;
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  color: var(--ngf-success-700);
+}
+
+.ngf-spp-message.is-error,
+.ngf-spp-error {
+  color: var(--ngf-danger-600);
+}
+
+.ngf-spp-error,
+.ngf-spp-empty {
+  margin: 0;
+  font-size: 0.78rem;
+}
+
+.ngf-spp-empty {
+  color: var(--ngf-slate-600);
+}
+
+.ngf-spp-status {
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  white-space: nowrap;
+  background: var(--ngf-slate-100);
+  color: var(--ngf-slate-700);
+}
+
+.ngf-spp-status.s-awaiting_payment { background: var(--ngf-warning-50); color: #92400e; }
+.ngf-spp-status.s-under_review { background: var(--ngf-info-50); color: var(--ngf-info-700); }
+.ngf-spp-status.s-paid { background: var(--ngf-success-50); color: var(--ngf-success-700); }
+
+.ngf-spp-summary {
+  padding: 0.85rem;
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: 9px;
+  background: #ffffff;
+}
+
+.ngf-spp-amount {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ngf-slate-900);
+  font-variant-numeric: tabular-nums;
+}
+
+.ngf-spp-reason {
+  margin: 0.1rem 0 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ngf-slate-800);
+  overflow-wrap: anywhere;
+}
+
+.ngf-spp-meta {
+  margin: 0.2rem 0 0;
+  font-size: 0.75rem;
+  color: var(--ngf-slate-600);
+}
+
+.ngf-spp-accounts {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.ngf-spp-accounts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: var(--ngf-slate-800);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.ngf-spp-none {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.ngf-spp-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.ngf-spp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--ngf-slate-300);
+  border-radius: 7px;
+  background: #ffffff;
+  color: var(--ngf-slate-800);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ngf-spp-btn:hover:not(:disabled) {
+  background: var(--ngf-slate-50);
+  border-color: var(--ngf-slate-400);
+}
+
+.ngf-spp-btn.primary {
+  background: var(--ngf-accent-600);
+  border-color: var(--ngf-accent-600);
+  color: #ffffff;
+}
+
+.ngf-spp-btn.primary:hover:not(:disabled) {
+  background: var(--ngf-accent-700);
+}
+
+.ngf-spp-btn.danger:hover:not(:disabled) {
+  border-color: var(--ngf-danger-500);
+  color: var(--ngf-danger-600);
+  background: var(--ngf-danger-50);
+}
+
+.ngf-spp-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ngf-spp button:focus-visible {
+  outline: 2px solid var(--ngf-color-focus);
+  outline-offset: 2px;
+}
+
+.ngf-spp-spin {
+  animation: ngfSppSpin 0.9s linear infinite;
+}
+
+@keyframes ngfSppSpin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ngf-spp-spin { animation: none; }
+}

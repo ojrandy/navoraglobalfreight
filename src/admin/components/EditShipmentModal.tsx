@@ -3,6 +3,7 @@ import { X, ArrowRight, Save, Building, User, Package, Calendar, MapPin } from '
 import { Shipment } from '../../types/shipment';
 import { resolveLocation } from '../../services/geocodingService';
 import { ShipmentImagesPanel } from './ShipmentImagesPanel';
+import { ShipmentPaymentPanel } from './ShipmentPaymentPanel';
 import './EditShipmentModal.css';
 import { COMPANY_SHORT } from '../../config/brand';
 
@@ -852,6 +853,9 @@ export const EditShipmentModal: React.FC<EditShipmentModalProps> = ({
 
           {/* Package images: saved through their own API as they change, not by Save Changes. */}
           <ShipmentImagesPanel trackingNumber={shipment.trackingNumber} legacyPhotos={shipment.photos} />
+
+          {/* Payment request with this shipment's own accounts (update D.2); saved on its own. */}
+          <ShipmentPaymentPanel trackingNumber={shipment.trackingNumber} />
 
           {/* Footer Actions */}
           <div className="edit-modal-footer">

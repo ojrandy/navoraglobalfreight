@@ -1,0 +1,388 @@
+/* Payment request editor (update D.2): Create Shipment step 5 and the Edit Shipment modal. */
+
+.ngf-pre {
+  text-align: left;
+  min-width: 0;
+}
+
+.ngf-pre-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* Narrow hosts (the Edit Shipment modal) and small screens: preview below the form. */
+.ngf-pre-compact .ngf-pre-layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (max-width: 1100px) {
+  .ngf-pre-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.ngf-pre-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+.ngf-pre-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 90px minmax(0, 1fr);
+  gap: 0.75rem;
+}
+
+@media (max-width: 520px) {
+  .ngf-pre-row {
+    grid-template-columns: minmax(0, 1fr) 90px;
+  }
+  .ngf-pre-row > :last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+.ngf-pre-field {
+  min-width: 0;
+}
+
+.ngf-pre-field label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ngf-slate-700);
+}
+
+.ngf-pre-field input,
+.ngf-pre-field select,
+.ngf-pre-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--ngf-slate-300);
+  border-radius: 7px;
+  background: #ffffff;
+  color: var(--ngf-slate-900);
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+
+.ngf-pre-field textarea {
+  resize: vertical;
+}
+
+.ngf-pre-field [aria-invalid="true"] {
+  border-color: var(--ngf-danger-500);
+}
+
+.ngf-pre-hint {
+  margin: 0.25rem 0 0;
+  font-size: 0.72rem;
+  color: var(--ngf-slate-600);
+}
+
+.ngf-pre-error {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  color: var(--ngf-danger-600);
+}
+
+.ngf-pre button:focus-visible,
+.ngf-pre input:focus-visible,
+.ngf-pre select:focus-visible,
+.ngf-pre textarea:focus-visible {
+  outline: 2px solid var(--ngf-color-focus);
+  outline-offset: 2px;
+}
+
+.ngf-pre-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  align-self: flex-start;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--ngf-slate-300);
+  border-radius: 7px;
+  background: #ffffff;
+  color: var(--ngf-slate-800);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ngf-pre-btn:hover:not(:disabled) {
+  background: var(--ngf-slate-50);
+  border-color: var(--ngf-slate-400);
+}
+
+.ngf-pre-btn.primary {
+  background: var(--ngf-accent-600);
+  border-color: var(--ngf-accent-600);
+  color: #ffffff;
+}
+
+.ngf-pre-btn.primary:hover:not(:disabled) {
+  background: var(--ngf-accent-700);
+}
+
+.ngf-pre-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--ngf-slate-700);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ngf-pre-icon-btn:hover:not(:disabled) {
+  border-color: var(--ngf-slate-400);
+  color: var(--ngf-slate-900);
+}
+
+.ngf-pre-icon-btn.danger:hover:not(:disabled) {
+  border-color: var(--ngf-danger-500);
+  color: var(--ngf-danger-600);
+  background: var(--ngf-danger-50);
+}
+
+.ngf-pre-btn:disabled,
+.ngf-pre-icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Accounts */
+.ngf-pre-accounts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--ngf-slate-200);
+}
+
+.ngf-pre-accounts-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.ngf-pre-accounts-head h5 {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--ngf-slate-900);
+}
+
+.ngf-pre-accounts-head span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ngf-slate-600);
+}
+
+.ngf-pre-account-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ngf-pre-account {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: 9px;
+  background: #ffffff;
+}
+
+.ngf-pre-account.has-error {
+  border-color: var(--ngf-danger-500);
+}
+
+.ngf-pre-account-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--ngf-slate-200);
+  background: var(--ngf-slate-50);
+}
+
+.ngf-pre-account-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ngf-pre-account-text strong {
+  font-size: 0.85rem;
+  color: var(--ngf-slate-900);
+  overflow-wrap: anywhere;
+}
+
+.ngf-pre-account-text > span:not(.ngf-pre-error) {
+  font-family: var(--ngf-font-mono);
+  font-size: 0.72rem;
+  color: var(--ngf-slate-700);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ngf-pre-account-actions {
+  display: flex;
+  gap: 0.3rem;
+}
+
+@media (max-width: 520px) {
+  .ngf-pre-account {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .ngf-pre-account-actions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+}
+
+.ngf-pre-subeditor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 0.85rem;
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: 10px;
+  background: var(--ngf-slate-50);
+}
+
+.ngf-pre-subeditor-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.ngf-pre-subeditor-head h6 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--ngf-slate-900);
+}
+
+.ngf-pre-subeditor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.ngf-pre-subeditor-actions .ngf-pre-btn {
+  align-self: auto;
+}
+
+.ngf-pre-type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+  gap: 0.5rem;
+}
+
+.ngf-pre-type {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--ngf-slate-900);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ngf-pre-type > svg,
+.ngf-pre-type > span:first-child {
+  flex-shrink: 0;
+}
+
+.ngf-pre-type:hover {
+  border-color: var(--ngf-accent-500);
+  background: var(--ngf-accent-50);
+}
+
+@media (max-width: 420px) {
+  .ngf-pre-type-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Preview */
+.ngf-pre-preview {
+  min-width: 0;
+}
+
+.ngf-pre-preview-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ngf-slate-600);
+}
+
+.ngf-pre-preview-box {
+  padding: 1rem;
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: 12px;
+  background: var(--ngf-slate-50);
+}
+
+.ngf-pre-preview-amount {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--ngf-slate-900);
+  font-variant-numeric: tabular-nums;
+}
+
+.ngf-pre-preview-reason {
+  margin: 0.15rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ngf-slate-800);
+  overflow-wrap: anywhere;
+}
+
+.ngf-pre-preview-meta,
+.ngf-pre-preview-note,
+.ngf-pre-preview-empty {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+  color: var(--ngf-slate-700);
+  overflow-wrap: anywhere;
+}
+
+.ngf-pre-preview-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+}
