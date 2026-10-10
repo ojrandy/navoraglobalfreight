@@ -246,6 +246,7 @@ removed from disk when the shipment is permanently deleted.
 - [ ] Which other currencies to offer in the payment-request picker (USD only, or also GBP/EUR…)?
 - [ ] **Account details** for each method. The admin enters these in the console after Phase C, not in code.
 - [ ] Should approving a payment add a public "Payment confirmed" tracking event by default? (on / off)
+- [ ] **Pre-existing test failures (not from this update):** 4 tests in `scripts/intl.test.ts`, `routing.test.ts` and `timeZones.test.ts` still expect the Lagos/Ibadan gateways removed in commit 584b7b6. Update the tests to the new gateways, or restore those gateways?
 
 ## 9. Decisions log
 - **D-1 (2026-10-09) Gift cards are not offered as a payment method.** Gift cards are not a payment method for
