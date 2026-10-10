@@ -196,7 +196,7 @@ removed from disk when the shipment is permanently deleted.
 - [x] B.1 Create the `shipment_images` table in `server/db.ts` (`CREATE TABLE IF NOT EXISTS`, safe on existing DBs). *(Done with A.4: the media route needs it to check visibility.)*
 - [x] B.2 Admin image API (list / upload / caption / visibility / reorder / delete).
 - [ ] B.3 Admin UI: a "Package images" panel in `EditShipmentModal` with drag-and-drop/upload, a required caption field, a visibility toggle, reordering and delete. Add the same panel as an optional step in `CreateShipmentView`.
-- [ ] B.4 `server/routes/track.ts`: return public images (`url`, `caption`, `width`, `height`, `createdAt`).
+- [x] B.4 `server/routes/track.ts`: return public images (`url`, `caption`, `width`, `height`, `createdAt`).
 - [ ] B.5 Copy for the section (heading, intro line, empty state) added to `docs/CONTENT.md`.
 - [ ] B.6 `TrackResultPage`: "Package images" section with a responsive grid (1 column on mobile, 2–3 on desktop), captions under each image, and a keyboard-accessible full-screen view (Esc closes, arrows navigate). Explicit width/height and `loading="lazy"`. Hidden when there are no images.
 - [ ] B.7 Show existing `photos_json` photos read-only alongside the new ones, so nothing already uploaded disappears.
@@ -274,3 +274,4 @@ removed from disk when the shipment is permanently deleted.
 - 2026-10-10: A.4 + B.1 `shipment_images` table and public `GET /media/<id>.<ext>` (`server/routes/media.ts`): serves only visible images on non-trashed shipments, 1-year immutable cache, `nosniff`; hidden/trashed/unknown/proof/traversal requests all 404. Tested on a scratch DB, incl. after a restart.
 - 2026-10-10: Fixed 4 tests that still used the removed Lagos/Ibadan gateways; they now use Tokyo (NRT), Osaka, Tateyama and Busan. `npm test`: 37/37 pass.
 - 2026-10-10: B.2 Admin image API (`server/routes/shipmentImages.ts`): list / upload (caption required, ≤120 chars, max 20 per shipment) / caption + visibility / reorder / delete, plus an admin-only file route for previews. Permanent shipment delete now also removes image rows and files; trash/restore leaves them. Tested on a scratch DB.
+- 2026-10-10: B.4 `/api/track/:id` returns `images[]` (visible only, admin order; `url`, `caption`, `width`, `height`, `createdAt`). Types `PublicShipmentImage` / `AdminShipmentImage` added. Tested on a scratch DB: hidden image excluded, order respected.

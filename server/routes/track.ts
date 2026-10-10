@@ -3,6 +3,7 @@ import { db } from '../db.js';
 import { syncTimeBasedProgress, shipmentTransportMode } from '../progress.js';
 import { eventTimeDisplay } from '../../src/shared/timeZones.js';
 import { parseTrackingInput } from '../../src/shared/trackingId.js';
+import { publicShipmentImages } from './shipmentImages.js';
 
 export const trackRouter = Router();
 
@@ -154,6 +155,8 @@ trackRouter.get('/:trackingNumber', (req: Request, res: Response) => {
       documentDetails: row.document_json ? JSON.parse(row.document_json) : undefined,
       references: row.references_json ? JSON.parse(row.references_json) : undefined,
       photos: row.photos_json ? JSON.parse(row.photos_json) : undefined,
+      // Package images marked visible by the admin (docs/update.md B.4); /media serves the files.
+      images: publicShipmentImages(row.tracking_number),
       totalWeightLbs: row.total_weight_lbs,
       totalPieces: row.total_pieces,
       origin: {

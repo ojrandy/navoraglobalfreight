@@ -154,6 +154,25 @@ export interface ReturnJourneyLeg {
   timeline: TrackingEvent[];
 }
 
+/** A package image the admin marked visible, as returned by /api/track (docs/update.md B.4). */
+export interface PublicShipmentImage {
+  url: string;
+  caption: string;
+  width: number | null;
+  height: number | null;
+  createdAt: string;
+}
+
+/** Admin view of a package image, hidden ones included (/api/shipments/:id/images). */
+export interface AdminShipmentImage extends PublicShipmentImage {
+  id: string;
+  /** Admin-only preview URL; works for hidden images too. */
+  adminUrl: string;
+  sizeBytes: number | null;
+  isPublic: boolean;
+  sortOrder: number;
+}
+
 export interface Shipment {
   trackingNumber: string;
   barcodeCode?: string;
@@ -245,7 +264,10 @@ export interface Shipment {
     filingCourtRef?: string;
     contentsDescription: string;
   };
+  /** Older photo URLs saved on the record (photos_json); shown read-only next to `images`. */
   photos?: string[];
+  /** Package images the admin marked visible (track response only). */
+  images?: PublicShipmentImage[];
   service: 'Express' | 'Standard' | 'Priority' | 'Freight LTL' | string;
   /** Main-leg transport mode; the server infers it for records created before it was stored. */
   transportMode?: TransportMode;
