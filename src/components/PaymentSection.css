@@ -1,0 +1,131 @@
+/* Track Result: Payment (CONTENT.md §6.8). */
+
+.ngf-pay-section {
+  margin-bottom: 2rem;
+}
+
+.ngf-pay-summary {
+  background: #ffffff;
+  border: 1px solid var(--ngf-slate-200);
+  border-radius: 14px;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  padding: 1.25rem;
+  min-width: 0;
+}
+
+.ngf-pay-summary-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.ngf-pay-title {
+  margin: 0;
+}
+
+.ngf-pay-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--ngf-radius-full);
+  border: 1px solid transparent;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.ngf-pay-badge.is-awaiting {
+  background: var(--ngf-warning-50);
+  border-color: var(--ngf-warning-200);
+  color: #92400e;
+}
+
+.ngf-pay-badge.is-review {
+  background: var(--ngf-info-50);
+  border-color: var(--ngf-info-200);
+  color: var(--ngf-info-700);
+}
+
+.ngf-pay-badge.is-paid {
+  background: var(--ngf-success-50);
+  border-color: var(--ngf-success-100);
+  color: var(--ngf-success-700);
+}
+
+.ngf-pay-badge.is-cancelled {
+  background: var(--ngf-slate-100);
+  border-color: var(--ngf-slate-200);
+  color: var(--ngf-slate-700);
+}
+
+.ngf-pay-intro {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ngf-slate-600);
+}
+
+.ngf-pay-facts {
+  margin: 1rem 0 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .ngf-pay-facts {
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+    gap: 1.5rem;
+    align-items: start;
+  }
+}
+
+.ngf-pay-fact dt {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ngf-slate-600);
+}
+
+.ngf-pay-fact dd {
+  margin: 0.2rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--ngf-slate-900);
+  overflow-wrap: anywhere;
+}
+
+.ngf-pay-fact dd.ngf-pay-amount {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.ngf-pay-note {
+  margin-top: 1rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  background: var(--ngf-slate-50);
+  border: 1px solid var(--ngf-slate-200);
+}
+
+.ngf-pay-note strong {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ngf-slate-800);
+}
+
+.ngf-pay-note p {
+  margin: 0.25rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ngf-slate-700);
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
