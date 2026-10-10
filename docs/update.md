@@ -13,19 +13,22 @@
 
 1. **Package images with captions.** The admin uploads one or more photos for a shipment and names each one
    (e.g. "iPhone 15 – sealed at origin"). Customers see them on the track page.
-2. **Payment methods.** The admin keeps a list of payment accounts (PayPal, Bitcoin, Zelle, bank transfer…).
-   For each shipment the admin creates **one payment request** and ticks the methods the customer may use.
-   **Only the ticked methods appear** on that shipment's track page, each with its icon and exact details.
+2. **Payment methods (per shipment, D-9).** There is **no fixed account list**. While creating a shipment (before
+   the tracking ID exists) the courier can add **one payment request**: amount, reason, and the payment accounts
+   for *this* shipment (PayPal, Bitcoin, Zelle, bank transfer…), typing each account's details. All of it can be
+   edited or deleted later from the shipment. **Only the accounts on that shipment** appear on its track page,
+   each with its icon and exact details.
 3. **Proof of payment.** On the track page the customer uploads a screenshot (images only) and an optional
    reference number. The admin reviews it and approves or rejects it. The admin is notified **on the
    dashboard**: a badge, plus a "New payment proofs" panel showing the screenshot.
 
 ### Example flow
-> Admin creates shipment `NGF7K2M9` → uploads a photo captioned "iPhone 15" → creates a payment request
-> ($120.00 USD, "Customs duty – Invoice NGF-INV-104233") → ticks **PayPal** and **Bitcoin** → saves.
+> Courier fills in the Create Shipment form, including the payment step ($120.00 USD, "Customs duty – Invoice
+> NGF-INV-104233", a **PayPal** account and a **Bitcoin** wallet typed in for this shipment) → submits → the
+> shipment gets `NGF7K2M9` and its payment request is saved with it → uploads a photo captioned "iPhone 15".
 > The customer tracks `NGF7K2M9` and sees the photo, the amount, the reason, and **only** the PayPal and
 > Bitcoin cards → pays → uploads a screenshot + reference → status shows "Proof under review" → admin approves
-> → status shows "Paid".
+> → status shows "Paid". At any point the courier can edit the accounts or amount, or delete the request.
 
 ---
 
@@ -36,7 +39,8 @@
 | 1 | What is the "name" on an image? | A **caption per image** |
 | 2 | Which payment methods? | PayPal, Bitcoin and the common US/UK methods (list in §4) |
 | 3 | Payment requests per shipment | **One** per shipment |
-| 4 | Who sees payment details? | **Anyone with the tracking ID**, but only the methods ticked for that shipment |
+| 4 | Who sees payment details? | **Anyone with the tracking ID**, but only the accounts on that shipment's request |
+| 4b | Where do the account details come from? | **Typed per shipment** by the courier (no fixed account list), at creation or later; full create/edit/delete (D-9) |
 | 5 | Proof file types | **Images only** (JPG, PNG, WebP, HEIC converted in the browser) |
 | 6 | New-proof notification | **Admin dashboard only** (badge + panel with the screenshot), no email |
 | 7 | Tracker | This file |
@@ -46,8 +50,11 @@
 ## 3. Design rules for this update
 
 - **Payment accounts are never stored in `settings.general`.** `GET /api/settings` is public, so storing them
-  there would expose every account. They get their own admin-only table and routes. The public track endpoint
-  returns only the methods ticked for that shipment.
+  there would expose every account. They are stored **on the shipment's payment request** (`shipment_payments`),
+  written only through admin routes. The public track endpoint returns only that shipment's accounts.
+- **The public booking endpoint never accepts payment data.** `POST /api/shipments` is public (the Ship page uses
+  it), so the Create Shipment form saves the payment request through the admin-only payment route right after
+  the server assigns the tracking ID.
 - **Image files are not stored in SQLite.** Files go to a new **`UPLOADS_DIR`** folder that, like `DB_PATH`,
   sits **outside the deploy folder** on Hostinger. Otherwise every GitHub redeploy deletes them.
 - **Images are compressed in the browser before upload:** longest side ≤ 1600px, converted to WebP, about
@@ -145,25 +152,18 @@ shipment_images (
   created_at TEXT NOT NULL
 )
 
-payment_methods (                 -- the admin's account list; never exposed in full publicly
-  id TEXT PRIMARY KEY,
-  type TEXT NOT NULL,             -- key from src/shared/paymentMethods.ts
-  label TEXT,                     -- optional display name override
-  details_json TEXT NOT NULL,     -- the type's fields
-  instructions TEXT,
-  enabled INTEGER NOT NULL DEFAULT 1,
-  sort_order INTEGER NOT NULL DEFAULT 0,
-  created_at TEXT NOT NULL, updated_at TEXT NOT NULL
-)
+-- (No shared payment_methods table: accounts are typed per shipment, D-9.)
 
-shipment_payments (               -- ONE per shipment
+shipment_payments (               -- ONE per shipment; all of it admin-written
   id TEXT PRIMARY KEY,
   tracking_number TEXT NOT NULL UNIQUE,
   amount REAL NOT NULL,
-  currency TEXT NOT NULL,         -- ISO 4217 (USD, GBP, EUR…)
+  currency TEXT NOT NULL,         -- ISO 4217; USD only for now (D-7)
   charge_reason TEXT NOT NULL,    -- required, shown to the customer
   due_date TEXT,
-  method_ids_json TEXT NOT NULL,  -- ticked payment_methods ids (order preserved)
+  methods_json TEXT NOT NULL,     -- this shipment's accounts, in display order:
+                                  --   [{ id, type, label, details, instructions }]
+                                  --   type = key from src/shared/paymentMethods.ts; details validated by it
   invoice_document_id TEXT,       -- optional link to documents.id
   status TEXT NOT NULL,           -- AWAITING_PAYMENT | UNDER_REVIEW | PAID | CANCELLED
   customer_note TEXT,             -- optional extra line on the track page
@@ -174,8 +174,8 @@ payment_proofs (
   id TEXT PRIMARY KEY,
   payment_id TEXT NOT NULL,
   tracking_number TEXT NOT NULL,
-  method_id TEXT,                 -- which method the customer says they used
-  method_snapshot_json TEXT,      -- label/type at time of submission
+  method_id TEXT,                 -- id of the account (inside methods_json) the customer says they used
+  method_snapshot_json TEXT,      -- type/label/details at submission (accounts can be edited or deleted later)
   payer_name TEXT NOT NULL,
   amount_sent REAL,
   reference TEXT,                 -- transaction ID / MTCN / tx hash (optional)
@@ -200,11 +200,8 @@ removed from disk when the shipment is permanently deleted.
 | `PUT /api/shipments/:id/images/order` | admin | reorder: `{ ids: [...] }` in the new order (one call instead of a PATCH per image) |
 | `GET /api/shipments/:id/images/:imageId/file` | admin | the image itself, visible or hidden, for console previews (`no-store`) |
 | `GET /media/:imageId.<ext>` | public | serve a **public** package image (404 otherwise), long cache. Usually `.webp`; `.jpg` when the browser could not encode WebP. The track response gives the full URL. |
-| `GET/POST /api/payment-methods` | admin | list / create accounts |
-| `PATCH/DELETE /api/payment-methods/:id` | admin | edit details/label/instructions, enable/disable / delete (409 while ticked on an AWAITING_PAYMENT or UNDER_REVIEW request; disable instead). The type is fixed once created. |
-| `PUT /api/payment-methods/order` | admin | reorder: `{ ids: [...] }` |
-| `GET/PUT/DELETE /api/shipments/:id/payment` | admin | the shipment's single payment request |
-| `GET /api/track/:id` | public | **extended:** adds `images[]` (public only) and `payment` (amount, reason, status, **only the ticked + enabled methods**, latest proof status / rejection reason) |
+| `GET/PUT/DELETE /api/shipments/:id/payment` | admin | the shipment's single payment request **including its accounts** (create/replace with PUT, remove with DELETE). Each account is validated by the shared registry. Called by Create Shipment right after the tracking ID is assigned, and by Edit Shipment. |
+| `GET /api/track/:id` | public | **extended:** adds `images[]` (public only) and `payment` (amount, reason, status, **only this shipment's accounts**, latest proof status / rejection reason) |
 | `POST /api/track/:id/payment-proof` | public, rate-limited | submit proof (only while status is AWAITING_PAYMENT; max 3 open proofs) |
 | `GET /api/payments/proofs?status=` | admin | the Payments page list |
 | `GET /api/payments/proofs/:id/file` | admin | the private proof image |
@@ -229,17 +226,20 @@ removed from disk when the shipment is permanently deleted.
 - [x] B.6 `TrackResultPage`: "Package images" section with a responsive grid (1 column on mobile, 2–3 on desktop), captions under each image, and a keyboard-accessible full-screen view (Esc closes, arrows navigate). Explicit width/height and `loading="lazy"`. Hidden when there are no images.
 - [x] B.7 Show existing `photos_json` photos read-only alongside the new ones, so nothing already uploaded disappears.
 
-### Phase C — Payment methods list (admin)
+### Phase C — Payment method types (shared)
 - [x] C.1 `src/shared/paymentMethods.ts`: the 17 types from §4 with label, icon key, fields (name, label, required, validator: email, URL, IBAN checksum, UK sort code, US routing checksum, crypto address format), and the "customer sees" layout.
 - [x] C.2 Payment icons: add the SVGs locally (`src/assets/payment-icons/`), record each one's source/licence in this file, and build a `<PaymentIcon type>` component with a lucide fallback.
-- [x] C.3 Create the `payment_methods` table and its admin-only API.
-- [x] C.4 Admin Settings → **Payment methods** page: a grid of method cards with icons, "Add method" (pick a type, then a form for that type's fields), edit, enable/disable, reorder and delete (blocked while in use).
+- [x] ~~C.3 Create the `payment_methods` table and its admin-only API.~~ Built, then **removed by D-9** (see C.5).
+- [x] ~~C.4 Admin Settings → Payment methods page.~~ Built, then **removed by D-9** (see C.5). Its customer preview card (`PaymentMethodCard`) stays and is reused in D.2 and E.3.
+- [x] C.5 Remove the shared account list (D-9): the Settings tab, `/api/payment-methods`, the `payment_methods` table creation and the client calls. Registry, validators, icons and `PaymentMethodCard` stay.
 
-### Phase D — Payment request per shipment (admin)
-- [ ] D.1 Create the `shipment_payments` table (one row per shipment, `UNIQUE tracking_number`) and its admin API.
-- [ ] D.2 Admin UI: a **Payment** tab in `EditShipmentModal` with amount, a currency picker (default from settings), a required charge reason, an optional due date, an optional link to an existing invoice for this shipment, and an optional customer note. **Method picker:** the enabled methods shown as icon tiles to tick. A **live preview** shows exactly what the customer will see.
+### Phase D — Payment request per shipment (admin, accounts typed per shipment)
+- [ ] D.1 Create the `shipment_payments` table (one row per shipment, `UNIQUE tracking_number`, accounts in `methods_json`) and its admin API (`GET/PUT/DELETE /api/shipments/:id/payment`), validating every account with the shared registry. Deleted with the shipment only on permanent delete.
+- [ ] D.2 `PaymentRequestEditor` (admin): amount, currency (USD only, D-7), a required charge reason, an optional due date, an optional link to an existing invoice for this shipment, an optional customer note, and the **accounts for this shipment**: "Add account" → the 17 types as icon tiles → that type's form; edit, remove and reorder accounts. A **live preview** shows exactly what the customer will see. Used in two places:
+  - **Create Shipment:** an optional "Payment request" step in the form, filled in **before** the tracking ID exists; saved through the admin payment route right after the server assigns the ID (never through the public booking POST). If that save fails, the shipment still exists and the success screen says so and offers to retry.
+  - **Edit Shipment:** a "Payment request" section with full create / edit / delete.
 - [ ] D.3 Status controls: Cancel request, Mark paid manually (e.g. cash at the counter), Reopen.
-- [ ] D.4 `server/routes/track.ts`: return the `payment` block with **only the ticked methods that are still enabled**, in the admin's order, plus the latest proof status and rejection reason. Never return unticked or disabled methods, or internal notes.
+- [ ] D.4 `server/routes/track.ts`: return the `payment` block with **only this shipment's accounts**, in the courier's order, plus the latest proof status and rejection reason. Never return another shipment's accounts or internal notes.
 
 ### Phase E — Payment section on the track page
 - [ ] E.1 Copy for the payment section, method instructions, status labels, proof form, success/error messages and the rejected state, added to `docs/CONTENT.md`.
@@ -250,8 +250,8 @@ removed from disk when the shipment is permanently deleted.
 
 ### Phase F — Proof of payment
 - [ ] F.1 Create the `payment_proofs` table.
-- [ ] F.2 `POST /api/track/:id/payment-proof`: a dedicated rate limiter (e.g. 5 per hour per IP), and accepted only while the status is AWAITING_PAYMENT and the method was ticked for this shipment. Images only, checked by content, max 3 open proofs per request. On success the request moves to UNDER_REVIEW.
-- [ ] F.3 Customer form (inside `PaymentSection`): method used (only ticked ones), payer name, amount sent, reference (optional), screenshot (required; compressed in the browser with A.3; preview before sending). Clear success and error states.
+- [ ] F.2 `POST /api/track/:id/payment-proof`: a dedicated rate limiter (e.g. 5 per hour per IP), and accepted only while the status is AWAITING_PAYMENT and the chosen account belongs to this shipment's request. Images only, checked by content, max 3 open proofs per request. On success the request moves to UNDER_REVIEW.
+- [ ] F.3 Customer form (inside `PaymentSection`): method used (this shipment's accounts only), payer name, amount sent, reference (optional), screenshot (required; compressed in the browser with A.3; preview before sending). Clear success and error states.
 - [ ] F.4 Customer status: "Proof under review" (with submission time), or "Proof not accepted: *reason*" with the form shown again.
 - [ ] F.5 Admin **Payments** page (new sidebar item): a list of proofs (filter: submitted / approved / rejected), each showing the shipment, amount due vs sent, method, reference, a full-size image preview, and a link to the shipment.
 - [ ] F.6 Approve marks the request PAID, sets `paid_at`, marks the linked invoice PAID (reusing existing code), and optionally adds a "Payment confirmed" tracking event (checkbox). Reject requires a reason and sets the request back to AWAITING_PAYMENT.
@@ -263,7 +263,7 @@ removed from disk when the shipment is permanently deleted.
 
 ### Phase H — QA & release
 - [ ] H.1 End-to-end test of the example flow in §1 on a scratch DB (never the live `navora.db`).
-- [ ] H.2 Security checks: an unticked method never appears in `/api/track`; proof files are 404/401 without an admin session; non-image uploads are rejected; rate limit works; `/api/settings` still contains no payment data.
+- [ ] H.2 Security checks: another shipment's accounts or a deleted account never appear in `/api/track`; proof files are 404/401 without an admin session; non-image uploads are rejected; rate limit works; `/api/settings` still contains no payment data.
 - [ ] H.3 Regression check: tracking lookup, admin login, shipment create/edit/delete/restore, documents/PDFs, quotes all still work.
 - [ ] H.4 `npm run build`: zero TS errors; check the bundle-size impact (payment UI and QR code lazy-loaded).
 - [ ] H.5 Deploy: create `UPLOADS_DIR` on Hostinger, set the env vars, redeploy, then re-test the flow on the live domain and on `private.` for admin.
@@ -274,8 +274,8 @@ removed from disk when the shipment is permanently deleted.
 ## 8. Blocked / Needs owner
 - [x] **Default currency** for new payment requests: **USD** (owner, 2026-10-09).
 - [x] Which currencies the payment-request picker offers: **USD only for now** (owner, 2026-10-10; D-7).
-- [ ] **Copy review:** package-images text in CONTENT.md §6.6 (heading, intro, viewer labels) and payment method names, field labels, warnings and notes in §6.7.
-- [ ] **Account details** for each method. The admin enters these in the console after Phase C, not in code.
+- [x] **Copy review:** package-images text in CONTENT.md §6.6 and payment method names, field labels, warnings and notes in §6.7: **approved by the owner** (2026-10-10).
+- [x] **Account details:** there is no fixed account list. The courier types the accounts per shipment, at creation or later (owner, 2026-10-10; D-9).
 - [x] Approving a payment adds a public "Payment confirmed" tracking event: **on by default** (owner, 2026-10-10; D-8). The checkbox stays so the admin can untick it.
 - [x] **Pre-existing test failures (not from this update):** 4 tests in `scripts/intl.test.ts`, `routing.test.ts` and `timeZones.test.ts` still expect the Lagos/Ibadan gateways removed in commit 584b7b6. Update the tests to the new gateways, or restore those gateways? → Owner: update the tests. Done 2026-10-10 (Tokyo, Osaka, Tateyama, Busan).
 
@@ -286,13 +286,14 @@ removed from disk when the shipment is permanently deleted.
   Showing it on a tracking page puts the domain at risk of being flagged by browsers and payment providers and
   undermines customer trust, which conflicts with CLAUDE.md §1.3 (Honest). Card payments are covered by the
   **Card payment link** method (Stripe/Square), which also gives customers buyer protection.
-- **D-2** Payment accounts live in their own admin-only table, not in public settings.
+- **D-2** Payment accounts never go in public settings. *(Their storage changed with D-9: on the shipment's payment request.)*
 - **D-3** Uploaded files live in `UPLOADS_DIR` outside the deploy folder; images are compressed and EXIF-stripped in the browser.
 - **D-4** Exactly one payment request per shipment; a charge reason is always required and shown to the customer.
 - **D-5 (2026-10-09)** New-proof notifications go to the **admin dashboard** (badge, bell, panel with the screenshot, toast), **not email**. No SMTP or `nodemailer` needed.
 - **D-6 (2026-10-09)** Default currency for payment requests is **USD** (owner).
 - **D-7 (2026-10-10)** Payment requests are in **USD only** for now. The currency column stays (ISO 4217), so more can be added later without a schema change.
 - **D-8 (2026-10-10)** The "Payment confirmed" tracking event checkbox on Approve is **ticked by default**.
+- **D-9 (2026-10-10) No fixed payment-account list (owner).** The courier types the payment accounts for each shipment, in the Create Shipment form before the tracking ID is generated, or later from Edit Shipment, with full create/edit/delete. Accounts are stored in that shipment's `shipment_payments.methods_json`; the Settings → Payment Methods list (C.3/C.4) is removed. The public booking endpoint still never accepts payment data: Create Shipment saves the request through the admin-only payment route once the ID exists.
 
 ## 10. Change log
 - 2026-10-09: Update plan written (this file). No code changed yet.
@@ -312,3 +313,4 @@ removed from disk when the shipment is permanently deleted.
 - 2026-10-10: C.2 14 Simple Icons SVGs in `src/assets/payment-icons/` (sources and guidelines in §4 "Icon sources"), generated path module + `scripts/payment-icons.mjs`, `<PaymentIcon type size />` (decorative, lucide fallback). Drawn from path data, so no Vite-specific imports and no raw HTML. Test: `scripts/paymentIcons.test.ts`.
 - 2026-10-10: C.3 `payment_methods` table + admin-only `/api/payment-methods` (list, create, edit, enable/disable, reorder, delete). Details validated and normalised by the shared registry; field errors returned per field; max 50 accounts; delete refused (409) while an open request ticks the method (check activates once D.1 creates `shipment_payments`). Tested on a scratch DB: 401 without session, `/api/settings` has no payment data.
 - 2026-10-10: C.4 Settings → **Payment Methods** tab (`PaymentMethodsManager`), rendered outside the settings form (Save All Settings hidden on that tab): card grid with icons, enable/disable, reorder, delete (server 409 message shown), "Add method" → 17 icon tiles → per-type form (selects for networks/account type, client + server validation with per-field errors) with a **live customer preview** (`PaymentMethodCard`, reusable for D.2 and E.3). Checked in headless Chrome at 1440/768/375 on a scratch DB: no overflow, no console errors, `/api/settings` unchanged.
+- 2026-10-10: **D-9** (owner): no fixed account list; accounts are typed per shipment at creation (before the tracking ID exists) or later, with full create/edit/delete. Spec updated (§1, §2, §3, §5, §6, Phases C, D, F, H). C.3 and C.4 superseded; C.5 added to remove them.

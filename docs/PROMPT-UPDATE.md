@@ -3,6 +3,10 @@
 > **How to use:** start a Claude Code session in the repo root and paste everything below the line, or say
 > *"Follow docs/PROMPT-UPDATE.md, phase A"*. Run **one phase per session** (or one task if a phase is large).
 > The prompt is reusable: each session picks up the next unchecked task in `docs/update.md`.
+>
+> **Note (2026-10-10, D-9):** there is no shared payment-account list. Accounts are typed per shipment (in Create
+> Shipment or Edit Shipment). Wherever this prompt says "ticked" or "enabled" methods, read "the accounts on this
+> shipment's payment request". `docs/update.md` has the current design.
 
 ---
 
