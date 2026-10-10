@@ -281,6 +281,15 @@ export const api = {
     return handleResponse<ShipmentPayment>(res);
   },
 
+  async setShipmentPaymentStatus(trackingNumber: string, action: 'cancel' | 'mark_paid' | 'reopen'): Promise<ShipmentPayment> {
+    const res = await fetch(`${API_BASE}/shipments/${encodeURIComponent(trackingNumber)}/payment/status`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action })
+    });
+    return handleResponse<ShipmentPayment>(res);
+  },
+
   async deleteShipmentPayment(trackingNumber: string): Promise<void> {
     const res = await fetch(`${API_BASE}/shipments/${encodeURIComponent(trackingNumber)}/payment`, { method: 'DELETE' });
     await handleResponse<null>(res);

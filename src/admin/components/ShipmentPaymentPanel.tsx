@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Loader2, Pencil, Plus, Trash2 } from 'lucide-react';
+import { Ban, CheckCircle2, Loader2, Pencil, Plus, RotateCcw, Trash2 } from 'lucide-react';
 import { api } from '../../services/api';
 import { useAdminData } from '../../context/AdminDataContext';
 import { PAYMENT_METHODS } from '../../shared/paymentMethods';
@@ -80,6 +80,26 @@ export const ShipmentPaymentPanel: React.FC<ShipmentPaymentPanelProps> = ({ trac
     }
   };
 
+  // D.3: manual status changes. Marking paid also marks a linked invoice paid (server side).
+  const changeStatus = async (action: 'cancel' | 'mark_paid' | 'reopen') => {
+    const prompts = {
+      mark_paid: 'Mark this payment as received (for example cash at the counter)? The customer will see it as paid.',
+      cancel: 'Cancel this payment request? The customer will no longer be asked to pay.',
+      reopen: 'Reopen this payment request? The customer will be asked to pay again.',
+    };
+    if (!window.confirm(prompts[action])) return;
+    setBusy(true);
+    try {
+      const updated = await api.setShipmentPaymentStatus(trackingNumber, action);
+      setPayment(updated);
+      setMessage({ text: action === 'mark_paid' ? 'Marked as paid.' : action === 'cancel' ? 'Payment request cancelled.' : 'Payment request reopened.' });
+    } catch (err: any) {
+      setMessage({ text: err.message || 'Could not change the status.', error: true });
+    } finally {
+      setBusy(false);
+    }
+  };
+
   const remove = async () => {
     if (!window.confirm('Delete this payment request and its accounts? The customer will no longer see it.')) return;
     setBusy(true);
@@ -125,6 +145,7 @@ export const ShipmentPaymentPanel: React.FC<ShipmentPaymentPanelProps> = ({ trac
           <div className="ngf-spp-amount">{formatPaymentAmount(payment.amount, payment.currency)}</div>
           <p className="ngf-spp-reason">{payment.chargeReason}</p>
           {payment.dueDate && <p className="ngf-spp-meta">Due {payment.dueDate}</p>}
+          {payment.paidAt && <p className="ngf-spp-meta">Paid {new Date(payment.paidAt).toLocaleString()}</p>}
           <ul className="ngf-spp-accounts">
             {payment.methods.map((m) => (
               <li key={m.id}>
@@ -134,6 +155,24 @@ export const ShipmentPaymentPanel: React.FC<ShipmentPaymentPanelProps> = ({ trac
             ))}
           </ul>
           <div className="ngf-spp-actions">
+            {(payment.status === 'AWAITING_PAYMENT' || payment.status === 'UNDER_REVIEW') && (
+              <>
+                <button type="button" className="ngf-spp-btn" onClick={() => changeStatus('cancel')} disabled={busy}>
+                  <Ban size={14} aria-hidden="true" />
+                  <span>Cancel request</span>
+                </button>
+                <button type="button" className="ngf-spp-btn" onClick={() => changeStatus('mark_paid')} disabled={busy}>
+                  <CheckCircle2 size={14} aria-hidden="true" />
+                  <span>Mark paid</span>
+                </button>
+              </>
+            )}
+            {(payment.status === 'PAID' || payment.status === 'CANCELLED') && (
+              <button type="button" className="ngf-spp-btn" onClick={() => changeStatus('reopen')} disabled={busy}>
+                <RotateCcw size={14} aria-hidden="true" />
+                <span>Reopen</span>
+              </button>
+            )}
             <button type="button" className="ngf-spp-btn danger" onClick={remove} disabled={busy}>
               <Trash2 size={14} aria-hidden="true" />
               <span>Delete</span>

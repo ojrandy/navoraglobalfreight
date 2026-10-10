@@ -3,6 +3,7 @@ import crypto from 'crypto';
 import { db } from '../db.js';
 import { requireAdminAuth } from '../middleware/auth.js';
 import { PaymentStatus, ShipmentPayment, validatePaymentRequest } from '../../src/shared/paymentRequest.js';
+import { setDocumentPaymentStatus } from './documents.js';
 
 // A shipment's payment request (docs/update.md D.1, D-9). Mounted on /api/shipments next to
 // shipmentsRouter, which also takes the public booking POST, so every route is gated
@@ -100,6 +101,45 @@ shipmentPaymentsRouter.put('/:trackingNumber/payment', requireAdminAuth, (req: R
         p.invoiceDocumentId, p.customerNote, now, now);
     }
     res.status(existing ? 200 : 201).json({ success: true, data: getShipmentPayment(tracking) });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Status changes the admin can make by hand (D.3). Proof approval/rejection (update F.6) adds the
+// UNDER_REVIEW transitions; here: cancel, mark paid (e.g. cash at the counter), and reopen.
+const STATUS_ACTIONS: Record<string, { from: PaymentStatus[]; to: PaymentStatus }> = {
+  cancel: { from: ['AWAITING_PAYMENT', 'UNDER_REVIEW'], to: 'CANCELLED' },
+  mark_paid: { from: ['AWAITING_PAYMENT', 'UNDER_REVIEW'], to: 'PAID' },
+  reopen: { from: ['PAID', 'CANCELLED'], to: 'AWAITING_PAYMENT' },
+};
+
+// POST /api/shipments/:trackingNumber/payment/status (admin): { action: 'cancel' | 'mark_paid' | 'reopen' }.
+// Marking paid also marks the linked invoice PAID; reopening a paid request sets it back to PENDING.
+shipmentPaymentsRouter.post('/:trackingNumber/payment/status', requireAdminAuth, (req: Request, res: Response) => {
+  try {
+    const tracking = trackingParam(req);
+    if (!activeShipmentExists(tracking)) return res.status(404).json({ success: false, error: `Shipment ${tracking} not found` });
+    const payment = getShipmentPayment(tracking);
+    if (!payment) return res.status(404).json({ success: false, error: 'This shipment has no payment request.' });
+
+    const key = req.body?.action;
+    const action = typeof key === 'string' && Object.prototype.hasOwnProperty.call(STATUS_ACTIONS, key) ? STATUS_ACTIONS[key] : null;
+    if (!action) {
+      return res.status(400).json({ success: false, error: 'Unknown action.' });
+    }
+    if (!action.from.includes(payment.status)) {
+      return res.status(409).json({ success: false, error: `This request is ${payment.status.toLowerCase().replace('_', ' ')}, so that isn’t possible.` });
+    }
+
+    const now = new Date().toISOString();
+    const paidAt = action.to === 'PAID' ? now : null;
+    db.prepare('UPDATE shipment_payments SET status = ?, paid_at = ?, updated_at = ? WHERE id = ?').run(action.to, paidAt, now, payment.id);
+    if (payment.invoiceDocumentId) {
+      if (action.to === 'PAID') setDocumentPaymentStatus(payment.invoiceDocumentId, 'PAID');
+      else if (payment.status === 'PAID') setDocumentPaymentStatus(payment.invoiceDocumentId, 'PENDING');
+    }
+    res.json({ success: true, data: getShipmentPayment(tracking) });
   } catch (err: any) {
     res.status(500).json({ success: false, error: err.message });
   }

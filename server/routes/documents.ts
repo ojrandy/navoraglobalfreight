@@ -300,6 +300,27 @@ documentsRouter.patch('/:id/status', requireAdminAuth, (req: Request, res: Respo
   }
 });
 
+/**
+ * Sets a document's payment status (PAID with today's date, or PENDING). Shared by the route below
+ * and the shipment payment request (server/routes/shipmentPayments.ts), so an invoice is marked
+ * paid the same way wherever the payment is confirmed. Returns false if the document doesn't exist.
+ */
+export function setDocumentPaymentStatus(id: string, paymentStatus: 'PAID' | 'PENDING'): boolean {
+  const row = db.prepare('SELECT charges_json FROM documents WHERE id = ?').get(id) as { charges_json: string | null } | undefined;
+  if (!row) return false;
+
+  const charges = row.charges_json ? JSON.parse(row.charges_json) : {};
+  charges.paymentStatus = paymentStatus;
+  if (paymentStatus === 'PAID') {
+    charges.paidDate = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  } else {
+    delete charges.paidDate;
+  }
+
+  db.prepare('UPDATE documents SET charges_json = ? WHERE id = ?').run(JSON.stringify(charges), id);
+  return true;
+}
+
 // PATCH /api/documents/:id/payment-status (Toggle paid / pending)
 documentsRouter.patch('/:id/payment-status', requireAdminAuth, (req: Request, res: Response) => {
   try {
@@ -309,20 +330,9 @@ documentsRouter.patch('/:id/payment-status', requireAdminAuth, (req: Request, re
       return res.status(400).json({ success: false, error: 'paymentStatus must be PAID or PENDING' });
     }
 
-    const row = db.prepare('SELECT charges_json FROM documents WHERE id = ?').get(id) as { charges_json: string | null } | undefined;
-    if (!row) {
+    if (!setDocumentPaymentStatus(id, paymentStatus)) {
       return res.status(404).json({ success: false, error: `Document ${id} not found` });
     }
-
-    const charges = row.charges_json ? JSON.parse(row.charges_json) : {};
-    charges.paymentStatus = paymentStatus;
-    if (paymentStatus === 'PAID') {
-      charges.paidDate = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-    } else {
-      delete charges.paidDate;
-    }
-
-    db.prepare('UPDATE documents SET charges_json = ? WHERE id = ?').run(JSON.stringify(charges), id);
     const updated = db.prepare('SELECT * FROM documents WHERE id = ?').get(id);
     res.json({ success: true, data: formatDoc(updated) });
   } catch (err: any) {
