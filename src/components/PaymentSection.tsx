@@ -3,9 +3,11 @@ import type { PaymentStatus, PublicPayment } from '../shared/paymentRequest';
 import { formatPaymentAmount } from '../shared/paymentRequest';
 import { CheckCircle2, ChevronDown } from 'lucide-react';
 import { PaymentMethodCard } from './PaymentMethodCard';
+import { PaymentProofForm } from './PaymentProofForm';
 import './PaymentSection.css';
 
 interface PaymentSectionProps {
+  trackingNumber: string;
   payment: PublicPayment;
 }
 
@@ -50,8 +52,12 @@ function useIsNarrow(): boolean {
  * Track Result "Payment" section (CONTENT.md §6.8): what is due, what it is for, its status,
  * and this shipment's payment accounts with copy buttons and QR codes.
  */
-export const PaymentSection: React.FC<PaymentSectionProps> = ({ payment }) => {
-  const badge = STATUS_BADGES[payment.status] ?? STATUS_BADGES.AWAITING_PAYMENT;
+export const PaymentSection: React.FC<PaymentSectionProps> = ({ trackingNumber, payment }) => {
+  // Set when this visitor's proof was accepted; the request counts as under review until the
+  // next track refresh brings the server's own status.
+  const [sentAt, setSentAt] = useState<string | null>(null);
+  const status: PaymentStatus = sentAt && payment.status === 'AWAITING_PAYMENT' ? 'UNDER_REVIEW' : payment.status;
+  const badge = STATUS_BADGES[status] ?? STATUS_BADGES.AWAITING_PAYMENT;
   const narrow = useIsNarrow();
   const [openId, setOpenId] = useState<string | null>(payment.methods[0]?.id ?? null);
   const [toast, setToast] = useState('');
@@ -83,7 +89,7 @@ export const PaymentSection: React.FC<PaymentSectionProps> = ({ payment }) => {
           <span className={`ngf-pay-badge is-${badge.tone}`}>{badge.label}</span>
         </div>
 
-        {payment.status === 'AWAITING_PAYMENT' && (
+        {status === 'AWAITING_PAYMENT' && (
           <p className="ngf-pay-intro">
             A payment is due for this shipment. Pay using any one of the accounts below, then send us your proof of payment.
           </p>
@@ -161,6 +167,16 @@ export const PaymentSection: React.FC<PaymentSectionProps> = ({ payment }) => {
             </ul>
           </div>
         </div>
+      )}
+
+      {sentAt && (
+        <p className="ngf-proof-sent" role="status">
+          Thank you. Your proof of payment was sent. We'll check it and update this page.
+        </p>
+      )}
+
+      {status === 'AWAITING_PAYMENT' && payment.methods.length > 0 && (
+        <PaymentProofForm trackingNumber={trackingNumber} payment={payment} onSent={setSentAt} />
       )}
 
       <div className={`ngf-pay-toast${toast ? ' is-visible' : ''}`} role="status" aria-live="polite">

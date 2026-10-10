@@ -820,7 +820,7 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
         {/* Payment request (CONTENT.md §6.8); only when the shipment has one that isn't cancelled. */}
         {liveShipment.payment && liveShipment.payment.status !== 'CANCELLED' && (
           <Suspense fallback={null}>
-            <PaymentSection payment={liveShipment.payment} />
+            <PaymentSection trackingNumber={trackingNum} payment={liveShipment.payment} />
           </Suspense>
         )}
 

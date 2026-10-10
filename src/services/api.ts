@@ -13,6 +13,15 @@ export interface PaymentRequestBody {
   methods: { id?: string; type: string; label?: string; details: Record<string, string>; instructions?: string }[];
 }
 
+/** Body for POST /api/track/:id/payment-proof (validated by validateProofSubmission on the server). */
+export interface PaymentProofBody {
+  methodId: string;
+  payerName: string;
+  amountSent: number | string;
+  reference?: string;
+  image: string;
+}
+
 const API_BASE = '/api';
 
 async function handleResponse<T>(res: Response): Promise<T> {
@@ -87,6 +96,16 @@ export const api = {
   async trackShipment(trackingNumber: string): Promise<Shipment> {
     const res = await fetch(`${API_BASE}/track/${encodeURIComponent(trackingNumber)}`);
     return handleResponse<Shipment>(res);
+  },
+
+  // Proof of payment from the track page (public, rate-limited; update F.2). image is base64 or a data: URL.
+  async submitPaymentProof(trackingNumber: string, proof: PaymentProofBody): Promise<{ status: 'SUBMITTED'; submittedAt: string }> {
+    const res = await fetch(`${API_BASE}/track/${encodeURIComponent(trackingNumber)}/payment-proof`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(proof)
+    });
+    return handleResponse<{ status: 'SUBMITTED'; submittedAt: string }>(res);
   },
 
   // Public Booking & Quotes
