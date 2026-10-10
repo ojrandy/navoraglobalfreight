@@ -94,6 +94,33 @@ Every method also has: display label (optional override), **instructions** (free
 
 **Gift cards are not included.** See Decisions log D-1.
 
+### Icon sources (C.2)
+All brand marks come from **Simple Icons 16.34.0** (`https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/<slug>.svg`),
+downloaded 2026-10-10 into `src/assets/payment-icons/`. Simple Icons is released under **CC0 1.0**; none of these
+icons carries a separate licence in its data file. The marks remain **trademarks of their owners**: they are used
+only to identify the payment method, next to its name, unmodified except for colour. `index.ts` there is generated
+by `scripts/payment-icons.mjs`; `scripts/paymentIcons.test.ts` fails if it drifts from the SVGs.
+
+| Icon (slug) | Used for | Colour used | Brand guidelines (from Simple Icons data) |
+|---|---|---|---|
+| `paypal` | PayPal | #002991 | https://newsroom.paypal-corp.com/media-resources |
+| `bitcoin` | Bitcoin (BTC) | #F7931A | none listed |
+| `tether` | USDT (Tether) | #50AF95 | https://tether.to/branding/ |
+| `ethereum` | Ethereum (ETH) | #3C3C3D | none listed |
+| `zelle` | Zelle | #6D1ED4 | none listed |
+| `cashapp` | Cash App | #00C244 | none listed |
+| `venmo` | Venmo | #008CFF | https://venmo.com/about/brand |
+| `applepay` | Apple Pay / Apple Cash | #000000 | none listed |
+| `googlepay` | Google Pay | #4285F4 | none listed |
+| `wise` | Wise | #163300 (Wise Forest Green; the listed #9FE870 is too light on white) | https://wise.design/foundations/logo |
+| `revolut` | Revolut | #191C1F | none listed |
+| `stripe` | bundled, not used by default (a card link may be Square etc.) | #635BFF | none listed |
+| `westernunion` | Western Union | #1A1A1A (the listed #FFDD00 is too light on white) | none listed |
+| `moneygram` | MoneyGram | #DA291C | none listed |
+
+Generic types use lucide: `Landmark` (US and UK bank), `Globe` (international wire), `CreditCard` (card payment
+link), `Wallet` (any unknown type).
+
 ### Icons
 - Brand marks (PayPal, Bitcoin, Tether, Ethereum, Zelle, Cash App, Venmo, Apple Pay, Google Pay, Wise,
   Revolut, Stripe, Western Union, MoneyGram) are bundled **locally** as SVGs from Simple Icons (CC0), one small
@@ -203,7 +230,7 @@ removed from disk when the shipment is permanently deleted.
 
 ### Phase C — Payment methods list (admin)
 - [x] C.1 `src/shared/paymentMethods.ts`: the 17 types from §4 with label, icon key, fields (name, label, required, validator: email, URL, IBAN checksum, UK sort code, US routing checksum, crypto address format), and the "customer sees" layout.
-- [ ] C.2 Payment icons: add the SVGs locally (`src/assets/payment-icons/`), record each one's source/licence in this file, and build a `<PaymentIcon type>` component with a lucide fallback.
+- [x] C.2 Payment icons: add the SVGs locally (`src/assets/payment-icons/`), record each one's source/licence in this file, and build a `<PaymentIcon type>` component with a lucide fallback.
 - [ ] C.3 Create the `payment_methods` table and its admin-only API.
 - [ ] C.4 Admin Settings → **Payment methods** page: a grid of method cards with icons, "Add method" (pick a type, then a form for that type's fields), edit, enable/disable, reorder and delete (blocked while in use).
 
@@ -281,3 +308,4 @@ removed from disk when the shipment is permanently deleted.
 - 2026-10-10: B.6 `PackageGallery` on the track page (after the route map; hidden with no images): 1/2/3-column grid, caption under each photo and as alt, width/height + lazy loading. `PackageImageViewer` is lazy-loaded (2.4 KB chunk, fetched on first open): Esc closes, ←/→ wrap, Tab trapped, focus returns to the thumbnail, body scroll locked, reduced-motion respected. Checked in headless Chrome at 1440/768/375: no overflow, no console errors.
 - 2026-10-10: B.7 Older `photos_json` photos shown read-only: after the captioned images on the track page (`Shipment photo {n}`) and in an "Earlier photos (read-only)" block in the admin panel. `src/shared/legacyPhotos.ts` keeps only http(s), site-relative or `data:image/` values (test in `scripts/legacyPhotos.test.ts`). Phase B regression on a scratch DB: booking, tracking, admin login, edit, events, quotes, documents list, settings, trash/restore/permanent delete all OK; `npm test` 38/38.
 - 2026-10-10: C.1 `src/shared/paymentMethods.ts` (17 types, fields, either/or rules, link/QR/warning/note builders, `validatePaymentDetails`, `customerMethodView`) + `src/shared/paymentValidation.ts` (email, https link with optional host check, phone, IBAN mod-97, sort code, ABA routing, SWIFT/BIC, crypto format per coin/network, $Cashtag, @handle, account digits). Field kinds extended with `swift`, `cashtag`, `handle`, `accountNumber`; fields can carry `options` (networks, account type). Customer copy in CONTENT.md §6.7. Tests: `scripts/paymentMethods.test.ts`.
+- 2026-10-10: C.2 14 Simple Icons SVGs in `src/assets/payment-icons/` (sources and guidelines in §4 "Icon sources"), generated path module + `scripts/payment-icons.mjs`, `<PaymentIcon type size />` (decorative, lucide fallback). Drawn from path data, so no Vite-specific imports and no raw HTML. Test: `scripts/paymentIcons.test.ts`.
