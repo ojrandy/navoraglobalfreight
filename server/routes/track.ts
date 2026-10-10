@@ -4,6 +4,8 @@ import { syncTimeBasedProgress, shipmentTransportMode } from '../progress.js';
 import { eventTimeDisplay } from '../../src/shared/timeZones.js';
 import { parseTrackingInput } from '../../src/shared/trackingId.js';
 import { publicShipmentImages } from './shipmentImages.js';
+import { getShipmentPayment } from './shipmentPayments.js';
+import { publicPaymentView } from '../../src/shared/paymentRequest.js';
 
 export const trackRouter = Router();
 
@@ -129,6 +131,7 @@ trackRouter.get('/:trackingNumber', (req: Request, res: Response) => {
       };
     }
 
+    const storedPayment = getShipmentPayment(row.tracking_number);
     const publicShipment = {
       trackingNumber: row.tracking_number,
       barcodeCode: row.barcode_code,
@@ -157,6 +160,9 @@ trackRouter.get('/:trackingNumber', (req: Request, res: Response) => {
       photos: row.photos_json ? JSON.parse(row.photos_json) : undefined,
       // Package images marked visible by the admin (docs/update.md B.4); /media serves the files.
       images: publicShipmentImages(row.tracking_number),
+      // The shipment's payment request (docs/update.md D.4): only its own accounts, in the courier's
+      // order, without internal fields such as the linked invoice. null when there is none.
+      payment: storedPayment ? publicPaymentView(storedPayment) : null,
       totalWeightLbs: row.total_weight_lbs,
       totalPieces: row.total_pieces,
       origin: {
