@@ -912,6 +912,7 @@ shipmentsRouter.delete('/:trackingNumber/permanent', requireAdminAuth, (req: Req
     db.prepare('DELETE FROM shipments WHERE tracking_number = ?').run(tracking);
     // Package images: rows and files (only now; trash/restore leaves them untouched).
     deleteAllShipmentImages(tracking);
+    // Payment request and its proofs (rows and screenshot files).
     deleteShipmentPayment(tracking);
     res.json({ success: true, message: `Shipment ${tracking} permanently deleted.` });
   } catch (err: any) {

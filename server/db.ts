@@ -273,6 +273,31 @@ export function initDatabase() {
     );
   `);
 
+  // 10. Proofs of payment sent from the track page (docs/update.md §5, F.1). The screenshot lives
+  // under UPLOADS_DIR/proofs/ and is only ever served through an admin route. method_snapshot_json
+  // keeps the account as it was when the customer used it, since accounts can be edited or removed
+  // later. Rows go with their payment request (server/routes/paymentProofs.ts), and so with the
+  // shipment only on permanent delete.
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS payment_proofs (
+      id TEXT PRIMARY KEY,
+      payment_id TEXT NOT NULL,
+      tracking_number TEXT NOT NULL,
+      method_id TEXT,
+      method_snapshot_json TEXT,
+      payer_name TEXT NOT NULL,
+      amount_sent REAL,
+      reference TEXT,
+      file_name TEXT NOT NULL,
+      status TEXT NOT NULL,
+      admin_note TEXT,
+      created_at TEXT NOT NULL,
+      reviewed_at TEXT
+    );
+    CREATE INDEX IF NOT EXISTS idx_payment_proofs_payment ON payment_proofs (payment_id);
+    CREATE INDEX IF NOT EXISTS idx_payment_proofs_status ON payment_proofs (status, created_at);
+  `);
+
   // Safe dynamic migrations for existing databases. Must run after every CREATE TABLE above
   // (shipments through settings) — these ALTER statements target quote_requests, documents
   // and tracking_events too, and running them any earlier throws "no such table" on a
