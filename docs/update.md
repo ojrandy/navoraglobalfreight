@@ -185,7 +185,7 @@ removed from disk when the shipment is permanently deleted.
 ## 7. Tasks
 
 ### Phase A — Storage foundation
-- [ ] A.1 Add `UPLOADS_DIR` (default `data/uploads`, next to the default DB) with `images/` and `proofs/` subfolders, created on start. Document it in `.env.example` and `docs/DEPLOYMENT.md` (persistent folder outside the deploy dir, include it in backups).
+- [x] A.1 Add `UPLOADS_DIR` (default `data/uploads`, next to the default DB) with `images/` and `proofs/` subfolders, created on start. Document it in `.env.example` and `docs/DEPLOYMENT.md` (persistent folder outside the deploy dir, include it in backups).
 - [ ] A.2 Server upload helper: decode base64, check magic bytes (WebP/JPEG/PNG only), enforce the size cap, write with a random name, and never trust client file names or paths.
 - [ ] A.3 Client helper `src/services/imageCompress.ts`: load the file (incl. HEIC where the browser supports it), resize to ≤1600px, convert to WebP (JPEG fallback) and return base64 + dimensions. EXIF is stripped as a side effect.
 - [ ] A.4 `GET /media/:id.webp` route (public images only), with cache headers and `X-Content-Type-Options: nosniff`.
@@ -263,3 +263,4 @@ removed from disk when the shipment is permanently deleted.
 ## 10. Change log
 - 2026-10-09: Update plan written (this file). No code changed yet.
 - 2026-10-09: Notifications changed from email to dashboard-only (D-5); `docs/PROMPT-UPDATE.md` added as the implementation prompt.
+- 2026-10-10: A.1 `UPLOADS_DIR` (`server/uploads.ts`; default `uploads/` next to the DB) with `images/` + `proofs/` created on start; documented in `.env.example` and DEPLOYMENT.md (incl. backups).

@@ -52,6 +52,7 @@ PORT=<provided by Hostinger or 5000>
 ADMIN_PASSWORD_HASH=<bcrypt hash — see below>
 SESSION_SECRET=<64 hex chars — see below>
 DB_PATH=/home/<hostinger-user>/navora-data/navora.db   # a folder OUTSIDE the app/deploy directory
+UPLOADS_DIR=/home/<hostinger-user>/navora-data/uploads # same persistent folder: package photos + payment proofs
 ```
 
 Generate these locally:
@@ -62,6 +63,11 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 **Database file:** the default is `data/navora.db` (relative to the working directory) when `DB_PATH` is unset. The
 site starts with a fresh, empty database; the schema and default settings are created on first start.
+
+**Uploads folder:** `UPLOADS_DIR` holds package photos (`images/`, shown on the track page) and payment-proof
+screenshots (`proofs/`, private, admin-only). Both subfolders are created on start, and the startup log prints the
+path in use. When unset it defaults to an `uploads` folder next to the database (`data/uploads` locally). Like
+`DB_PATH`, it **must** point outside the app/deploy directory on Hostinger, or every redeploy deletes the files.
 
 **Check persistence before launch:** the server has a temporary endpoint, `GET /api/diag/storage`. It is admin-only,
 so log in to the admin console first, then open `https://private.navoraglobalfreight.com/api/diag/storage` in the same
@@ -114,8 +120,9 @@ this endpoint.**
 
 ## 8. After launch
 
-- **Backups:** copy `navora.db` daily to off-server storage (a Hostinger cron job + download, or a VPS cron to cloud
-  storage). Test a restore once.
+- **Backups:** copy `navora.db` **and the `UPLOADS_DIR` folder** daily to off-server storage (a Hostinger cron job +
+  download, or a VPS cron to cloud storage). The database stores only file names; the photos and proofs live in
+  the folder. Test a restore once.
 - **Updates:** push to `main` → Hostinger redeploys. Use a `staging` branch/subdomain for bigger changes.
 - **Monitoring:** a free uptime monitor on `/api/health` (5-minute interval) with email alerts to info@.
 - **Security:** rotate `ADMIN_PASSWORD_HASH` and `SESSION_SECRET` if anyone leaves; keep dependencies updated
