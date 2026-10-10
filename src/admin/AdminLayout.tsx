@@ -24,7 +24,8 @@ import {
   Layers,
   Sparkles,
   LogOut,
-  Inbox
+  Inbox,
+  Wallet
 } from 'lucide-react';
 import { useAdminData } from '../context/AdminDataContext';
 import { api } from '../services/api';
@@ -38,6 +39,7 @@ export type AdminViewType =
   | 'tracking-events'
   | 'quote-requests'
   | 'messages'
+  | 'payments'
   | 'document-center'
   | 'settings';
 
@@ -81,6 +83,11 @@ const VIEW_METADATA: Record<AdminViewType, { title: string; category: string; de
     title: 'Messages',
     category: 'Commercial Tariffs',
     description: 'Messages sent from the Contact page.'
+  },
+  'payments': {
+    title: 'Payments',
+    category: 'Commercial Tariffs',
+    description: 'Proofs of payment sent from the track page.'
   },
   'document-center': {
     title: 'Documents',
@@ -234,6 +241,17 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
               {newMessagesCount > 0 && (
                 <span className="nav-badge-amber font-mono">{newMessagesCount} NEW</span>
               )}
+            </button>
+
+            {/* Payments: proofs of payment from the track page (update F.5) */}
+            <button
+              className={`admin-nav-btn ${currentView === 'payments' ? 'active' : ''}`}
+              onClick={() => { onSelectView('payments'); setMobileSidebarOpen(false); }}
+            >
+              <div className="nav-btn-icon-wrap">
+                <Wallet size={18} />
+              </div>
+              <span className="nav-title">Payments</span>
             </button>
           </div>
 

@@ -16,6 +16,7 @@ import { documentsRouter } from './routes/documents.js';
 import { settingsRouter } from './routes/settings.js';
 import { trackRouter } from './routes/track.js';
 import { trackProofRouter } from './routes/trackProof.js';
+import { paymentsRouter } from './routes/paymentProofs.js';
 import { statsRouter } from './routes/stats.js';
 import { authRouter } from './routes/auth.js';
 import { messagesRouter } from './routes/messages.js';
@@ -205,6 +206,8 @@ if (ADMIN_PROXY_TARGET) {
   // Public package images (/media/<id>.<ext>); outside /api so they can be cached.
   app.use(mediaRouter);
   app.use('/api/stats', requireAdminAuth, statsRouter);
+  // Admin Payments page: proofs of payment and their private screenshots (update F.5).
+  app.use('/api/payments', requireAdminAuth, paymentsRouter);
 
   // 404 for anything under /api that didn't match a route above.
   app.use('/api', (req: Request, res: Response) => {

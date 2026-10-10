@@ -1,6 +1,7 @@
 import { AdminShipmentImage, Shipment, ShipmentStatus, TrackingEvent } from '../types/shipment';
 import { QuoteRequest, QuoteRequestPricing, QuoteRequestStatus, AdminSettings, AdminDocument, DocumentStatus, ContactMessage, ContactMessageStatus } from '../types/admin';
 import type { ShipmentPayment } from '../shared/paymentRequest';
+import type { AdminPaymentProof, ProofStatus } from '../shared/paymentProof';
 
 /** Body for PUT /api/shipments/:id/payment (validated by validatePaymentRequest on the server). */
 export interface PaymentRequestBody {
@@ -307,6 +308,12 @@ export const api = {
       body: JSON.stringify({ action })
     });
     return handleResponse<ShipmentPayment>(res);
+  },
+
+  // Proofs of payment (admin Payments page, update F.5). Screenshots load from each proof's fileUrl.
+  async getPaymentProofs(status?: ProofStatus): Promise<AdminPaymentProof[]> {
+    const res = await fetch(`${API_BASE}/payments/proofs${status ? `?status=${status}` : ''}`);
+    return handleResponse<AdminPaymentProof[]>(res);
   },
 
   async deleteShipmentPayment(trackingNumber: string): Promise<void> {

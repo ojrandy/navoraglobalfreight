@@ -8,6 +8,7 @@ import { TrackingEventsView } from './pages/TrackingEventsView';
 import { DocumentCenterView } from './pages/DocumentCenterView';
 import { SettingsView } from './pages/SettingsView';
 import { MessagesView } from './pages/MessagesView';
+import { PaymentsView } from './pages/PaymentsView';
 import { api } from '../services/api';
 import type { ContactMessage } from '../types/admin';
 import { ShipmentControlModal } from './components/ShipmentControlModal';
@@ -179,6 +180,11 @@ export const AdminApp: React.FC<AdminAppProps> = ({ onNavigatePublic, onViewPubl
         {/* CONTACT PAGE MESSAGES */}
         {currentView === 'messages' && (
           <MessagesView searchQuery={globalSearch} onMessagesChanged={handleMessagesChanged} />
+        )}
+
+        {/* PAYMENTS: proofs of payment (update F.5) */}
+        {currentView === 'payments' && (
+          <PaymentsView searchQuery={globalSearch} onOpenShipmentDetail={handleOpenShipmentDetail} />
         )}
 
         {/* TRACKING EVENTS & SCANNER */}
