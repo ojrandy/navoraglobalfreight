@@ -359,6 +359,35 @@ Rotating lines: `Locating your shipment…` · `Checking the latest scans…` ·
 - **Each photo:** the caption the admin wrote, shown under the photo and used as its alt text. Older photos saved without a caption: `Shipment photo {n}`.
 - **Full-screen viewer:** `Photo {n} of {total}` · buttons `Previous photo` · `Next photo` · `Close` · open-button label `Open photo: {caption}`
 
+### 6.7 Payment methods: names, field labels, buttons, warnings (added 2026-10-10 with update C.1, **owner to confirm**)
+Source of truth in code: `src/shared/paymentMethods.ts`. The admin can override a method's display name per account.
+The rest of the payment section (heading, status labels, proof form) is added in update E.1.
+
+| Method name | Fields shown to the customer (each with a Copy button) | Button / extra |
+|---|---|---|
+| `PayPal` | `PayPal email` · `Account name` | `Open PayPal` (when a PayPal.Me link is set) + QR |
+| `Bitcoin (BTC)` | `Network` · `Wallet address` | QR + network warning |
+| `USDT (Tether)` | `Network` · `Wallet address` | QR + network warning |
+| `Ethereum (ETH)` | `Network` · `Wallet address` | QR + network warning |
+| `Zelle` | `Zelle email` · `Zelle phone (US)` · `Recipient name` | |
+| `Cash App` | `$Cashtag` · `Name` | `Open Cash App` |
+| `Venmo` | `Venmo username` · `Name` | `Open Venmo` |
+| `Apple Pay / Apple Cash` | `Phone` · `Email` · `Name` | |
+| `Google Pay` | `Phone` · `Email` · `Name` | |
+| `US bank transfer (ACH / wire)` | `Account name` · `Bank` · `Routing number` · `Account number` · `Account type` · `Bank address` | |
+| `UK bank transfer (Faster Payments)` | `Account name` · `Bank` · `Sort code` · `Account number` | |
+| `International wire (SWIFT / IBAN)` | `Beneficiary` · `Bank` · `IBAN` · `Account number` · `SWIFT/BIC` · `Bank address` · `Bank country` | |
+| `Wise` | `Wise email` · `Wisetag` · `Name` | |
+| `Revolut` | `Revtag` · `Phone` · `Name` | |
+| `Card payment link` | (none) | `Pay by card` + QR |
+| `Western Union` | `Receiver full name` · `Country` · `City` | note below |
+| `MoneyGram` | `Receiver full name` · `Country` · `City` | note below |
+
+- **Crypto network warning:** `Send only {coin} on the {network} network. Funds sent on another network can be lost.`
+- **Western Union note:** `After sending, enter the MTCN (money transfer control number) as your payment reference.`
+- **MoneyGram note:** `After sending, enter the MoneyGram reference number as your payment reference.`
+- Optional fields the admin leaves empty are not shown.
+
 ---
 
 ## 7. Quote, Ship, Public Quote Result

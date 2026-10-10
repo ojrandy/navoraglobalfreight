@@ -202,7 +202,7 @@ removed from disk when the shipment is permanently deleted.
 - [x] B.7 Show existing `photos_json` photos read-only alongside the new ones, so nothing already uploaded disappears.
 
 ### Phase C — Payment methods list (admin)
-- [ ] C.1 `src/shared/paymentMethods.ts`: the 17 types from §4 with label, icon key, fields (name, label, required, validator: email, URL, IBAN checksum, UK sort code, US routing checksum, crypto address format), and the "customer sees" layout.
+- [x] C.1 `src/shared/paymentMethods.ts`: the 17 types from §4 with label, icon key, fields (name, label, required, validator: email, URL, IBAN checksum, UK sort code, US routing checksum, crypto address format), and the "customer sees" layout.
 - [ ] C.2 Payment icons: add the SVGs locally (`src/assets/payment-icons/`), record each one's source/licence in this file, and build a `<PaymentIcon type>` component with a lucide fallback.
 - [ ] C.3 Create the `payment_methods` table and its admin-only API.
 - [ ] C.4 Admin Settings → **Payment methods** page: a grid of method cards with icons, "Add method" (pick a type, then a form for that type's fields), edit, enable/disable, reorder and delete (blocked while in use).
@@ -246,7 +246,7 @@ removed from disk when the shipment is permanently deleted.
 ## 8. Blocked / Needs owner
 - [x] **Default currency** for new payment requests: **USD** (owner, 2026-10-09).
 - [x] Which currencies the payment-request picker offers: **USD only for now** (owner, 2026-10-10; D-7).
-- [ ] **Copy review:** package-images text in CONTENT.md §6.6 (heading, intro, viewer labels).
+- [ ] **Copy review:** package-images text in CONTENT.md §6.6 (heading, intro, viewer labels) and payment method names, field labels, warnings and notes in §6.7.
 - [ ] **Account details** for each method. The admin enters these in the console after Phase C, not in code.
 - [x] Approving a payment adds a public "Payment confirmed" tracking event: **on by default** (owner, 2026-10-10; D-8). The checkbox stays so the admin can untick it.
 - [x] **Pre-existing test failures (not from this update):** 4 tests in `scripts/intl.test.ts`, `routing.test.ts` and `timeZones.test.ts` still expect the Lagos/Ibadan gateways removed in commit 584b7b6. Update the tests to the new gateways, or restore those gateways? → Owner: update the tests. Done 2026-10-10 (Tokyo, Osaka, Tateyama, Busan).
@@ -280,3 +280,4 @@ removed from disk when the shipment is permanently deleted.
 - 2026-10-10: B.5 Package-images copy added to CONTENT.md §6.6 (flagged for owner review).
 - 2026-10-10: B.6 `PackageGallery` on the track page (after the route map; hidden with no images): 1/2/3-column grid, caption under each photo and as alt, width/height + lazy loading. `PackageImageViewer` is lazy-loaded (2.4 KB chunk, fetched on first open): Esc closes, ←/→ wrap, Tab trapped, focus returns to the thumbnail, body scroll locked, reduced-motion respected. Checked in headless Chrome at 1440/768/375: no overflow, no console errors.
 - 2026-10-10: B.7 Older `photos_json` photos shown read-only: after the captioned images on the track page (`Shipment photo {n}`) and in an "Earlier photos (read-only)" block in the admin panel. `src/shared/legacyPhotos.ts` keeps only http(s), site-relative or `data:image/` values (test in `scripts/legacyPhotos.test.ts`). Phase B regression on a scratch DB: booking, tracking, admin login, edit, events, quotes, documents list, settings, trash/restore/permanent delete all OK; `npm test` 38/38.
+- 2026-10-10: C.1 `src/shared/paymentMethods.ts` (17 types, fields, either/or rules, link/QR/warning/note builders, `validatePaymentDetails`, `customerMethodView`) + `src/shared/paymentValidation.ts` (email, https link with optional host check, phone, IBAN mod-97, sort code, ABA routing, SWIFT/BIC, crypto format per coin/network, $Cashtag, @handle, account digits). Field kinds extended with `swift`, `cashtag`, `handle`, `accountNumber`; fields can carry `options` (networks, account type). Customer copy in CONTENT.md §6.7. Tests: `scripts/paymentMethods.test.ts`.
