@@ -853,6 +853,76 @@
   color: #f87171;
 }
 
+/* New proof of payment toast (update G.3): clickable, sits above the shipment toast if both show. */
+.admin-proof-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  max-width: calc(100vw - 2rem);
+  display: flex;
+  align-items: center;
+  background: var(--ngf-ink-950);
+  color: #ffffff;
+  border-radius: 10px;
+  border-left: 4px solid var(--ngf-info-500);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+}
+
+.admin-toast-success ~ .admin-proof-toast {
+  bottom: 5.75rem;
+}
+
+.admin-proof-toast-link,
+.admin-proof-toast-close {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+.admin-proof-toast-link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 0.85rem 0.5rem 0.85rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.admin-proof-toast-link span {
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.admin-proof-toast-close {
+  display: inline-flex;
+  padding: 0.85rem 0.85rem 0.85rem 0.35rem;
+  color: #cbd5e1;
+}
+
+.admin-proof-toast-link:focus-visible,
+.admin-proof-toast-close:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: -4px;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .admin-proof-toast {
+    right: 1rem;
+    left: 1rem;
+    bottom: 1rem;
+  }
+
+  .admin-toast-success ~ .admin-proof-toast {
+    bottom: 5rem;
+  }
+}
+
 /* ==========================================================================
    4. RESPONSIVE BREAKPOINTS
    ========================================================================== */

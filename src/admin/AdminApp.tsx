@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AdminLayout, AdminViewType } from './AdminLayout';
 import { OperationsCenter } from './pages/OperationsCenter';
 import { QuoteRequestsView } from './pages/QuoteRequestsView';
@@ -24,8 +24,29 @@ import {
   Eye,
   FileCheck,
   Package,
-  Layers
+  Layers,
+  Wallet
 } from 'lucide-react';
+
+// Ids of the proofs of payment this browser has already announced (update G.3). null = storage unavailable.
+const SEEN_PROOFS_KEY = 'ngf_seen_proofs';
+function readSeenProofs(): string[] | null {
+  try {
+    const raw = window.localStorage.getItem(SEEN_PROOFS_KEY);
+    if (raw === null) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed.filter((id): id is string => typeof id === 'string') : [];
+  } catch {
+    return null;
+  }
+}
+function writeSeenProofs(ids: string[]) {
+  try {
+    window.localStorage.setItem(SEEN_PROOFS_KEY, JSON.stringify(ids));
+  } catch {
+    // Storage blocked or full: the in-memory list still prevents repeats in this tab.
+  }
+}
 
 interface AdminAppProps {
   onNavigatePublic: (page: string) => void;
@@ -51,12 +72,43 @@ export const AdminApp: React.FC<AdminAppProps> = ({ onNavigatePublic, onViewPubl
 
   // Badge for proofs of payment waiting for review (update G.1): read from the stats call every
   // 30 s while the tab is visible, and again as soon as the console is shown or focused.
+  // When proofs are waiting, their ids are compared with the ones already seen, and an unseen
+  // proof shows a toast that links to it (update G.3).
   const [newProofsCount, setNewProofsCount] = useState(0);
+  const [proofToast, setProofToast] = useState<{ trackingNumber: string | null; count: number } | null>(null);
+  const seenProofsRef = useRef<Set<string> | null>(null);
   const refreshProofsCount = useCallback(() => {
     api.getStats()
-      .then((stats) => setNewProofsCount(Number(stats?.submittedProofsCount) || 0))
+      .then(async (stats) => {
+        const count = Number(stats?.submittedProofsCount) || 0;
+        setNewProofsCount(count);
+        const stored = readSeenProofs();
+        // Without browser storage the first poll only records what is already there.
+        const firstRun = seenProofsRef.current === null && stored === null;
+        const seen = new Set([...(seenProofsRef.current ?? []), ...(stored ?? [])]);
+        const waiting = count > 0 ? await api.getPaymentProofs('SUBMITTED') : [];
+        const unseen = waiting.filter((p) => !seen.has(p.id));
+        // Only proofs still waiting are kept, so the list never grows past what's under review.
+        const waitingIds = new Set(waiting.map((p) => p.id));
+        seenProofsRef.current = waitingIds;
+        writeSeenProofs([...waitingIds]);
+        if (unseen.length > 0 && !firstRun) {
+          setProofToast({ trackingNumber: unseen.length === 1 ? unseen[0].trackingNumber : null, count: unseen.length });
+        }
+      })
       .catch(() => {});
   }, []);
+  useEffect(() => {
+    if (!proofToast) return;
+    const timer = window.setTimeout(() => setProofToast(null), 10_000);
+    return () => window.clearTimeout(timer);
+  }, [proofToast]);
+  const openProofFromToast = () => {
+    // One proof: the Payments page filtered to its tracking ID. Several: the whole list.
+    setGlobalSearch(proofToast?.trackingNumber ?? '');
+    setCurrentView('payments');
+    setProofToast(null);
+  };
   useEffect(() => {
     const refreshIfVisible = () => {
       if (document.visibilityState === 'visible') refreshProofsCount();
@@ -166,6 +218,23 @@ export const AdminApp: React.FC<AdminAppProps> = ({ onNavigatePublic, onViewPubl
         <div className={`admin-toast-success animate-fade-in${toastIsError ? ' toast-error' : ''}`}>
           {toastIsError ? <AlertCircle size={18} /> : <CheckCircle2 size={18} />}
           <span>{toastMessage}</span>
+        </div>
+      )}
+
+      {/* New proof of payment (update G.3); above the shipment toast when both show */}
+      {proofToast && (
+        <div className="admin-proof-toast animate-fade-in" role="status">
+          <button type="button" className="admin-proof-toast-link" onClick={openProofFromToast}>
+            <Wallet size={18} aria-hidden="true" />
+            <span>
+              {proofToast.trackingNumber
+                ? `New payment proof – ${proofToast.trackingNumber}`
+                : `${proofToast.count} new payment proofs`}
+            </span>
+          </button>
+          <button type="button" className="admin-proof-toast-close" onClick={() => setProofToast(null)} aria-label="Dismiss">
+            <X size={16} aria-hidden="true" />
+          </button>
         </div>
       )}
 
