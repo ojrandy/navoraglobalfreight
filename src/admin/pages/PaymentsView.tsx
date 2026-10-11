@@ -2,11 +2,9 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AlertTriangle, ExternalLink, Maximize2, RefreshCw, Wallet } from 'lucide-react';
 import { api } from '../../services/api';
 import type { AdminPaymentProof, ProofStatus } from '../../shared/paymentProof';
-import { formatPaymentAmount } from '../../shared/paymentRequest';
-import { customerMethodView, isPaymentMethodType } from '../../shared/paymentMethods';
-import { PaymentIcon } from '../../components/PaymentIcon';
 import { ProofViewer } from '../components/ProofViewer';
 import { ProofReviewControls } from '../components/ProofReviewControls';
+import { ProofFacts, formatProofReceived, proofMethodView } from '../components/ProofFacts';
 import './PaymentsView.css';
 
 interface PaymentsViewProps {
@@ -37,16 +35,6 @@ const REQUEST_STATUS_LABELS: Record<string, string> = {
   PAID: 'Paid',
   CANCELLED: 'Cancelled',
 };
-
-const formatReceived = (iso: string) =>
-  new Date(iso).toLocaleString(undefined, { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-
-/** The account the customer says they used, as it was when they sent the proof. */
-export function proofMethodView(proof: AdminPaymentProof) {
-  const m = proof.method;
-  if (!m || !isPaymentMethodType(m.type)) return null;
-  return customerMethodView(m.type, m.details, m.label);
-}
 
 /** Admin Payments page (docs/update.md F.5): proofs of payment sent from the track page. */
 export const PaymentsView: React.FC<PaymentsViewProps> = ({ searchQuery, onOpenShipmentDetail, onProofsChanged }) => {
@@ -108,44 +96,6 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({ searchQuery, onOpenS
     requestAnimationFrame(() => openerRef.current?.focus());
   }, []);
 
-  const details = (p: AdminPaymentProof) => {
-    const method = proofMethodView(p);
-    const mismatch = p.payment && p.amountSent !== null && Math.abs(p.amountSent - p.payment.amount) >= 0.005;
-    return (
-      <dl className="proof-facts">
-        <div>
-          <dt>Amount due</dt>
-          <dd>{p.payment ? formatPaymentAmount(p.payment.amount, p.payment.currency) : '—'}</dd>
-        </div>
-        <div>
-          <dt>Amount sent</dt>
-          <dd className={mismatch ? 'proof-mismatch' : undefined}>
-            {p.amountSent !== null ? formatPaymentAmount(p.amountSent, p.payment?.currency ?? 'USD') : '—'}
-            {mismatch && <small> Differs from the amount due</small>}
-          </dd>
-        </div>
-        <div>
-          <dt>Paid to</dt>
-          <dd className="proof-method">
-            {method ? <><PaymentIcon type={method.type} size={16} /><span>{method.label}</span></> : '—'}
-          </dd>
-        </div>
-        <div>
-          <dt>Payer</dt>
-          <dd>{p.payerName}</dd>
-        </div>
-        <div>
-          <dt>Reference</dt>
-          <dd className="font-mono">{p.reference || '—'}</dd>
-        </div>
-        <div className="proof-fact-wide">
-          <dt>For</dt>
-          <dd>{p.payment?.chargeReason || '—'}</dd>
-        </div>
-      </dl>
-    );
-  };
-
   return (
     <div className="ngf-payments-workspace animate-fade-in">
       <div className="payments-toolbar">
@@ -202,9 +152,9 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({ searchQuery, onOpenS
                 <strong className="font-mono">{p.trackingNumber}</strong>
                 <span className={`proof-badge ${p.status.toLowerCase()}`}>{PROOF_STATUS_LABELS[p.status]}</span>
                 {p.payment && <span className="proof-request-status">Request: {REQUEST_STATUS_LABELS[p.payment.status] ?? p.payment.status}</span>}
-                <small className="proof-time">Received {formatReceived(p.createdAt)}</small>
+                <small className="proof-time">Received {formatProofReceived(p.createdAt)}</small>
               </div>
-              {details(p)}
+              <ProofFacts proof={p} />
               {p.status === 'REJECTED' && p.adminNote && <p className="proof-note">Rejected: {p.adminNote}</p>}
               <div className="proof-actions">
                 <button type="button" className="proof-action" onClick={(e) => openViewer(p, e.currentTarget)}>
@@ -221,8 +171,8 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({ searchQuery, onOpenS
       </div>
 
       {viewing && (
-        <ProofViewer src={viewing.fileUrl} title={`Payment screenshot · ${viewing.trackingNumber}`} onClose={closeViewer}>
-          {details(viewing)}
+        <ProofViewer src={viewing.fileUrl} title={`Payment screenshot Â· ${viewing.trackingNumber}`} onClose={closeViewer}>
+          <ProofFacts proof={viewing} />
           {viewing.status === 'REJECTED' && viewing.adminNote && <p className="proof-note">Rejected: {viewing.adminNote}</p>}
           <ProofReviewControls proof={viewing} onReviewed={handleReviewed} />
         </ProofViewer>

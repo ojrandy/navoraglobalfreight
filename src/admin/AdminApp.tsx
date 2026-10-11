@@ -177,6 +177,8 @@ export const AdminApp: React.FC<AdminAppProps> = ({ onNavigatePublic, onViewPubl
             onSelectView={setCurrentView}
             onOpenShipmentDetail={handleOpenShipmentDetail}
             onQuickUpdateStatus={handleQuickUpdateStatus}
+            newProofsCount={newProofsCount}
+            onProofsChanged={refreshProofsCount}
           />
         )}
 

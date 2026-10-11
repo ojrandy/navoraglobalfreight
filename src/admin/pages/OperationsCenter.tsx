@@ -24,6 +24,7 @@ import './OperationsCenter.css';
 import { WeightText } from '../../components/forms/UnitControls';
 import { shipmentStatusLabel, shipmentStatusTone, type StatusTone } from '../../shared/shipmentStatus';
 import { GATEWAYS } from '../../data/gateways';
+import { NewProofsPanel } from '../components/NewProofsPanel';
 
 // Badge colours per status family (names come from CONTENT §6.3).
 const OPS_STATUS_CHIP: Record<StatusTone, { className: string; dot: string }> = {
@@ -40,12 +41,17 @@ interface OperationsCenterProps {
   onSelectView: (view: AdminViewType) => void;
   onOpenShipmentDetail: (trackingNumber: string) => void;
   onQuickUpdateStatus: (shipment: Shipment) => void;
+  /** Proofs of payment waiting for review, from the console's poll (update G.1/G.2). */
+  newProofsCount?: number;
+  onProofsChanged?: () => void;
 }
 
 export const OperationsCenter: React.FC<OperationsCenterProps> = ({
   onSelectView,
   onOpenShipmentDetail,
-  onQuickUpdateStatus
+  onQuickUpdateStatus,
+  newProofsCount = 0,
+  onProofsChanged
 }) => {
   const { shipments, quoteRequests } = useAdminData();
   const [tableFilter, setTableFilter] = useState<'ALL' | 'IN_TRANSIT' | 'DELIVERED' | 'HELD'>('ALL');
@@ -327,6 +333,13 @@ export const OperationsCenter: React.FC<OperationsCenterProps> = ({
           </div>
         </div>
       </div>
+
+      {/* New payment proofs waiting for review (update G.2) */}
+      <NewProofsPanel
+        newProofsCount={newProofsCount}
+        onProofsChanged={onProofsChanged}
+        onOpenPayments={() => onSelectView('payments')}
+      />
 
       {/* ====================================================================
           3. MAIN RECENT SHIPMENTS TABLE (MATCHING MASTER LEDGER DESIGN)

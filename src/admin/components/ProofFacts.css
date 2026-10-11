@@ -1,0 +1,51 @@
+/* Proof of payment details, shared by the Payments page and the dashboard panel (update G.2). */
+
+.proof-facts {
+  margin: 0.65rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.6rem 1rem;
+}
+
+.proof-facts .proof-fact-wide {
+  grid-column: 1 / -1;
+}
+
+.proof-facts dt {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ngf-slate-500);
+}
+
+.proof-facts dd {
+  margin: 0.15rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ngf-slate-900);
+  overflow-wrap: anywhere;
+}
+
+.proof-facts dd.proof-mismatch {
+  color: var(--ngf-warning-700);
+  font-weight: 700;
+}
+
+.proof-facts dd.proof-mismatch small {
+  display: block;
+  font-weight: 600;
+  font-size: 0.72rem;
+}
+
+.proof-facts dd.proof-method {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.proof-note {
+  margin: 0.6rem 0 0;
+  font-size: 0.82rem;
+  color: var(--ngf-danger-600);
+  overflow-wrap: anywhere;
+}
