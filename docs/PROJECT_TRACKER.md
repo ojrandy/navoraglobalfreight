@@ -143,10 +143,10 @@ The first baseline ran on older code (`0ae1ff4`). `main` then gained 11 upstream
 
 ## Phase 7 — Deploy (DEPLOYMENT.md)
 - [ ] 7.1 Hostinger Node.js app connected to the Navora GitHub repo; Node ≥ 22.5.
-- [ ] 7.2 Env vars set (fresh `ADMIN_PASSWORD_HASH`, `SESSION_SECRET`, `DB_PATH` on persistent storage, `SEED_DEMO_DATA=false`).
+- [ ] 7.2 Env vars set (fresh `ADMIN_PASSWORD_HASH`, `SESSION_SECRET`, `DB_PATH` and `UPLOADS_DIR` on persistent storage, `SEED_DEMO_DATA=false`). *`UPLOADS_DIR` added by the package images / payments update (docs/update.md A.1, H.5).*
 - [ ] 7.3 DNS: root + `www` + `private.` (admin, alias of the same Node app); SSL on all three.
 - [ ] 7.4 Email: info@navoraglobalfreight.com mailbox + SPF/DKIM/DMARC.
-- [ ] 7.5 Post-deploy smoke test (DEPLOYMENT.md §7); set up DB backup routine.
+- [ ] 7.5 Post-deploy smoke test (DEPLOYMENT.md §7); set up DB backup routine (the database **and** the `UPLOADS_DIR` folder).
 
 ---
 
@@ -206,6 +206,7 @@ The first baseline ran on older code (`0ae1ff4`). `main` then gained 11 upstream
 | 51 | ~~Ship and Quote result heroes hot-linked from Unsplash with Maersk/SSA and Scania/Comelli branding; About repeated the warehouse shoot~~ **Resolved 2026-10-02 (Navora P4b):** both heroes now use local free-stock photos; About has its own hero, story photo and compliance banner. | Navora P4 |
 | 52 | **Found in Navora P4b, not changed:** at 375 px the Quote result page (`#/quote/<id>`) scrolls sideways by about 40 px: `.quote-main-col` / `.pending-rate-waiting-card` are 415 px wide (layout, not the photo). Contact, Help, Legal and Quote heroes are still hot-linked from Unsplash (no company branding; the Cookie Policy already names Unsplash). | 6.2 |
 | 53 | **Gateway list changed 2026-10-05 (owner request):** Lagos, Accra, Nairobi and Johannesburg removed; Tokyo (NRT), Seoul (ICN), Chicago (ORD) and Miami (MIA) added at the end of the list, with lanes NRT–LAX, ICN–FRA, ORD–LHR, ORD–PVG, MIA–GRU. Owner to confirm the four new gateways and lanes. Addresses in the removed countries no longer match a gateway and fall back to normal geocoding. |
+| 54 | **Package images, payments & proof of payment update (docs/update.md) is built and tested locally but not deployed.** Owner: (a) merge/push branch `navora` to `main` (Hostinger deploys `main`); (b) on Hostinger create the persistent `UPLOADS_DIR` folder next to the database, set `UPLOADS_DIR`, redeploy; (c) re-test the flow on the live domain and on `private.` (update.md H.5); (d) confirm the payment/proof copy in CONTENT §6.8. Also found in H.3, not changed: the public `POST /api/documents/generate` accepts an unknown `docType`, which then previews as a blank page (see #47e). | update H.5 |
 
 ## Decisions log
 | Date | Decision |
@@ -285,6 +286,7 @@ The first baseline ran on older code (`0ae1ff4`). `main` then gained 11 upstream
 | 2026-10-04 | Repo cleanup | To make the GitHub push small (85 MB history kept timing out): the 24 full-size photo/logo originals in `images/` (43 MB, read only by `scripts/optimize-images.mjs`, never served) moved out of git to `D:\Cortex\shipping\navora-image-originals`; `images/*/SOURCES.md` licence records kept; script header notes where the originals are. Unused `clsx` dependency removed. `Public/` unchanged (every file is in `SITE_IMAGES` or the brand/manifest set; `contact-team` kept as an owner-requested slot). Pushed as a normal commit on top of the full history already on GitHub (task 0.1). Verified: `npm run build` passes, `npm test` 33/33. |
 | 2026-10-04 | — | Admin login: night-port photo (existing `locations-hero` stock, WebP/JPG, responsive sizes) under a dark overlay replaces the flat background. CSS only, no logic changed. |
 | 2026-10-05 | — | Gateways (owner): African gateways removed from `gateways.ts` and CONTENT §9; Tokyo, Seoul, Chicago, Miami appended last; region copy (Home, About, Locations meta) now "Europe, the Middle East, Asia, the Americas and Oceania"; Home default gateway and demo label (SIN→LHR) no longer use Lagos. Build passes (Blocked #53). |
+| 2026-10-11 | Update: images & payments | **Package images, payment methods and proof of payment** (full plan, decisions D-1…D-9 and per-task log in `docs/update.md`). Admin uploads captioned photos per shipment (browser-compressed WebP, EXIF stripped, files in `UPLOADS_DIR`, public only when visible). One payment request per shipment (USD, required reason, optional due date/invoice link/note) with accounts typed per shipment (17 method types, shared registry and validators, local Simple Icons) in Create Shipment step 5 or Edit Shipment; the track page shows the amount, reason and only that shipment's accounts (copy, QR on demand). Customers upload a proof (image only, checked by content, rate-limited, private file route); the admin reviews it on the new **Payments** page or the dashboard's "New payment proofs" panel (badge, bell, toast; no email, D-5); approving marks the request and its linked invoice paid and adds a public "Payment confirmed" event. QA (update H.1–H.4): end-to-end flow 42/42, security 54/54, regression 32/33 (the miss was the test browser's file download; the PDF itself was verified), first public load +1.8 KB gzip, `npm run build` clean, `npm test` 57/57. Deploy pending owner (Blocked #54). |
 ---
 
 ## System notes (codebase walkthrough, updated 2026-09-26 for commit `6b8185f`)
