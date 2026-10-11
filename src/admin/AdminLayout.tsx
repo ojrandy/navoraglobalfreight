@@ -50,6 +50,8 @@ interface AdminLayoutProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;
   newMessagesCount?: number;
+  /** Proofs of payment waiting for review (update G.1). */
+  newProofsCount?: number;
   children: React.ReactNode;
 }
 
@@ -108,6 +110,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
   searchQuery,
   onSearchChange,
   newMessagesCount = 0,
+  newProofsCount = 0,
   children
 }) => {
   const { notifications, markNotificationRead, quoteRequests, shipments } = useAdminData();
@@ -127,7 +130,8 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const unreadCount = notifications.filter(n => !n.read).length;
+  // The bell counts unread alerts plus proofs of payment waiting for review (update G.1).
+  const unreadCount = notifications.filter(n => !n.read).length + newProofsCount;
   const pendingQuotesCount = quoteRequests.filter(q => q.status === 'NEW' || q.status === 'UNDER_REVIEW').length;
 
   const currentMeta = VIEW_METADATA[currentView] || VIEW_METADATA['operations-center'];
@@ -252,6 +256,9 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
                 <Wallet size={18} />
               </div>
               <span className="nav-title">Payments</span>
+              {newProofsCount > 0 && (
+                <span className="nav-badge-amber font-mono" aria-label={`${newProofsCount} to review`}>{newProofsCount} NEW</span>
+              )}
             </button>
           </div>
 
@@ -382,7 +389,28 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
                   </div>
 
                   <div className="popover-list">
-                    {notifications.length === 0 ? (
+                    {newProofsCount > 0 && (
+                      <div
+                        className="popover-item unread"
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => { onSelectView('payments'); setShowNotifications(false); }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            onSelectView('payments');
+                            setShowNotifications(false);
+                          }
+                        }}
+                      >
+                        <div className="item-dot payment" />
+                        <div className="item-content">
+                          <strong>{newProofsCount === 1 ? 'New payment proof' : 'New payment proofs'}</strong>
+                          <p>{newProofsCount === 1 ? '1 proof of payment is' : `${newProofsCount} proofs of payment are`} waiting for review.</p>
+                        </div>
+                      </div>
+                    )}
+                    {notifications.length === 0 && newProofsCount === 0 ? (
                       <div className="popover-empty">
                         <CheckCircle2 size={24} className="text-emerald" />
                         <span>All corridors operating nominally</span>

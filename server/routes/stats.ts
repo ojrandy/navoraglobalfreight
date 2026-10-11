@@ -15,6 +15,11 @@ statsRouter.get('/', (req: Request, res: Response) => {
     const exceptionsCount = (db.prepare("SELECT COUNT(*) as c FROM shipments WHERE deleted_at_ts IS NULL AND status = 'EXCEPTION'").get() as any).c;
     const pendingQuotesCount = (db.prepare("SELECT COUNT(*) as c FROM quote_requests WHERE status IN ('NEW', 'UNDER_REVIEW')").get() as any).c;
     const totalDocumentsCount = (db.prepare('SELECT COUNT(*) as c FROM documents').get() as any).c;
+    // Proofs of payment waiting for review (update G.1), counted the way the Payments page lists them.
+    const submittedProofsCount = (db.prepare(`
+      SELECT COUNT(*) as c FROM payment_proofs pp
+      JOIN shipments s ON s.tracking_number = pp.tracking_number AND s.deleted_at_ts IS NULL
+      WHERE pp.status = 'SUBMITTED'`).get() as any).c;
 
     const stats = {
       totalShipments,
@@ -24,6 +29,7 @@ statsRouter.get('/', (req: Request, res: Response) => {
       exceptionsCount,
       pendingQuotesCount,
       totalDocumentsCount,
+      submittedProofsCount,
       onTimeRate: 98.6,
       networkEfficiency: 99.1
     };

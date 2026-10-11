@@ -480,7 +480,7 @@ export const api = {
 
   // Dashboard Stats
   async getStats(): Promise<any> {
-    const res = await fetch(`${API_BASE}/stats`);
+    const res = await fetch(`${API_BASE}/stats`, { credentials: 'include' });
     return handleResponse<any>(res);
   }
 };

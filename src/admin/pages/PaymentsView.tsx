@@ -12,6 +12,8 @@ import './PaymentsView.css';
 interface PaymentsViewProps {
   searchQuery: string;
   onOpenShipmentDetail: (trackingNumber: string) => void;
+  /** Called after the list loads, so the console can refresh its new-proof badge (update G.1). */
+  onProofsChanged?: () => void;
 }
 
 type Filter = 'ALL' | ProofStatus;
@@ -47,7 +49,7 @@ export function proofMethodView(proof: AdminPaymentProof) {
 }
 
 /** Admin Payments page (docs/update.md F.5): proofs of payment sent from the track page. */
-export const PaymentsView: React.FC<PaymentsViewProps> = ({ searchQuery, onOpenShipmentDetail }) => {
+export const PaymentsView: React.FC<PaymentsViewProps> = ({ searchQuery, onOpenShipmentDetail, onProofsChanged }) => {
   const [proofs, setProofs] = useState<AdminPaymentProof[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -60,12 +62,13 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({ searchQuery, onOpenS
     setError(null);
     try {
       setProofs(await api.getPaymentProofs());
+      onProofsChanged?.();
     } catch (err: any) {
       setError(err?.message || 'Could not load payment proofs.');
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [onProofsChanged]);
 
   useEffect(() => {
     load();

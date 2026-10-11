@@ -650,7 +650,8 @@
   transition: background 0.12s ease;
 }
 
-.popover-item:hover {
+.popover-item:hover,
+.popover-item:focus-visible {
   background: #f8fafc;
 }
 
@@ -669,6 +670,7 @@
 
 .item-dot.quote { background: var(--ngf-accent-500); }
 .item-dot.delay { background: #ef4444; }
+.item-dot.payment { background: var(--ngf-accent-500); }
 
 .item-content strong {
   display: block;
