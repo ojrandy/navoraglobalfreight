@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import session from 'express-session';
 import helmet from 'helmet';
+import compression from 'compression';
 import path from 'path';
 import fs from 'fs';
 import { createProxyMiddleware } from 'http-proxy-middleware';
@@ -63,6 +64,11 @@ app.use(helmet({
   contentSecurityPolicy: false,
   crossOriginEmbedderPolicy: false,
 }));
+
+// Compress responses here rather than leaving it to Hostinger's CDN: the link between the CDN
+// and this process is slow, and sending the ~700 KB main bundle uncompressed made first visits
+// take 30–70 s. Responses that already carry a Content-Encoding (e.g. proxied ones) are left alone.
+app.use(compression());
 
 // robots.txt, sitemap.xml and the admin-host noindex header; host-aware, so before anything else.
 app.use(seoRouter);
@@ -220,7 +226,20 @@ if (ADMIN_PROXY_TARGET) {
 // #/track/...), so the browser only ever requests the bare "/" from the server no matter which
 // in-app page is open (everything after "#" stays client-side) — express.static's default
 // index.html-for-"/" behavior is enough, no separate SPA catch-all route is needed.
-app.use(express.static(path.join(process.cwd(), 'dist')));
+//
+// Cache rules, so Hostinger's CDN and browsers can keep the files (with Express's default
+// max-age=0 every visitor pulled the full bundle from this process): Vite's /assets/ files have
+// a content hash in their names, so they never change and are cached for a year; index.html is
+// always re-checked so a new deploy shows up at once; other files (logos, photos) for an hour.
+const distDir = path.join(process.cwd(), 'dist');
+app.use(express.static(distDir, {
+  setHeaders: (res, filePath) => {
+    const rel = path.relative(distDir, filePath).split(path.sep).join('/');
+    if (rel.startsWith('assets/')) res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    else if (rel.endsWith('.html')) res.setHeader('Cache-Control', 'no-cache');
+    else res.setHeader('Cache-Control', 'public, max-age=3600');
+  },
+}));
 
 // Last-resort error handler — catches anything that bypassed every route's own try/catch
 // (a malformed JSON body from express.json(), a thrown error in middleware, etc.). Express's
