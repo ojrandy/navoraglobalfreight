@@ -25,9 +25,30 @@
   }
 }
 
-@media (min-width: 1024px) {
+/* Tablet and desktop: the photos fill the full width at a low, fixed height (cropped to fit;
+   the viewer shows the whole photo). Phones keep the 4:3 cards above. */
+@media (min-width: 768px) {
   .ngf-gallery-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ngf-gallery-grid[data-count="1"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ngf-gallery-grid[data-count="2"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ngf-gallery-thumb {
+    aspect-ratio: auto;
+    height: 220px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ngf-gallery-thumb {
+    height: 260px;
   }
 }
 
