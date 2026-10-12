@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ArrowDown, ArrowUp, Pencil, Plus, Trash2, X } from 'lucide-react';
+import { ArrowDown, ArrowUp, Check, Pencil, Plus, Trash2, X } from 'lucide-react';
 import {
   PAYMENT_METHOD_TYPES, PAYMENT_METHODS, PaymentField, PaymentMethodType, customerMethodView,
   validatePaymentDetails,
@@ -104,7 +104,13 @@ function accountSummary(a: PaymentDraftAccount): string {
     .join(' · ');
 }
 
-type AccountEditor = { mode: 'pick' } | { mode: 'form'; account: PaymentDraftAccount; index: number | null };
+// 'pick': choosing one or more method types (update I.4). 'form': details for one account; when
+// several types were picked, `queue` holds the ones still to fill in and `step`/`total` the progress.
+type AccountEditor =
+  | { mode: 'pick'; selected: PaymentMethodType[] }
+  | { mode: 'form'; account: PaymentDraftAccount; index: number | null; queue: PaymentMethodType[]; step: number; total: number };
+
+const newAccount = (type: PaymentMethodType): PaymentDraftAccount => ({ key: newKey(), type, label: '', details: blankDetails(type), instructions: '' });
 
 interface PaymentRequestEditorProps {
   value: PaymentDraft;
@@ -132,18 +138,42 @@ export const PaymentRequestEditor: React.FC<PaymentRequestEditorProps> = ({ valu
   const set = (patch: Partial<PaymentDraft>) => onChange({ ...value, ...patch });
   const id = (name: string) => `${idPrefix}-${name}`;
 
+  // How many more accounts fit under the limit.
+  const remaining = PAYMENT_LIMITS.maxAccounts - value.accounts.length;
+
   const startAdd = () => {
     setAccountErrors({});
-    setAccountEditor({ mode: 'pick' });
+    setAccountEditor({ mode: 'pick', selected: [] });
   };
 
-  const pickType = (type: PaymentMethodType) =>
-    setAccountEditor({ mode: 'form', index: null, account: { key: newKey(), type, label: '', details: blankDetails(type), instructions: '' } });
+  const toggleType = (type: PaymentMethodType) => {
+    if (accountEditor?.mode !== 'pick') return;
+    const { selected } = accountEditor;
+    if (selected.includes(type)) setAccountEditor({ mode: 'pick', selected: selected.filter((t) => t !== type) });
+    else if (selected.length < remaining) setAccountEditor({ mode: 'pick', selected: [...selected, type] });
+  };
+
+  // Opens the details form for the first chosen method; the rest follow one by one.
+  const continueWithSelected = () => {
+    if (accountEditor?.mode !== 'pick' || accountEditor.selected.length === 0) return;
+    const [first, ...queue] = accountEditor.selected;
+    setAccountEditor({ mode: 'form', index: null, account: newAccount(first), queue, step: 1, total: accountEditor.selected.length });
+  };
+
+  // Moves to the next chosen method, or closes the form when there is none left.
+  const nextInQueue = () => {
+    if (accountEditor?.mode !== 'form' || accountEditor.queue.length === 0) {
+      setAccountEditor(null);
+      return;
+    }
+    const [next, ...queue] = accountEditor.queue;
+    setAccountEditor({ ...accountEditor, account: newAccount(next), queue, step: accountEditor.step + 1 });
+  };
 
   const startEdit = (index: number) => {
     const a = value.accounts[index];
     setAccountErrors({});
-    setAccountEditor({ mode: 'form', index, account: { ...a, details: { ...blankDetails(a.type), ...a.details } } });
+    setAccountEditor({ mode: 'form', index, account: { ...a, details: { ...blankDetails(a.type), ...a.details } }, queue: [], step: 1, total: 1 });
   };
 
   const editing = accountEditor?.mode === 'form' ? accountEditor.account : null;
@@ -168,8 +198,13 @@ export const PaymentRequestEditor: React.FC<PaymentRequestEditorProps> = ({ valu
     if (accountEditor.index === null) accounts.push(saved);
     else accounts[accountEditor.index] = saved;
     set({ accounts });
-    setAccountEditor(null);
     setAccountErrors({});
+    nextInQueue();
+  };
+
+  const skipAccount = () => {
+    setAccountErrors({});
+    nextInQueue();
   };
 
   const removeAccount = (index: number) => {
@@ -284,6 +319,7 @@ export const PaymentRequestEditor: React.FC<PaymentRequestEditorProps> = ({ valu
               <h5>Payment accounts for this shipment</h5>
               <span>{value.accounts.length} / {PAYMENT_LIMITS.maxAccounts}</span>
             </div>
+            <p className="ngf-pre-hint">Customers can pay with any account you add. Offering 3–5 methods gives them more choice.</p>
             {errors.methods && <p className="ngf-pre-error">{errors.methods}</p>}
 
             {value.accounts.length > 0 && (
@@ -318,38 +354,62 @@ export const PaymentRequestEditor: React.FC<PaymentRequestEditorProps> = ({ valu
               </ul>
             )}
 
-            {!accountEditor && value.accounts.length < PAYMENT_LIMITS.maxAccounts && (
+            {!accountEditor && remaining > 0 && (
               <button type="button" className="ngf-pre-btn" onClick={startAdd}>
                 <Plus size={14} aria-hidden="true" />
-                <span>Add account</span>
+                <span>{value.accounts.length === 0 ? 'Add payment methods' : 'Add more methods'}</span>
               </button>
             )}
 
             {accountEditor?.mode === 'pick' && (
               <div className="ngf-pre-subeditor">
                 <div className="ngf-pre-subeditor-head">
-                  <h6>Choose the payment method</h6>
+                  <h6>Choose the payment methods to offer</h6>
                   <button type="button" className="ngf-pre-icon-btn" onClick={() => setAccountEditor(null)} aria-label="Cancel">
                     <X size={14} aria-hidden="true" />
                   </button>
                 </div>
-                <div className="ngf-pre-type-grid">
-                  {PAYMENT_METHOD_TYPES.map((t) => (
-                    <button type="button" key={t} className="ngf-pre-type" onClick={() => pickType(t)}>
-                      <PaymentIcon type={t} size={20} />
-                      <span>{PAYMENT_METHODS[t].label}</span>
-                    </button>
-                  ))}
+                <p className="ngf-pre-hint">
+                  Select one or more (up to {remaining}). You'll add each account's details next.
+                </p>
+                <div className="ngf-pre-type-grid" role="group" aria-label="Payment methods">
+                  {PAYMENT_METHOD_TYPES.map((t) => {
+                    const selected = accountEditor.selected.includes(t);
+                    const full = !selected && accountEditor.selected.length >= remaining;
+                    return (
+                      <button
+                        type="button"
+                        key={t}
+                        className={`ngf-pre-type${selected ? ' is-selected' : ''}`}
+                        aria-pressed={selected}
+                        disabled={full}
+                        onClick={() => toggleType(t)}
+                      >
+                        <PaymentIcon type={t} size={20} />
+                        <span>{PAYMENT_METHODS[t].label}</span>
+                        <span className="ngf-pre-type-check" aria-hidden="true">{selected && <Check size={12} />}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+                <div className="ngf-pre-subeditor-actions">
+                  <button type="button" className="ngf-pre-btn" onClick={() => setAccountEditor(null)}>Cancel</button>
+                  <button type="button" className="ngf-pre-btn primary" onClick={continueWithSelected} disabled={accountEditor.selected.length === 0}>
+                    {accountEditor.selected.length === 0
+                      ? 'Select at least one'
+                      : `Continue with ${accountEditor.selected.length} method${accountEditor.selected.length === 1 ? '' : 's'}`}
+                  </button>
                 </div>
               </div>
             )}
 
-            {editing && (
+            {editing && accountEditor?.mode === 'form' && (
               <div className="ngf-pre-subeditor">
                 <div className="ngf-pre-subeditor-head">
                   <h6>
                     <PaymentIcon type={editing.type} size={18} />
                     <span>{PAYMENT_METHODS[editing.type].label}</span>
+                    {accountEditor.total > 1 && <small className="ngf-pre-step">Account {accountEditor.step} of {accountEditor.total}</small>}
                   </h6>
                   <button type="button" className="ngf-pre-icon-btn" onClick={() => setAccountEditor(null)} aria-label="Cancel">
                     <X size={14} aria-hidden="true" />
@@ -400,8 +460,11 @@ export const PaymentRequestEditor: React.FC<PaymentRequestEditorProps> = ({ valu
                 </div>
                 <div className="ngf-pre-subeditor-actions">
                   <button type="button" className="ngf-pre-btn" onClick={() => setAccountEditor(null)}>Cancel</button>
+                  {accountEditor.queue.length > 0 && (
+                    <button type="button" className="ngf-pre-btn" onClick={skipAccount}>Skip</button>
+                  )}
                   <button type="button" className="ngf-pre-btn primary" onClick={saveAccount}>
-                    {accountEditor?.mode === 'form' && accountEditor.index !== null ? 'Update account' : 'Add this account'}
+                    {accountEditor.index !== null ? 'Update account' : accountEditor.queue.length > 0 ? 'Add and continue' : 'Add this account'}
                   </button>
                 </div>
               </div>

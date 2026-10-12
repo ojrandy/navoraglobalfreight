@@ -129,6 +129,11 @@
   background: var(--ngf-accent-700);
 }
 
+.ngf-pre-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .ngf-pre-icon-btn {
   display: inline-flex;
   align-items: center;
@@ -323,9 +328,50 @@
   flex-shrink: 0;
 }
 
-.ngf-pre-type:hover {
+.ngf-pre-type:hover:not(:disabled) {
   border-color: var(--ngf-accent-500);
   background: var(--ngf-accent-50);
+}
+
+/* Multi-select (update I.4): a check box at the end of each tile. */
+.ngf-pre-type-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-left: auto;
+  flex-shrink: 0;
+  border: 1.5px solid var(--ngf-slate-300);
+  border-radius: 5px;
+  background: #ffffff;
+  color: #ffffff;
+}
+
+.ngf-pre-type.is-selected {
+  border-color: var(--ngf-accent-500);
+  background: var(--ngf-accent-50);
+  box-shadow: inset 0 0 0 1px var(--ngf-accent-500);
+}
+
+.ngf-pre-type.is-selected .ngf-pre-type-check {
+  border-color: var(--ngf-accent-500);
+  background: var(--ngf-accent-500);
+}
+
+.ngf-pre-type:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ngf-pre-step {
+  margin-left: 0.25rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+  background: var(--ngf-slate-100);
+  color: var(--ngf-slate-700);
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 
 @media (max-width: 420px) {
