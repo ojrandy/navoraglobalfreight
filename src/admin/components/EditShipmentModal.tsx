@@ -10,7 +10,8 @@ import { COMPANY_SHORT } from '../../config/brand';
 interface EditShipmentModalProps {
   shipment: Shipment;
   onClose: () => void;
-  onSave: (updated: Shipment) => void;
+  /** Saves the edit. The modal stays open with the error when it reports `success: false` (update I.5). */
+  onSave: (updated: Shipment) => Promise<{ success: boolean; error?: string } | void> | void;
 }
 
 export const EditShipmentModal: React.FC<EditShipmentModalProps> = ({
@@ -143,8 +144,12 @@ export const EditShipmentModal: React.FC<EditShipmentModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (saving) return;
     const originQuery = [senderCity.trim(), senderState.trim()].filter(Boolean).join(', ');
     const destQuery = [recipientCity.trim(), recipientState.trim()].filter(Boolean).join(', ');
     const originGeo = resolveLocation(originQuery) || resolveLocation(senderCity.trim()) || resolveLocation(senderState.trim());
@@ -276,7 +281,15 @@ export const EditShipmentModal: React.FC<EditShipmentModalProps> = ({
       lastUpdated: 'Just now'
     };
 
-    onSave(updated);
+    // Close only once the server has the change; on failure keep the form (and what was typed) open.
+    setSaving(true);
+    setSaveError('');
+    const result = await onSave(updated);
+    setSaving(false);
+    if (result && !result.success) {
+      setSaveError(`The changes were not saved: ${result.error || 'the server did not respond'}. Please try again.`);
+      return;
+    }
     onClose();
   };
 
@@ -858,13 +871,14 @@ export const EditShipmentModal: React.FC<EditShipmentModalProps> = ({
           <ShipmentPaymentPanel trackingNumber={shipment.trackingNumber} />
 
           {/* Footer Actions */}
+          {saveError && <p className="edit-save-error" role="alert">{saveError}</p>}
           <div className="edit-modal-footer">
-            <button type="button" className="edit-btn-cancel" onClick={onClose}>
+            <button type="button" className="edit-btn-cancel" onClick={onClose} disabled={saving}>
               Cancel
             </button>
-            <button type="submit" className="edit-btn-save">
+            <button type="submit" className="edit-btn-save" disabled={saving}>
               <Save size={15} />
-              <span>Save Changes</span>
+              <span>{saving ? 'Saving…' : 'Save Changes'}</span>
             </button>
           </div>
         </form>

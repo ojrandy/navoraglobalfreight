@@ -27,7 +27,8 @@ import {
   ShieldCheck,
   Tag,
   Edit3,
-  Trash2
+  Trash2,
+  SlidersHorizontal
 } from 'lucide-react';
 import { useAdminData } from '../../context/AdminDataContext';
 import { resolveLocation } from '../../services/geocodingService';
@@ -583,7 +584,7 @@ export const AllShipmentsView: React.FC<AllShipmentsViewProps> = ({
                             title="Operations Control"
                             onClick={() => onQuickUpdateStatus(s)}
                           >
-                            <span className="control-dash">-</span>
+                            <SlidersHorizontal size={12} className="control-dash" aria-hidden="true" />
                             <span>{isSimulating ? 'Moving' : 'Control'}</span>
                           </button>
 
@@ -818,9 +819,14 @@ export const AllShipmentsView: React.FC<AllShipmentsViewProps> = ({
           shipment={editModalShipment}
           onClose={() => setEditModalShipment(null)}
           onSave={async (updated) => {
-            await updateShipmentFull(updated);
-            setSuccessToast(`Consignment ${updated.trackingNumber} specifications updated.`);
-            setTimeout(() => setSuccessToast(null), 4000);
+            const result = await updateShipmentFull(updated);
+            // A failure is shown inside the edit form, which stays open (update I.5).
+            if (result.success) {
+              setToastIsError(false);
+              setSuccessToast(`Consignment ${updated.trackingNumber} specifications updated.`);
+              setTimeout(() => setSuccessToast(null), 4000);
+            }
+            return result;
           }}
         />
       )}

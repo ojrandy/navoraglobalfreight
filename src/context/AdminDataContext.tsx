@@ -38,7 +38,7 @@ interface AdminDataContextType {
   
   // Actions
   updateShipmentDirect: (updated: Shipment) => void;
-  updateShipmentFull: (updated: Shipment) => Promise<void>;
+  updateShipmentFull: (updated: Shipment) => Promise<{ success: boolean; error?: string }>;
   deleteShipment: (trackingNumber: string) => Promise<{ success: boolean; error?: string }>;
   getTrashedShipments: () => Promise<Shipment[]>;
   restoreShipment: (trackingNumber: string) => Promise<{ success: boolean; error?: string }>;
@@ -231,12 +231,18 @@ const normalizeShipment = (s: any): Shipment => {
   // Deliberate edits that must actually persist (e.g. the Edit Shipment modal) — unlike
   // updateShipmentDirect (also used for high-frequency local-only simulation ticks), this
   // always writes through to the backend so the change survives a refresh.
-  const updateShipmentFull = async (updated: Shipment): Promise<void> => {
+  // Shows the edit at once and saves it. A failed save used to be swallowed (the change looked
+  // saved until the next refresh); now the old values come back and the caller gets the error.
+  const updateShipmentFull = async (updated: Shipment): Promise<{ success: boolean; error?: string }> => {
+    const previous = shipments.find(s => s.trackingNumber.toUpperCase() === updated.trackingNumber.toUpperCase());
     updateShipmentDirect(updated);
     try {
       await api.updateShipment(updated.trackingNumber, updated);
-    } catch (err) {
+      return { success: true };
+    } catch (err: any) {
       console.error('[API] Failed to save shipment edit:', err);
+      if (previous) updateShipmentDirect(previous);
+      return { success: false, error: err?.message || 'the server did not respond' };
     }
   };
 

@@ -254,6 +254,25 @@
 }
 
 /* Footer */
+/* Shown when Save Changes fails; the form stays open with what was typed (update I.5). */
+.edit-save-error {
+  margin: 0;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--ngf-danger-100);
+  border-radius: 8px;
+  background: var(--ngf-danger-50);
+  color: var(--ngf-danger-600);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.edit-btn-save:disabled,
+.edit-btn-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .edit-modal-footer {
   display: flex;
   align-items: center;

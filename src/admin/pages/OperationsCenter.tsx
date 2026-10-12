@@ -15,8 +15,11 @@ import {
   MapPin,
   ExternalLink,
   Copy,
-  Check
+  Check,
+  Edit3,
+  SlidersHorizontal
 } from 'lucide-react';
+import { EditShipmentModal } from '../components/EditShipmentModal';
 import { useAdminData } from '../../context/AdminDataContext';
 import { AdminViewType } from '../AdminLayout';
 import { Shipment } from '../../types/shipment';
@@ -53,8 +56,11 @@ export const OperationsCenter: React.FC<OperationsCenterProps> = ({
   newProofsCount = 0,
   onProofsChanged
 }) => {
-  const { shipments, quoteRequests } = useAdminData();
+  const { shipments, quoteRequests, updateShipmentFull } = useAdminData();
   const [tableFilter, setTableFilter] = useState<'ALL' | 'IN_TRANSIT' | 'DELIVERED' | 'HELD'>('ALL');
+  // Edit pen on Recent Shipments (update I.5).
+  const [editShipment, setEditShipment] = useState<Shipment | null>(null);
+  const [savedToast, setSavedToast] = useState<string | null>(null);
   const [tableSearch, setTableSearch] = useState<string>('');
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
@@ -546,8 +552,19 @@ export const OperationsCenter: React.FC<OperationsCenterProps> = ({
                             onClick={() => onQuickUpdateStatus(shipment)}
                             title="Operations Control"
                           >
-                            <span className="control-dash">-</span>
+                            <SlidersHorizontal size={12} className="control-dash" aria-hidden="true" />
                             <span>{isSimulating ? 'Moving' : 'Control'}</span>
+                          </button>
+
+                          {/* Edit pen (update I.5): the same editor as All Shipments — details, photos, payment request. */}
+                          <button
+                            type="button"
+                            className="ops-inspect-icon-btn ops-edit-icon-btn"
+                            onClick={() => setEditShipment(shipment)}
+                            title="Edit Consignment"
+                            aria-label={`Edit ${shipment.trackingNumber}`}
+                          >
+                            <Edit3 size={13} />
                           </button>
 
                           <button
@@ -568,6 +585,29 @@ export const OperationsCenter: React.FC<OperationsCenterProps> = ({
           </div>
         )}
       </div>
+
+      {editShipment && (
+        <EditShipmentModal
+          shipment={editShipment}
+          onClose={() => setEditShipment(null)}
+          onSave={async (updated) => {
+            const result = await updateShipmentFull(updated);
+            // A failure is shown inside the edit form, which stays open.
+            if (result.success) {
+              setSavedToast(`Consignment ${updated.trackingNumber} updated.`);
+              setTimeout(() => setSavedToast(null), 4000);
+            }
+            return result;
+          }}
+        />
+      )}
+
+      {savedToast && (
+        <div className="admin-toast-success animate-fade-in" role="status">
+          <CheckCircle2 size={18} />
+          <span>{savedToast}</span>
+        </div>
+      )}
     </div>
   );
 };
