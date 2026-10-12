@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 import type { PaymentStatus, PublicPayment } from '../shared/paymentRequest';
 import { formatPaymentAmount } from '../shared/paymentRequest';
-import { AlertCircle, CheckCircle2, ChevronDown, Clock } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ChevronDown, Clock, Upload, Wallet } from 'lucide-react';
 import { PaymentMethodCard } from './PaymentMethodCard';
 import { PaymentProofForm } from './PaymentProofForm';
 import './PaymentSection.css';
@@ -42,6 +42,35 @@ function formatSubmitted(value: string): { date: string; time: string } | null {
   };
 }
 
+interface PaymentTabProps {
+  icon: React.ReactNode;
+  title: string;
+  sub?: string;
+  open: boolean;
+  onToggle: () => void;
+  children: React.ReactNode;
+}
+
+/** Full-width tab that opens its panel underneath (update I.2, I.3). Closed until the customer opens it. */
+const PaymentTab: React.FC<PaymentTabProps> = ({ icon, title, sub, open, onToggle, children }) => {
+  const panelId = useId();
+  return (
+    <div className={`ngf-pay-tab${open ? ' is-open' : ''}`}>
+      <button type="button" className="ngf-pay-tab-btn" aria-expanded={open} aria-controls={panelId} onClick={onToggle}>
+        <span className="ngf-pay-tab-icon" aria-hidden="true">{icon}</span>
+        <span className="ngf-pay-tab-text">
+          <strong>{title}</strong>
+          {sub && <small>{sub}</small>}
+        </span>
+        <ChevronDown size={18} className="ngf-pay-tab-chevron" aria-hidden="true" />
+      </button>
+      <div id={panelId} className="ngf-pay-tab-panel" hidden={!open}>
+        {children}
+      </div>
+    </div>
+  );
+};
+
 // Below this width the accounts are an accordion (one open at a time); above it, a grid.
 const NARROW_QUERY = '(max-width: 767px)';
 const TOAST_MS = 2000;
@@ -75,7 +104,9 @@ export const PaymentSection: React.FC<PaymentSectionProps> = ({ trackingNumber, 
   useEffect(() => () => window.clearTimeout(toastTimer.current), []);
   // Once paid, the accounts are collapsed behind a toggle (E.4).
   const isPaid = payment.status === 'PAID';
-  const [showPaidMethods, setShowPaidMethods] = useState(false);
+  // The accounts and the proof form each sit behind a tab, closed until opened (I.2, I.3).
+  const [showMethods, setShowMethods] = useState(false);
+  const [showProofForm, setShowProofForm] = useState(false);
 
   const showToast = (message: string) => {
     // Clear first so the same message is announced again on a second copy.
@@ -94,7 +125,7 @@ export const PaymentSection: React.FC<PaymentSectionProps> = ({ trackingNumber, 
   const underReview = !sentAt && status === 'UNDER_REVIEW';
   const submitted = underReview && latest?.status === 'SUBMITTED' ? formatSubmitted(latest.submittedAt) : null;
   const rejected = !sentAt && status === 'AWAITING_PAYMENT' && latest?.status === 'REJECTED' ? latest : null;
-  const methodsVisible = !isPaid || showPaidMethods;
+  const count = payment.methods.length;
 
   return (
     <section className="ngf-pay-section" aria-labelledby="track-payment-title">
@@ -145,27 +176,16 @@ export const PaymentSection: React.FC<PaymentSectionProps> = ({ trackingNumber, 
         )}
       </div>
 
-      {payment.methods.length > 0 && (
+      {count > 0 && (
         <div className="ngf-pay-methods">
-          {isPaid && (
-            <button
-              type="button"
-              className={`ngf-pay-methods-toggle${showPaidMethods ? ' is-open' : ''}`}
-              aria-expanded={showPaidMethods}
-              aria-controls="track-payment-methods"
-              onClick={() => setShowPaidMethods((v) => !v)}
-            >
-              <span>{showPaidMethods ? 'Hide payment accounts' : 'Show payment accounts'}</span>
-              <ChevronDown size={16} aria-hidden="true" />
-            </button>
-          )}
-          <div id="track-payment-methods" hidden={!methodsVisible}>
-            {!isPaid && (
-              <>
-                <h4 className="ngf-pay-methods-title">How to pay</h4>
-                <p className="ngf-pay-methods-sub">Choose one account. You only need to pay once.</p>
-              </>
-            )}
+          <PaymentTab
+            icon={<Wallet size={18} />}
+            title={isPaid ? (showMethods ? 'Hide payment accounts' : 'Show payment accounts') : 'How to pay'}
+            sub={isPaid ? undefined : count === 1 ? '1 payment option' : `Choose one of ${count} payment options`}
+            open={showMethods}
+            onToggle={() => setShowMethods((v) => !v)}
+          >
+            {!isPaid && <p className="ngf-pay-methods-sub">Choose one account. You only need to pay once.</p>}
             <ul className={`ngf-pay-methods-list${narrow ? ' is-accordion' : ''}`}>
               {payment.methods.map((method) => (
                 <li key={method.id}>
@@ -180,7 +200,7 @@ export const PaymentSection: React.FC<PaymentSectionProps> = ({ trackingNumber, 
                 </li>
               ))}
             </ul>
-          </div>
+          </PaymentTab>
         </div>
       )}
 
@@ -210,8 +230,18 @@ export const PaymentSection: React.FC<PaymentSectionProps> = ({ trackingNumber, 
         </p>
       )}
 
-      {status === 'AWAITING_PAYMENT' && payment.methods.length > 0 && (
-        <PaymentProofForm trackingNumber={trackingNumber} payment={payment} onSent={setSentAt} />
+      {status === 'AWAITING_PAYMENT' && count > 0 && (
+        <div className="ngf-pay-proof">
+          <PaymentTab
+            icon={<Upload size={18} />}
+            title="Send proof of payment"
+            sub="Already paid? Upload your receipt so we can confirm it."
+            open={showProofForm}
+            onToggle={() => setShowProofForm((v) => !v)}
+          >
+            <PaymentProofForm trackingNumber={trackingNumber} payment={payment} onSent={setSentAt} embedded />
+          </PaymentTab>
+        </div>
       )}
 
       <div className={`ngf-pay-toast${toast ? ' is-visible' : ''}`} role="status" aria-live="polite">

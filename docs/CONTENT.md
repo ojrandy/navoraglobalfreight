@@ -400,6 +400,7 @@ Shown only when the shipment has a payment request. Hidden completely when the r
 - **Status badges:** `Awaiting payment` · `Proof under review` · `Paid` · `Cancelled`
 
 **Payment accounts**
+- **Tab (update I.2, closed by default):** title `How to pay` · sub `Choose one of {n} payment options` (one account: `1 payment option`). Opening it shows the sub-line and the accounts below.
 - **Heading:** `How to pay`
 - **Sub:** `Choose one account. You only need to pay once.`
 - **Mobile accordion:** each method name is a button; screen-reader state `Show details` / `Hide details`. One open at a time.
@@ -409,9 +410,10 @@ Shown only when the shipment has a payment request. Hidden completely when the r
 **Paid**
 - **Heading line:** `Payment received`
 - **Text:** `Thank you. We received your payment on {date}.` · without a date: `Thank you. We have received your payment.`
-- Accounts are collapsed: `Show payment accounts` / `Hide payment accounts`
+- Accounts are collapsed: `Show payment accounts` / `Hide payment accounts` (same tab design as above, update I.2)
 
 **Proof of payment (update F.3, F.4)**
+- **Tab (update I.3, closed by default):** title `Send proof of payment` · sub `Already paid? Upload your receipt so we can confirm it.` Opening it shows the form.
 - **Heading:** `Send proof of payment`
 - **Intro:** `After paying, upload a screenshot or photo of the receipt so our team can confirm it.`
 - **Fields:** `Account you paid to` (placeholder `Choose an account`) · `Your name` (hint `The name the payment was sent from`) · `Amount sent` · `Payment reference (optional)` (hint `Transaction ID, MTCN or reference number`) · `Screenshot of the payment` (hint `JPG, PNG, WebP or HEIC. Only our team can see it.`)

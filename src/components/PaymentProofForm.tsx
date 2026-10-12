@@ -10,6 +10,8 @@ interface PaymentProofFormProps {
   payment: PublicPayment;
   /** Called with the submission time once the server has accepted the proof. */
   onSent: (submittedAt: string) => void;
+  /** Inside the "Send proof of payment" tab (I.3): the tab shows the title, so no heading or card frame here. */
+  embedded?: boolean;
 }
 
 // Customer-facing text (CONTENT.md §6.8).
@@ -31,7 +33,7 @@ const FIELD_ORDER: Field[] = ['methodId', 'payerName', 'amountSent', 'reference'
  * only), payer name, amount sent, optional reference and a screenshot that is compressed and
  * stripped of EXIF data in the browser before upload, with a preview.
  */
-export const PaymentProofForm: React.FC<PaymentProofFormProps> = ({ trackingNumber, payment, onSent }) => {
+export const PaymentProofForm: React.FC<PaymentProofFormProps> = ({ trackingNumber, payment, onSent, embedded = false }) => {
   const id = useId();
   const fileInput = useRef<HTMLInputElement>(null);
   const [methodId, setMethodId] = useState(payment.methods.length === 1 ? payment.methods[0].id : '');
@@ -116,8 +118,13 @@ export const PaymentProofForm: React.FC<PaymentProofFormProps> = ({ trackingNumb
   const errorText = (f: Field) => errors[f] && <p id={errorId(f)} className="ngf-proof-error">{errors[f]}</p>;
 
   return (
-    <form className="ngf-proof-form" onSubmit={submit} noValidate aria-labelledby={`${id}-title`}>
-      <h4 id={`${id}-title`} className="ngf-pay-methods-title">Send proof of payment</h4>
+    <form
+      className={`ngf-proof-form${embedded ? ' is-embedded' : ''}`}
+      onSubmit={submit}
+      noValidate
+      {...(embedded ? { 'aria-label': 'Send proof of payment' } : { 'aria-labelledby': `${id}-title` })}
+    >
+      {!embedded && <h4 id={`${id}-title`} className="ngf-pay-methods-title">Send proof of payment</h4>}
       <p className="ngf-pay-methods-sub">After paying, upload a screenshot or photo of the receipt so our team can confirm it.</p>
 
       <div className="ngf-proof-grid">
