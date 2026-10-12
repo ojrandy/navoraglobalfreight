@@ -853,6 +853,44 @@
   color: #f87171;
 }
 
+/* A panel that couldn't load its data, with "Try again" (update I.6). */
+.ngf-load-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--ngf-danger-100);
+  border-radius: 8px;
+  background: var(--ngf-danger-50);
+}
+
+.ngf-load-error p {
+  margin: 0;
+}
+
+.ngf-load-retry {
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--ngf-danger-600);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--ngf-danger-600);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ngf-load-retry:hover {
+  background: var(--ngf-danger-600);
+  color: #ffffff;
+}
+
+.ngf-load-retry:focus-visible {
+  outline: 2px solid var(--ngf-color-focus);
+  outline-offset: 2px;
+}
+
 /* New proof of payment toast (update G.3): clickable, sits above the shipment toast if both show. */
 .admin-proof-toast {
   position: fixed;

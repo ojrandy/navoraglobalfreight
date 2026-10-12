@@ -43,16 +43,19 @@ export const ShipmentImagesPanel: React.FC<ShipmentImagesPanelProps> = ({ tracki
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pendingRef = useRef<PendingImage[]>([]);
   pendingRef.current = pending;
+  // Bumped by "Try again" after a failed load (update I.6).
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
+    setLoadError('');
     api.getShipmentImages(trackingNumber)
       .then((list) => { if (!cancelled) { setImages(list); setLoadError(''); } })
       .catch((err) => { if (!cancelled) setLoadError(err.message || 'Could not load images.'); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
-  }, [trackingNumber]);
+  }, [trackingNumber, reloadKey]);
 
   // Release the local previews when the panel closes.
   useEffect(() => () => pendingRef.current.forEach((p) => URL.revokeObjectURL(p.previewUrl)), []);
@@ -292,7 +295,10 @@ export const ShipmentImagesPanel: React.FC<ShipmentImagesPanelProps> = ({ tracki
       {loading ? (
         <p className="ngf-images-empty">Loading images…</p>
       ) : loadError ? (
-        <p className="ngf-images-error">{loadError}</p>
+        <div className="ngf-load-error" role="alert">
+          <p className="ngf-images-error">{loadError}</p>
+          <button type="button" className="ngf-load-retry" onClick={() => setReloadKey((k) => k + 1)}>Try again</button>
+        </div>
       ) : images.length === 0 ? (
         <p className="ngf-images-empty">No images yet.</p>
       ) : (

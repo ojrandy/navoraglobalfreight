@@ -34,15 +34,19 @@ export const ShipmentPaymentPanel: React.FC<ShipmentPaymentPanelProps> = ({ trac
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<{ text: string; error?: boolean } | null>(null);
+  // Bumped by "Try again" after a failed load (update I.6).
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
+    setLoading(true);
+    setLoadError('');
     api.getShipmentPayment(trackingNumber)
       .then((p) => { if (!cancelled) setPayment(p); })
       .catch((err) => { if (!cancelled) setLoadError(err.message || 'Could not load the payment request.'); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
-  }, [trackingNumber]);
+  }, [trackingNumber, reloadKey]);
 
   const invoices = useMemo(
     () => documents
@@ -128,7 +132,10 @@ export const ShipmentPaymentPanel: React.FC<ShipmentPaymentPanelProps> = ({ trac
       {loading ? (
         <p className="ngf-spp-empty">Loading…</p>
       ) : loadError ? (
-        <p className="ngf-spp-error">{loadError}</p>
+        <div className="ngf-load-error" role="alert">
+          <p className="ngf-spp-error">{loadError}</p>
+          <button type="button" className="ngf-load-retry" onClick={() => setReloadKey((k) => k + 1)}>Try again</button>
+        </div>
       ) : draft ? (
         <>
           <PaymentRequestEditor value={draft} onChange={setDraft} errors={errors} invoices={invoices} idPrefix={`edit-${trackingNumber}`} compact />
