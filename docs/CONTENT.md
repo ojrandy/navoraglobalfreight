@@ -668,6 +668,7 @@ The text below is rendered from `src/data/legalDocs.ts`; change both together. P
    You can clear these at any time in your browser settings.
 3. *Other services our pages use.*
    Our pages load map tiles from Esri (ArcGIS), fonts from Google Fonts and some photos from Unsplash, and use OpenStreetMap Nominatim and OSRM to look up addresses and routes. These services receive your IP address when your browser contacts them.
+   Our live chat is provided by Smartsupp. It loads on our public pages and sets its own cookies so a chat can continue as you move between pages. Messages you send in the chat are processed by Smartsupp on our behalf.
 
 **Accessibility**
 1. *Our commitment.*
