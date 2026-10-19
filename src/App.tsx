@@ -24,6 +24,7 @@ import { Shipment } from './types/shipment';
 import { QuoteRequest } from './types/admin';
 import { api } from './services/api';
 import { simulationEngine } from './services/simulationEngine';
+import { setLiveChatVisible } from './services/liveChat';
 import { ADMIN_HOST, ADMIN_CONSOLE_NAME, COMPANY, COMPANY_SHORT, SITE_URL } from './config/brand';
 import './styles/global.css';
 
@@ -189,6 +190,10 @@ function MainAppContent() {
     setPageMeta(meta[currentPage] || PAGE_META.home);
     setRobotsNoIndex(currentPage === 'admin' || isAdminHost());
   }, [currentPage, liveShipment, currentQuote]);
+
+  useEffect(() => {
+    setLiveChatVisible(currentPage !== 'admin' && !isAdminHost());
+  }, [currentPage]);
 
   // Initialize from hash if available
   useEffect(() => {
