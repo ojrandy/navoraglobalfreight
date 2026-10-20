@@ -17,7 +17,7 @@
    ============================================================ */
 .ngf-contact-hero {
   position: relative;
-  background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&auto=format&fit=crop&q=85');
+  background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&auto=format&fit=crop&q=60');
   background-size: cover;
   background-position: center 30%;
   color: var(--ngf-white);
@@ -545,5 +545,12 @@
 @media (max-width: 768px) {
   .contact-hero-bg-overlay {
     background: rgba(var(--ngf-ink-rgb), 0.85);
+  }
+}
+
+/* Phones get a smaller copy of the hero photo (it sits under a dark overlay). */
+@media (max-width: 767px) {
+  .ngf-contact-hero {
+    background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&auto=format&fit=crop&q=60');
   }
 }

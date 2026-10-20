@@ -14,7 +14,7 @@
     url('/images/site/quote-result-hero-1600.jpg');
   background-image:
     linear-gradient(135deg, rgba(15, 23, 42, 0.93) 0%, rgba(30, 41, 59, 0.88) 100%),
-    image-set(url('/images/site/quote-result-hero-1600.webp') type('image/webp'), url('/images/site/quote-result-hero-1600.jpg') type('image/jpeg'));
+    image-set(url('/images/site/quote-result-hero-1600.avif') type('image/avif'), url('/images/site/quote-result-hero-1600.webp') type('image/webp'), url('/images/site/quote-result-hero-1600.jpg') type('image/jpeg'));
   background-size: cover;
   background-position: center;
   color: #ffffff;
@@ -29,7 +29,7 @@
       url('/images/site/quote-result-hero-1024.jpg');
     background-image:
       linear-gradient(135deg, rgba(15, 23, 42, 0.93) 0%, rgba(30, 41, 59, 0.88) 100%),
-      image-set(url('/images/site/quote-result-hero-1024.webp') type('image/webp'), url('/images/site/quote-result-hero-1024.jpg') type('image/jpeg'));
+      image-set(url('/images/site/quote-result-hero-1024.avif') type('image/avif'), url('/images/site/quote-result-hero-1024.webp') type('image/webp'), url('/images/site/quote-result-hero-1024.jpg') type('image/jpeg'));
   }
 }
 

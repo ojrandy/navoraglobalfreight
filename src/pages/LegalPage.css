@@ -17,7 +17,7 @@
    ============================================================ */
 .ngf-legal-hero {
   position: relative;
-  background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&auto=format&fit=crop&q=85');
+  background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&auto=format&fit=crop&q=60');
   background-size: cover;
   background-position: center 30%;
   color: var(--ngf-white);
@@ -287,5 +287,12 @@
   .legal-hero-pill {
     font-size: 0.6875rem;
     padding: 0.25rem 0.625rem;
+  }
+}
+
+/* Phones get a smaller copy of the hero photo (it sits under a dark overlay). */
+@media (max-width: 767px) {
+  .ngf-legal-hero {
+    background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&auto=format&fit=crop&q=60');
   }
 }

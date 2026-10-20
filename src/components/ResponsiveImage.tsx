@@ -18,7 +18,7 @@ interface ResponsiveImageProps {
 
 const MOBILE_QUERY = '(max-width: 767px)';
 
-function srcSet(name: SiteImageName, ext: 'webp' | 'jpg'): string {
+function srcSet(name: SiteImageName, ext: 'avif' | 'webp' | 'jpg'): string {
   return SITE_IMAGES[name].widths.map(w => `/images/site/${name}-${w}.${ext} ${w}w`).join(', ');
 }
 
@@ -28,7 +28,7 @@ function largest(name: SiteImageName): number {
 }
 
 /**
- * <picture> with WebP + JPG fallbacks at every generated width. Explicit width/height come from
+ * <picture> with AVIF, then WebP, then JPG at every generated width. Explicit width/height come from
  * the manifest so the browser reserves the right space before the image loads (no layout shift).
  */
 export const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
@@ -48,10 +48,12 @@ export const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
     <picture className={`ngf-responsive-picture ${className}`.trim()}>
       {mobileName && (
         <>
+          <source media={MOBILE_QUERY} type="image/avif" srcSet={srcSet(mobileName, 'avif')} sizes={sizes} />
           <source media={MOBILE_QUERY} type="image/webp" srcSet={srcSet(mobileName, 'webp')} sizes={sizes} />
           <source media={MOBILE_QUERY} type="image/jpeg" srcSet={srcSet(mobileName, 'jpg')} sizes={sizes} />
         </>
       )}
+      <source type="image/avif" srcSet={srcSet(name, 'avif')} sizes={sizes} />
       <source type="image/webp" srcSet={srcSet(name, 'webp')} sizes={sizes} />
       <img
         className={`ngf-responsive-image ${imgClassName}`.trim()}

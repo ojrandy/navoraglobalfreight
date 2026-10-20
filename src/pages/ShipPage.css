@@ -20,7 +20,7 @@
   background-color: var(--ngf-ink-950);
   /* Slot ship-hero from scripts/optimize-images.mjs: 1600 here, 1024 on phones. */
   background-image: url('/images/site/ship-hero-1600.jpg');
-  background-image: image-set(url('/images/site/ship-hero-1600.webp') type('image/webp'), url('/images/site/ship-hero-1600.jpg') type('image/jpeg'));
+  background-image: image-set(url('/images/site/ship-hero-1600.avif') type('image/avif'), url('/images/site/ship-hero-1600.webp') type('image/webp'), url('/images/site/ship-hero-1600.jpg') type('image/jpeg'));
   background-size: cover;
   background-position: center 40%;
   color: var(--ngf-white);
@@ -31,7 +31,7 @@
 @media (max-width: 767px) {
   .ngf-ship-hero {
     background-image: url('/images/site/ship-hero-1024.jpg');
-    background-image: image-set(url('/images/site/ship-hero-1024.webp') type('image/webp'), url('/images/site/ship-hero-1024.jpg') type('image/jpeg'));
+    background-image: image-set(url('/images/site/ship-hero-1024.avif') type('image/avif'), url('/images/site/ship-hero-1024.webp') type('image/webp'), url('/images/site/ship-hero-1024.jpg') type('image/jpeg'));
   }
 }
 

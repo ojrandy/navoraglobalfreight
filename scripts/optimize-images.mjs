@@ -4,7 +4,9 @@
 // Run with: node scripts/optimize-images.mjs            (everything)
 //           node scripts/optimize-images.mjs --brand    (logos, mark, icons and OG image only)
 //           node scripts/optimize-images.mjs --icons    (favicon and app icons only)
-// Outputs: Public/brand/* (logo, logo-white, mark, icons, OG image) and Public/images/site/* (WebP + JPG per width),
+//           node scripts/optimize-images.mjs --recompress  (photos only; see RECOMPRESS below)
+// Outputs: Public/brand/* (logo, logo-white, mark, icons, OG image) and Public/images/site/* (AVIF + WebP + JPG
+// per width),
 // plus src/data/siteImages.ts (the manifest <ResponsiveImage> reads).
 import sharp from 'sharp';
 import fs from 'node:fs';
@@ -17,6 +19,19 @@ const PHOTO_OUT = path.join(ROOT, 'Public', 'images', 'site');
 const MANIFEST_OUT = path.join(ROOT, 'src', 'data', 'siteImages.ts');
 
 const STEP_WIDTHS = [640, 1024, 1600, 2400];
+
+// Encoder settings, tuned for page weight: every photo sits in a hero under a dark overlay or in a
+// card, where these levels show no visible loss. AVIF is roughly half the size of WebP for the same
+// look; browsers without AVIF take the WebP, then the JPG.
+const DEFAULT_QUALITY = { avif: 50, webp: 66, jpeg: 70 };
+// Grainy or rippled photos (night sky, open sea) compress poorly, so they go lower still.
+const LOW_QUALITY = { avif: 42, webp: 56, jpeg: 62 };
+
+// --recompress re-encodes the photos from the largest file already in Public/images/site when an
+// original is not in images/ (originals are kept out of git). Prefer the originals when you have
+// them: every recompress pass is another lossy encode.
+const RECOMPRESS = process.argv.includes('--recompress');
+const RESUME = process.argv.includes('--resume');
 // Every card/tile photo is cropped to this exact square so rows line up at the same height.
 // 340 px is the base size (the smallest card source when the cards were set up); larger squares follow.
 const CARD_SIZE = 340;
@@ -212,23 +227,23 @@ async function buildBrand() {
 const PHOTOS = [
   // Long-exposure night sky: grain compresses poorly and the photo sits under a dark overlay, so
   // both hero slots use a lower quality (the LCP image on Home).
-  { name: 'hero-home', src: 'home-2026/hero-home.jpg', kind: 'hero', aspect: 16 / 9, quality: { webp: 70, jpeg: 74 } },
+  { name: 'hero-home', src: 'home-2026/hero-home.jpg', kind: 'hero', aspect: 16 / 9, quality: LOW_QUALITY },
   // Phones only (below 768px): 1290 px covers a 430 px-wide screen at 3x, so larger portrait files are never needed.
   // Same photo as the desktop hero; the 9:16 centre crop keeps all four cranes.
-  { name: 'hero-home-mobile', src: 'home-2026/hero-home.jpg', kind: 'hero', aspect: 9 / 16, maxWidth: 1290, quality: { webp: 70, jpeg: 74 } },
+  { name: 'hero-home-mobile', src: 'home-2026/hero-home.jpg', kind: 'hero', aspect: 9 / 16, maxWidth: 1290, quality: LOW_QUALITY },
   { name: 'track-hero', src: 'free-stock/track-hero.jpg', kind: 'hero', aspect: 2 / 1 },
   { name: 'locations-hero', src: 'free-stock/locations-hero.jpg', kind: 'hero', aspect: 2 / 1 },
   // Wide strip behind the Home callback banner.
   // Sunlit open sea compresses poorly; it sits under a dark overlay, so a light blur and lower quality
   // keep the file small without a visible loss.
-  { name: 'callback-banner', src: 'home-2026/callback-banner.jpg', kind: 'hero', aspect: 3 / 1, blur: 0.6, quality: { webp: 66, jpeg: 70 } },
+  { name: 'callback-banner', src: 'home-2026/callback-banner.jpg', kind: 'hero', aspect: 3 / 1, blur: 0.6, quality: LOW_QUALITY },
   { name: 'services-hero', src: 'free-stock/services-hero.jpg', kind: 'hero', aspect: 12 / 5 },
   { name: 'about-hero', src: 'free-stock/about-hero.jpg', kind: 'hero', aspect: 12 / 5 },
   // About has its own photos so nothing on that page repeats another page's image.
   { name: 'about-compliance', src: 'free-stock/about-compliance.jpg', kind: 'hero', aspect: 3 / 1 },
   // CSS background heroes (ShipPage.css, PublicQuoteResultPage.css) reference the 1024 and 1600 widths.
-  // Rippled sea compresses poorly; it sits under a dark overlay, so lower quality keeps 1600w under 250 KB.
-  { name: 'ship-hero', src: 'free-stock/ship-hero.jpg', kind: 'hero', aspect: 16 / 9, quality: { webp: 66, jpeg: 70 } },
+  // Rippled sea compresses poorly; it sits under a dark overlay, so it takes the lower quality.
+  { name: 'ship-hero', src: 'free-stock/ship-hero.jpg', kind: 'hero', aspect: 16 / 9, quality: LOW_QUALITY },
   { name: 'quote-result-hero', src: 'free-stock/quote-result-hero.jpg', kind: 'hero', aspect: 16 / 9 },
   { name: 'service-priority-express', src: 'home-2026/service-priority-express.jpg', kind: 'card' },
   { name: 'service-freight-linehaul', src: 'home-2026/service-freight-linehaul.jpg', kind: 'card' },
@@ -255,25 +270,55 @@ const PHOTOS = [
 // `position` picks which part of the source a cover crop keeps (sharp: 'centre', 'top', 'bottom', ...).
 // `quality` overrides the encoder quality for photos that would otherwise exceed the size budget.
 // `blur` (sigma, applied after resizing) softens fine texture that would otherwise bloat the file.
-async function writeVariants(pipelineFactory, name, width, height, position = 'centre', quality = { webp: 78, jpeg: 80 }, blur = 0) {
+async function writeVariants(pipelineFactory, name, width, height, position = 'centre', quality = DEFAULT_QUALITY, blur = 0) {
   const base = path.join(PHOTO_OUT, `${name}-${width}`);
+  // --resume skips a variant an interrupted run already finished (the JPG is written last).
+  if (RESUME && fs.existsSync(`${base}.avif`) && fs.existsSync(`${base}.jpg`)
+    && fs.statSync(`${base}.jpg`).mtimeMs >= fs.statSync(`${base}.avif`).mtimeMs) return;
   const sized = () => {
     const p = pipelineFactory().resize(width, height, { fit: 'cover', position });
     return blur ? p.blur(blur) : p;
   };
-  await sized().webp({ quality: quality.webp }).toFile(`${base}.webp`);
+  await sized().avif({ quality: quality.avif, effort: 4, chromaSubsampling: '4:2:0' }).toFile(`${base}.avif`);
+  await sized().webp({ quality: quality.webp, effort: 6, smartSubsample: true }).toFile(`${base}.webp`);
   await sized().flatten({ background: '#ffffff' })
     .jpeg({ quality: quality.jpeg, mozjpeg: true, progressive: true }).toFile(`${base}.jpg`);
 }
 
+// The largest published JPG of a photo, read into memory because writing the variants overwrites it.
+function publishedSource(name) {
+  const widths = fs.readdirSync(PHOTO_OUT)
+    .map(f => f.match(new RegExp(`^${name}-(\\d+)\\.jpg$`)))
+    .filter(Boolean)
+    .map(m => Number(m[1]));
+  if (!widths.length) throw new Error(`No original or published image for ${name}`);
+  return fs.readFileSync(path.join(PHOTO_OUT, `${name}-${Math.max(...widths)}.jpg`));
+}
+
 async function buildPhotos() {
   const manifest = {};
-  for (const p of PHOTOS) {
+  // A few photos at a time: AVIF encoding is slow and only partly multi-threaded.
+  const queue = [...PHOTOS];
+  const worker = async () => {
+    for (let p = queue.shift(); p; p = queue.shift()) await buildPhoto(p, manifest);
+  };
+  await Promise.all(Array.from({ length: 4 }, worker));
+  // Keep the manifest in PHOTOS order whatever order the workers finished in.
+  return Object.fromEntries(PHOTOS.map(p => [p.name, manifest[p.name]]));
+}
+
+async function buildPhoto(p, manifest) {
+  {
     const srcPath = path.join(SRC, p.src);
-    const factory = () => (p.crop ? sharp(srcPath).extract(p.crop) : sharp(srcPath));
+    const quality = p.quality ?? DEFAULT_QUALITY;
+    // A published file is already cropped, so `crop` applies to the original only.
+    const fromPublished = RECOMPRESS && !fs.existsSync(srcPath);
+    const input = fromPublished ? publishedSource(p.name) : srcPath;
+    const crop = fromPublished ? undefined : p.crop;
+    const factory = () => (crop ? sharp(input).extract(crop) : sharp(input));
     const meta = await factory().metadata();
-    const srcW = p.crop ? p.crop.width : meta.width;
-    const srcH = p.crop ? p.crop.height : meta.height;
+    const srcW = crop ? crop.width : meta.width;
+    const srcH = crop ? crop.height : meta.height;
     const variants = [];
 
     if (p.kind === 'card') {
@@ -283,25 +328,25 @@ async function buildPhotos() {
       const base = Math.min(CARD_SIZE, maxSquare);
       const sizes = [base, ...CARD_STEP_SIZES.filter(s => s <= maxSquare)];
       for (const s of sizes) {
-        await writeVariants(factory, p.name, s, s, p.position);
+        await writeVariants(factory, p.name, s, s, p.position, quality);
         variants.push(s);
       }
       manifest[p.name] = { width: base, height: base, widths: variants };
     } else {
       // Largest crop of the requested aspect that fits the source, served at no more than the
       // largest step width (UHD originals are source files only), then the step widths below it.
-      const cropW = Math.min(srcW, Math.floor(srcH * p.aspect));
+      // Rounded, so a published 1290x2293 file reads back as 1290 wide rather than 1289.
+      const cropW = Math.min(srcW, Math.round(srcH * p.aspect));
       const maxW = Math.min(cropW, p.maxWidth ?? STEP_WIDTHS[STEP_WIDTHS.length - 1]);
       const widths = STEP_WIDTHS.filter(w => w <= maxW);
       if (!widths.includes(maxW) && (widths.length === 0 || maxW - widths[widths.length - 1] > 200)) widths.push(maxW);
       for (const w of widths) {
-        await writeVariants(factory, p.name, w, Math.round(w / p.aspect), p.position, p.quality, p.blur);
+        await writeVariants(factory, p.name, w, Math.round(w / p.aspect), p.position, quality, p.blur);
         variants.push(w);
       }
       manifest[p.name] = { width: maxW, height: Math.round(maxW / p.aspect), widths: variants };
     }
   }
-  return manifest;
 }
 
 function writeManifest(manifest) {
@@ -309,7 +354,7 @@ function writeManifest(manifest) {
     .map(([k, v]) => `  '${k}': { width: ${v.width}, height: ${v.height}, widths: [${v.widths.join(', ')}] },`)
     .join('\n');
   const ts = `// Generated by scripts/optimize-images.mjs. Do not edit by hand; re-run the script instead.
-// Each entry lists the widths available as /images/site/<name>-<width>.webp and .jpg.
+// Each entry lists the widths available as /images/site/<name>-<width>.avif, .webp and .jpg.
 export interface SiteImageInfo {
   width: number;
   height: number;
@@ -329,6 +374,10 @@ export type SiteImageName = keyof typeof SITE_IMAGES;
 if (process.argv.includes('--icons')) {
   await buildIcons(await buildSquareMark(await whiteToAlpha(path.join(SRC, LOGO_SRC))));
   console.log('Icons done.');
+} else if (RECOMPRESS) {
+  // Photos only: the brand assets need the logo original.
+  writeManifest(await buildPhotos());
+  console.log('Photos recompressed.');
 } else if (process.argv.includes('--brand')) {
   // --brand rebuilds logos, mark, icons and the OG image, leaving the photos untouched.
   await buildBrand();

@@ -19,7 +19,7 @@
   background-image:
     radial-gradient(ellipse at center, rgba(10, 12, 16, 0.35) 0%, rgba(10, 12, 16, 0.82) 75%),
     linear-gradient(180deg, rgba(10, 12, 16, 0.55) 0%, rgba(10, 12, 16, 0.25) 45%, rgba(10, 12, 16, 0.7) 100%),
-    image-set(url('/images/site/locations-hero-1600.webp') type('image/webp'), url('/images/site/locations-hero-1600.jpg') type('image/jpeg'));
+    image-set(url('/images/site/locations-hero-1600.avif') type('image/avif'), url('/images/site/locations-hero-1600.webp') type('image/webp'), url('/images/site/locations-hero-1600.jpg') type('image/jpeg'));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -166,7 +166,7 @@
     background-image:
       radial-gradient(ellipse at center, rgba(10, 12, 16, 0.35) 0%, rgba(10, 12, 16, 0.82) 75%),
       linear-gradient(180deg, rgba(10, 12, 16, 0.55) 0%, rgba(10, 12, 16, 0.25) 45%, rgba(10, 12, 16, 0.7) 100%),
-      image-set(url('/images/site/locations-hero-1024.webp') type('image/webp'), url('/images/site/locations-hero-1024.jpg') type('image/jpeg'));
+      image-set(url('/images/site/locations-hero-1024.avif') type('image/avif'), url('/images/site/locations-hero-1024.webp') type('image/webp'), url('/images/site/locations-hero-1024.jpg') type('image/jpeg'));
   }
 }
 
@@ -175,6 +175,6 @@
     background-image:
       radial-gradient(ellipse at center, rgba(10, 12, 16, 0.35) 0%, rgba(10, 12, 16, 0.82) 75%),
       linear-gradient(180deg, rgba(10, 12, 16, 0.55) 0%, rgba(10, 12, 16, 0.25) 45%, rgba(10, 12, 16, 0.7) 100%),
-      image-set(url('/images/site/locations-hero-2400.webp') type('image/webp'), url('/images/site/locations-hero-2400.jpg') type('image/jpeg'));
+      image-set(url('/images/site/locations-hero-2400.avif') type('image/avif'), url('/images/site/locations-hero-2400.webp') type('image/webp'), url('/images/site/locations-hero-2400.jpg') type('image/jpeg'));
   }
 }
