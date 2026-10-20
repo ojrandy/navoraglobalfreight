@@ -2,17 +2,6 @@ import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
-import { TrackPage } from './pages/TrackPage';
-import { TrackResultPage } from './pages/TrackResultPage';
-import { PublicQuoteResultPage } from './pages/PublicQuoteResultPage';
-import { ServicesPage } from './pages/ServicesPage';
-import { QuotePage } from './pages/QuotePage';
-import { ShipPage } from './pages/ShipPage';
-import { AboutPage } from './pages/AboutPage';
-import { ContactPage } from './pages/ContactPage';
-import { HelpPage } from './pages/HelpPage';
-import { LegalPage } from './pages/LegalPage';
-import { LocationsPage } from './pages/LocationsPage';
 // The admin console's code is its own chunk, fetched only when the admin page opens, so public
 // visitors never download it (MOTION_3D_SPEC §2). Its stylesheets stay in the main bundle, in
 // their original place (see admin/styles.ts); that also keeps the `admin-login-shell`
@@ -32,6 +21,41 @@ const loadAdminApp = () => import('./admin/AdminApp');
 const loadAdminLogin = () => import('./admin/AdminLogin');
 const AdminApp = lazy(() => loadAdminApp().then((m) => ({ default: m.AdminApp })));
 const AdminLogin = lazy(() => loadAdminLogin().then((m) => ({ default: m.AdminLogin })));
+
+// Public pages other than Home are their own chunks too, so the first visit downloads only the
+// page that is open (Home stays in the main bundle: it is the landing page and holds the hero).
+// Once the page has loaded, the rest are fetched in idle time so later navigation stays instant.
+const PAGE_LOADERS = {
+  TrackPage: () => import('./pages/TrackPage'),
+  TrackResultPage: () => import('./pages/TrackResultPage'),
+  PublicQuoteResultPage: () => import('./pages/PublicQuoteResultPage'),
+  ServicesPage: () => import('./pages/ServicesPage'),
+  QuotePage: () => import('./pages/QuotePage'),
+  ShipPage: () => import('./pages/ShipPage'),
+  AboutPage: () => import('./pages/AboutPage'),
+  ContactPage: () => import('./pages/ContactPage'),
+  HelpPage: () => import('./pages/HelpPage'),
+  LegalPage: () => import('./pages/LegalPage'),
+  LocationsPage: () => import('./pages/LocationsPage'),
+};
+const TrackPage = lazy(() => PAGE_LOADERS.TrackPage().then((m) => ({ default: m.TrackPage })));
+const TrackResultPage = lazy(() => PAGE_LOADERS.TrackResultPage().then((m) => ({ default: m.TrackResultPage })));
+const PublicQuoteResultPage = lazy(() => PAGE_LOADERS.PublicQuoteResultPage().then((m) => ({ default: m.PublicQuoteResultPage })));
+const ServicesPage = lazy(() => PAGE_LOADERS.ServicesPage().then((m) => ({ default: m.ServicesPage })));
+const QuotePage = lazy(() => PAGE_LOADERS.QuotePage().then((m) => ({ default: m.QuotePage })));
+const ShipPage = lazy(() => PAGE_LOADERS.ShipPage().then((m) => ({ default: m.ShipPage })));
+const AboutPage = lazy(() => PAGE_LOADERS.AboutPage().then((m) => ({ default: m.AboutPage })));
+const ContactPage = lazy(() => PAGE_LOADERS.ContactPage().then((m) => ({ default: m.ContactPage })));
+const HelpPage = lazy(() => PAGE_LOADERS.HelpPage().then((m) => ({ default: m.HelpPage })));
+const LegalPage = lazy(() => PAGE_LOADERS.LegalPage().then((m) => ({ default: m.LegalPage })));
+const LocationsPage = lazy(() => PAGE_LOADERS.LocationsPage().then((m) => ({ default: m.LocationsPage })));
+
+function prefetchPublicPages() {
+  const run = () => Object.values(PAGE_LOADERS).forEach((load) => load().catch(() => {}));
+  const idle = (window as Window & { requestIdleCallback?: (cb: () => void) => void }).requestIdleCallback;
+  if (idle) idle(run);
+  else setTimeout(run, 2000);
+}
 
 const KNOWN_PAGES = ['home', 'track', 'services', 'quote', 'ship', 'about', 'help', 'contact', 'legal', 'locations', 'admin'];
 
@@ -194,6 +218,13 @@ function MainAppContent() {
   useEffect(() => {
     setLiveChatVisible(currentPage !== 'admin' && !isAdminHost());
   }, [currentPage]);
+
+  // Warm the other public pages after the first one has fully loaded (never on the admin host).
+  useEffect(() => {
+    if (isAdminHost()) return;
+    if (document.readyState === 'complete') prefetchPublicPages();
+    else window.addEventListener('load', prefetchPublicPages, { once: true });
+  }, []);
 
   // Initialize from hash if available
   useEffect(() => {
@@ -440,7 +471,8 @@ function MainAppContent() {
         {isTrackSearching ? (
           <TrackingLoadingScreen query={trackSearchQuery} />
         ) : (
-          <>
+          // Full-height placeholder while a page chunk loads, so the footer doesn't jump up.
+          <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
         {currentPage === 'home' && (
           <HomePage
             onTrack={handleTrackShipment}
@@ -503,7 +535,7 @@ function MainAppContent() {
         {currentPage === 'locations' && (
           <LocationsPage onNavigate={handleNavigate} />
         )}
-          </>
+          </Suspense>
         )}
       </main>
 
