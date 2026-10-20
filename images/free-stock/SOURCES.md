@@ -29,3 +29,5 @@ Each photo was checked at full size for readable company names, logos or livery 
 | industry-ecommerce.jpg | industry-ecommerce | 5283×3522 | https://www.pexels.com/photo/parcels-inside-a-delivery-van-6170458/ | Tima Miroshnichenko | Pexels License | 2026-10-02 |
 | ship-hero.jpg | ship-hero (Ship page hero) | 4000×3000 | https://www.pexels.com/photo/aerial-view-of-cargo-ship-at-sea-during-twilight-30710216/ | Aleksandr Sochnev | Pexels License | 2026-10-02 |
 | quote-result-hero.jpg | quote-result-hero (Quote result hero) | 4608×3072 | https://www.pexels.com/photo/long-exposure-photography-of-road-at-night-1699588/ | Mian Rizwan | Pexels License | 2026-10-02 |
+
+**2026-10-20:** `hero-home.jpg`, `hero-home-mobile.jpg`, `callback-banner.jpg`, `service-priority-express.jpg` and `service-freight-linehaul.jpg` are no longer used; the Home page now uses the photos in `images/home-2026/`. The `industry-*` photos are still used on the Services page.

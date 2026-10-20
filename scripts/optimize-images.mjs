@@ -207,15 +207,21 @@ async function buildBrand() {
 // kind 'card' = fixed CARD_SIZE square (plus 640 when the source allows it).
 // kind 'hero' = keeps the given aspect ratio, widths from STEP_WIDTHS up to the source width (or `maxWidth`).
 // free-stock/* are full-resolution Pexels originals (see images/free-stock/SOURCES.md); each hero
-// slot has its own photo. Outputs stay capped at STEP_WIDTHS / CARD_STEP_SIZES.
+// slot has its own photo. home-2026/* are the Home page photos (see images/home-2026/SOURCES.md).
+// Outputs stay capped at STEP_WIDTHS / CARD_STEP_SIZES.
 const PHOTOS = [
-  { name: 'hero-home', src: 'free-stock/hero-home.jpg', kind: 'hero', aspect: 16 / 9 },
+  // Long-exposure night sky: grain compresses poorly and the photo sits under a dark overlay, so
+  // both hero slots use a lower quality (the LCP image on Home).
+  { name: 'hero-home', src: 'home-2026/hero-home.jpg', kind: 'hero', aspect: 16 / 9, quality: { webp: 70, jpeg: 74 } },
   // Phones only (below 768px): 1290 px covers a 430 px-wide screen at 3x, so larger portrait files are never needed.
-  { name: 'hero-home-mobile', src: 'free-stock/hero-home-mobile.jpg', kind: 'hero', aspect: 9 / 16, maxWidth: 1290 },
+  // Same photo as the desktop hero; the 9:16 centre crop keeps all four cranes.
+  { name: 'hero-home-mobile', src: 'home-2026/hero-home.jpg', kind: 'hero', aspect: 9 / 16, maxWidth: 1290, quality: { webp: 70, jpeg: 74 } },
   { name: 'track-hero', src: 'free-stock/track-hero.jpg', kind: 'hero', aspect: 2 / 1 },
   { name: 'locations-hero', src: 'free-stock/locations-hero.jpg', kind: 'hero', aspect: 2 / 1 },
   // Wide strip behind the Home callback banner.
-  { name: 'callback-banner', src: 'free-stock/callback-banner.jpg', kind: 'hero', aspect: 3 / 1 },
+  // Sunlit open sea compresses poorly; it sits under a dark overlay, so a light blur and lower quality
+  // keep the file small without a visible loss.
+  { name: 'callback-banner', src: 'home-2026/callback-banner.jpg', kind: 'hero', aspect: 3 / 1, blur: 0.6, quality: { webp: 66, jpeg: 70 } },
   { name: 'services-hero', src: 'free-stock/services-hero.jpg', kind: 'hero', aspect: 12 / 5 },
   { name: 'about-hero', src: 'free-stock/about-hero.jpg', kind: 'hero', aspect: 12 / 5 },
   // About has its own photos so nothing on that page repeats another page's image.
@@ -224,28 +230,39 @@ const PHOTOS = [
   // Rippled sea compresses poorly; it sits under a dark overlay, so lower quality keeps 1600w under 250 KB.
   { name: 'ship-hero', src: 'free-stock/ship-hero.jpg', kind: 'hero', aspect: 16 / 9, quality: { webp: 66, jpeg: 70 } },
   { name: 'quote-result-hero', src: 'free-stock/quote-result-hero.jpg', kind: 'hero', aspect: 16 / 9 },
-  { name: 'service-priority-express', src: 'free-stock/service-priority-express.jpg', kind: 'card' },
-  { name: 'service-freight-linehaul', src: 'free-stock/service-freight-linehaul.jpg', kind: 'card' },
-  { name: 'service-vehicle-transport', src: 'free-cc0/service-vehicle-transport.webp', kind: 'card' },
-  { name: 'service-secure-vault', src: 'free-cc0/service-secure-vault.webp', kind: 'card' },
+  { name: 'service-priority-express', src: 'home-2026/service-priority-express.jpg', kind: 'card' },
+  { name: 'service-freight-linehaul', src: 'home-2026/service-freight-linehaul.jpg', kind: 'card' },
+  { name: 'service-vehicle-transport', src: 'home-2026/service-vehicle-transport.jpg', kind: 'card' },
+  { name: 'service-secure-vault', src: 'home-2026/service-secure-vault.jpg', kind: 'card' },
   { name: 'industry-healthcare', src: 'free-stock/industry-healthcare.jpg', kind: 'card' },
   { name: 'industry-technology', src: 'free-cc0/industry-technology.webp', kind: 'card' },
   { name: 'industry-automotive', src: 'free-stock/industry-automotive.jpg', kind: 'card' },
   { name: 'industry-ecommerce', src: 'free-stock/industry-ecommerce.jpg', kind: 'card' },
+  // Home "Industries" tabs have their own photos; the industry-* slots above stay on the Services page.
+  { name: 'home-industry-automotive', src: 'home-2026/home-industry-automotive.jpg', kind: 'card' },
+  { name: 'home-industry-healthcare', src: 'home-2026/home-industry-healthcare.jpg', kind: 'card' },
+  // Keep the left of the frame so both the courier and the customer stay in the square.
+  { name: 'home-industry-ecommerce', src: 'home-2026/home-industry-ecommerce.jpg', kind: 'card', position: 'left' },
+  { name: 'home-industry-technology', src: 'home-2026/home-industry-technology.jpg', kind: 'card' },
   { name: 'track-result-vehicle', src: 'free-stock/track-result-vehicle.jpg', kind: 'card' },
-  { name: 'about-operations', src: 'free-pexels/about-operations.jpg', kind: 'card' },
+  { name: 'about-operations', src: 'home-2026/about-operations.jpg', kind: 'card' },
   { name: 'about-story', src: 'free-stock/about-story.jpg', kind: 'card' },
   { name: 'contact-team', src: 'free-stock/contact-team.jpg', kind: 'card' },
   // Shown as a 72 px thumbnail: crop tight on the face.
-  { name: 'about-team', src: 'free-pexels/about-team.jpg', kind: 'card', crop: { left: 950, top: 80, width: 900, height: 900 } },
+  { name: 'about-team', src: 'home-2026/about-team.jpg', kind: 'card', crop: { left: 1800, top: 950, width: 1700, height: 1700 } },
 ];
 
 // `position` picks which part of the source a cover crop keeps (sharp: 'centre', 'top', 'bottom', ...).
 // `quality` overrides the encoder quality for photos that would otherwise exceed the size budget.
-async function writeVariants(pipelineFactory, name, width, height, position = 'centre', quality = { webp: 78, jpeg: 80 }) {
+// `blur` (sigma, applied after resizing) softens fine texture that would otherwise bloat the file.
+async function writeVariants(pipelineFactory, name, width, height, position = 'centre', quality = { webp: 78, jpeg: 80 }, blur = 0) {
   const base = path.join(PHOTO_OUT, `${name}-${width}`);
-  await pipelineFactory().resize(width, height, { fit: 'cover', position }).webp({ quality: quality.webp }).toFile(`${base}.webp`);
-  await pipelineFactory().resize(width, height, { fit: 'cover', position }).flatten({ background: '#ffffff' })
+  const sized = () => {
+    const p = pipelineFactory().resize(width, height, { fit: 'cover', position });
+    return blur ? p.blur(blur) : p;
+  };
+  await sized().webp({ quality: quality.webp }).toFile(`${base}.webp`);
+  await sized().flatten({ background: '#ffffff' })
     .jpeg({ quality: quality.jpeg, mozjpeg: true, progressive: true }).toFile(`${base}.jpg`);
 }
 
@@ -266,7 +283,7 @@ async function buildPhotos() {
       const base = Math.min(CARD_SIZE, maxSquare);
       const sizes = [base, ...CARD_STEP_SIZES.filter(s => s <= maxSquare)];
       for (const s of sizes) {
-        await writeVariants(factory, p.name, s, s);
+        await writeVariants(factory, p.name, s, s, p.position);
         variants.push(s);
       }
       manifest[p.name] = { width: base, height: base, widths: variants };
@@ -278,7 +295,7 @@ async function buildPhotos() {
       const widths = STEP_WIDTHS.filter(w => w <= maxW);
       if (!widths.includes(maxW) && (widths.length === 0 || maxW - widths[widths.length - 1] > 200)) widths.push(maxW);
       for (const w of widths) {
-        await writeVariants(factory, p.name, w, Math.round(w / p.aspect), p.position, p.quality);
+        await writeVariants(factory, p.name, w, Math.round(w / p.aspect), p.position, p.quality, p.blur);
         variants.push(w);
       }
       manifest[p.name] = { width: maxW, height: Math.round(maxW / p.aspect), widths: variants };

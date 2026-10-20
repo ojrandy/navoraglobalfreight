@@ -548,30 +548,34 @@ Presented as "gateways we serve". Don't describe them as Navora-owned facilities
 - *Added 2026-09-29 with 3.12 (owner to confirm):* the Document Center also produces three types not named above, titled `Shipping Label`, `Shipment Receipt` and `Certificate of Cargo Insurance`. Charge lines: `Transport` · `Oversize handling` · `Special handling`, totals `TOTAL DUE` / `TOTAL PAID`. Insurance certificate text: `The cargo described below is insured by {insurer} under policy {policy no.}, subject to that policy's terms, conditions and exclusions.` and claims line `Tell Navora about any loss or damage within 7 days of delivery, quoting the tracking ID above, with photos and proof of value.` (7 days: same [confirm] as Help §8.2). **Proof of Delivery** and **Security Seal Record** have no document type yet (see tracker Blocked).
 
 ## 12. Image alt text
-Approved 2026-09-26; photos replaced with free stock 2026-10-02 (sources and photographers in `images/free-stock/SOURCES.md`). Files are generated into `Public/images/site/` by `scripts/optimize-images.mjs`.
+Approved 2026-09-26; photos replaced with free stock 2026-10-02 (sources and photographers in `images/free-stock/SOURCES.md`). Home page photos replaced 2026-10-20 (`images/home-2026/SOURCES.md`). Files are generated into `Public/images/site/` by `scripts/optimize-images.mjs`.
 No photo shows the Navora name or any other company's branding, so the alt text describes only what is in the picture. Each page uses its own photos (Track Result reuses the Track header photo on purpose).
 
 | Image (slot) | Source | Alt |
 |---|---|---|
-| hero-home / hero-home-mobile | images/free-stock/hero-home.jpg, hero-home-mobile.jpg | Container cranes silhouetted against the setting sun at a seaport |
-| callback-banner | images/free-stock/callback-banner.jpg (3:1 crop) | (decorative background behind the Home callback form, empty alt) |
+| hero-home / hero-home-mobile | images/home-2026/hero-home.jpg (16:9 and 9:16 crops) | Container gantry cranes at a floodlit port terminal at night, reflected in the water |
+| callback-banner | images/home-2026/callback-banner.jpg (3:1 crop) | (decorative background behind the Home callback form, empty alt) |
 | services-hero | images/free-stock/services-hero.jpg (12:5) | Aircraft silhouetted against an orange sunset sky after take-off |
 | about-hero | images/free-stock/about-hero.jpg (12:5) | Dock worker with a radio watching a cargo ship being loaded at sunset |
 | about-story | images/free-stock/about-story.jpg | Operations coordinator checking a clipboard between storage racks |
 | about-compliance | images/free-stock/about-compliance.jpg (3:1 crop) | (decorative background behind the About compliance banner, empty alt) |
 | track-hero | images/free-stock/track-hero.jpg (2:1 crop) | Lorry with its headlights on, driving a mountain road at dusk |
 | locations-hero | images/free-stock/locations-hero.jpg | Aerial view of a container ship berthed at a lit port terminal at night |
-| service-priority-express | images/free-stock/service-priority-express.jpg | View from an aircraft cargo door down the loader to the airport apron |
-| service-freight-linehaul | images/free-stock/service-freight-linehaul.jpg | Aerial night view of a container ship being loaded by gantry cranes |
-| service-vehicle-transport | images/free-cc0/service-vehicle-transport.webp | Roll-on/roll-off vehicle carrier ship berthed at a harbour quay |
-| service-secure-vault | images/free-cc0/service-secure-vault.webp | Close-up of the combination lock on a metal security case |
+| service-priority-express | images/home-2026/service-priority-express.jpg | Aircraft taxiing on an airport apron under an orange sunset sky |
+| service-freight-linehaul | images/home-2026/service-freight-linehaul.jpg | Aerial view of a loaded container ship leaving a wake across open water |
+| service-vehicle-transport | images/home-2026/service-vehicle-transport.jpg | Aerial view of rows of new pickup trucks lined up for shipment |
+| service-secure-vault | images/home-2026/service-secure-vault.jpg | Row of steel safes with wheel handles and key locks |
 | industry-healthcare | images/free-stock/industry-healthcare.jpg | Gloved hands holding a sealed vaccine shipment box |
 | industry-technology | images/free-cc0/industry-technology.webp | Server rack with network cables and status lights |
 | industry-automotive | images/free-stock/industry-automotive.jpg | Aerial view of rows of new cars waiting for shipment |
 | industry-ecommerce | images/free-stock/industry-ecommerce.jpg | Parcels stacked inside a delivery van |
+| home-industry-automotive | images/home-2026/home-industry-automotive.jpg (Home only) | Close-up of a drilled brake disc and wheel hub |
+| home-industry-healthcare | images/home-2026/home-industry-healthcare.jpg (Home only) | Rows of sealed glass vials in a laboratory rack |
+| home-industry-ecommerce | images/home-2026/home-industry-ecommerce.jpg (Home only) | Courier handing a parcel to a smiling customer at her front door |
+| home-industry-technology | images/home-2026/home-industry-technology.jpg (Home only) | Close-up of a processor chip on a circuit board |
 | track-result-vehicle | images/free-stock/track-result-vehicle.jpg | Lorry travelling along a highway beneath mountains at dusk |
-| about-operations | images/free-pexels/about-operations.jpg (Home only) | Warehouse staff member checking stock on a tablet between loaded pallet racks |
-| about-team | images/free-pexels/about-team.jpg (cropped) | Smiling support coordinator wearing a headset |
+| about-operations | images/home-2026/about-operations.jpg (Home only) | Overhead view of warehouse staff moving a loaded pallet between racks |
+| about-team | images/home-2026/about-team.jpg (cropped) | Smiling support coordinator wearing a headset |
 | contact-team | images/free-stock/contact-team.jpg | Smiling warehouse team member holding a clipboard beside parcel shelves (slot kept; not placed on a page yet) |
 | ship-hero | images/free-stock/ship-hero.jpg (CSS background, `ShipPage.css`) | (decorative background behind the Ship hero text) |
 | quote-result-hero | images/free-stock/quote-result-hero.jpg (CSS background, `PublicQuoteResultPage.css`) | (decorative background behind the quote result header) |

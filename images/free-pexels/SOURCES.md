@@ -8,3 +8,5 @@ Not allowed: selling unaltered copies, or implying endorsement by the people sho
 |---|---|---|
 | about-operations.jpg | https://www.pexels.com/photo/man-holding-tablet-computer-4484149/ | Tiger Lily |
 | about-team.jpg | https://www.pexels.com/photo/a-woman-smiling-using-headphones-8101312/ | Mikhail Nilov |
+
+**2026-10-20:** `about-operations.jpg` and `about-team.jpg` are no longer used; the Home page now uses the photos in `images/home-2026/`.

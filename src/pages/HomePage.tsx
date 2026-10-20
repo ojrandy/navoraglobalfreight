@@ -54,28 +54,28 @@ const SERVICES: { title: string; body: string; cta: string; image: SiteImageName
     body: 'Time-critical documents and parcels, door to door, with the fastest available routing and customs pre-clearance where possible.',
     cta: 'Explore Express',
     image: 'service-priority-express',
-    alt: 'View from an aircraft cargo door down the loader to the airport apron'
+    alt: 'Aircraft taxiing on an airport apron under an orange sunset sky'
   },
   {
     title: 'Scheduled Freight & Linehaul',
     body: 'Air, ocean (FCL and LCL) and road freight on fixed departures, for regular volumes that need predictable transit times.',
     cta: 'Explore Freight',
     image: 'service-freight-linehaul',
-    alt: 'Aerial night view of a container ship being loaded by gantry cranes'
+    alt: 'Aerial view of a loaded container ship leaving a wake across open water'
   },
   {
     title: 'Vehicle Shipping & Transport',
     body: 'Cars, motorcycles and fleet vehicles moved by container, RoRo or enclosed carrier, with documentation handled end to end.',
     cta: 'Explore Vehicle Shipping',
     image: 'service-vehicle-transport',
-    alt: 'Roll-on/roll-off vehicle carrier ship berthed at a harbour quay'
+    alt: 'Aerial view of rows of new pickup trucks lined up for shipment'
   },
   {
     title: 'Secure Vault & High-Value',
     body: 'Sealed, tamper-evident transport for valuables, sensitive documents, pharmaceuticals and high-value electronics, with restricted hand-offs.',
     cta: 'Explore Secure Vault',
     image: 'service-secure-vault',
-    alt: 'Close-up of the combination lock on a metal security case'
+    alt: 'Row of steel safes with wheel handles and key locks'
   }
 ];
 
@@ -86,8 +86,8 @@ const INDUSTRIES: { id: IndustryTab; icon: React.ReactNode; title: string; body:
     title: 'Automotive & Vehicles',
     body: 'Spare parts, components and complete vehicles, moved to keep production lines and dealerships running.',
     bullets: ['Line-side parts express', 'Vehicle export & import documentation', 'Enclosed and container shipping'],
-    image: 'industry-automotive',
-    alt: 'Aerial view of rows of new cars waiting for shipment'
+    image: 'home-industry-automotive',
+    alt: 'Close-up of a drilled brake disc and wheel hub'
   },
   {
     id: 'medical',
@@ -95,8 +95,8 @@ const INDUSTRIES: { id: IndustryTab; icon: React.ReactNode; title: string; body:
     title: 'Healthcare & Life Sciences',
     body: 'Samples, medical devices and pharmaceuticals handled with care, controlled hand-offs and full traceability.',
     bullets: ['Temperature-sensitive handling (on request)', 'Sealed chain of custody', 'Priority customs lodgement'],
-    image: 'industry-healthcare',
-    alt: 'Gloved hands holding a sealed vaccine shipment box'
+    image: 'home-industry-healthcare',
+    alt: 'Rows of sealed glass vials in a laboratory rack'
   },
   {
     id: 'ecommerce',
@@ -104,8 +104,8 @@ const INDUSTRIES: { id: IndustryTab; icon: React.ReactNode; title: string; body:
     title: 'E-Commerce & Retail',
     body: 'Cross-border parcels, stock replenishment and returns for growing online brands.',
     bullets: ['Multi-piece shipments under one ID', 'Scheduled consolidations', 'Simple returns with linked tracking'],
-    image: 'industry-ecommerce',
-    alt: 'Parcels stacked inside a delivery van'
+    image: 'home-industry-ecommerce',
+    alt: 'Courier handing a parcel to a smiling customer at her front door'
   },
   {
     id: 'tech',
@@ -113,8 +113,8 @@ const INDUSTRIES: { id: IndustryTab; icon: React.ReactNode; title: string; body:
     title: 'Technology & Electronics',
     body: 'High-value hardware and components moved securely, on time and fully insured on request.',
     bullets: ['Secure vault option', 'Anti-static, protected packing guidance', 'Signature-only release'],
-    image: 'industry-technology',
-    alt: 'Server rack with network cables and status lights'
+    image: 'home-industry-technology',
+    alt: 'Close-up of a processor chip on a circuit board'
   }
 ];
 
@@ -255,7 +255,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
         <ResponsiveImage
           name="hero-home"
           mobileName="hero-home-mobile"
-          alt="Container cranes silhouetted against the setting sun at a seaport"
+          alt="Container gantry cranes at a floodlit port terminal at night, reflected in the water"
           eager
           sizes="100vw"
           className="corp-hero-media"
@@ -509,7 +509,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
             <div className="about-main-img-wrapper">
               <ResponsiveImage
                 name="about-operations"
-                alt="Warehouse staff member checking stock on a tablet between loaded pallet racks"
+                alt="Overhead view of warehouse staff moving a loaded pallet between racks"
                 sizes="(max-width: 1024px) 100vw, 45vw"
                 imgClassName="about-main-img"
               />
