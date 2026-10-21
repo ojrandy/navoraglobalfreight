@@ -43,7 +43,7 @@
   flex-shrink: 0;
 }
 
-.ngf-trust-info h4 {
+.ngf-trust-info h3 {
   font-size: 0.9375rem;
   font-weight: 800;
   color: var(--ngf-ink-900);

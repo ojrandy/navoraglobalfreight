@@ -110,7 +110,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <Globe size={24} />
               </div>
               <div className="ngf-trust-info">
-                <h4>Worldwide Coverage</h4>
+                <h3>Worldwide Coverage</h3>
                 <p>Air, ocean and road, connected.</p>
               </div>
             </div>
@@ -120,7 +120,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <Clock size={24} />
               </div>
               <div className="ngf-trust-info">
-                <h4>Live Milestones</h4>
+                <h3>Live Milestones</h3>
                 <p>Every hand-off scanned and time-stamped.</p>
               </div>
             </div>
@@ -130,7 +130,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <Layers size={24} />
               </div>
               <div className="ngf-trust-info">
-                <h4>Piece-Level Labels</h4>
+                <h3>Piece-Level Labels</h3>
                 <p>Every carton individually barcoded.</p>
               </div>
             </div>
@@ -140,7 +140,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <ShieldCheck size={24} />
               </div>
               <div className="ngf-trust-info">
-                <h4>Signed Delivery</h4>
+                <h3>Signed Delivery</h3>
                 <p>Digital proof of delivery on every shipment.</p>
               </div>
             </div>

@@ -754,7 +754,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
               <div key={tile.title} className="trust-pillar-card">
                 <div className="trust-pillar-icon">{tile.icon}</div>
                 <div>
-                  <h4>{tile.title}</h4>
+                  <h3>{tile.title}</h3>
                   <p>{tile.body}</p>
                 </div>
               </div>
