@@ -53,8 +53,8 @@ if (!ADMIN_PROXY_TARGET) {
 
 // Middleware
 // contentSecurityPolicy and crossOriginEmbedderPolicy are off deliberately, not an
-// oversight: this app loads map tiles from ArcGIS, fonts from Google Fonts, and (on the
-// flagship demo shipment) photos from Unsplash — none of those send the response headers a
+// oversight: this app loads map tiles from ArcGIS, a live-chat widget from Smartsupp and some
+// photos from Unsplash — none of those send the response headers a
 // strict CSP/COEP would require, so turning helmet's defaults on as-is would silently break
 // the map and images. Doing CSP properly means cataloguing every external host this app
 // actually uses and allow-listing exactly those — worth doing as a deliberate follow-up,

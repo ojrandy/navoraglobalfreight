@@ -15,6 +15,7 @@ import { api } from './services/api';
 import { simulationEngine } from './services/simulationEngine';
 import { setLiveChatVisible } from './services/liveChat';
 import { ADMIN_HOST, ADMIN_CONSOLE_NAME, COMPANY, COMPANY_SHORT, SITE_URL } from './config/brand';
+import './styles/fonts.css';
 import './styles/global.css';
 
 const loadAdminApp = () => import('./admin/AdminApp');
