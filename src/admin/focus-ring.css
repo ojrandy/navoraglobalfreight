@@ -1,0 +1,8 @@
+/* Same keyboard focus ring as src/styles/global.css. The admin stylesheets now load after
+   global.css (with the admin chunk), so without this copy the admin rules that set
+   `outline: none` on inputs would hide the ring. Loaded last in admin/styles.ts, which restores
+   the original order: the ring wins ties, a component's own :focus-visible style still wins. */
+:where(a, button, [role="button"], [tabindex], summary, select, input, textarea):focus-visible {
+  outline: 2px solid var(--ngf-color-focus);
+  outline-offset: 2px;
+}

@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import './styles';
 import { AdminLayout, AdminViewType } from './AdminLayout';
 import { OperationsCenter } from './pages/OperationsCenter';
 import { QuoteRequestsView } from './pages/QuoteRequestsView';

@@ -1,10 +1,7 @@
-// Admin stylesheets, loaded with the main bundle even though the admin code is lazy-loaded.
-//
-// Public pages currently rely on some rules that live only in these files (shared utility
-// classes such as .text-emerald, .text-accent, .icon-emerald, .form-row-2). Keeping every file
-// here, in the same order the admin import graph used to add them, leaves the cascade for
-// both the public site and the console exactly as it was. Move those shared rules into the
-// public styles before dropping any file from this list.
+// Admin stylesheets, in their original cascade order. AdminApp and AdminLogin import this file
+// first, so these load with the admin chunk only. The rules public pages also use are copied
+// into src/styles/admin-shared.css by scripts/admin-shared-css.mjs: re-run it after editing
+// any of these files.
 import './AdminLayout.css';
 import './pages/OperationsCenter.css';
 import './pages/QuoteRequestsView.css';
@@ -19,3 +16,5 @@ import './pages/SettingsView.css';
 import './pages/MessagesView.css';
 import './components/ShipmentControlModal.css';
 import './AdminLogin.css';
+// Must stay last: see focus-ring.css.
+import './focus-ring.css';

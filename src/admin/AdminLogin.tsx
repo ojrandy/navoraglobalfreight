@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './styles';
 import { Lock, ShieldCheck, ArrowRight, AlertCircle } from 'lucide-react';
 import { api } from '../services/api';
 import { ADMIN_CONSOLE_NAME } from '../config/brand';

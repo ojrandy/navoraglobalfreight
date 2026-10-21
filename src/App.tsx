@@ -2,11 +2,11 @@ import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
-// The admin console's code is its own chunk, fetched only when the admin page opens, so public
-// visitors never download it (MOTION_3D_SPEC §2). Its stylesheets stay in the main bundle, in
-// their original place (see admin/styles.ts); that also keeps the `admin-login-shell`
-// placeholder styled while the session check and the chunk load.
-import './admin/styles';
+// The admin console's code and stylesheets are their own chunk, fetched only when the admin page
+// opens, so public visitors never download them (MOTION_3D_SPEC §2). The few admin CSS rules that
+// public pages also use (and the `admin-login-shell` placeholder shown while the session check and
+// the chunk load) stay here, in the place where the admin CSS used to load.
+import './styles/admin-shared.css';
 import { TrackingLoadingScreen } from './components/TrackingLoadingScreen';
 import { AdminDataProvider, useAdminData } from './context/AdminDataContext';
 import { Shipment } from './types/shipment';
