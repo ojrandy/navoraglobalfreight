@@ -29,7 +29,6 @@ import {
   FileText,
   Activity,
   Layers,
-  Bell,
   Printer,
   Share2,
   ChevronDown,
@@ -144,10 +143,6 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
   const [copiedNumber, setCopiedNumber] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
   const [showEarlierEvents, setShowEarlierEvents] = useState(false);
-  const [alertsModalOpen, setAlertsModalOpen] = useState(false);
-  const [alertPhone, setAlertPhone] = useState('');
-  const [alertEmail, setAlertEmail] = useState('');
-  const [alertSuccess, setAlertSuccess] = useState(false);
 
   // Safe field extraction from synchronized liveShipment
   const trackingNum = liveShipment?.trackingNumber || shipment?.trackingNumber || '';
@@ -469,15 +464,6 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  };
-
-  const handleSubscribeAlerts = (e: React.FormEvent) => {
-    e.preventDefault();
-    setAlertSuccess(true);
-    setTimeout(() => {
-      setAlertSuccess(false);
-      setAlertsModalOpen(false);
-    }, 2000);
   };
 
   // CONTENT §6.3 lines. The ETA is given in the destination's local time zone.
@@ -1356,63 +1342,6 @@ export const TrackResultPage: React.FC<TrackResultPageProps> = ({
           </div>
         </section>
       </div>
-
-      {/* =========================================================================
-          SUBSCRIBE TO ALERTS MODAL
-          ========================================================================= */}
-      {alertsModalOpen && (
-        <div className="alerts-modal-overlay animate-fade-in" onClick={() => setAlertsModalOpen(false)}>
-          <div className="alerts-modal-dialog" onClick={(e) => e.stopPropagation()}>
-            <div className="alerts-modal-header">
-              <div className="flex items-center gap-2">
-                <Bell size={20} className="text-blue" />
-                <h3>Get Delivery Alerts</h3>
-              </div>
-              <button className="modal-close-icon" onClick={() => setAlertsModalOpen(false)} type="button">×</button>
-            </div>
-            <p className="alerts-modal-sub">
-              Receive automatic SMS or email notifications whenever consignment <strong>{trackingNum}</strong> reaches a major sort hub or departs for final delivery.
-            </p>
-
-            {alertSuccess ? (
-              <div className="alerts-success-box animate-fade-in">
-                <CheckCircle2 size={24} className="text-emerald" />
-                <div>
-                  <h4>Subscribed Successfully!</h4>
-                  <p>You will receive live transit updates for this consignment.</p>
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleSubscribeAlerts} className="alerts-modal-form">
-                <div className="form-group">
-                  <label>Mobile Number (SMS Updates)</label>
-                  <input
-                    type="tel"
-                    className="form-control"
-                    placeholder="(555) 000-0000"
-                    value={alertPhone}
-                    onChange={(e) => setAlertPhone(e.target.value)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Email Address</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="you@company.com"
-                    value={alertEmail}
-                    onChange={(e) => setAlertEmail(e.target.value)}
-                  />
-                </div>
-                <button type="submit" className="btn-confirm-alerts">
-                  <span>Activate Live Alerts</span>
-                  <ArrowRight size={16} />
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      )}
 
       {/* Support Dialog */}
       <SupportModal
