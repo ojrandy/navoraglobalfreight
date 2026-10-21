@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { Shipment, ShipmentStatus, TrackingEvent } from '../types/shipment';
 import { QuoteRequest, QuoteRequestStatus, QuoteRequestPricing, AdminNotification, AdminSettings, AdminDocument, DocumentStatus, DocumentVersion } from '../types/admin';
 import { api } from '../services/api';
@@ -114,15 +114,23 @@ const normalizeShipment = (s: any): Shipment => {
   };
 };
 
+  // One session check per page load, shared by the initial load and the refresh below.
+  const sessionCheck = useRef<Promise<boolean>>();
+  const hasAdminSession = () => (sessionCheck.current ??= api.checkSession());
+
   // Live initial load from persistent SQLite Backend
   useEffect(() => {
     let isMounted = true;
     const loadBackendData = async () => {
       try {
+        // Shipments, quotes and documents need an admin session. Public visitors only get the
+        // public settings, so their browser no longer logs three 401s on every page load.
+        const isAdmin = await hasAdminSession();
+        const adminOnly = <T,>(load: () => Promise<T>) => (isAdmin ? load() : Promise.reject(new Error('No admin session')));
         const [liveShipments, liveQuotes, liveDocs, liveSettings] = await Promise.allSettled([
-          api.getShipments(),
-          api.getQuotes(),
-          api.getDocuments(),
+          adminOnly(() => api.getShipments()),
+          adminOnly(() => api.getQuotes()),
+          adminOnly(() => api.getDocuments()),
           api.getSettings()
         ]);
 
@@ -177,25 +185,30 @@ const normalizeShipment = (s: any): Shipment => {
     // page load — logging in already does a full reload (see AdminLogin.tsx), which starts
     // this effect fresh with a valid session. Other failures (a network blip, a 5xx) keep
     // retrying as before; only a confirmed "not authenticated" response silences it.
+    // Public visitors (no session) never start polling at all.
     let stopped = false;
-    const interval = setInterval(async () => {
-      if (stopped) return;
-      try {
-        const fresh = await api.getShipments();
-        if (!Array.isArray(fresh)) return;
-        const freshByTracking = new Map(fresh.map(f => [f.trackingNumber.toUpperCase(), normalizeShipment(f)]));
-        setShipments(prev => prev.map(s => {
-          const incoming = freshByTracking.get(s.trackingNumber.toUpperCase());
-          return incoming ? applyForwardOnlyShipmentUpdate(s, incoming) : s;
-        }));
-      } catch (err: any) {
-        if (err?.status === 401) {
-          stopped = true;
-          clearInterval(interval);
+    let interval: ReturnType<typeof setInterval> | undefined;
+    hasAdminSession().then((isAdmin) => {
+      if (!isAdmin || stopped) return;
+      interval = setInterval(async () => {
+        if (stopped) return;
+        try {
+          const fresh = await api.getShipments();
+          if (!Array.isArray(fresh)) return;
+          const freshByTracking = new Map(fresh.map(f => [f.trackingNumber.toUpperCase(), normalizeShipment(f)]));
+          setShipments(prev => prev.map(s => {
+            const incoming = freshByTracking.get(s.trackingNumber.toUpperCase());
+            return incoming ? applyForwardOnlyShipmentUpdate(s, incoming) : s;
+          }));
+        } catch (err: any) {
+          if (err?.status === 401) {
+            stopped = true;
+            clearInterval(interval);
+          }
+          // Any other error: silent, a failed background refresh shouldn't disrupt the session.
         }
-        // Any other error: silent, a failed background refresh shouldn't disrupt the session.
-      }
-    }, REFRESH_MS);
+      }, REFRESH_MS);
+    });
     return () => { stopped = true; clearInterval(interval); };
   }, []);
 
