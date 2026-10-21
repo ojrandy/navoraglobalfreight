@@ -22,8 +22,8 @@ import { statsRouter } from './routes/stats.js';
 import { authRouter } from './routes/auth.js';
 import { messagesRouter } from './routes/messages.js';
 import { mediaRouter } from './routes/media.js';
-import { seoRouter } from './seo.js';
-import { COMPANY } from '../src/config/brand.js';
+import { seoRouter, isOldAdminHost } from './seo.js';
+import { ADMIN_PATH, COMPANY, SITE_URL } from '../src/config/brand.js';
 import { requireAdminAuth, SESSION_COOKIE } from './middleware/auth.js';
 
 dotenv.config(); // reload trigger for tsx watch after .env changes
@@ -70,8 +70,17 @@ app.use(helmet({
 // take 30–70 s. Responses that already carry a Content-Encoding (e.g. proxied ones) are left alone.
 app.use(compression());
 
-// robots.txt, sitemap.xml and the admin-host noindex header; host-aware, so before anything else.
+// robots.txt, sitemap.xml and the admin noindex header; host-aware, so before anything else.
 app.use(seoRouter);
+
+// The console moved from its own subdomain (ADMIN_HOST) to ADMIN_PATH on the main domain. Page
+// requests on the old host go to the new address, so bookmarks keep working; staff sign in once
+// more there, since the session cookie was scoped to the old host. /api is left alone so a tab
+// still open on the old host fails gracefully instead of having its requests redirected.
+app.use((req: Request, res: Response, next: NextFunction) => {
+  if (!isOldAdminHost(req) || req.path.startsWith('/api')) return next();
+  res.redirect(301, `${SITE_URL}${ADMIN_PATH}/`);
+});
 
 // credentials:true + a specific origin (not '*', which browsers reject alongside
 // credentialed requests) — the admin session cookie has to actually reach the API for
@@ -225,7 +234,8 @@ if (ADMIN_PROXY_TARGET) {
 // the whole deployed app — API above, static site here. The app uses HashRouter (#/admin,
 // #/track/...), so the browser only ever requests the bare "/" from the server no matter which
 // in-app page is open (everything after "#" stays client-side) — express.static's default
-// index.html-for-"/" behavior is enough, no separate SPA catch-all route is needed.
+// index.html-for-"/" behavior is enough, no separate SPA catch-all route is needed. The one
+// real path is the admin console's (ADMIN_PATH), answered with the same index.html below.
 //
 // Cache rules, so Hostinger's CDN and browsers can keep the files (with Express's default
 // max-age=0 every visitor pulled the full bundle from this process): Vite's /assets/ files have
@@ -245,6 +255,13 @@ app.use(express.static(distDir, {
     else res.setHeader('Cache-Control', 'public, max-age=3600');
   },
 }));
+
+// The admin console: the same index.html, which opens the console when it sees this path
+// (App.tsx). Never cached by the CDN; seoRouter has already added the noindex header.
+app.get([ADMIN_PATH, `${ADMIN_PATH}/{*rest}`], (req: Request, res: Response) => {
+  res.setHeader('Cache-Control', 'no-store, private');
+  res.sendFile(path.join(distDir, 'index.html'));
+});
 
 // Last-resort error handler — catches anything that bypassed every route's own try/catch
 // (a malformed JSON body from express.json(), a thrown error in middleware, etc.). Express's

@@ -23,7 +23,11 @@ export const LOGO_WEB = '/brand/logo-web.webp';
 export const LOGO_WHITE_WEB = '/brand/logo-white-web.webp';
 export const LOGO_WEB_SIZE = { width: 438, height: 112 };
 
-// The admin console only opens on <ADMIN_SUBDOMAIN>.<DOMAIN> (plus localhost for development).
+// The admin console opens only under this path on the main domain, e.g. <DOMAIN>/private-user/
+// (plus #/admin on localhost for development). No trailing slash here.
+export const ADMIN_PATH = '/private-user';
+// The console's earlier home. The server sends every page request on this host to ADMIN_PATH,
+// so old bookmarks still work.
 export const ADMIN_SUBDOMAIN = 'private';
 export const ADMIN_HOST = `${ADMIN_SUBDOMAIN}.${DOMAIN}`;
 export const ADMIN_CONSOLE_NAME = `${COMPANY_SHORT} Operations Console`;

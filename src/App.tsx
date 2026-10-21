@@ -14,7 +14,7 @@ import { QuoteRequest } from './types/admin';
 import { api } from './services/api';
 import { simulationEngine } from './services/simulationEngine';
 import { setLiveChatVisible } from './services/liveChat';
-import { ADMIN_HOST, ADMIN_CONSOLE_NAME, COMPANY, COMPANY_SHORT, SITE_URL } from './config/brand';
+import { ADMIN_PATH, ADMIN_CONSOLE_NAME, COMPANY, COMPANY_SHORT } from './config/brand';
 import './styles/fonts.css';
 import './styles/global.css';
 
@@ -60,14 +60,15 @@ function prefetchPublicPages() {
 
 const KNOWN_PAGES = ['home', 'track', 'services', 'quote', 'ship', 'about', 'help', 'contact', 'legal', 'locations', 'admin'];
 
-// Admin lives only on its own subdomain (ADMIN_HOST in src/config/brand.ts), served by the same
-// app and API as the public site. Deliberately not "admin." — that's one of the most commonly
-// probed/guessed subdomain names. An exact hostname match, so no other host (the public domain,
-// www., or a look-alike such as private.example.com) ever opens the console. localhost is
-// exempted separately so local dev can keep using the plain #/admin hash.
-function isAdminHost(): boolean {
+// Admin lives only under its own path on the main domain (ADMIN_PATH in src/config/brand.ts),
+// served by the same app and API as the public site (the server answers that path with the same
+// index.html). Deliberately not "/admin", one of the most commonly probed paths. Matches the
+// path exactly or with a trailing segment, so a look-alike such as /private-users never opens
+// the console. localhost is exempted separately so local dev can keep using the plain #/admin hash.
+function isAdminPath(): boolean {
   if (typeof window === 'undefined') return false;
-  return window.location.hostname.toLowerCase() === ADMIN_HOST;
+  const path = window.location.pathname.toLowerCase();
+  return path === ADMIN_PATH || path.startsWith(`${ADMIN_PATH}/`);
 }
 
 // Search engines must never index the console. Added at runtime (not in index.html) because the
@@ -135,7 +136,7 @@ function isLocalDevHost(): boolean {
 // existing hash-parsing effect (below) still runs afterward and resolves them for real.
 function getInitialPage(): string {
   if (typeof window === 'undefined') return 'home';
-  if (isAdminHost()) return 'admin';
+  if (isAdminPath()) return 'admin';
   const hash = window.location.hash.replace('#', '');
   const pathname = window.location.pathname.replace(/^\//, '');
   const target = hash || (pathname ? `/${pathname}` : '');
@@ -213,16 +214,16 @@ function MainAppContent() {
       admin: { title: ADMIN_CONSOLE_NAME, description: DEFAULT_DESCRIPTION },
     };
     setPageMeta(meta[currentPage] || PAGE_META.home);
-    setRobotsNoIndex(currentPage === 'admin' || isAdminHost());
+    setRobotsNoIndex(currentPage === 'admin' || isAdminPath());
   }, [currentPage, liveShipment, currentQuote]);
 
   useEffect(() => {
-    setLiveChatVisible(currentPage !== 'admin' && !isAdminHost());
+    setLiveChatVisible(currentPage !== 'admin' && !isAdminPath());
   }, [currentPage]);
 
-  // Warm the other public pages after the first one has fully loaded (never on the admin host).
+  // Warm the other public pages after the first one has fully loaded (never on the admin path).
   useEffect(() => {
-    if (isAdminHost()) return;
+    if (isAdminPath()) return;
     if (document.readyState === 'complete') prefetchPublicPages();
     else window.addEventListener('load', prefetchPublicPages, { once: true });
   }, []);
@@ -230,7 +231,7 @@ function MainAppContent() {
   // Initialize from hash if available
   useEffect(() => {
     const handleHash = async () => {
-      if (isAdminHost()) {
+      if (isAdminPath()) {
         setCurrentPage('admin');
         return;
       }
@@ -268,7 +269,7 @@ function MainAppContent() {
         const quoteId = target.replace('/quote/', '');
         handleTrackShipment(quoteId);
       } else if (target.startsWith('/admin') || target === 'admin') {
-        // No longer resolves on the public domain — admin moved to its own subdomain.
+        // Doesn't resolve on the public site; the console lives under ADMIN_PATH instead.
         // Exempted on localhost so local dev can keep using the plain #/admin hash.
         if (isLocalDevHost()) {
           setCurrentPage('admin');
@@ -297,10 +298,10 @@ function MainAppContent() {
   }, [getShipment, quoteRequests, shipments, currentShipment]);
 
   const handleNavigate = (page: string, param?: string) => {
-    // The admin host only ever shows the console; public pages live on the main domain.
-    if (isAdminHost() && page !== 'admin') {
+    // The admin path only ever shows the console; public pages live at the site root.
+    if (isAdminPath() && page !== 'admin') {
       const path = page === 'home' ? '' : (param ? `/${page}/${param}` : `/${page}`);
-      window.location.assign(path ? `${SITE_URL}/#${path}` : `${SITE_URL}/`);
+      window.location.assign(path ? `/#${path}` : '/');
       return;
     }
     if (page === 'quote' && param) {
@@ -449,8 +450,8 @@ function MainAppContent() {
           <AdminApp
             onNavigatePublic={handleNavigate}
             onViewPublicTracking={(trk) => {
-              if (isAdminHost()) {
-                window.location.assign(`${SITE_URL}/#/track/${encodeURIComponent(trk)}`);
+              if (isAdminPath()) {
+                window.location.assign(`/#/track/${encodeURIComponent(trk)}`);
               } else {
                 handleTrackShipment(trk);
               }

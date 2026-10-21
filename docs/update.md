@@ -267,7 +267,7 @@ removed from disk when the shipment is permanently deleted.
 - [x] H.2 Security checks: another shipment's accounts or a deleted account never appear in `/api/track`; proof files are 404/401 without an admin session; non-image uploads are rejected; rate limit works; `/api/settings` still contains no payment data.
 - [x] H.3 Regression check: tracking lookup, admin login, shipment create/edit/delete/restore, documents/PDFs, quotes all still work.
 - [x] H.4 `npm run build`: zero TS errors; check the bundle-size impact (payment UI and QR code lazy-loaded).
-- [!] H.5 Deploy: create `UPLOADS_DIR` on Hostinger, set the env vars, redeploy, then re-test the flow on the live domain and on `private.` for admin.
+- [!] H.5 Deploy: create `UPLOADS_DIR` on Hostinger, set the env vars, redeploy, then re-test the flow on the live domain and on `/private-user/` for admin.
 - [x] H.6 Tick the matching items in `PROJECT_TRACKER.md` and log the update there.
 
 ### Phase I — Owner corrections after go-live (2026-10-12)
@@ -285,7 +285,7 @@ removed from disk when the shipment is permanently deleted.
 - [ ] **Copy review (Phase I):** the new tab lines in CONTENT.md §6.8: `Choose one of {n} payment options` / `1 payment option` and `Already paid? Upload your receipt so we can confirm it.`
 - [x] **Found in I.5, fixed 2026-10-12 (owner: "yes fix it"):** Edit Shipment U.S. defaults and the "United States" location guess (see I.7).
 - [ ] **Edit Shipment, city the offline lookup doesn't know** (e.g. Kyoto): the new city name is saved but the map position stays where it was (no live geocoding in this form). Changing to a gateway city (Tokyo, London…) re-places it correctly.
-- [ ] **H.5 Deploy (owner):** Hostinger deploys `main`; branch `navora` is 40+ commits ahead of `origin/main`. (1) Merge/push `navora` → `main`. (2) On Hostinger, create the persistent uploads folder next to the database (e.g. `/home/<hostinger-user>/navora-data/uploads`), set `UPLOADS_DIR` to it (DEPLOYMENT.md env block), redeploy. (3) Check `/api/diag/storage` on `private.` while logged in. (4) Re-test the §1 flow on the live domain and on `private.` (a test shipment, then delete it permanently: no demo data in production). (5) Add `UPLOADS_DIR` to the daily backup.
+- [ ] **H.5 Deploy (owner):** Hostinger deploys `main`; branch `navora` is 40+ commits ahead of `origin/main`. (1) Merge/push `navora` → `main`. (2) On Hostinger, create the persistent uploads folder next to the database (e.g. `/home/<hostinger-user>/navora-data/uploads`), set `UPLOADS_DIR` to it (DEPLOYMENT.md env block), redeploy. (3) Check `/api/diag/storage` while logged in at `/private-user/`. (4) Re-test the §1 flow on the live domain and on `/private-user/` (a test shipment, then delete it permanently: no demo data in production). (5) Add `UPLOADS_DIR` to the daily backup.
 - [x] **Default currency** for new payment requests: **USD** (owner, 2026-10-09).
 - [x] Which currencies the payment-request picker offers: **USD only for now** (owner, 2026-10-10; D-7).
 - [ ] **Copy review:** payment section, proof form and messages in CONTENT.md §6.8 (added with E.1): owner to confirm.

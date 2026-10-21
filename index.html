@@ -56,11 +56,11 @@
 
     <!-- Home hero (the largest image on the landing page): start the download now instead of after
          the app's JavaScript has run. Only when Home is the page being opened, and never on the admin
-         host. Same files and breakpoints as <ResponsiveImage name="hero-home" mobileName="hero-home-mobile">;
+         path (ADMIN_PATH in src/config/brand.ts). Same files and breakpoints as <ResponsiveImage name="hero-home" mobileName="hero-home-mobile">;
          `type` makes browsers without AVIF skip the hint and pick the right file later. -->
     <script>
       (function () {
-        if (location.hostname === 'private.navoraglobalfreight.com') return;
+        if (/^\/private-user(\/|$)/i.test(location.pathname)) return;
         var page = (location.hash.replace('#', '').replace(/^\//, '').split('/')[0]) || 'home';
         if (page !== 'home') return;
         var set = function (name, widths) {

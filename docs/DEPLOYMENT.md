@@ -70,7 +70,7 @@ path in use. When unset it defaults to an `uploads` folder next to the database 
 `DB_PATH`, it **must** point outside the app/deploy directory on Hostinger, or every redeploy deletes the files.
 
 **Check persistence before launch:** the server has a temporary endpoint, `GET /api/diag/storage`. It is admin-only,
-so log in to the admin console first, then open `https://private.navoraglobalfreight.com/api/diag/storage` in the same
+so log in to the admin console first, then open `https://navoraglobalfreight.com/api/diag/storage` in the same
 browser. Redeploy and open it again. If `markerFirstSeen` stays the same, storage persists. **After confirming, remove
 this endpoint.**
 
@@ -80,15 +80,16 @@ this endpoint.**
 |---|---|---|
 | `navoraglobalfreight.com` | Node app | Public site |
 | `www.navoraglobalfreight.com` | Redirect → apex (or the reverse; pick one) | |
-| `private.navoraglobalfreight.com` | **Same** Node app (add as an alias/additional domain) | Admin console |
+| `private.navoraglobalfreight.com` | Optional: **same** Node app (alias) | Old admin address; 301-redirects to `/private-user/` |
 
-- **Admin console: `https://private.navoraglobalfreight.com`.** `isAdminHost()` in `src/App.tsx` compares the hostname
-  with `ADMIN_HOST` (`ADMIN_SUBDOMAIN = 'private'` + `DOMAIN`) from `src/config/brand.ts`.
-- In hPanel, add `private.navoraglobalfreight.com` as an additional domain/alias of the **same** Node app, not a
-  separate app, so both hostnames share one API, one session store and one database.
-- On the public domain, `#/admin` must fall back to Home. The admin host serves
-  `<meta name="robots" content="noindex, nofollow">`. Don't list the subdomain in `robots.txt` or `sitemap.xml`.
-- Turn on SSL for all three hostnames, and force HTTPS.
+- **Admin console: `https://navoraglobalfreight.com/private-user/`** (since 2026-10-21). `isAdminPath()` in
+  `src/App.tsx` checks the path against `ADMIN_PATH` from `src/config/brand.ts`. The server answers that path with
+  `index.html`, `Cache-Control: no-store` and `X-Robots-Tag: noindex, nofollow`. No DNS or hPanel setting is needed.
+- If the `private.` alias is kept, every page request on it redirects to the new path (old bookmarks keep working).
+  It can be removed from hPanel once nobody uses it.
+- On the public domain, `#/admin` must fall back to Home. Don't list `/private-user/` in `robots.txt` or
+  `sitemap.xml` (a Disallow line would advertise it).
+- Turn on SSL for every hostname in use, and force HTTPS.
 
 ## 6. Email (info@navoraglobalfreight.com)
 

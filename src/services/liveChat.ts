@@ -1,5 +1,5 @@
 // Smartsupp live chat for the public website. Loaded from code rather than index.html because the
-// public site and the admin host share the same index.html, and the chat must never appear in the
+// public site and the admin path share the same index.html, and the chat must never appear in the
 // operations console. The snippet is Smartsupp's own loader, unchanged apart from typing.
 
 const SMARTSUPP_KEY = '285d9b75390c3ee4e92d2e4f3cfc22751891a416';

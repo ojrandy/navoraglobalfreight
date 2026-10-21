@@ -46,7 +46,7 @@ Every change must keep it:
 | Primary email | info@navoraglobalfreight.com |
 | Domain | navoraglobalfreight.com |
 | Coverage | Worldwide |
-| Admin console URL | https://private.navoraglobalfreight.com (same Node app, separate subdomain) |
+| Admin console URL | https://navoraglobalfreight.com/private-user/ (same Node app; `ADMIN_PATH`) |
 | Tracking ID prefix | `NGF` — full ID is **exactly 8 characters**: `NGF` + 5 characters (e.g. `NGF7K2M9`) |
 | Other references | `NGF-TKT-`, `NGF-INV-`, `NGF-SL-` + 6 digits (BRAND_GUIDE §7) |
 | Phone / WhatsApp / HQ address | **TBD — ask the owner. Never invent real-looking numbers or addresses.** |
@@ -62,7 +62,7 @@ These values live in `src/config/brand.ts`. If a fact is not in this table or in
 - **Icons:** lucide-react. **Barcodes:** jsbarcode. **PDFs:** jspdf + html2canvas.
 - **Backend:** Express 5 (`server/`), SQLite via Node's built-in `node:sqlite` (**requires Node ≥ 22.5**),
   express-session auth, helmet, rate limiting.
-- **Admin:** served ONLY on **`private.navoraglobalfreight.com`** in production (`isAdminHost()` in `App.tsx` compares the hostname with `ADMIN_HOST` from `src/config/brand.ts`). On the public domain, admin must never open. `#/admin` works on localhost only.
+- **Admin:** served ONLY under **`/private-user/`** in production (`isAdminPath()` in `App.tsx` checks the path against `ADMIN_PATH` from `src/config/brand.ts`; the server answers that path with `index.html` and a noindex header). Public pages must never open it. The old `private.` host 301-redirects there. `#/admin` works on localhost only.
 - **Static assets folder is `Public/` (capital P)** — `vite.config.ts` sets `publicDir: 'Public'`. Do not rename it;
   Hostinger's Linux build is case-sensitive.
 
